@@ -1,0 +1,16 @@
+
+.EventBox{
+	flex-direction: row;
+}
+
+.EventObject{
+	flex-grow: 100;
+}
+
+.node #title{
+	background-color: #BD0000;
+}
+
+.node #title #title-label{
+	color: white;
+}

@@ -1,0 +1,7 @@
+Dialogue Name,Node Guid ID,Text Guid ID,French,English,Spanish
+New Dialogue,8f0555b0-f478-45a0-bec3-2033990a3e31,8f6df532-468e-4525-bcf0-d71014defb33,"Ah c'est dommage, mais si tu veux j'ai un truc à faire, tu veux venir m'aider ?","Oh that's too bad, but if you want I have something to do, you want to come help me?","Oh, eso es muy malo, pero si quieres que tengo que hacer algo, que desea venir a ayudar a mí?"
+New Dialogue,954464b2-aec6-4e8f-a214-309fa74ace46,5be61a4a-fba8-459a-a078-e533a1bd05d3,"Ah, bon ben je te laisse t'emmerder alors.","Ah, well well I leave you when you piss.","Ah, bueno, así os dejo cuando orinas."
+New Dialogue,a2a1083d-dc08-4cdc-8ec3-2c1514dee57b,7d12110c-4ee2-4ff1-b948-37e3d5c9ac41,"Bonjour !","Hello !","Hola !"
+New Dialogue,a2a1083d-dc08-4cdc-8ec3-2c1514dee57b,64979268-3288-4023-9178-897cc774685e,"Salut ! Qu'est-ce que tu fais ?","Hi ! What are you doing ?","¡Hola! ¿Qué estás haciendo?"
+New Dialogue,5c028e7c-93c1-4aa5-8e57-8561e93e0d15,Choice Dont have Text ID,"Rien, je m'ennuie.","Nothing, I'm bored.","Nada, estoy aburrido."
+New Dialogue,740ab123-5148-4e8d-93ec-9d239f4c103f,Choice Dont have Text ID,"Je fais un truc sympa, viens voir c'est marrant !","I'm doing something nice, come see what's funny!","Estoy haciendo algo agradable, ven a ver lo que es divertido!"

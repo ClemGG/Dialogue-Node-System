@@ -1,0 +1,321 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd242b17d1915eb458c4133486bbe650, type: 3}
+  m_Name: New Dialogue
+  m_EditorClassIdentifier: 
+  linkDatas:
+  - baseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
+    basePortName: Start
+    targetNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    targetPortName: Input
+  - baseNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
+    basePortName: Output
+    targetNodeGuid: 77f4ebf9-16c3-4b2a-afa7-e180bda8f774
+    targetPortName: End
+  - baseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+    basePortName: False
+    targetNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
+    targetPortName: Input
+  - baseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+    basePortName: True
+    targetNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
+    targetPortName: Input
+  - baseNodeGuid: 5c028e7c-93c1-4aa5-8e57-8561e93e0d15
+    basePortName: True
+    targetNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+    targetPortName: Input
+  - baseNodeGuid: 740ab123-5148-4e8d-93ec-9d239f4c103f
+    basePortName: True
+    targetNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
+    targetPortName: Input
+  - baseNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
+    basePortName: Output
+    targetNodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
+    targetPortName: End
+  - baseNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
+    basePortName: Output
+    targetNodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
+    targetPortName: End
+  - baseNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    basePortName: 436f5667-3dbb-4216-b3c4-ed3e790a01c0
+    targetNodeGuid: 5c028e7c-93c1-4aa5-8e57-8561e93e0d15
+    targetPortName: Input
+  - baseNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    basePortName: 90aa27f5-6107-46c2-bb73-3cf05a61ec2e
+    targetNodeGuid: 740ab123-5148-4e8d-93ec-9d239f4c103f
+    targetPortName: Input
+  startDatas:
+  - nodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
+    position: {x: 276.8, y: 136}
+  dialogueDatas:
+  - nodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
+    position: {x: 1552, y: 296}
+    baseContainers: []
+    translations:
+    - ID:
+        value: 1
+      guid:
+        value: 8f6df532-468e-4525-bcf0-d71014defb33
+      texts:
+      - data: "Ah c'est dommage, mais si tu veux j'ai un truc \xE0 faire, tu veux
+          venir m'aider ?"
+        language: 0
+      - data: Oh that's too bad, but if you want I have something to do, you want
+          to come help me?
+        language: 1
+      - data: "Oh, eso es muy malo, pero si quieres que tengo que hacer algo, que
+          desea venir a ayudar a m\xED?"
+        language: 2
+      audioClips:
+      - data: {fileID: 0}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+    characters:
+    - ID:
+        value: 0
+      character:
+        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
+      characterName:
+        value: 2
+      sprite:
+        value: {fileID: 21300000, guid: 395dcc2048f777f468e4cec782937551, type: 3}
+      mood:
+        value: 10
+      faceDirection:
+        value: 0
+      sidePlacement:
+        value: 1
+    ports: []
+  - nodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
+    position: {x: 1552, y: -144}
+    baseContainers: []
+    translations:
+    - ID:
+        value: 1
+      guid:
+        value: 5be61a4a-fba8-459a-a078-e533a1bd05d3
+      texts:
+      - data: Ah, bon ben je te laisse t'emmerder alors.
+        language: 0
+      - data: Ah, well well I leave you when you piss.
+        language: 1
+      - data: "Ah, bueno, as\xED os dejo cuando orinas."
+        language: 2
+      audioClips:
+      - data: {fileID: 0}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+    characters:
+    - ID:
+        value: 0
+      character:
+        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
+      characterName:
+        value: 2
+      sprite:
+        value: {fileID: 21300000, guid: 6f57263fc966550419475918e747ba7b, type: 3}
+      mood:
+        value: 3
+      faceDirection:
+        value: 0
+      sidePlacement:
+        value: 1
+    ports: []
+  - nodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    position: {x: 377.6, y: 231.2}
+    baseContainers: []
+    translations:
+    - ID:
+        value: 2
+      guid:
+        value: 7d12110c-4ee2-4ff1-b948-37e3d5c9ac41
+      texts:
+      - data: Bonjour !
+        language: 0
+      - data: Hello !
+        language: 1
+      - data: Hola !
+        language: 2
+      audioClips:
+      - data: {fileID: 0}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+    - ID:
+        value: 4
+      guid:
+        value: 64979268-3288-4023-9178-897cc774685e
+      texts:
+      - data: Salut ! Qu'est-ce que tu fais ?
+        language: 0
+      - data: Hi ! What are you doing ?
+        language: 1
+      - data: "\xA1Hola! \xBFQu\xE9 est\xE1s haciendo?"
+        language: 2
+      audioClips:
+      - data: {fileID: 0}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+    characters:
+    - ID:
+        value: 0
+      character:
+        value: {fileID: 0}
+      characterName:
+        value: 
+      sprite:
+        value: {fileID: 0}
+      mood:
+        value: 0
+      faceDirection:
+        value: 0
+      sidePlacement:
+        value: 1
+    - ID:
+        value: 1
+      character:
+        value: {fileID: 11400000, guid: 5f215a5940da20e459a503cc8cd42af9, type: 2}
+      characterName:
+        value: 1
+      sprite:
+        value: {fileID: 21300000, guid: e8254267f2152494db2600b46693bca9, type: 3}
+      mood:
+        value: 1
+      faceDirection:
+        value: 1
+      sidePlacement:
+        value: 0
+    - ID:
+        value: 3
+      character:
+        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
+      characterName:
+        value: 2
+      sprite:
+        value: {fileID: 21300000, guid: e48439cfd142fd347a1ab3f4a5396fcb, type: 3}
+      mood:
+        value: 0
+      faceDirection:
+        value: 0
+      sidePlacement:
+        value: 1
+    ports:
+    - ID:
+        value: 0
+      portGuid: 436f5667-3dbb-4216-b3c4-ed3e790a01c0
+      inputGuid: 5c028e7c-93c1-4aa5-8e57-8561e93e0d15
+      outputGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    - ID:
+        value: 0
+      portGuid: 90aa27f5-6107-46c2-bb73-3cf05a61ec2e
+      inputGuid: 740ab123-5148-4e8d-93ec-9d239f4c103f
+      outputGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    - ID:
+        value: 0
+      portGuid: e973d1c0-d1a8-498d-a0be-fe122fb7b31a
+      inputGuid: 
+      outputGuid: 
+  branchDatas:
+  - nodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+    position: {x: 1035.2, y: 280}
+    trueNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
+    falseNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
+    stringConditions:
+    - stringEvent:
+        value: hasSomethingToDo
+      number:
+        value: 0
+      conditionType:
+        value: 0
+  choiceDatas:
+  - nodeGuid: 5c028e7c-93c1-4aa5-8e57-8561e93e0d15
+    position: {x: 716.8, y: 287.19998}
+    choiceStateType:
+      value: 0
+    texts:
+    - data: Rien, je m'ennuie.
+      language: 0
+    - data: Nothing, I'm bored.
+      language: 1
+    - data: Nada, estoy aburrido.
+      language: 2
+    audioClips:
+    - data: {fileID: 0}
+      language: 0
+    - data: {fileID: 0}
+      language: 1
+    - data: {fileID: 0}
+      language: 2
+    stringConditions: []
+  - nodeGuid: 740ab123-5148-4e8d-93ec-9d239f4c103f
+    position: {x: 716.8, y: 400.8}
+    choiceStateType:
+      value: 1
+    texts:
+    - data: Je fais un truc sympa, viens voir c'est marrant !
+      language: 0
+    - data: I'm doing something nice, come see what's funny!
+      language: 1
+    - data: Estoy haciendo algo agradable, ven a ver lo que es divertido!
+      language: 2
+    audioClips:
+    - data: {fileID: 0}
+      language: 0
+    - data: {fileID: 0}
+      language: 1
+    - data: {fileID: 0}
+      language: 2
+    stringConditions:
+    - stringEvent:
+        value: hasSomethingToDo
+      number:
+        value: 0
+      conditionType:
+        value: 1
+  eventDatas:
+  - nodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
+    position: {x: 1035.2, y: 400.8}
+    stringEvents:
+    - stringEvent:
+        value: money
+      number:
+        value: 500
+      modifierType:
+        value: 2
+    - stringEvent:
+        value: hasSomethingToDo
+      number:
+        value: 0
+      modifierType:
+        value: 0
+    scriptableEvents:
+    - value: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
+  endDatas:
+  - nodeGuid: 77f4ebf9-16c3-4b2a-afa7-e180bda8f774
+    position: {x: 1433.6, y: 400.8}
+    endNodeType:
+      value: 1
+  - nodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
+    position: {x: 2096.8, y: 106.399994}
+    endNodeType:
+      value: 0

@@ -1,0 +1,92 @@
+.node #title{
+	background-color: #D1B00C;
+}
+
+.node #title #title-label{
+	color: black;
+}
+
+.TopBox{
+	flex-direction: row;
+	padding-top:10px;
+}
+
+.LabelText{
+	margin-right:auto;
+	font-size: 18px;
+}
+
+
+
+
+.RemoveBtn{
+	margin-left:auto;
+}
+.MoveUpBtn{
+	margin-left:auto;
+	background-image: resource("Icons/arrowUp");/*Pour avoir l'image depuis le dossier Resources*/	
+	/*background-image: url("/Assets/Icons/arrowUp.png");*//*Pour avoir l'image de n'importe où*/	
+}
+.MoveDownBtn{
+	margin-left:auto;
+	background-image: resource("Icons/arrowDown");
+}
+.BtnBox{
+	flex-direction:row;
+}
+
+.BoxRow{
+	flex-direction: row;
+}
+
+
+
+
+.EnumLabel{
+	padding-left:2px;
+}
+
+/* ----------------- Name -----------------*/
+.NameColor{
+	color:green;
+}
+.CharacterName{
+	width:260px;
+	white-space: normal; /*Quand la longueur max de la TextBox est atteinte, on retourne à la ligne*/
+	padding-bottom: 10px;
+}
+
+/* ----------------- Text -----------------*/
+
+.TextColor{
+	color:#D1B00C;
+}
+
+.TextBox{
+	flex-grow: 100;
+}
+
+/* Pour étirer les champs de tete jusqu'au bord de la node */
+.TextStretch{
+	
+}
+
+.AudioClip{
+	flex-grow: 100;
+}
+
+/* ----------------- Images -----------------*/
+.ImageColor{
+	color:#E8C411;
+}
+
+
+.ImagePreview{
+	height:	100px;
+	width:	65px;
+	margin:auto;
+}
+
+.Sprite{
+	margin:auto;
+}

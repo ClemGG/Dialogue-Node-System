@@ -1,0 +1,23 @@
+.ChoiceLabel{
+	padding-top:11px;
+	font-size: 12px;
+	padding-left:1px;
+}
+
+.enumHide{
+	padding-top:10px;
+	width:	70px;
+}
+
+.node #title{
+	background-color: #FFFEB2;
+}
+
+.node #title #title-label{
+	color: #000000;
+}
+
+.BoxRow{
+	padding-top:5px;
+	padding-bottom:5px;
+}

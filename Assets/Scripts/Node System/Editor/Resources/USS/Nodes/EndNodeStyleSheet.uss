@@ -1,0 +1,7 @@
+.node #title{
+	background-color: #760049;
+}
+
+.node #title #title-label{
+	color: white;
+}
