@@ -1,8 +1,12 @@
 
 .dialogueContainerName
 {
-	margin-top: 3px;
+	margin-top: 2px;
 	margin-left: 5px;
 	padding-right: 5px;
 
+}
+.showGridLabel
+{
+	margin-top: 2px;
 }

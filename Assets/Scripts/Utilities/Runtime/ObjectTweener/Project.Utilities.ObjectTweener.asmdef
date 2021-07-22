@@ -1,0 +1,20 @@
+{
+    "name": "Project.Utilities.ObjectTweener",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7c221f73ed9fa9c4a966eaca0c0f8e93"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

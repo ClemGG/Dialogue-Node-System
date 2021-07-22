@@ -56,6 +56,5 @@ namespace Project.NodeSystem.Editor
 
             return dialoguesFound.ToList();
         }
-
     }
 }

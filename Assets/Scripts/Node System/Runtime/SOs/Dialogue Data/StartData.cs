@@ -1,4 +1,6 @@
-﻿namespace Project.NodeSystem
+﻿using UnityEngine;
+
+namespace Project.NodeSystem
 {
     [System.Serializable]
     public class StartData : BaseData

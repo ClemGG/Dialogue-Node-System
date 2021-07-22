@@ -15,7 +15,7 @@ namespace Project.NodeSystem.Editor
         private MiniMap miniMap;
         private string graphViewStyleSheet = "USS/GraphView/GraphViewStyleSheet";
         private Vector2 minimapLastPos;
-
+        private GridBackground grid;
 
 
 
@@ -30,15 +30,15 @@ namespace Project.NodeSystem.Editor
             //Définit les limites du zoom sur le graphe
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
 
+
             //Des utilitaires d'Unity
             this.AddManipulator(new ContentDragger());      //Pour déplacer les nodes sur la grille
             this.AddManipulator(new SelectionDragger());    //Pour déplacer la sélection
             this.AddManipulator(new RectangleSelector());   //Pour sélectionner dans un Rect
             this.AddManipulator(new FreehandSelector());    //Pour sélectionner une seule node
 
-
             //La grille (couleurs définies dans la styleSheet)
-            GridBackground grid = new GridBackground();
+            grid = new GridBackground();
             Insert(0, grid);
             grid.StretchToParentSize();
 
@@ -46,6 +46,9 @@ namespace Project.NodeSystem.Editor
             CreateMinimap();
         }
 
+
+
+        #region Editor Window
 
         /// <summary>
         /// Appelée depuis la fenêtre d'éditeur pour garder la carte en haut à gauche de l'écran
@@ -95,6 +98,24 @@ namespace Project.NodeSystem.Editor
             }
         }
 
+
+
+        public void ToggleGrid(bool makeGridVisible)
+        {
+            string hideUssClass = "Hide";
+            if (makeGridVisible)
+            {
+                grid.RemoveFromClassList(hideUssClass);
+            }
+            else
+            {
+                grid.AddToClassList(hideUssClass);
+            }
+        }
+
+
+
+        #endregion
 
 
 

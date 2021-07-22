@@ -12,20 +12,17 @@ namespace Project.NodeSystem.Editor
 
         public BranchData BranchData { get => branchData; set => branchData = value; }
 
-        public BranchNode() : base("Branch", Vector2.zero, null, null)
+        public BranchNode() : base("Branch", Vector2.zero)
         {
 
         }
 
-        public BranchNode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("Branch", position, window, graphView)
+        public BranchNode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("Branch", position, window, graphView, "BranchNodeStyleSheet")
         {
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("USS/Nodes/BranchNodeStyleSheet");
-            styleSheets.Add(styleSheet);
 
-
-            AddPort("Input", Direction.Input, Port.Capacity.Multi);
-            AddPort("True", Direction.Output);
-            AddPort("False", Direction.Output);
+            NodeBuilder.AddPort(this, "Input", Direction.Input, Port.Capacity.Multi);
+            NodeBuilder.AddPort(this, "True", Direction.Output);
+            NodeBuilder.AddPort(this, "False", Direction.Output);
 
             TopButton();
 
@@ -41,19 +38,17 @@ namespace Project.NodeSystem.Editor
 
         private void TopButton()
         {
-            ToolbarMenu menu = new ToolbarMenu();
-            menu.text = "Add Condition";
-
-            menu.menu.AppendAction("String Event Condition", new Action<DropdownMenuAction>(x => AddCondition()));
-
-            titleContainer.Add(menu);
-
+            ToolbarMenu tm = NodeBuilder.NewToolbar(this, "Add Condition");
+            tm.AddMenuActions
+                (
+                    ("String Event Condition", new Action<DropdownMenuAction>(x => AddCondition()))
+                );
         }
 
 
         public void AddCondition(EventData_StringCondition stringEvent = null)
         {
-            AddStringConditionEventBuild(BranchData.stringConditions, stringEvent);
+            NodeBuilder.AddStringConditionEvent(this, BranchData.stringConditions, stringEvent);
         }
 
 

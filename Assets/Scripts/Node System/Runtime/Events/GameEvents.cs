@@ -51,9 +51,9 @@ namespace Project.NodeSystem
                     break;
                 default:
                     if (propIsFloat != null)
-                        prop.SetValue(DE_Trigger, UseStringEventModifier.ModifierFloatCheck(value, stringEventModifierType));
+                        prop.SetValue(DE_Trigger, UseStringEventModifier.ModifierFloatCheck(propIsFloat.Value, value, stringEventModifierType));
                     else if (propIsInt != null)
-                        prop.SetValue(DE_Trigger, UseStringEventModifier.ModifierIntCheck((int)value, stringEventModifierType));
+                        prop.SetValue(DE_Trigger, UseStringEventModifier.ModifierIntCheck(propIsInt.Value, (int)value, stringEventModifierType));
                     break;
             }
         }

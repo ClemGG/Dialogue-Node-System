@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using static Project.Utilities.ValueTypes.Enums;
 
 namespace Project.NodeSystem.Editor
 {
     public class CSVSaver
     {
         private string csvDirName = "Resources/Dialogue System/CSV Files";
-        private string csvFileName = "DialogueCSV_Save.csv";
+        private string csvFileName = "CSV_Dialogue.csv";
         private string csvSeparator = ",";
         private List<string> csvHeaders = new List<string>(); //Le nom des langues (French, English, Spanish, etc)
         private string node_ID = "Node Guid ID";
@@ -27,7 +28,7 @@ namespace Project.NodeSystem.Editor
             {
                 foreach (DialogueData nodeData in dialogueContainer.dialogueDatas)
                 {
-                    foreach (DialogueData_Translation textData in nodeData.translations)
+                    foreach (DialogueData_Repliques textData in nodeData.repliques)
                     {
                         List<string> texts = new List<string>();
 
@@ -35,33 +36,73 @@ namespace Project.NodeSystem.Editor
                         texts.Add(nodeData.nodeGuid);
                         texts.Add(textData.guid.value);
 
-                        foreach (LanguageType languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
+                        ForEach<LanguageType>(languageType =>
                         {
                             string tmp = textData.texts.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
                             texts.Add($"\"{tmp}\"");
-                        }
+                        });
 
                         AppendToFile(texts);
                     }
                 }
 
+
+                //Répliques
                 foreach (ChoiceData nodeData in dialogueContainer.choiceDatas)
                 {
-                    List<string> texts = new List<string>();
-
-                    texts.Add(dialogueContainer.name);
-                    texts.Add(nodeData.nodeGuid);
-                    texts.Add("Choice Dont have Text ID");
-
-                    foreach (LanguageType languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
+                    foreach (ChoiceData_Container choice in nodeData.choices)
                     {
-                        string tmp = nodeData.texts.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
-                        texts.Add($"\"{tmp}\"");
+                        List<string> texts = new List<string>();
+
+                        texts.Add(dialogueContainer.name);
+                        texts.Add(nodeData.nodeGuid);
+                        texts.Add(choice.guid.value);
+
+                        ForEach<LanguageType>(languageType =>
+                        {
+                            string tmp = choice.texts.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
+                            texts.Add($"\"{tmp}\"");
+                        });
+
+                        AppendToFile(texts);
+
                     }
 
-                    AppendToFile(texts);
                 }
+
+
+                //Descriptions des choix
+                foreach (ChoiceData nodeData in dialogueContainer.choiceDatas)
+                {
+                    foreach (ChoiceData_Container choice in nodeData.choices)
+                    {
+                        foreach (ChoiceData_Condition condition in choice.conditions)
+                        {
+                            List<string> texts = new List<string>();
+
+                            texts.Add(dialogueContainer.name);
+                            texts.Add(nodeData.nodeGuid);
+                            texts.Add(condition.guid.value);
+
+                            ForEach<LanguageType>(languageType =>
+                            {
+                                string tmp = condition.descriptionsIfNotMet.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
+                                texts.Add($"\"{tmp}\"");
+                            });
+
+
+                            AppendToFile(texts);
+                        }
+
+
+                    }
+
+                }
+
             }
+
+            AssetDatabase.Refresh();
+            Selection.activeObject = Resources.Load($"{csvDirName}/{csvFileName}".Replace("Resources/", string.Empty).Replace(".csv", string.Empty));
         }
 
 
@@ -77,10 +118,10 @@ namespace Project.NodeSystem.Editor
             csvHeaders.Add(node_ID);
             csvHeaders.Add(text_ID);
 
-            foreach (LanguageType languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
+            ForEach<LanguageType>(languageType =>
             {
                 csvHeaders.Add(languageType.ToString());
-            }
+            });
         }
 
         private void CreateFile()

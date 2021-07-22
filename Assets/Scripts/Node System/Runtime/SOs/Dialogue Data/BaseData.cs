@@ -9,5 +9,6 @@ namespace Project.NodeSystem
     {
         public string nodeGuid;
         public Vector2 position;
+
     }
 }

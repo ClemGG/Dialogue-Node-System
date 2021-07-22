@@ -1,5 +1,7 @@
 using UnityEditor;
 using UnityEngine;
+using Project.Utilities.Editor;
+
 
 namespace Project.NodeSystem.Editor
 {
@@ -7,10 +9,10 @@ namespace Project.NodeSystem.Editor
     {
         static CSVSaver saver;
         static CSVLoader loader;
-        static CSVLanguageUpdater updater;
+        static DialogueEditorWindow window;
         static CSVSaver Saver => saver ??= new CSVSaver();
         static CSVLoader Loader => loader ??= new CSVLoader();
-        static CSVLanguageUpdater Updater => updater ??= new CSVLanguageUpdater();
+        static DialogueEditorWindow Window => window ??= EditorUtilities.FindEditorWindow<DialogueEditorWindow>("Dialogue Editor", 0);
 
 
         [MenuItem("DalogueSystem/CSV/Save Dialogues To CSV")]
@@ -25,16 +27,14 @@ namespace Project.NodeSystem.Editor
         public static void LoadDialoguesFromCSV()
         {
             Loader.Load();
+
+            //Si on a un DialogueEditor ouvert, on rafraîchit le GraphView
+            if (Window) 
+            {
+                Window.Load();
+            }
+
             Debug.Log("Dialogues loaded from CSV.");
         }
-
-
-        ////Utilisé dans le cas où l'on rajoute ou enlève des langues
-        //[MenuItem("DalogueSystem/CSV/Update Dialogue Language")]
-        //public static void UpdateDialogueLanguage()
-        //{
-        //    Updater.UpdateLanguage();
-        //    Debug.Log("Dialogues updated for all containers.");
-        //}
     }
 }

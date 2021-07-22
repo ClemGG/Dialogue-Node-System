@@ -10,42 +10,36 @@ namespace Project.NodeSystem.Editor
         #region Fields
 
         private EndData endData = new EndData();
-
         public EndData EndData { get => endData; set => endData = value; }
 
 
         #endregion
 
-        public EndNode() : base("End", Vector2.zero, null, null)
+        public EndNode() : base("End", Vector2.zero)
         {
 
         }
 
-        public EndNode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("End", position, window, graphView)
+        public EndNode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("End", position, window, graphView, "EndNodeStyleSheet")
         {
-
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("USS/Nodes/EndNodeStyleSheet");
-            styleSheets.Add(styleSheet);
-
-
-            AddPort("End", Direction.Input, Port.Capacity.Multi);
-
-            MakeMainContainer();
+            NodeBuilder.AddPort(this, "End", Direction.Input, Port.Capacity.Multi);
+            outputContainer.AddStyle("Hide");
+            //MakeMainContainer();
         }
 
 
-        private void MakeMainContainer()
-        {
-            EnumField enumField = NewEndNodeTypeField(endData.endNodeType);
-            mainContainer.Add(enumField);
-        }
+        //private void MakeMainContainer()
+        //{
+        //    EnumField enumField = NewEndNodeTypeField(endData.endNodeType);
+        //    mainContainer.Add(enumField);
+        //}
 
-        public override void LoadValueIntoField()
-        {
-            if(EndData.endNodeType.enumField != null)
-            {
-                EndData.endNodeType.enumField.SetValueWithoutNotify(EndData.endNodeType.value);
-            }
-        }
+        //public override void LoadValueIntoField()
+        //{
+        //    if(EndData.endNodeType.enumField != null)
+        //    {
+        //        EndData.endNodeType.enumField.SetValueWithoutNotify(EndData.endNodeType.value);
+        //    }
+        //}
     }
 }

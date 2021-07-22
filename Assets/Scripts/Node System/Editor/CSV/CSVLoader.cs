@@ -5,13 +5,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+using static Project.Utilities.ValueTypes.Enums;
 
 namespace Project.NodeSystem.Editor
 {
     public class CSVLoader
     {
         private string csvDirName = "Resources/Dialogue System/CSV Files";
-        private string csvFileName = "DialogueCSV_Save.csv";
+        private string csvFileName = "CSV_Dialogue.csv";
 
 
 
@@ -28,7 +29,7 @@ namespace Project.NodeSystem.Editor
             {
                 foreach (DialogueData nodeData in dialogueContainer.dialogueDatas)
                 {
-                    foreach (DialogueData_Translation textData in nodeData.translations)
+                    foreach (DialogueData_Repliques textData in nodeData.repliques)
                     {
                         LoadInToDialogueNodeText(result, headers, textData);
                     }
@@ -36,7 +37,15 @@ namespace Project.NodeSystem.Editor
 
                 foreach (ChoiceData nodeData in dialogueContainer.choiceDatas)
                 {
-                    LoadInToChoiceNode(result, headers, nodeData);
+                    foreach (ChoiceData_Container choice in nodeData.choices)
+                    {
+                        LoadInToChoiceNode(result, headers, choice);
+
+                        foreach (ChoiceData_Condition condition in choice.conditions)
+                        {
+                            LoadInToChoiceNode(result, headers, condition);
+                        }
+                    }
                 }
 
                 EditorUtility.SetDirty(dialogueContainer);
@@ -44,7 +53,8 @@ namespace Project.NodeSystem.Editor
             }
         }
 
-        private void LoadInToDialogueNodeText(List<List<string>> result, List<string> headers, DialogueData_Translation nodeData_Text)
+        //Repliques DialogueNode
+        private void LoadInToDialogueNodeText(List<List<string>> result, List<string> headers, DialogueData_Repliques nodeData_Text)
         {
             foreach (List<string> line in result)
             {
@@ -52,33 +62,55 @@ namespace Project.NodeSystem.Editor
                 {
                     for (int i = 0; i < line.Count; i++)
                     {
-                        foreach (LanguageType languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
+                        ForEach<LanguageType>(languageType =>
                         {
                             if (headers[i] == languageType.ToString())
                             {
                                 nodeData_Text.texts.Find(x => x.language == languageType).data = line[i];
                             }
-                        }
+                        });
                     }
                 }
             }
         }
 
-        private void LoadInToChoiceNode(List<List<string>> result, List<string> headers, ChoiceData nodeData)
+        //Repliques ChoiceNode
+        private void LoadInToChoiceNode(List<List<string>> result, List<string> headers, ChoiceData_Container choice)
         {
             foreach (List<string> line in result)
             {
-                if (line[1] == nodeData.nodeGuid)
+                if (line[2] == choice.guid.value)
                 {
                     for (int i = 0; i < line.Count; i++)
                     {
-                        foreach (LanguageType languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
+                        ForEach<LanguageType>(languageType =>
                         {
                             if (headers[i] == languageType.ToString())
                             {
-                                nodeData.texts.Find(x => x.language == languageType).data = line[i];
+                                choice.texts.Find(x => x.language == languageType).data = line[i];
                             }
-                        }
+                        });
+                    }
+                }
+            }
+        }
+
+        //Descriptions ChoiceNode
+        private void LoadInToChoiceNode(List<List<string>> result, List<string> headers, ChoiceData_Condition condition)
+        {
+            foreach (List<string> line in result)
+            {
+                if (line[2] == condition.guid.value)
+                {
+                    for (int i = 0; i < line.Count; i++)
+                    {
+                        ForEach<LanguageType>(languageType =>
+                        {
+                            if (headers[i] == languageType.ToString())
+                            {
+                                condition.descriptionsIfNotMet.Find(x => x.language == languageType).data = line[i];
+                            }
+                        });
                     }
                 }
             }

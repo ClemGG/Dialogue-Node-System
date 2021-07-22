@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -6,8 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Project.NodeSystem
-{
+namespace Project.NodeSystem {
     public class DialogueUI : MonoBehaviour
     {
 
@@ -24,11 +24,11 @@ namespace Project.NodeSystem
         [SerializeField, Tooltip("Ecrire caractère par caractère ou afficher la réplique entière d'un coup ?")]
         protected bool writeCharByChar = true;
 
-        [SerializeField, Tooltip("Vitesse d'écriture caractère par caractère.")]
-        protected float charWriteSpeed = .1f;
-
-        [SerializeField, Tooltip("Drapeau qui indique si le UI est en train d'écrire la réplique en cours.")]
+        [ReadOnly, SerializeField, Tooltip("Drapeau qui indique si le UI est en train d'écrire la réplique en cours.")]
         protected bool isWriting;
+
+        [SerializeField, Tooltip("Vitesse d'écriture caractère par caractère.")]
+        protected float charWriteSpeed = .016f;
 
         [SerializeField] protected GameObject dialogueUI;
 
@@ -89,7 +89,9 @@ namespace Project.NodeSystem
         [Header("Audio :")]
         [Space(10)]
 
-        protected AudioSource source;
+        [SerializeField] private AudioClip charPrintClip;
+        protected AudioSource voiceClipSource;
+        protected AudioSource charClipSource;
 
         #endregion
 
@@ -107,7 +109,12 @@ namespace Project.NodeSystem
 
         void Awake()
         {
-            source = gameObject.AddComponent<AudioSource>();
+            voiceClipSource = gameObject.AddComponent<AudioSource>();
+            charClipSource = gameObject.AddComponent<AudioSource>();
+
+            voiceClipSource.playOnAwake = charClipSource.playOnAwake = false;
+            charClipSource.loop = true;
+            charClipSource.clip = charPrintClip;
             choicesContent.SetActive(false);
             dialogueContent.SetActive(false);
         }
@@ -118,13 +125,13 @@ namespace Project.NodeSystem
 
         #region Dialogue
 
-        public void StartDialogue()
+        public virtual void StartDialogue()
         {
             //Quand on lance le dialogue, on active l'interface
             dialogueUI.SetActive(true);
         }
 
-        public void EndDialogue()
+        public virtual void EndDialogue()
         {
             dialogueUI.SetActive(false);
         }
@@ -159,7 +166,7 @@ namespace Project.NodeSystem
 
 
 
-        public void SetText(string replique)
+        public virtual void SetText(string replique)
         {
             dialogueContent.SetActive(true);
             skipRepliqueBtn.onClick.RemoveAllListeners();   
@@ -187,6 +194,10 @@ namespace Project.NodeSystem
             continueBtn.interactable = true;
             isWriting = false;
 
+
+            //Arrêter le son d'écriture
+            charClipSource.Stop();
+
             //On arrête la coroutine pour éviter d'écrire à la suite de la réplique entière
             StopAllCoroutines();
             dialogueText.text = replique;
@@ -205,13 +216,23 @@ namespace Project.NodeSystem
             sb = new StringBuilder(length);
             WaitForSeconds wait = new WaitForSeconds(charWriteSpeed);
 
+            //Joue le son d'écriture en boucle s'il y en a un
+            charClipSource.Play();
+
+
             for (int i = 0; i < length; i++)
             {
                 sb.Append(replique[i]);
                 dialogueText.text = sb.ToString();
+
+
                 //Wait a certain amount of time, then continue with the for loop
                 yield return wait;
             }
+
+
+            //Arrêter le son d'écriture
+            charClipSource.Stop();
 
             isWriting = false;
             continueBtn.interactable = true;   //Pour éviter de cliquer dessus, on sait jamais
@@ -236,7 +257,6 @@ namespace Project.NodeSystem
 
                 }
 
-                characterLeftImg.sprite = characterSprite;
 
             }
             else
@@ -252,14 +272,38 @@ namespace Project.NodeSystem
                     characterRightGo.gameObject.SetActive(true);
                 }
 
-                characterRightImg.sprite = characterSprite;
 
             }
 
+            if(characterSprite) OnCharacterSet(characterSprite, faceDir, sidePlacement);
 
             characterNameText.text = characterName;
             characterNameText.color = characterNameColor;
         }
+
+
+
+        /// <summary>
+        /// On déplace l'assignation des persos ici pour pouvoir ajouter les tweens sans avoir à tout réécrire.
+        /// (Appelé uniquement si on a un sprite à afficher)
+        /// </summary>
+        /// <param name="characterSprite"></param>
+        /// <param name="faceDir"></param>
+        /// <param name="sidePlacement"></param>
+        protected virtual void OnCharacterSet(Sprite characterSprite, DialogueSide faceDir, DialogueSide sidePlacement)
+        {
+            if (sidePlacement == DialogueSide.Left)
+            {
+                characterLeftImg.sprite = characterSprite;
+            }
+            else
+            {
+                characterRightImg.sprite = characterSprite;
+            }
+        }
+
+
+
 
 
         public void SetChoices(List<DialogueButtonContainer> dialogueButtonContainers)
@@ -307,9 +351,9 @@ namespace Project.NodeSystem
 
         public void PlaySound(AudioClip clip)
         {
-            source.Stop();
-            source.clip = clip;
-            source.Play();
+            if(voiceClipSource.clip) voiceClipSource.Stop();
+            voiceClipSource.clip = clip;
+            voiceClipSource.Play();
         }
 
         #endregion

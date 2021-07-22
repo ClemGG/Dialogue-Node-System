@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Project.NodeSystem
 {
@@ -9,6 +10,7 @@ namespace Project.NodeSystem
     {
         public List<EventData_StringModifier> stringEvents = new List<EventData_StringModifier>();
         public List<ContainerValue<DialogueEventSO>> scriptableEvents = new List<ContainerValue<DialogueEventSO>>();
+
     }
 
 

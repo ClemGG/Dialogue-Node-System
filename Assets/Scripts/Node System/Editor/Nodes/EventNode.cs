@@ -25,21 +25,15 @@ namespace Project.NodeSystem.Editor
 
 
 
-        public EventNode() : base("Event", Vector2.zero, null, null)
+        public EventNode() : base("Event", Vector2.zero)
         {
 
         }
 
-        public EventNode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("Event", position, window, graphView)
+        public EventNode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("Event", position, window, graphView, "EventNodeStyleSheet")
         {
-
-            StyleSheet styleSheet = Resources.Load<StyleSheet>("USS/Nodes/EventNodeStyleSheet");
-            styleSheets.Add(styleSheet);
-
-
-            AddPort("Input", Direction.Input, Port.Capacity.Multi);
-            AddPort("Output", Direction.Output, Port.Capacity.Single);
-
+            NodeBuilder.AddPort(this, "Input", Direction.Input, Port.Capacity.Multi);
+            NodeBuilder.AddPort(this, "Output", Direction.Output, Port.Capacity.Single);
 
 
             //Crée la barre d'outils
@@ -59,26 +53,24 @@ namespace Project.NodeSystem.Editor
 
         private void TopButton()
         {
-            ToolbarMenu menu = new ToolbarMenu();
-            menu.text = "Add Event";
-
-            menu.menu.AppendAction("String Event Modifier", new Action<DropdownMenuAction>(x => AddStringEvent()));
-            menu.menu.AppendAction("Scriptable Object", new Action<DropdownMenuAction>(x => AddScriptableEvent()));
-
-            titleContainer.Add(menu);
-
+            ToolbarMenu tm = NodeBuilder.NewToolbar(this, "Add Event");
+            tm.AddMenuActions
+                (
+                    ("String Event Modifier", new Action<DropdownMenuAction>(x => AddStringEvent())),
+                    ("Scriptable Object", new Action<DropdownMenuAction>(x => AddScriptableEvent()))
+                );
         }
 
 
 
         public void AddStringEvent(EventData_StringModifier stringEvent = null)
         {
-            AddStringModifierEventBuild(eventData.stringEvents, stringEvent);
+            NodeBuilder.AddStringModifierEvent(this, eventData.stringEvents, stringEvent);
         }
 
         public void AddScriptableEvent(ContainerValue<DialogueEventSO> scriptableEvent = null)
         {
-            AddScriptableEventBuild(EventData, scriptableEvent);
+            NodeBuilder.AddScriptableEvent(this, EventData, scriptableEvent);
         }
 
 

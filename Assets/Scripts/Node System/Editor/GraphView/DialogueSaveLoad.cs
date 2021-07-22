@@ -111,7 +111,7 @@ namespace Project.NodeSystem.Editor
                 node.DialogueData.baseContainers[i].ID.value = i;
             }
 
-            foreach (DialogueData_BaseContainer baseContainer in node.DialogueData.baseContainers)
+            foreach (NodeData_BaseContainer baseContainer in node.DialogueData.baseContainers)
             {
                 // Stocke le personnage
                 if (baseContainer is DialogueData_CharacterSO)
@@ -133,25 +133,25 @@ namespace Project.NodeSystem.Editor
                 }
 
                 // Stocke les traductions
-                if (baseContainer is DialogueData_Translation)
+                if (baseContainer is DialogueData_Repliques)
                 {
-                    DialogueData_Translation tmp = (baseContainer as DialogueData_Translation);
-                    DialogueData_Translation tmpData = new DialogueData_Translation();
+                    DialogueData_Repliques tmp = (baseContainer as DialogueData_Repliques);
+                    DialogueData_Repliques tmpData = new DialogueData_Repliques();
 
                     tmpData.ID = tmp.ID;
                     tmpData.guid = tmp.guid;
                     tmpData.texts = tmp.texts;
                     tmpData.audioClips = tmp.audioClips;
 
-                    dialogueData.translations.Add(tmpData);
+                    dialogueData.repliques.Add(tmpData);
                 }
 
             }
 
             // Port
-            foreach (DialogueData_Port port in node.DialogueData.ports)
+            foreach (NodeData_Port port in node.DialogueData.ports)
             {
-                DialogueData_Port portData = new DialogueData_Port();
+                NodeData_Port portData = new NodeData_Port();
 
                 portData.outputGuid = string.Empty;
                 portData.inputGuid = string.Empty;
@@ -190,7 +190,7 @@ namespace Project.NodeSystem.Editor
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
             };
-            nodeData.endNodeType.value = node.EndData.endNodeType.value;
+            //nodeData.endNodeType.value = node.EndData.endNodeType.value;
 
             return nodeData;
         }
@@ -253,31 +253,83 @@ namespace Project.NodeSystem.Editor
 
         private ChoiceData SaveNodeData(ChoiceNode node)
         {
-            ChoiceData nodeData = new ChoiceData()
+            ChoiceData newChoiceData = new ChoiceData()
             {
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
-
-                texts = node.ChoiceData.texts,
-                audioClips = node.ChoiceData.audioClips,
             };
-            nodeData.choiceStateType.value = node.ChoiceData.choiceStateType.value;
 
-            foreach (EventData_StringCondition stringEvents in node.ChoiceData.stringConditions)
+            // Set ID (Instancie les éléments Traduction et Personnage dans le bon ordre)
+            for (int i = 0; i < node.ChoiceData.choices.Count; i++)
             {
-                EventData_StringCondition tmp = new EventData_StringCondition();
-                tmp.stringEvent.value = stringEvents.stringEvent.value;
-                tmp.number.value = stringEvents.number.value;
-                tmp.conditionType.value = stringEvents.conditionType.value;
-
-                nodeData.stringConditions.Add(tmp);
+                node.ChoiceData.choices[i].ID.value = i;
             }
 
-            return nodeData;
+
+
+            foreach (ChoiceData_Container choice in node.ChoiceData.choices)
+            {
+
+
+                //Init
+                ChoiceData_Container tmp = new ChoiceData_Container();
+
+                tmp.guid = choice.guid;
+                tmp.ID = choice.ID;
+                tmp.texts = choice.texts;
+                tmp.audioClips = choice.audioClips;
+                tmp.choiceStateType.value = choice.choiceStateType.value;
+
+
+                //Conditions
+                foreach (ChoiceData_Condition condition in choice.conditions)
+                {
+                    ChoiceData_Condition tmpCondition = new ChoiceData_Condition();
+
+                    tmpCondition.descriptionsIfNotMet = condition.descriptionsIfNotMet;
+
+                    EventData_StringCondition tmpEvent = new EventData_StringCondition();
+
+                    tmpEvent.stringEvent.value = condition.stringCondition.stringEvent.value;
+                    tmpEvent.number.value = condition.stringCondition.number.value;
+                    tmpEvent.conditionType.value = condition.stringCondition.conditionType.value;
+
+                    tmpCondition.stringCondition = tmpEvent;
+
+                    tmp.conditions.Add(tmpCondition);
+                }
+
+
+
+                // Choice Ports
+                NodeData_Port portData = new NodeData_Port();
+
+                portData.outputGuid = string.Empty;
+                portData.inputGuid = string.Empty;
+                portData.portGuid = choice.linkedPort.portGuid;
+
+                foreach (Edge edge in edges)
+                {
+                    if (edge.output.portName == choice.linkedPort.portGuid)
+                    {
+                        portData.outputGuid = (edge.output.node as BaseNode).NodeGuid;
+                        portData.inputGuid = (edge.input.node as BaseNode).NodeGuid;
+                    }
+                }
+
+                tmp.linkedPort = portData;
+
+
+                newChoiceData.choices.Add(tmp);
+            }
+
+
+            return newChoiceData;
         }
 
 
         #endregion
+
 
 
 
@@ -312,9 +364,9 @@ namespace Project.NodeSystem.Editor
             {
                 EndNode tempNode = graphView.CreateNode<EndNode>(node.position);
                 tempNode.NodeGuid = node.nodeGuid;
-                tempNode.EndData.endNodeType.value = node.endNodeType.value;
+                //tempNode.EndData.endNodeType.value = node.endNodeType.value;
 
-                tempNode.LoadValueIntoField();
+                //tempNode.LoadValueIntoField();
                 graphView.AddElement(tempNode);
             }
 
@@ -356,40 +408,27 @@ namespace Project.NodeSystem.Editor
             // Choice Node
             foreach (ChoiceData node in dialogueContainer.choiceDatas)
             {
-                ChoiceNode tempNode = graphView.CreateNode<ChoiceNode>(node.position);
-                tempNode.NodeGuid = node.nodeGuid;
+                ChoiceNode tempData = graphView.CreateNode<ChoiceNode>(node.position);
+                tempData.NodeGuid = node.nodeGuid;
 
-                tempNode.ChoiceData.choiceStateType.value = node.choiceStateType.value;
+                List<ChoiceData_Container> newChoices = new List<ChoiceData_Container>();
+                newChoices.AddRange(node.choices);
 
-                foreach (LanguageGeneric<string> dataText in node.texts)
+
+
+                newChoices.Sort(delegate (ChoiceData_Container x, ChoiceData_Container y)
                 {
-                    foreach (LanguageGeneric<string> editorText in tempNode.ChoiceData.texts)
-                    {
-                        if (editorText.language == dataText.language)
-                        {
-                            editorText.data = dataText.data;
-                        }
-                    }
-                }
-                foreach (LanguageGeneric<AudioClip> dataAudioClip in node.audioClips)
+                    return x.ID.value.CompareTo(y.ID.value);
+                });
+
+                foreach (ChoiceData_Container choice in newChoices)
                 {
-                    foreach (LanguageGeneric<AudioClip> editorAudioClip in tempNode.ChoiceData.audioClips)
-                    {
-                        if (editorAudioClip.language == dataAudioClip.language)
-                        {
-                            editorAudioClip.data = dataAudioClip.data;
-                        }
-                    }
+                    tempData.AddChoice(choice);
                 }
 
-                foreach (EventData_StringCondition item in node.stringConditions)
-                {
-                    tempNode.AddCondition(item);
-                }
-
-                tempNode.LoadValueIntoField();
-                tempNode.ReloadLanguage();
-                graphView.AddElement(tempNode);
+                tempData.LoadValueIntoField();
+                tempData.ReloadLanguage();
+                graphView.AddElement(tempData);
             }
 
             // Dialogue Node
@@ -398,32 +437,32 @@ namespace Project.NodeSystem.Editor
                 DialogueNode tempNode = graphView.CreateNode<DialogueNode>(node.position);
                 tempNode.NodeGuid = node.nodeGuid;
 
-                List<DialogueData_BaseContainer> data_BaseContainer = new List<DialogueData_BaseContainer>();
+                List<NodeData_BaseContainer> data_BaseContainer = new List<NodeData_BaseContainer>();
 
                 data_BaseContainer.AddRange(node.characters);
-                data_BaseContainer.AddRange(node.translations);
+                data_BaseContainer.AddRange(node.repliques);
 
-                data_BaseContainer.Sort(delegate (DialogueData_BaseContainer x, DialogueData_BaseContainer y)
+                data_BaseContainer.Sort(delegate (NodeData_BaseContainer x, NodeData_BaseContainer y)
                 {
                     return x.ID.value.CompareTo(y.ID.value);
                 });
 
-                foreach (DialogueData_BaseContainer data in data_BaseContainer)
+                foreach (NodeData_BaseContainer data in data_BaseContainer)
                 {
                     switch (data)
                     {
-                        case DialogueData_CharacterSO Character:
-                            tempNode.AddCharacter(Character);
+                        case DialogueData_CharacterSO character:
+                            tempNode.AddCharacter(character);
                             break;
-                        case DialogueData_Translation texts:
-                            tempNode.AddTextLine(texts);
+                        case DialogueData_Repliques replique:
+                            tempNode.AddTextLine(replique);
                             break;
                         default:
                             break;
                     }
                 }
 
-                foreach (DialogueData_Port port in node.ports)
+                foreach (NodeData_Port port in node.ports)
                 {
                     tempNode.AddChoicePort(tempNode, port);
                 }

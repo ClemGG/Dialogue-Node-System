@@ -20,30 +20,30 @@ namespace Project.NodeSystem
             }
         }
 
-        public static float ModifierFloatCheck(float inputValue, StringEventModifierType stringEventModifierType)
+        public static float ModifierFloatCheck(float currentValue, float checkValue, StringEventModifierType stringEventModifierType)
         {
             switch (stringEventModifierType)
             {
                 case StringEventModifierType.Add:
-                    return inputValue;
+                    return currentValue + checkValue;
 
                 case StringEventModifierType.Substract:
-                    return -inputValue;
+                    return currentValue - checkValue;
 
                 default:
                     return 0f;
             }
         }
 
-        public static int ModifierIntCheck(int inputValue, StringEventModifierType stringEventModifierType)
+        public static int ModifierIntCheck(int currentValue, int checkValue, StringEventModifierType stringEventModifierType)
         {
             switch (stringEventModifierType)
             {
                 case StringEventModifierType.Add:
-                    return inputValue;
+                    return currentValue + checkValue;
 
                 case StringEventModifierType.Substract:
-                    return -inputValue;
+                    return currentValue - checkValue;
 
                 default:
                     return 0;

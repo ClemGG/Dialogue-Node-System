@@ -12,21 +12,14 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class DialogueData : BaseData
     {
-        public List<DialogueData_BaseContainer> baseContainers = new List<DialogueData_BaseContainer>();
-        public List<DialogueData_Translation> translations = new List<DialogueData_Translation>();
+        public List<NodeData_BaseContainer> baseContainers = new List<NodeData_BaseContainer>();
+        public List<DialogueData_Repliques> repliques = new List<DialogueData_Repliques>();
         public List<DialogueData_CharacterSO> characters = new List<DialogueData_CharacterSO>();
-        public List<DialogueData_Port> ports = new List<DialogueData_Port>();
-    }
-
-
-    [System.Serializable]
-    public class DialogueData_BaseContainer
-    {
-        public ContainerValue<int> ID = new ContainerValue<int>();
+        public List<NodeData_Port> ports = new List<NodeData_Port>();
     }
 
     [System.Serializable]
-    public class DialogueData_CharacterSO : DialogueData_BaseContainer
+    public class DialogueData_CharacterSO : NodeData_BaseContainer
     {
         public ContainerValue<DialogueCharacterSO> character = new ContainerValue<DialogueCharacterSO>();
         public ContainerValue<string> characterName = new ContainerValue<string>();
@@ -40,7 +33,7 @@ namespace Project.NodeSystem
     }
 
     [System.Serializable]
-    public class DialogueData_Translation : DialogueData_BaseContainer
+    public class DialogueData_Repliques : NodeData_BaseContainer
     {
 
 #if UNITY_EDITOR
@@ -54,13 +47,5 @@ namespace Project.NodeSystem
 
     }
 
-
-    [System.Serializable]
-    public class DialogueData_Port : DialogueData_BaseContainer
-    {
-        public string portGuid;
-        public string inputGuid;
-        public string outputGuid;
-    }
 
 }

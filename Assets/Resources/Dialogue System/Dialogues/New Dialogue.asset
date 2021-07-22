@@ -17,10 +17,18 @@ MonoBehaviour:
     basePortName: Start
     targetNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
     targetPortName: Input
+  - baseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
+    basePortName: Start
+    targetNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    targetPortName: Input
   - baseNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     basePortName: Output
-    targetNodeGuid: 77f4ebf9-16c3-4b2a-afa7-e180bda8f774
-    targetPortName: End
+    targetNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    targetPortName: Input
+  - baseNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
+    basePortName: Output
+    targetNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    targetPortName: Input
   - baseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
     basePortName: False
     targetNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
@@ -29,127 +37,68 @@ MonoBehaviour:
     basePortName: True
     targetNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
     targetPortName: Input
-  - baseNodeGuid: 5c028e7c-93c1-4aa5-8e57-8561e93e0d15
+  - baseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+    basePortName: False
+    targetNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
+    targetPortName: Input
+  - baseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
     basePortName: True
+    targetNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
+    targetPortName: Input
+  - baseNodeGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
+    basePortName: 432327c5-8a76-47ea-a615-bc77763d3855
     targetNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
     targetPortName: Input
-  - baseNodeGuid: 740ab123-5148-4e8d-93ec-9d239f4c103f
-    basePortName: True
+  - baseNodeGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
+    basePortName: 2767e48a-e86b-4826-a9d7-9541c34ae826
     targetNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
+    targetPortName: Input
+  - baseNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+    basePortName: Output
+    targetNodeGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
     targetPortName: Input
   - baseNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
     basePortName: Output
-    targetNodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
-    targetPortName: End
+    targetNodeGuid: b828da4f-6176-43a0-b8f8-b8f03acd3030
+    targetPortName: Input
+  - baseNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
+    basePortName: Output
+    targetNodeGuid: b828da4f-6176-43a0-b8f8-b8f03acd3030
+    targetPortName: Input
   - baseNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
+    basePortName: Output
+    targetNodeGuid: b828da4f-6176-43a0-b8f8-b8f03acd3030
+    targetPortName: Input
+  - baseNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
+    basePortName: Output
+    targetNodeGuid: b828da4f-6176-43a0-b8f8-b8f03acd3030
+    targetPortName: Input
+  - baseNodeGuid: b828da4f-6176-43a0-b8f8-b8f03acd3030
     basePortName: Output
     targetNodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
     targetPortName: End
-  - baseNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
-    basePortName: 436f5667-3dbb-4216-b3c4-ed3e790a01c0
-    targetNodeGuid: 5c028e7c-93c1-4aa5-8e57-8561e93e0d15
-    targetPortName: Input
-  - baseNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
-    basePortName: 90aa27f5-6107-46c2-bb73-3cf05a61ec2e
-    targetNodeGuid: 740ab123-5148-4e8d-93ec-9d239f4c103f
-    targetPortName: Input
+  - baseNodeGuid: b828da4f-6176-43a0-b8f8-b8f03acd3030
+    basePortName: Output
+    targetNodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
+    targetPortName: End
   startDatas:
   - nodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     position: {x: 276.8, y: 136}
   dialogueDatas:
-  - nodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
-    position: {x: 1552, y: 296}
-    baseContainers: []
-    translations:
-    - ID:
-        value: 1
-      guid:
-        value: 8f6df532-468e-4525-bcf0-d71014defb33
-      texts:
-      - data: "Ah c'est dommage, mais si tu veux j'ai un truc \xE0 faire, tu veux
-          venir m'aider ?"
-        language: 0
-      - data: Oh that's too bad, but if you want I have something to do, you want
-          to come help me?
-        language: 1
-      - data: "Oh, eso es muy malo, pero si quieres que tengo que hacer algo, que
-          desea venir a ayudar a m\xED?"
-        language: 2
-      audioClips:
-      - data: {fileID: 0}
-        language: 0
-      - data: {fileID: 0}
-        language: 1
-      - data: {fileID: 0}
-        language: 2
-    characters:
-    - ID:
-        value: 0
-      character:
-        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
-      characterName:
-        value: 2
-      sprite:
-        value: {fileID: 21300000, guid: 395dcc2048f777f468e4cec782937551, type: 3}
-      mood:
-        value: 10
-      faceDirection:
-        value: 0
-      sidePlacement:
-        value: 1
-    ports: []
-  - nodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
-    position: {x: 1552, y: -144}
-    baseContainers: []
-    translations:
-    - ID:
-        value: 1
-      guid:
-        value: 5be61a4a-fba8-459a-a078-e533a1bd05d3
-      texts:
-      - data: Ah, bon ben je te laisse t'emmerder alors.
-        language: 0
-      - data: Ah, well well I leave you when you piss.
-        language: 1
-      - data: "Ah, bueno, as\xED os dejo cuando orinas."
-        language: 2
-      audioClips:
-      - data: {fileID: 0}
-        language: 0
-      - data: {fileID: 0}
-        language: 1
-      - data: {fileID: 0}
-        language: 2
-    characters:
-    - ID:
-        value: 0
-      character:
-        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
-      characterName:
-        value: 2
-      sprite:
-        value: {fileID: 21300000, guid: 6f57263fc966550419475918e747ba7b, type: 3}
-      mood:
-        value: 3
-      faceDirection:
-        value: 0
-      sidePlacement:
-        value: 1
-    ports: []
   - nodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
-    position: {x: 377.6, y: 231.2}
+    position: {x: 377.6, y: 232}
     baseContainers: []
-    translations:
+    repliques:
     - ID:
-        value: 2
+        value: 3
       guid:
-        value: 7d12110c-4ee2-4ff1-b948-37e3d5c9ac41
+        value: 20ef97e6-8509-4849-8a0e-7794c0c93399
       texts:
       - data: Bonjour !
         language: 0
-      - data: Hello !
+      - data: Good morning !
         language: 1
-      - data: Hola !
+      - data: Buenos dias !
         language: 2
       audioClips:
       - data: {fileID: 0}
@@ -159,18 +108,18 @@ MonoBehaviour:
       - data: {fileID: 0}
         language: 2
     - ID:
-        value: 4
+        value: 5
       guid:
-        value: 64979268-3288-4023-9178-897cc774685e
+        value: 2259c72d-bd0a-4c66-9232-7b58654e7ef5
       texts:
       - data: Salut ! Qu'est-ce que tu fais ?
         language: 0
-      - data: Hi ! What are you doing ?
+      - data: Salvation ! What are you doing ?
         language: 1
-      - data: "\xA1Hola! \xBFQu\xE9 est\xE1s haciendo?"
+      - data: Hola ! Que haces ?
         language: 2
       audioClips:
-      - data: {fileID: 0}
+      - data: {fileID: 8300000, guid: 43678c408c8bb414886c451dd4e88457, type: 3}
         language: 0
       - data: {fileID: 0}
         language: 1
@@ -194,6 +143,20 @@ MonoBehaviour:
     - ID:
         value: 1
       character:
+        value: {fileID: 0}
+      characterName:
+        value: 
+      sprite:
+        value: {fileID: 0}
+      mood:
+        value: 0
+      faceDirection:
+        value: 1
+      sidePlacement:
+        value: 0
+    - ID:
+        value: 2
+      character:
         value: {fileID: 11400000, guid: 5f215a5940da20e459a503cc8cd42af9, type: 2}
       characterName:
         value: 1
@@ -206,7 +169,7 @@ MonoBehaviour:
       sidePlacement:
         value: 0
     - ID:
-        value: 3
+        value: 4
       character:
         value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
       characterName:
@@ -223,21 +186,153 @@ MonoBehaviour:
     - ID:
         value: 0
       portGuid: 436f5667-3dbb-4216-b3c4-ed3e790a01c0
-      inputGuid: 5c028e7c-93c1-4aa5-8e57-8561e93e0d15
-      outputGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+      inputGuid: 
+      outputGuid: 
     - ID:
         value: 0
       portGuid: 90aa27f5-6107-46c2-bb73-3cf05a61ec2e
-      inputGuid: 740ab123-5148-4e8d-93ec-9d239f4c103f
-      outputGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
+      inputGuid: 
+      outputGuid: 
     - ID:
         value: 0
       portGuid: e973d1c0-d1a8-498d-a0be-fe122fb7b31a
       inputGuid: 
       outputGuid: 
+  - nodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
+    position: {x: 1553.6, y: 280.8}
+    baseContainers: []
+    repliques:
+    - ID:
+        value: 1
+      guid:
+        value: 02b864ef-5d7d-409e-bf4d-4aa62713f55b
+      texts:
+      - data: "Ah, c'est dommage, mais si tu veux j'ai un truc \xE0 faire, \xE7a
+          te dit de m'aider ?"
+        language: 0
+      - data: Ah, it's a shame, but if you want I have something to do, it tells
+          you to help me?
+        language: 1
+      - data: Ah, es una pena, pero si quieres, tengo algo que hacer, te dice que
+          me ayudes.
+        language: 2
+      audioClips:
+      - data: {fileID: 8300000, guid: fcbbcf4c66a0a0d4494b0b349f60ad7c, type: 3}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+    characters:
+    - ID:
+        value: 0
+      character:
+        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
+      characterName:
+        value: 2
+      sprite:
+        value: {fileID: 21300000, guid: 395dcc2048f777f468e4cec782937551, type: 3}
+      mood:
+        value: 10
+      faceDirection:
+        value: 0
+      sidePlacement:
+        value: 1
+    ports: []
+  - nodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
+    position: {x: 1553.6, y: -163.2}
+    baseContainers: []
+    repliques:
+    - ID:
+        value: 1
+      guid:
+        value: 46ca518a-0cfb-44d9-b694-9136055f8b0c
+      texts:
+      - data: Ah, bon ben je te laisse t'emmerder alors.
+        language: 0
+      - data: Oh, well, I let you eking you then.
+        language: 1
+      - data: "Bueno, te dejo que ganarse a continuaci\xF3n."
+        language: 2
+      audioClips:
+      - data: {fileID: 8300000, guid: fcbbcf4c66a0a0d4494b0b349f60ad7c, type: 3}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+    characters:
+    - ID:
+        value: 0
+      character:
+        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
+      characterName:
+        value: 2
+      sprite:
+        value: {fileID: 21300000, guid: 6f57263fc966550419475918e747ba7b, type: 3}
+      mood:
+        value: 3
+      faceDirection:
+        value: 0
+      sidePlacement:
+        value: 1
+    ports: []
+  - nodeGuid: b828da4f-6176-43a0-b8f8-b8f03acd3030
+    position: {x: 2020.8, y: 77.600006}
+    baseContainers: []
+    repliques:
+    - ID:
+        value: 1
+      guid:
+        value: 83d87bad-a722-4a2c-89c1-89c9cf2f3609
+      texts:
+      - data: Allons-y !
+        language: 0
+      - data: Let's go!
+        language: 1
+      - data: "\xA1Vamos!"
+        language: 2
+      audioClips:
+      - data: {fileID: 8300000, guid: 141389a7046daed48b878e4af03e3430, type: 3}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+    characters:
+    - ID:
+        value: 0
+      character:
+        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
+      characterName:
+        value: 2
+      sprite:
+        value: {fileID: 21300000, guid: 7d328f6b87a60a043bd411179876c49f, type: 3}
+      mood:
+        value: 5
+      faceDirection:
+        value: 1
+      sidePlacement:
+        value: 1
+    ports:
+    - ID:
+        value: 0
+      portGuid: 447005e4-22c0-45a4-8390-e774c0443af0
+      inputGuid: 
+      outputGuid: 
+    - ID:
+        value: 0
+      portGuid: 31a10693-3a5d-41c6-a983-bd7f8d7896d1
+      inputGuid: 
+      outputGuid: 
+    - ID:
+        value: 0
+      portGuid: e2377c5c-4dd8-4074-be5a-15eaafd6b3d1
+      inputGuid: 
+      outputGuid: 
   branchDatas:
   - nodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
-    position: {x: 1035.2, y: 280}
+    position: {x: 1035.2, y: 255.2}
     trueNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
     falseNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
     stringConditions:
@@ -248,53 +343,84 @@ MonoBehaviour:
       conditionType:
         value: 0
   choiceDatas:
-  - nodeGuid: 5c028e7c-93c1-4aa5-8e57-8561e93e0d15
-    position: {x: 716.8, y: 287.19998}
-    choiceStateType:
-      value: 0
-    texts:
-    - data: Rien, je m'ennuie.
-      language: 0
-    - data: Nothing, I'm bored.
-      language: 1
-    - data: Nada, estoy aburrido.
-      language: 2
-    audioClips:
-    - data: {fileID: 0}
-      language: 0
-    - data: {fileID: 0}
-      language: 1
-    - data: {fileID: 0}
-      language: 2
-    stringConditions: []
-  - nodeGuid: 740ab123-5148-4e8d-93ec-9d239f4c103f
-    position: {x: 716.8, y: 400.8}
-    choiceStateType:
-      value: 1
-    texts:
-    - data: Je fais un truc sympa, viens voir c'est marrant !
-      language: 0
-    - data: I'm doing something nice, come see what's funny!
-      language: 1
-    - data: Estoy haciendo algo agradable, ven a ver lo que es divertido!
-      language: 2
-    audioClips:
-    - data: {fileID: 0}
-      language: 0
-    - data: {fileID: 0}
-      language: 1
-    - data: {fileID: 0}
-      language: 2
-    stringConditions:
-    - stringEvent:
-        value: hasSomethingToDo
-      number:
+  - nodeGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
+    position: {x: 716.8, y: 255.2}
+    choices:
+    - ID:
         value: 0
-      conditionType:
+      guid:
+        value: 1028a4f8-511e-457c-97d1-f0d234311aaa
+      choiceStateType:
+        value: 0
+      texts:
+      - data: Rien, je m'ennuie.
+        language: 0
+      - data: Nothing, I'm bored.
+        language: 1
+      - data: Nada, estoy aburrido.
+        language: 2
+      audioClips:
+      - data: {fileID: 0}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+      conditions: []
+      linkedPort:
+        ID:
+          value: 0
+        portGuid: 432327c5-8a76-47ea-a615-bc77763d3855
+        inputGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+        outputGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
+    - ID:
         value: 1
+      guid:
+        value: a5fb1df2-905f-4e14-ad99-9e24a4fcd49e
+      choiceStateType:
+        value: 1
+      texts:
+      - data: Je fais un truc sympa, viens voir c'est marrant!
+        language: 0
+      - data: I'm doing a nice thing, come see it's funny!
+        language: 1
+      - data: "\xA1Estoy haciendo una cosa agradable, ven a ver que es divertido!"
+        language: 2
+      audioClips:
+      - data: {fileID: 0}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
+      conditions:
+      - ID:
+          value: 0
+        guid:
+          value: 
+        descriptionsIfNotMet:
+        - data: "hasSomethingToDo est \xE0 true"
+          language: 0
+        - data: Hassomethingtodo is in True
+          language: 1
+        - data: "Hassomethingtodo est\xE1 en verdad"
+          language: 2
+        stringCondition:
+          stringEvent:
+            value: hasSomethingToDo
+          number:
+            value: 0
+          conditionType:
+            value: 1
+      linkedPort:
+        ID:
+          value: 0
+        portGuid: 2767e48a-e86b-4826-a9d7-9541c34ae826
+        inputGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
+        outputGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
   eventDatas:
   - nodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-    position: {x: 1035.2, y: 400.8}
+    position: {x: 1035.2, y: 749.6}
     stringEvents:
     - stringEvent:
         value: money
@@ -311,11 +437,5 @@ MonoBehaviour:
     scriptableEvents:
     - value: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
   endDatas:
-  - nodeGuid: 77f4ebf9-16c3-4b2a-afa7-e180bda8f774
-    position: {x: 1433.6, y: 400.8}
-    endNodeType:
-      value: 1
   - nodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
-    position: {x: 2096.8, y: 106.399994}
-    endNodeType:
-      value: 0
+    position: {x: 2424, y: 77.600006}

@@ -17,6 +17,9 @@ namespace Project.NodeSystem.Editor
         private DialogueGraphView graphView;
         private DialogueSaveLoad saveLoad;
         private string graphViewStyleSheet = "USS/EditorWindow/EditorWindowStyleSheet";
+        private bool makeGridVisible = false;
+        private int nbMaxChoices = 4;
+        private LanguageType selectedLanguage = LanguageType.French;
 
 
         private ToolbarMenu languageDropdown;   //Permet de choisir la langue dans la barre d'outils de la fenêtre
@@ -26,7 +29,8 @@ namespace Project.NodeSystem.Editor
         /// La langue sélectionnée dans l'éditeur.
         /// </summary>
         public LanguageType SelectedLanguage { get => selectedLanguage; set => selectedLanguage = value; }
-        private LanguageType selectedLanguage = LanguageType.French;
+        public int NbMaxChoices { get => nbMaxChoices; set => nbMaxChoices = value; }
+
 
 
 
@@ -38,7 +42,6 @@ namespace Project.NodeSystem.Editor
 
         private void OnEnable()
         {
-
             CreateGraphView();
             CreateToolbar();
             Load();
@@ -47,10 +50,12 @@ namespace Project.NodeSystem.Editor
         private void OnDisable()
         {
             rootVisualElement.Remove(graphView);
+            PlayerPrefs.SetInt("Editor_makeGridVisible", makeGridVisible ? 1 : 0);
+            PlayerPrefs.SetInt("Editor_NbMaxChoices", NbMaxChoices);
         }
 
 
-        
+
         /// <summary>
         /// Ouvre un DialogueContainer dans l'éditeur quand on double clique sur son asset.
         /// Plus le callbackOrder de OnOpenAsset est grand, plus cette fonction sera appelée en dernier.
@@ -111,6 +116,44 @@ namespace Project.NodeSystem.Editor
             Button saveButton = new Button(() => Save()) { text = "Save" };
             Button loadButton = new Button(() => Load()) { text = "Load" };
 
+
+            //Pour afficher/cacher la grille
+            Label showGridLabel = new Label("Show Grid");
+            showGridLabel.AddToClassList("showGridLabel");
+
+            Toggle showGridToggle = new Toggle();
+            makeGridVisible = PlayerPrefs.GetInt("Editor_makeGridVisible", makeGridVisible ? 1 : 0) == 1 ? true : false;
+            showGridToggle.value = makeGridVisible;
+            showGridToggle.RegisterCallback<ChangeEvent<bool>>((evt) =>
+            {
+                showGridToggle.value = makeGridVisible = evt.newValue;
+                graphView.ToggleGrid(makeGridVisible);
+                PlayerPrefs.SetInt("Editor_makeGridVisible", makeGridVisible ? 1 : 0);
+            });
+
+
+            Label nbChoicesLabel = new Label("Nb Max Choices");
+            showGridLabel.AddToClassList("showGridLabel");
+
+            //Pour changer le nombre de choix permis pour la ChoiceNode
+            IntegerField nbChoicedAllowed = new IntegerField();
+            NbMaxChoices = PlayerPrefs.GetInt("Editor_NbMaxChoices", NbMaxChoices);
+            nbChoicedAllowed.value = NbMaxChoices;
+            nbChoicedAllowed.RegisterValueChangedCallback(value =>
+            {
+                nbChoicedAllowed.value = value.newValue;
+                NbMaxChoices = nbChoicedAllowed.value;
+                PlayerPrefs.SetInt("Editor_NbMaxChoices", NbMaxChoices);
+            });
+
+
+
+            //On l'active une fois pour synchroniser la grille avec le toggle
+            graphView.ToggleGrid(makeGridVisible);
+
+
+
+
             //Pour chaque langue, créer une option dans le dropdown pour changer la langue
             languageDropdown = new ToolbarMenu();
             ForEach<LanguageType>(language =>
@@ -123,6 +166,10 @@ namespace Project.NodeSystem.Editor
 
             toolbar.Add(saveButton);
             toolbar.Add(loadButton);
+            toolbar.Add(showGridLabel);
+            toolbar.Add(showGridToggle);
+            toolbar.Add(nbChoicesLabel);
+            toolbar.Add(nbChoicedAllowed);
             toolbar.Add(languageDropdown);
             toolbar.Add(dialogueContainerLabel);
 
@@ -136,7 +183,7 @@ namespace Project.NodeSystem.Editor
 
         #region Save & Load
 
-        private void Load()
+        public void Load()
         {
             if (currentDialogueContainer)
             {
