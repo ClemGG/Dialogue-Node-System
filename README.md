@@ -23,4 +23,4 @@ Future updates will include :
 ![24-07-2021](https://user-images.githubusercontent.com/23258134/126865414-7611ead3-2e53-4024-a84a-ba2c79370b4f.png)
 ![1](https://user-images.githubusercontent.com/23258134/126865611-bd488789-bbd5-4e42-9e6b-0f25ec365c6e.png)
 ![2](https://user-images.githubusercontent.com/23258134/126865620-fcceb628-97ea-4660-810b-2e3f2f86e548.png)
-![3](https://user-images.githubusercontent.com/23258134/126865632-5b740156-1c0e-4b7e-888f-e33a0356c653.png)
+![3](https://user-images.githubusercontent.com/23258134/126894106-c7f4fe16-158c-43ce-9647-564a98c55955.jpg)
