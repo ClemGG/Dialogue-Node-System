@@ -228,7 +228,7 @@ namespace Project.NodeSystem.Editor
 
 
 
-        public ChoiceData_Condition AddCondition(ChoiceData_Container newChoice, EventData_StringCondition stringEvent = null)
+        public ChoiceData_Condition AddCondition(ChoiceData_Container newChoice, EventData_StringEventCondition stringEvent = null)
         {
             Box boxContainer = NodeBuilder.NewBox(newChoice.choiceContainer, "TextLineBox");
             ChoiceData_Condition condition = NodeBuilder.AddStringConditionEvent(this, boxContainer, newChoice, stringEvent);
@@ -300,7 +300,7 @@ namespace Project.NodeSystem.Editor
         /// </summary>
         /// <param name="choiceToMove"></param>
         /// <param name="moveUp"></param>
-        private void MoveBox(ChoiceData_Container choiceToMove, bool moveUp)
+        public override void MoveBox(NodeData_BaseContainer choiceToMove, bool moveUp)
         {
             List<NodeData_BaseContainer> tmp = new List<NodeData_BaseContainer>();
             List<VisualElement> ports = new List<VisualElement>();
@@ -347,6 +347,7 @@ namespace Project.NodeSystem.Editor
 
             ChoiceData.choices.Clear();
             outputContainer.Clear();
+            boxesButtons.Clear();
 
             for (int i = 0; i < ports.Count; i++)
             {
@@ -358,12 +359,7 @@ namespace Project.NodeSystem.Editor
 
             foreach (NodeData_BaseContainer data in tmp)
             {
-                switch (data)
-                {
-                    case ChoiceData_Container choice:
-                        AddChoice(choice);
-                        break;
-                }
+                AddChoice(data as ChoiceData_Container);
             }
         }
 

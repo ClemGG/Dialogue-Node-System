@@ -5,11 +5,14 @@ using UnityEngine;
 namespace Project.NodeSystem
 {
 
-    //Cette classe nous permet de récupérer les données du DialogueContainerSO
-    public class DialogueGetData : MonoBehaviour
+    /// <summary>
+    /// Cette classe nous permet de récupérer les données du DialogueContainerSO.
+    /// </summary>
+    public abstract class DialogueGetData : MonoBehaviour
     {
         [SerializeField] protected DialogueContainerSO dialogue;
 
+        #region Dialogue
 
         protected BaseData GetNodeByGuid(string guid)
         {
@@ -29,5 +32,54 @@ namespace Project.NodeSystem
             LinkData nodeLinkData = dialogue.linkDatas.Find(edge => edge.baseNodeGuid == curNode.nodeGuid);
             return GetNodeByGuid(nodeLinkData.targetNodeGuid);
         }
+
+
+
+        /// <summary>
+        /// Récupère l'action à exécuter en fonction du type de node atteint.
+        /// </summary>
+        /// <param name="inputData">La node à convertir.</param>
+        protected void CheckNodeType(BaseData inputData)
+        {
+            switch (inputData)
+            {
+                case StartData nodeData:
+                    RunNode(nodeData);
+                    break;
+                case DialogueData nodeData:
+                    RunNode(nodeData);
+                    break;
+                case BranchData nodeData:
+                    RunNode(nodeData);
+                    break;
+                case ChoiceData nodeData:
+                    RunNode(nodeData);
+                    break;
+                case EventData nodeData:
+                    RunNode(nodeData);
+                    break;
+                case EndData nodeData:
+                    RunNode(nodeData);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+
+        protected abstract void RunNode(StartData startNodeData);
+        protected abstract void RunNode(BranchData nodeData);
+        protected abstract void RunNode(ChoiceData nodeData);
+        protected abstract void RunNode(EventData nodeData);
+        protected abstract void RunNode(EndData nodeData);
+        protected abstract void RunNode(DialogueData nodeData);
+
+
+
+
+
+        #endregion
     }
 }

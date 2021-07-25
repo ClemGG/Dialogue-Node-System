@@ -336,7 +336,9 @@ MonoBehaviour:
     trueNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
     falseNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
     stringConditions:
-    - stringEvent:
+    - ID:
+        value: 0
+      stringEvent:
         value: hasSomethingToDo
       number:
         value: 0
@@ -406,6 +408,8 @@ MonoBehaviour:
         - data: "Hassomethingtodo est\xE1 en verdad"
           language: 2
         stringCondition:
+          ID:
+            value: 0
           stringEvent:
             value: hasSomethingToDo
           number:
@@ -420,22 +424,30 @@ MonoBehaviour:
         outputGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
   eventDatas:
   - nodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-    position: {x: 1035.2, y: 749.6}
+    position: {x: 1035.2, y: 748.8}
+    events: []
     stringEvents:
-    - stringEvent:
-        value: money
-      number:
-        value: 500
-      modifierType:
-        value: 2
-    - stringEvent:
+    - ID:
+        value: 1
+      stringEvent:
         value: hasSomethingToDo
       number:
         value: 0
       modifierType:
         value: 0
+    - ID:
+        value: 2
+      stringEvent:
+        value: money
+      number:
+        value: 500
+      modifierType:
+        value: 2
     scriptableEvents:
-    - value: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
+    - ID:
+        value: 0
+      scriptableObject:
+        value: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
   endDatas:
   - nodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
     position: {x: 2424, y: 77.600006}

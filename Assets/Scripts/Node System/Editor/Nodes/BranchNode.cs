@@ -46,7 +46,7 @@ namespace Project.NodeSystem.Editor
         }
 
 
-        public void AddCondition(EventData_StringCondition stringEvent = null)
+        public void AddCondition(EventData_StringEventCondition stringEvent = null)
         {
             NodeBuilder.AddStringConditionEvent(this, BranchData.stringConditions, stringEvent);
         }

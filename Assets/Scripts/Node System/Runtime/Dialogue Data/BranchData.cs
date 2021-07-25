@@ -7,7 +7,7 @@ namespace Project.NodeSystem
     {
         public string trueNodeGuid;
         public string falseNodeGuid;
-        public List<EventData_StringCondition> stringConditions = new List<EventData_StringCondition>();
+        public List<EventData_StringEventCondition> stringConditions = new List<EventData_StringEventCondition>();
 
     }
 

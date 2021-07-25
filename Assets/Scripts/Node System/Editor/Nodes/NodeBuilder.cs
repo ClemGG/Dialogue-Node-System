@@ -80,6 +80,9 @@ namespace Project.NodeSystem.Editor
 
         #region Get New Fields
 
+
+        #region Node
+
         public static Box NewBox(BaseNode node, params string[] USSx)
         {
             // Make Container Box
@@ -228,7 +231,10 @@ namespace Project.NodeSystem.Editor
 
 
 
+        #endregion
 
+
+        #region Event Node
 
 
         /// <summary>
@@ -236,19 +242,22 @@ namespace Project.NodeSystem.Editor
         /// </summary>
         /// <param name="stringEventModifier">The List<EventData_StringModifier> that EventData_StringModifier should be added to.</param>
         /// <param name="stringEvent">EventData_StringModifier that should be use.</param>
-        public static void AddStringModifierEvent(BaseNode node, List<EventData_StringModifier> stringEventModifier, EventData_StringModifier stringEvent = null)
+        public static void AddStringModifierEvent(BaseNode node, EventData eventData, EventData_StringEventModifier stringEvent = null)
         {
-            EventData_StringModifier tmpStringEventModifier = new EventData_StringModifier();
+            EventData_StringEventModifier tmp = new EventData_StringEventModifier();
 
             // If we paramida value is not null we load in values.
             if (stringEvent != null)
             {
-                tmpStringEventModifier.stringEvent.value = stringEvent.stringEvent.value;
-                tmpStringEventModifier.number.value = stringEvent.number.value;
-                tmpStringEventModifier.modifierType.value = stringEvent.modifierType.value;
+                tmp.stringEvent.value = stringEvent.stringEvent.value;
+                tmp.number.value = stringEvent.number.value;
+                tmp.modifierType.value = stringEvent.modifierType.value;
             }
+            eventData.events.Add(tmp);
 
-            stringEventModifier.Add(tmpStringEventModifier);
+
+
+
 
             // Container of all object.
             Box boxContainer = new Box();
@@ -257,30 +266,31 @@ namespace Project.NodeSystem.Editor
             boxfloatField.AddStyle("StringEventBoxfloatField");
 
             // Text.
-            TextField textField = NewTextField(tmpStringEventModifier.stringEvent, "String Event", "stringEvent");
+            TextField textField = NewTextField(tmp.stringEvent, "String Event", "stringEvent");
 
             // ID number.
-            FloatField floatField = NewFloatField(tmpStringEventModifier.number, "StringEventInt");
+            FloatField floatField = NewFloatField(tmp.number, "StringEventInt");
 
-            // TODO: Delete maby?
-            // Check for StringEventType and add the proper one.
-            //EnumField enumField = null;
 
             // String Event Modifier
-            Action tmp = () => ShowHide_StringEventModifierType(tmpStringEventModifier.modifierType.value, boxfloatField);
+            Action action = () => ShowHide_StringEventModifierType(tmp.modifierType.value, boxfloatField);
             // EnumField String Event Modifier
-            EnumField enumField = NewStringEventModifierTypeField(tmpStringEventModifier.modifierType, tmp, "StringEventEnum");
+            EnumField enumField = NewStringEventModifierTypeField(tmp.modifierType, action, "StringEventEnum");
             // Run the show and hide.
-            ShowHide_StringEventModifierType(tmpStringEventModifier.modifierType.value, boxfloatField);
+            ShowHide_StringEventModifierType(tmp.modifierType.value, boxfloatField);
 
             // Remove button.
             Action onClicked = () =>
             {
-                stringEventModifier.Remove(tmpStringEventModifier);
+                eventData.events.Remove(tmp); 
                 node.DeleteBox(boxContainer);
             };
             Button btn = NewButton("X", onClicked, "removeBtn");
 
+
+            //Ajoute les boutons pour déplacer le container
+            tmp.btnsBox = AddMoveButtons(node, tmp, boxContainer);
+            tmp.eventBox = boxContainer;
 
             // Add it to the box
             boxContainer.Add(textField);
@@ -295,16 +305,73 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
+        /// Ajoute un ScriptableEvent à la Node, ce qui permet de lier des DialogueEventSO aux DE_Trigger de la scène.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="eventData"></param>
+        /// <param name="scriptableEvent"></param>
+        public static void AddScriptableEvent(BaseNode node, EventData eventData, EventData_ScriptableEvent scriptableEvent = null)
+        {
+            //Pour sauvegarder l'event
+            EventData_ScriptableEvent tmp = new EventData_ScriptableEvent();
+            if (scriptableEvent != null)
+            {
+                tmp.scriptableObject.value = scriptableEvent.scriptableObject.value;
+            }
+            eventData.events.Add(tmp);
+
+
+            //Container
+            Box boxContainer = new Box();
+            boxContainer.AddStyle("EventBox");
+
+
+
+            //Scriptable Object Event
+            ObjectField eventField = NewDialogueEventField(tmp.scriptableObject, "EventObject");
+
+
+
+            //Remove button
+            Action onClicked = () =>
+            {
+                eventData.events.Remove(tmp);
+                node.DeleteBox(boxContainer);
+            };
+            Button removeBtn = NewButton("X", onClicked, "removeBtn");
+
+
+            //Ajoute les boutons pour déplacer le container
+            tmp.btnsBox = AddMoveButtons(node, tmp, boxContainer);
+            tmp.eventBox = boxContainer;
+
+            boxContainer.Add(eventField);
+            boxContainer.Add(removeBtn);
+
+            //On appelle ces fonctions pour mettre à jour le visuel de la Node
+            node.mainContainer.Add(boxContainer);
+            node.RefreshExpandedState();
+        }
+
+
+
+        #endregion
+
+
+        #region Choice Node
+
+
+        /// <summary>
         /// Add String Condition Event to UI element.
         /// </summary>
         /// <param name="stringEventConditions">The List<EventData_StringComparer> that EventData_StringComparer should be added to.</param>
         /// <param name="stringEvent">EventData_StringComparer that should be use.</param>
-        public static ChoiceData_Condition AddStringConditionEvent(BaseNode node, VisualElement element, ChoiceData_Container choice, EventData_StringCondition stringEvent = null)
+        public static ChoiceData_Condition AddStringConditionEvent(BaseNode node, VisualElement element, ChoiceData_Container choice, EventData_StringEventCondition stringEvent = null)
         {
             ChoiceData_Condition condition = new ChoiceData_Condition();
             choice.conditions.Add(condition);
 
-            EventData_StringCondition tmpStringEventCondition = new EventData_StringCondition();
+            EventData_StringEventCondition tmpStringEventCondition = new EventData_StringEventCondition();
 
             // If we paramida value is not null we load in values.
             if (stringEvent != null)
@@ -371,14 +438,19 @@ namespace Project.NodeSystem.Editor
         }
 
 
+        #endregion
+
+
+        #region Branch Node
+
         /// <summary>
         /// Add String Condition Event to UI element.
         /// </summary>
         /// <param name="stringEventConditions">The List<EventData_StringComparer> that EventData_StringComparer should be added to.</param>
         /// <param name="stringEvent">EventData_StringComparer that should be use.</param>
-        public static void AddStringConditionEvent(BaseNode node, List<EventData_StringCondition> stringEventConditions, EventData_StringCondition stringEvent = null)
+        public static void AddStringConditionEvent(BaseNode node, List<EventData_StringEventCondition> stringEventConditions, EventData_StringEventCondition stringEvent = null)
         {
-            EventData_StringCondition tmpStringEventCondition = new EventData_StringCondition();
+            EventData_StringEventCondition tmpStringEventCondition = new EventData_StringEventCondition();
 
             // If we paramida value is not null we load in values.
             if (stringEvent != null)
@@ -437,58 +509,35 @@ namespace Project.NodeSystem.Editor
             node.RefreshExpandedState();
         }
 
+        #endregion
 
 
 
 
-
-
-
-
-        /// <summary>
-        /// Ajoute un ScriptableEvent à la Node, ce qui permet de lier des DialogueEventSO aux DE_Trigger de la scène.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="eventData"></param>
-        /// <param name="scriptableEvent"></param>
-        public static void AddScriptableEvent(BaseNode node, EventData eventData, ContainerValue<DialogueEventSO> scriptableEvent = null)
+        public static Box AddMoveButtons(BaseNode node, NodeData_BaseContainer idContainer, VisualElement container)
         {
-            //Pour sauvegarder l'event
-            ContainerValue<DialogueEventSO> tmp = new ContainerValue<DialogueEventSO>();
-            if (scriptableEvent != null)
-            {
-                tmp.value = scriptableEvent.value;
-            }
-            eventData.scriptableEvents.Add(tmp);
+            // Buttons
+            Box buttonsBox = NewBox(container, "BtnBox");
 
-
-            //Container
-            Box boxContainer = new Box();
-            boxContainer.AddStyle("EventBox");
-
-
-
-            //Scriptable Object Event
-            ObjectField eventField = NewDialogueEventField(tmp, "EventObject");
-
-
-
-            //Remove button
+            // Move up button.
             Action onClicked = () =>
             {
-                node.DeleteBox(boxContainer);
-                eventData.scriptableEvents.Remove(tmp);
+                node.MoveBox(idContainer, true);
             };
-            Button removeBtn = NewButton("X", onClicked, "removeBtn");
+            Button moveUpBtn = NewButton(buttonsBox, "", onClicked, "MoveUpBtn");
+
+            // Move down button.
+            onClicked = () =>
+            {
+                node.MoveBox(idContainer, false);
+            };
+            Button moveDownBtn = NewButton(buttonsBox, "", onClicked, "MoveDownBtn");
 
 
-            boxContainer.Add(eventField);
-            boxContainer.Add(removeBtn);
-
-            node.mainContainer.Add(boxContainer);
-            //On appelle ces fonctions pour mettre à jour le visuel de la Node
-            node.RefreshExpandedState();
+            return buttonsBox;
         }
+
+
 
 
 

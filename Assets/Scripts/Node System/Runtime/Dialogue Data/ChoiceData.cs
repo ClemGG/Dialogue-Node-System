@@ -59,6 +59,6 @@ namespace Project.NodeSystem
         /// Courte description pour indiquer au joueur pourquoi les conditions ne sont pas remplies (laisser vide si choix tjs dispo)
         /// </summary>
         public List<LanguageGeneric<string>> descriptionsIfNotMet = new List<LanguageGeneric<string>>();
-        public EventData_StringCondition stringCondition = new EventData_StringCondition();
+        public EventData_StringEventCondition stringCondition = new EventData_StringEventCondition();
     }
 }

@@ -521,8 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471bb235b41d9ed4fa387263df70545a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 50
-  hasSomethingToDo: 0
+  dialogueEvent: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
 --- !u!114 &403395250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,6 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 14654d24fb21fcb4ca3cb30cb3148d12, type: 2}
   curLanguage: 0
+  triggerScript: {fileID: 0}
 --- !u!114 &403395251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2822,8 +2822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471bb235b41d9ed4fa387263df70545a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 50
-  hasSomethingToDo: 0
+  dialogueEvent: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
 --- !u!114 &1356225559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2838,6 +2837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 14654d24fb21fcb4ca3cb30cb3148d12, type: 2}
   curLanguage: 1
+  triggerScript: {fileID: 1356225558}
 --- !u!114 &1356225560
 MonoBehaviour:
   m_ObjectHideFlags: 0

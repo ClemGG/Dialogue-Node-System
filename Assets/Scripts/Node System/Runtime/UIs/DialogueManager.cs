@@ -13,13 +13,16 @@ namespace Project.NodeSystem
 
         #region Fields
 
-        [Tooltip("La langue du dialogue. Peut être modifiée en cours de dialogue pour afficher une traduction à la prochaine réplique.")]
-        public LanguageType curLanguage = LanguageType.French;
-
         [Tooltip("L'interface visuelle du dialogue.")]
         DialogueUI dialogueUi;
 
-        DialogueData curData;   //la DialogueNode en cours
+        [SerializeField, Tooltip("Le script qui s'abonnera aux fonctions des events.")]
+        DE_Trigger triggerScript;
+
+        [Tooltip("La langue du dialogue. Peut être modifiée en cours de dialogue pour afficher une traduction à la prochaine réplique.")]
+        public LanguageType curLanguage = LanguageType.French;
+
+
 
         readonly List<DialogueButtonContainer> dialogueButtonContainers = new List<DialogueButtonContainer>();
         readonly List<NodeData_BaseContainer> baseContainers = new List<NodeData_BaseContainer>();
@@ -39,6 +42,12 @@ namespace Project.NodeSystem
             StartDialogue();
         }
 
+
+        public void SetDialogueTriggerSript(DE_Trigger newTriggerScript)
+        {
+            triggerScript = newTriggerScript;
+        }
+
         /// <summary>
         /// Récupère la node de départ.
         /// </summary>
@@ -53,55 +62,23 @@ namespace Project.NodeSystem
         }
 
 
-        /// <summary>
-        /// Récupère l'action à exécuter en fonction du type de node atteint.
-        /// </summary>
-        /// <param name="inputData">La node à convertir.</param>
-        private void CheckNodeType(BaseData inputData)
-        {
-            switch (inputData)
-            {
-                case StartData nodeData:
-                    RunNode(nodeData);
-                    break;
-                case DialogueData nodeData:
-                    RunNode(nodeData);
-                    break;
-                case BranchData nodeData:
-                    RunNode(nodeData);
-                    break;
-                case ChoiceData nodeData:
-                    RunNode(nodeData);
-                    break;
-                case EventData nodeData:
-                    RunNode(nodeData);
-                    break;
-                case EndData nodeData:
-                    RunNode(nodeData);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
         #endregion
 
 
 
-        private void RunNode(StartData startNodeData)
+        protected override void RunNode(StartData startNodeData)
         {
             //C'est une StartNode, on n'a rien à faire. On récupère la node suivante.
             CheckNodeType(GetNextNode(dialogue.startDatas[0]));
         }
 
-        private void RunNode(BranchData nodeData)
+        protected override void RunNode(BranchData nodeData)
         {
             bool checkBranch = true;
-            foreach (EventData_StringCondition item in nodeData.stringConditions)
+            foreach (EventData_StringEventCondition item in nodeData.stringConditions)
             {
                 //Pour chaque condition de la BranchNode, on regarde si la valeur du DE_Trigger et celle de la node correspondent
-                if (!GameEvents.DialogueConditionEvents(item.stringEvent.value, item.conditionType.value, item.number.value))
+                if (!UseStringEventCondition.DialogueConditionEvents(triggerScript, item.stringEvent.value, item.conditionType.value, item.number.value))
                 {
                     checkBranch = false;
                     break;
@@ -112,42 +89,48 @@ namespace Project.NodeSystem
             CheckNodeType(GetNodeByGuid(nextNode));
         }
 
-        private void RunNode(ChoiceData nodeData)
+        protected override void RunNode(ChoiceData nodeData)
         {
             //On doit maintenant récupérer les choix de la node et leurs conditions
             //pour les assigner aux boutons de l'interface
             AssignActionsToButtons(nodeData);
         }
 
-        private void RunNode(EventData nodeData)
+        protected override void RunNode(EventData nodeData)
         {
-            //Si on a un DialogueEvent à jouer, celui-ci va appeler la classe statique GameEvents
-            //pour lier l'event au DE_Trigger en question
-            foreach (ContainerValue<DialogueEventSO> item in nodeData.scriptableEvents)
+            List<NodeData_BaseContainer> events = nodeData.SortedEvents;
+
+            foreach (NodeData_BaseContainer item in events)
             {
-                if (item.value != null)
+                //Si on a un DialogueEventSO à jouer, celui-ci va appeler toutes les méthodes
+                //qui se sont abonnées à lui
+                if (item is EventData_ScriptableEvent)
                 {
-                    item.value.Invoke();
+                    EventData_ScriptableEvent scriptableEvent = item as EventData_ScriptableEvent;
+                    if (scriptableEvent.scriptableObject.value != null)
+                    {
+                        scriptableEvent.scriptableObject.value.Invoke();
+                    }
+                }
+                else
+                {
+                    //Pour chaque stringEvent, on récupère la variable correspondante dans DE_Trigger et on la modifie selon le modifierType
+                    EventData_StringEventModifier stringEvent = item as EventData_StringEventModifier;
+                    stringEvent.Invoke(triggerScript);
+
                 }
             }
-            //Pour chaque stringEvent, on récupère la variable correspondante dans DE_Trigger et on la modifie selon le modifierType
-            foreach (EventData_StringModifier item in nodeData.stringEvents)
-            {
-                GameEvents.DialogueModifierEvents(item.stringEvent.value, item.modifierType.value, item.number.value);
-            }
+
             CheckNodeType(GetNextNode(nodeData));
         }
 
-        private void RunNode(EndData nodeData)
+        protected override void RunNode(EndData nodeData)
         {
             dialogueUi.EndDialogue();
         }
 
-        private void RunNode(DialogueData nodeData)
+        protected override void RunNode(DialogueData nodeData)
         {
-            //Cache la node pour l'utiliser plus tard
-            curData = nodeData;
-
             /* Les conteneurs de la DialogueNode (Persos et textes) peuvent changer d'ordre d'exécution selon leur ID.
              * On s'assure de les récupérer dans le bon ordre avant de les analyser.
              */
@@ -263,7 +246,7 @@ namespace Project.NodeSystem
             bool checkBranch = true;
             foreach (ChoiceData_Condition condition in choice.conditions)
             {
-                if (!GameEvents.DialogueConditionEvents(condition.stringCondition.stringEvent.value, condition.stringCondition.conditionType.value, condition.stringCondition.number.value))
+                if (!UseStringEventCondition.DialogueConditionEvents(triggerScript, condition.stringCondition.stringEvent.value, condition.stringCondition.conditionType.value, condition.stringCondition.number.value))
                 {
                     checkBranch = false;
                     break;

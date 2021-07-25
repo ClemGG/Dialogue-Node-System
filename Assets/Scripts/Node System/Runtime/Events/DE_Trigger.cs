@@ -4,17 +4,19 @@ using UnityEngine;
 namespace Project.NodeSystem
 {
 
-    //Ce script s'abonne au GameEvents pour pouvoir appeler sa méthode
-    //quand le dialogue s'arrête sur une EventNode.
-    //Dériver ce script pour implémenter d'autres liens avec le GameEvents
+    //Les variables doivent être publiques pour être modifiées par l'EventNode
     public class DE_Trigger : MonoBehaviour
     {
+        public DialogueEventSO dialogueEvent;
+
         public int money = 50;
         public bool hasSomethingToDo = false;
 
+
+
         private void Awake()
         {
-            GameEvents.OnDialogueEventCalled += Print;
+            dialogueEvent.onDialogueEventCalled += Print;
         }
 
         private void Print()
@@ -24,7 +26,7 @@ namespace Project.NodeSystem
 
         private void OnDestroy()
         {
-            GameEvents.OnDialogueEventCalled -= Print;
+            dialogueEvent.onDialogueEventCalled -= Print;
         }
     }
 }

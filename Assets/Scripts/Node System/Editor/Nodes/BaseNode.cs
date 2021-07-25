@@ -133,6 +133,15 @@ namespace Project.NodeSystem.Editor
             RefreshExpandedState();
         }
 
+        /// <summary>
+        /// Si la node contient des BaseContainers, cette fonction permet de les réarranger selon leur ID
+        /// </summary>
+        /// <param name="itemToMove"></param>
+        /// <param name="moveUp"></param>
+        public virtual void MoveBox(NodeData_BaseContainer itemToMove, bool moveUp)
+        {
+
+        }
 
 
         #endregion

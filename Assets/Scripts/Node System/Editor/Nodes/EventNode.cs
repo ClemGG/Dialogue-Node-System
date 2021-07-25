@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -63,15 +64,103 @@ namespace Project.NodeSystem.Editor
 
 
 
-        public void AddStringEvent(EventData_StringModifier stringEvent = null)
+        public void AddStringEvent(EventData_StringEventModifier stringEvent = null)
         {
-            NodeBuilder.AddStringModifierEvent(this, eventData.stringEvents, stringEvent);
+            NodeBuilder.AddStringModifierEvent(this, EventData, stringEvent);
+            ShowHideButtons();
         }
 
-        public void AddScriptableEvent(ContainerValue<DialogueEventSO> scriptableEvent = null)
+        public void AddScriptableEvent(EventData_ScriptableEvent scriptableEvent = null)
         {
             NodeBuilder.AddScriptableEvent(this, EventData, scriptableEvent);
+            ShowHideButtons();
         }
+
+
+
+
+
+        #endregion
+
+
+
+        #region UIs
+
+
+        public override void DeleteBox(Box boxToRemove)
+        {
+            base.DeleteBox(boxToRemove);
+            ShowHideButtons();
+        }
+
+
+        /// <summary>
+        /// Déplace les boxContainers des choix ainsi que leurs ports associés
+        /// </summary>
+        /// <param name="eventToMove"></param>
+        /// <param name="moveUp"></param>
+        public override void MoveBox(NodeData_BaseContainer eventToMove, bool moveUp)
+        {
+            List<NodeData_BaseContainer> tmp = new List<NodeData_BaseContainer>();
+            tmp.AddRange(EventData.events);
+
+
+            for (int i = 0; i < tmp.Count; i++)
+            {
+                DeleteBox(tmp[i].eventBox);
+                tmp[i].ID.value = i;
+            }
+
+            if (eventToMove.ID.value > 0 && moveUp)
+            {
+                NodeData_BaseContainer tmp01 = tmp[eventToMove.ID.value];
+                NodeData_BaseContainer tmp02 = tmp[eventToMove.ID.value - 1];
+
+                tmp[eventToMove.ID.value] = tmp02;
+                tmp[eventToMove.ID.value - 1] = tmp01;
+
+            }
+            else if (eventToMove.ID.value < tmp.Count - 1 && !moveUp)
+            {
+                NodeData_BaseContainer tmp01 = tmp[eventToMove.ID.value];
+                NodeData_BaseContainer tmp02 = tmp[eventToMove.ID.value + 1];
+
+                tmp[eventToMove.ID.value] = tmp02;
+                tmp[eventToMove.ID.value + 1] = tmp01;
+
+            }
+
+
+            EventData.events.Clear();
+
+            for (int i = 0; i < tmp.Count; i++)
+            {
+                switch (tmp[i])
+                {
+                    // Save Dialogue Event
+                    case EventData_ScriptableEvent scriptableEvent:
+                        AddScriptableEvent(scriptableEvent);
+                        break;
+
+                    // Save String Event
+                    case EventData_StringEventModifier stringEvent:
+                        AddStringEvent(stringEvent);
+                        break;
+                }
+            }
+
+        }
+
+
+        private void ShowHideButtons()
+        {
+            for (int i = 0; i < EventData.events.Count; i++)
+            {
+                NodeBuilder.ShowHide(EventData.events.Count > 1, EventData.events[i].btnsBox);
+            }
+        }
+
+
 
 
         #endregion

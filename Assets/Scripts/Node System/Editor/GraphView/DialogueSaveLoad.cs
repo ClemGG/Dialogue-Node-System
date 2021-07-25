@@ -203,21 +203,39 @@ namespace Project.NodeSystem.Editor
                 position = node.GetPosition().position,
             };
 
-            // Save Dialogue Event
-            foreach (ContainerValue<DialogueEventSO> dialogueEvent in node.EventData.scriptableEvents)
+            // Set ID (Instancie les éléments Traduction et Personnage dans le bon ordre)
+            for (int i = 0; i < node.EventData.events.Count; i++)
             {
-                nodeData.scriptableEvents.Add(dialogueEvent);
+                node.EventData.events[i].ID.value = i;
             }
 
-            // Save String Event
-            foreach (EventData_StringModifier stringEvents in node.EventData.stringEvents)
+            foreach (NodeData_BaseContainer item in node.EventData.events)
             {
-                EventData_StringModifier tmp = new EventData_StringModifier();
-                tmp.number.value = stringEvents.number.value;
-                tmp.stringEvent.value = stringEvents.stringEvent.value;
-                tmp.modifierType.value = stringEvents.modifierType.value;
 
-                nodeData.stringEvents.Add(tmp);
+                switch (item)
+                {
+                    // Save Dialogue Event
+                    case EventData_ScriptableEvent scriptableEvent:
+
+                        EventData_ScriptableEvent tmpScriptable = new EventData_ScriptableEvent();
+                        tmpScriptable.ID.value = scriptableEvent.ID.value;
+                        tmpScriptable.scriptableObject.value = scriptableEvent.scriptableObject.value;
+
+                        nodeData.scriptableEvents.Add(tmpScriptable);
+                        break;
+
+                    // Save String Event
+                    case EventData_StringEventModifier stringEvent:
+
+                        EventData_StringEventModifier tmpString = new EventData_StringEventModifier();
+                        tmpString.ID.value = stringEvent.ID.value;
+                        tmpString.number.value = stringEvent.number.value;
+                        tmpString.stringEvent.value = stringEvent.stringEvent.value;
+                        tmpString.modifierType.value = stringEvent.modifierType.value;
+
+                        nodeData.stringEvents.Add(tmpString);
+                        break;
+                }
             }
 
             return nodeData;
@@ -238,9 +256,9 @@ namespace Project.NodeSystem.Editor
                 falseNodeGuid = (flaseOutput != null ? (flaseOutput.input.node as BaseNode).NodeGuid : string.Empty),
             };
 
-            foreach (EventData_StringCondition stringEvents in node.BranchData.stringConditions)
+            foreach (EventData_StringEventCondition stringEvents in node.BranchData.stringConditions)
             {
-                EventData_StringCondition tmp = new EventData_StringCondition();
+                EventData_StringEventCondition tmp = new EventData_StringEventCondition();
                 tmp.number.value = stringEvents.number.value;
                 tmp.stringEvent.value = stringEvents.stringEvent.value;
                 tmp.conditionType.value = stringEvents.conditionType.value;
@@ -289,7 +307,7 @@ namespace Project.NodeSystem.Editor
                     tmpCondition.guid.value = condition.guid.value;
                     tmpCondition.descriptionsIfNotMet = condition.descriptionsIfNotMet;
 
-                    EventData_StringCondition tmpEvent = new EventData_StringCondition();
+                    EventData_StringEventCondition tmpEvent = new EventData_StringEventCondition();
 
                     tmpEvent.stringEvent.value = condition.stringCondition.stringEvent.value;
                     tmpEvent.number.value = condition.stringCondition.number.value;
@@ -377,14 +395,30 @@ namespace Project.NodeSystem.Editor
                 EventNode tempNode = graphView.CreateNode<EventNode>(node.position);
                 tempNode.NodeGuid = node.nodeGuid;
 
-                foreach (ContainerValue<DialogueEventSO> item in node.scriptableEvents)
+
+
+                //Ils sont déjà concaténés et triés dans SortedEvents
+                List<NodeData_BaseContainer> newEvents = node.SortedEvents;
+
+                foreach (NodeData_BaseContainer item in newEvents)
                 {
-                    tempNode.AddScriptableEvent(item);
+                    switch (item)
+                    {
+                        // Load Dialogue Event
+                        case EventData_ScriptableEvent scriptableEvent:
+                            tempNode.AddScriptableEvent(scriptableEvent);
+                            break;
+
+                        // Load String Event
+                        case EventData_StringEventModifier stringEvent:
+                            tempNode.AddStringEvent(stringEvent);
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
-                foreach (EventData_StringModifier item in node.stringEvents)
-                {
-                    tempNode.AddStringEvent(item);
-                }
+
 
                 tempNode.LoadValueIntoField();
                 graphView.AddElement(tempNode);
@@ -396,7 +430,7 @@ namespace Project.NodeSystem.Editor
                 BranchNode tempNode = graphView.CreateNode<BranchNode>(node.position);
                 tempNode.NodeGuid = node.nodeGuid;
 
-                foreach (EventData_StringCondition item in node.stringConditions)
+                foreach (EventData_StringEventCondition item in node.stringConditions)
                 {
                     tempNode.AddCondition(item);
                 }

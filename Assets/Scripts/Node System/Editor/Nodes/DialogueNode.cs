@@ -268,7 +268,7 @@ namespace Project.NodeSystem.Editor
 
         }
 
-        private void MoveBox(NodeData_BaseContainer container, bool moveUp)
+        public override void MoveBox(NodeData_BaseContainer container, bool moveUp)
         {
             List<NodeData_BaseContainer> tmpDialogue_BaseContainers = new List<NodeData_BaseContainer>();
             tmpDialogue_BaseContainers.AddRange(dialogueData.baseContainers);
