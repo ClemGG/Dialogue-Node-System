@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3529474672507740193}
   - component: {fileID: 3529474672507740195}
   - component: {fileID: 3529474672507740194}
+  - component: {fileID: 606025824012122337}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -34,9 +35,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.000053, y: 0}
-  m_SizeDelta: {x: -19.999895, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 20, y: 0}
+  m_SizeDelta: {x: -19.999878, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3529474672507740195
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -134,6 +135,23 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &606025824012122337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3529474672507740192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34827d643e17eca47922e8af1945a734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToAnimate: {fileID: 0}
+  tweensOnEnable: []
+  startOnEnable: 0
+  disableOnStop: 0
+  destroyOnStop: 0
 --- !u!1 &3529474672710782237
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +180,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3529474672710782237}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -276,7 +294,6 @@ MonoBehaviour:
   startOnEnable: 1
   disableOnStop: 0
   destroyOnStop: 0
-  addCanvasGroup: 1
 --- !u!114 &1151706908971029958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +316,19 @@ MonoBehaviour:
           m_MethodName: BeginTween
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: e26338f79e7cb0d44a5b682cd2ef965b, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: ff1ebc1961241494681238f350210534, type: 2}
+            m_ObjectArgumentAssemblyTypeName: TweenSettings, Project.Utilities.ObjectTweener
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 606025824012122337}
+          m_TargetAssemblyTypeName: ObjectTweener, Project.Utilities.ObjectTweener
+          m_MethodName: BeginTween
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: ba1337a209e155341a6cc71660af0710, type: 2}
             m_ObjectArgumentAssemblyTypeName: TweenSettings, Project.Utilities.ObjectTweener
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -315,7 +344,19 @@ MonoBehaviour:
           m_MethodName: BeginTween
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 8d17d4a5086350e4d8b15bfb56096c05, type: 2}
+            m_ObjectArgument: {fileID: 11400000, guid: e77bfec405f200a4cb239ef95d202a36, type: 2}
+            m_ObjectArgumentAssemblyTypeName: TweenSettings, Project.Utilities.ObjectTweener
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 606025824012122337}
+          m_TargetAssemblyTypeName: ObjectTweener, Project.Utilities.ObjectTweener
+          m_MethodName: BeginTween
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 477b2572c110ce64f8ccc0a6a1375838, type: 2}
             m_ObjectArgumentAssemblyTypeName: TweenSettings, Project.Utilities.ObjectTweener
             m_IntArgument: 0
             m_FloatArgument: 0

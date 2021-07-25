@@ -45,17 +45,17 @@ MonoBehaviour:
     basePortName: True
     targetNodeGuid: 954464b2-aec6-4e8f-a214-309fa74ace46
     targetPortName: Input
-  - baseNodeGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
-    basePortName: 432327c5-8a76-47ea-a615-bc77763d3855
+  - baseNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
+    basePortName: a5057794-33ea-41b8-a12a-35d9523f5ecd
     targetNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
     targetPortName: Input
-  - baseNodeGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
-    basePortName: 2767e48a-e86b-4826-a9d7-9541c34ae826
+  - baseNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
+    basePortName: 3d43a709-6ee9-4e28-aff5-96b6b7f334a8
     targetNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     targetPortName: Input
   - baseNodeGuid: a2a1083d-dc08-4cdc-8ec3-2c1514dee57b
     basePortName: Output
-    targetNodeGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
+    targetNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
     targetPortName: Input
   - baseNodeGuid: 8f0555b0-f478-45a0-bec3-2033990a3e31
     basePortName: Output
@@ -114,7 +114,7 @@ MonoBehaviour:
       texts:
       - data: Salut ! Qu'est-ce que tu fais ?
         language: 0
-      - data: Salvation ! What are you doing ?
+      - data: Hi ! What are you doing ?
         language: 1
       - data: Hola ! Que haces ?
         language: 2
@@ -343,13 +343,13 @@ MonoBehaviour:
       conditionType:
         value: 0
   choiceDatas:
-  - nodeGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
-    position: {x: 716.8, y: 255.2}
+  - nodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
+    position: {x: 712, y: 255.2}
     choices:
     - ID:
         value: 0
       guid:
-        value: 1028a4f8-511e-457c-97d1-f0d234311aaa
+        value: c52617ee-2702-45d9-bdbf-b0e9f974a064
       choiceStateType:
         value: 0
       texts:
@@ -370,19 +370,19 @@ MonoBehaviour:
       linkedPort:
         ID:
           value: 0
-        portGuid: 432327c5-8a76-47ea-a615-bc77763d3855
+        portGuid: a5057794-33ea-41b8-a12a-35d9523f5ecd
         inputGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
-        outputGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
+        outputGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
     - ID:
         value: 1
       guid:
-        value: a5fb1df2-905f-4e14-ad99-9e24a4fcd49e
+        value: 38c031ba-978e-4c20-96b5-3fb0b476dcb0
       choiceStateType:
         value: 1
       texts:
-      - data: Je fais un truc sympa, viens voir c'est marrant!
+      - data: Je fais un truc sympa, viens voir c'est marrant !
         language: 0
-      - data: I'm doing a nice thing, come see it's funny!
+      - data: I'm doing something cool, check this out !
         language: 1
       - data: "\xA1Estoy haciendo una cosa agradable, ven a ver que es divertido!"
         language: 2
@@ -397,11 +397,11 @@ MonoBehaviour:
       - ID:
           value: 0
         guid:
-          value: 
+          value: de71efe0-258a-4631-9e85-5fab7becdd19
         descriptionsIfNotMet:
         - data: "hasSomethingToDo est \xE0 true"
           language: 0
-        - data: Hassomethingtodo is in True
+        - data: School event locked in demo
           language: 1
         - data: "Hassomethingtodo est\xE1 en verdad"
           language: 2
@@ -415,9 +415,9 @@ MonoBehaviour:
       linkedPort:
         ID:
           value: 0
-        portGuid: 2767e48a-e86b-4826-a9d7-9541c34ae826
+        portGuid: 3d43a709-6ee9-4e28-aff5-96b6b7f334a8
         inputGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-        outputGuid: ac20625d-cbd2-4a6a-b615-20d150126b06
+        outputGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
   eventDatas:
   - nodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     position: {x: 1035.2, y: 749.6}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 846a94970f87695469a491017d59c231, type: 3}
-  m_Name: TS_Choice slot scale OnPointerExit
+  m_Name: TS_Choice text scale- OnPointerExit
   m_EditorClassIdentifier: 
   animationType: 5
   curveType: 38
@@ -46,3 +46,6 @@ MonoBehaviour:
   relativeToTransform: 0
   from: {x: 0, y: 0, z: 0}
   to: {x: 1, y: 1, z: 0}
+  fromColor: {r: 0, g: 0, b: 0, a: 0}
+  toColor: {r: 0, g: 0, b: 0, a: 0}
+  OnComplete: []

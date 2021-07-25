@@ -272,13 +272,13 @@ namespace Project.NodeSystem.Editor
 
 
                 //Init
-                ChoiceData_Container tmp = new ChoiceData_Container();
+                ChoiceData_Container tmpChoice = new ChoiceData_Container();
 
-                tmp.guid = choice.guid;
-                tmp.ID = choice.ID;
-                tmp.texts = choice.texts;
-                tmp.audioClips = choice.audioClips;
-                tmp.choiceStateType.value = choice.choiceStateType.value;
+                tmpChoice.guid = choice.guid;
+                tmpChoice.ID = choice.ID;
+                tmpChoice.texts = choice.texts;
+                tmpChoice.audioClips = choice.audioClips;
+                tmpChoice.choiceStateType.value = choice.choiceStateType.value;
 
 
                 //Conditions
@@ -286,6 +286,7 @@ namespace Project.NodeSystem.Editor
                 {
                     ChoiceData_Condition tmpCondition = new ChoiceData_Condition();
 
+                    tmpCondition.guid.value = condition.guid.value;
                     tmpCondition.descriptionsIfNotMet = condition.descriptionsIfNotMet;
 
                     EventData_StringCondition tmpEvent = new EventData_StringCondition();
@@ -296,7 +297,7 @@ namespace Project.NodeSystem.Editor
 
                     tmpCondition.stringCondition = tmpEvent;
 
-                    tmp.conditions.Add(tmpCondition);
+                    tmpChoice.conditions.Add(tmpCondition);
                 }
 
 
@@ -317,10 +318,10 @@ namespace Project.NodeSystem.Editor
                     }
                 }
 
-                tmp.linkedPort = portData;
+                tmpChoice.linkedPort = portData;
 
 
-                newChoiceData.choices.Add(tmp);
+                newChoiceData.choices.Add(tmpChoice);
             }
 
 
@@ -408,12 +409,22 @@ namespace Project.NodeSystem.Editor
             // Choice Node
             foreach (ChoiceData node in dialogueContainer.choiceDatas)
             {
-                ChoiceNode tempData = graphView.CreateNode<ChoiceNode>(node.position);
-                tempData.NodeGuid = node.nodeGuid;
+                ChoiceNode tmpNode = graphView.CreateNode<ChoiceNode>(node.position);
+                tmpNode.NodeGuid = node.nodeGuid;
+
+
+
+                //Comme on crée un choix par défaut dans la node, on le supprime au chargement pour ne pas le recréer
+                //en plus de tous les autres
+                tmpNode.DeleteBox(tmpNode.ChoiceData.choices[0].choiceContainer);
+                NodeBuilder.DeleteChoicePort(tmpNode, tmpNode.ChoiceData.choices[0].linkedPort.port);
+                tmpNode.ChoiceData.choices.RemoveAt(0);
+
+
+
 
                 List<ChoiceData_Container> newChoices = new List<ChoiceData_Container>();
                 newChoices.AddRange(node.choices);
-
 
 
                 newChoices.Sort(delegate (ChoiceData_Container x, ChoiceData_Container y)
@@ -423,12 +434,13 @@ namespace Project.NodeSystem.Editor
 
                 foreach (ChoiceData_Container choice in newChoices)
                 {
-                    tempData.AddChoice(choice);
+                    tmpNode.AddChoice(choice);
                 }
 
-                tempData.LoadValueIntoField();
-                tempData.ReloadLanguage();
-                graphView.AddElement(tempData);
+
+                tmpNode.LoadValueIntoField();
+                tmpNode.ReloadLanguage();
+                graphView.AddElement(tmpNode);
             }
 
             // Dialogue Node

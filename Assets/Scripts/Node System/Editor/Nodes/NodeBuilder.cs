@@ -299,7 +299,7 @@ namespace Project.NodeSystem.Editor
         /// </summary>
         /// <param name="stringEventConditions">The List<EventData_StringComparer> that EventData_StringComparer should be added to.</param>
         /// <param name="stringEvent">EventData_StringComparer that should be use.</param>
-        public static void AddStringConditionEvent(BaseNode node, VisualElement element, ChoiceData_Container choice, EventData_StringCondition stringEvent = null)
+        public static ChoiceData_Condition AddStringConditionEvent(BaseNode node, VisualElement element, ChoiceData_Container choice, EventData_StringCondition stringEvent = null)
         {
             ChoiceData_Condition condition = new ChoiceData_Condition();
             choice.conditions.Add(condition);
@@ -314,8 +314,7 @@ namespace Project.NodeSystem.Editor
                 tmpStringEventCondition.conditionType.value = stringEvent.conditionType.value;
             }
             condition.stringCondition = tmpStringEventCondition;
-
-
+            condition.guid.value = Guid.NewGuid().ToString();
 
 
 
@@ -368,6 +367,7 @@ namespace Project.NodeSystem.Editor
 
 
             node.RefreshExpandedState();
+            return condition;
         }
 
 

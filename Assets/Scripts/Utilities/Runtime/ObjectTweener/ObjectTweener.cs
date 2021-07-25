@@ -178,6 +178,12 @@ public class ObjectTweener : MonoBehaviour
                 _tweener = Value();
                 _tweener.setOnUpdate(OnValueUpdated);
                 break;
+            case TweenAnimationType.Width:
+                _tweener = Width();
+                break;
+            case TweenAnimationType.Height:
+                _tweener = Height();
+                break;
         }
 
 
@@ -286,6 +292,12 @@ public class ObjectTweener : MonoBehaviour
             case TweenAnimationType.Value:
                 _tweener = Value();
                 _tweener.setOnUpdate(OnValueUpdated);
+                break;
+            case TweenAnimationType.Width:
+                _tweener = Width();
+                break;
+            case TweenAnimationType.Height:
+                _tweener = Height();
                 break;
         }
 
@@ -658,6 +670,59 @@ public class ObjectTweener : MonoBehaviour
     {
         return LeanTween.value(ObjectToAnimate.gameObject, Settings.from.x, Settings.to.x, Settings.duration);
     }
+
+
+
+    private LTDescr Width()
+    {
+        Vector3 to = Settings.RelativeTo(ObjectToAnimate);
+
+
+        if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
+        {
+            if (Settings.useFromAsStart)
+            {
+                rt.localScale = Settings.RelativeFrom(rt);
+            }
+
+            return Value().setOnUpdate(ChangeWidthOnValueUpdate).setOnUpdateParam(rt);
+        }
+
+        return new LTDescr();
+    }
+
+    private void ChangeWidthOnValueUpdate(float value, object obj)
+    {
+        RectTransform rt = obj as RectTransform;
+        rt.sizeDelta = new Vector2(value, rt.sizeDelta.y);
+    }
+
+    private LTDescr Height()
+    {
+        Vector3 to = Settings.RelativeTo(ObjectToAnimate);
+
+
+        if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
+        {
+            if (Settings.useFromAsStart)
+            {
+                rt.localScale = Settings.RelativeFrom(rt);
+            }
+
+            return Value().setOnUpdate(ChangeHeightOnValueUpdate).setOnUpdateParam(rt);
+        }
+
+        return new LTDescr();
+    }
+
+
+    private void ChangeHeightOnValueUpdate(float value, object obj)
+    {
+        RectTransform rt = obj as RectTransform;
+        rt.sizeDelta = new Vector2(rt.sizeDelta.x, value);
+    }
+
+
 
     //Lance une succession de tweens à la suite
     private void Sequence(List<LTDescr> tweensToRecord)

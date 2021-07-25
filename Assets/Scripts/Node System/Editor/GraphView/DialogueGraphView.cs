@@ -48,6 +48,7 @@ namespace Project.NodeSystem.Editor
 
 
 
+
         #region Editor Window
 
         /// <summary>
@@ -118,6 +119,9 @@ namespace Project.NodeSystem.Editor
         #endregion
 
 
+        #region Commands
+
+
 
         /// <summary>
         /// Pour pouvoir dire au GraphView quelles nodes peuvent être connectées à quel port
@@ -146,6 +150,7 @@ namespace Project.NodeSystem.Editor
             return compatiblePorts; //Renvoie les ports pouvant se connecter au nôtre
         }
 
+        #endregion
 
 
         #region Create Nodes

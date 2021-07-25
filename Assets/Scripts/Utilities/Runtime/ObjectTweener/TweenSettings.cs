@@ -22,6 +22,8 @@ public enum TweenAnimationType
     ScaleY = 16,
     ScaleZ = 17,
     Color = 18,
+    Width = 19,
+    Height = 20,
 }
 
 

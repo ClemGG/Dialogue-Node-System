@@ -111,6 +111,7 @@ namespace Project.NodeSystem {
         {
             voiceClipSource = gameObject.AddComponent<AudioSource>();
             charClipSource = gameObject.AddComponent<AudioSource>();
+            voiceClipSource.volume = charClipSource.volume = .2f;
 
             voiceClipSource.playOnAwake = charClipSource.playOnAwake = false;
             charClipSource.loop = true;

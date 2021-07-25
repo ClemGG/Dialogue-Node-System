@@ -13,7 +13,7 @@ namespace Project.NodeSystem.Editor
         private ChoiceData choiceData = new ChoiceData();
         public ChoiceData ChoiceData { get => choiceData; set => choiceData = value; }
 
-        private Box choiceStateEnumBox;
+        private List<Box> boxesButtons = new List<Box>();
         private Button newChoiceBtn;
 
         public ChoiceNode() : base("Choice", Vector2.zero)
@@ -28,9 +28,9 @@ namespace Project.NodeSystem.Editor
 
             AddTopButton();
 
-            //AddTextLine();
-
-            //ChoiceStateEnum();
+            //Crée un choix par défaut pour que le DialogueManager évite de planter si on n'a pas de choix.
+            //Retiré au moment du chargement dans DialogueSaveLoad pour éviter de créer un choix supplémentaire.
+            AddChoice();
 
             //On appelle ces fonctions pour mettre à jour le visuel de la Node
             RefreshExpandedState();
@@ -56,7 +56,7 @@ namespace Project.NodeSystem.Editor
             AddLabelAndButton(newChoice, $"Choice n°{(ChoiceData.choices.IndexOf(newChoice)+1).ToString()}");
             AddTextLine(newChoice);
             ChoiceStateEnum(newChoice);
-
+            
 
             // Load in data if it got any
             if (loadedChoice != null)
@@ -94,22 +94,18 @@ namespace Project.NodeSystem.Editor
                 //Conditions
                 foreach (ChoiceData_Condition loadedCondition in loadedChoice.conditions)
                 {
-                    AddCondition(newChoice, loadedCondition.stringCondition);
+                    ChoiceData_Condition newCondition = AddCondition(newChoice, loadedCondition.stringCondition);
+                    newCondition.guid.value = loadedCondition.guid.value;
 
-                    foreach (ChoiceData_Condition newCondition in newChoice.conditions)
+                    // Descriptions de chaque condition
+                    foreach (LanguageGeneric<string> loaded_desc in loadedCondition.descriptionsIfNotMet)
                     {
-                        newCondition.guid.value = loadedCondition.guid.value;
 
-                        // Descriptions de chaque condition
-                        foreach (LanguageGeneric<string> loaded_desc in loadedCondition.descriptionsIfNotMet)
+                        foreach (LanguageGeneric<string> desc in newCondition.descriptionsIfNotMet)
                         {
-                        
-                            foreach (LanguageGeneric<string> desc in newCondition.descriptionsIfNotMet)
+                            if (desc.language == loaded_desc.language)
                             {
-                                if (desc.language == loaded_desc.language)
-                                {
-                                    desc.data = loaded_desc.data;
-                                }
+                                desc.data = loaded_desc.data;
                             }
                         }
                     }
@@ -120,10 +116,6 @@ namespace Project.NodeSystem.Editor
             else
             {
                 newChoice.guid.value = Guid.NewGuid().ToString();
-                foreach (ChoiceData_Condition newCondition in newChoice.conditions)
-                {
-                    newCondition.guid.value = Guid.NewGuid().ToString();
-                }
             }
 
 
@@ -149,11 +141,18 @@ namespace Project.NodeSystem.Editor
             Box labelContainer = NodeBuilder.NewBox(newChoice.choiceContainer, "TopBox");
 
             // Label Name
+            Box buttonsBox = NodeBuilder.NewBox(labelContainer, "BtnBox");
             Label title = NodeBuilder.NewLabel(labelContainer, labelName, "LabelText", "TextColor");
 
 
-            Box buttonsBox = NodeBuilder.NewBox(labelContainer, "BtnBox");
 
+
+            //Si on n'a qu'un seul choix, pas la peine d'afficher les petits boutons
+            boxesButtons.Add(buttonsBox);
+            for (int i = 0; i < boxesButtons.Count; i++)
+            {
+                NodeBuilder.ShowHide(ChoiceData.choices.Count > 1, boxesButtons[i]);
+            }
 
 
             // Move up button.
@@ -173,19 +172,22 @@ namespace Project.NodeSystem.Editor
 
             //Ajoute un bouton pour ajouter une condition à ce choix
             Action onAddConditionClicked = () => AddCondition(newChoice);
-            NodeBuilder.NewButton(buttonsBox, "+ Condition", onAddConditionClicked, "AddConditionBtn");
+            NodeBuilder.NewButton(labelContainer, "+ Condition", onAddConditionClicked, "AddConditionBtn");
 
 
             //Ajoute un bouton pour supprimer ce choix et son port associé
             Action onRemoveClicked = () =>
             {
+                boxesButtons.Remove(buttonsBox);
                 DeleteBox(newChoice.choiceContainer);
                 NodeBuilder.DeleteChoicePort(this, newChoice.linkedPort.port);
+
+
                 ChoiceData.choices.Remove(newChoice);
                 RenameChoices();
                 ShowHideNewChoiceBtn();
             };
-            NodeBuilder.NewButton(buttonsBox, "X", onRemoveClicked, "RemoveChoiceBtn");
+            Button removeBtn = NodeBuilder.NewButton(buttonsBox, "X", onRemoveClicked, "RemoveChoiceBtn");
 
         }
 
@@ -226,12 +228,13 @@ namespace Project.NodeSystem.Editor
 
 
 
-        public void AddCondition(ChoiceData_Container newChoice, EventData_StringCondition stringEvent = null)
+        public ChoiceData_Condition AddCondition(ChoiceData_Container newChoice, EventData_StringCondition stringEvent = null)
         {
             Box boxContainer = NodeBuilder.NewBox(newChoice.choiceContainer, "TextLineBox");
-            NodeBuilder.AddStringConditionEvent(this, boxContainer, newChoice, stringEvent);
+            ChoiceData_Condition condition = NodeBuilder.AddStringConditionEvent(this, boxContainer, newChoice, stringEvent);
 
             ShowHideChoiceEnum();
+            return condition;
         }
 
 
@@ -365,7 +368,11 @@ namespace Project.NodeSystem.Editor
         }
 
 
-
+        public override void DeleteBox(Box boxToRemove)
+        {
+            base.DeleteBox(boxToRemove);
+            RenameChoices();
+        }
 
         public override void DeleteBox(VisualElement container, VisualElement elementToRemove)
         {
@@ -384,6 +391,12 @@ namespace Project.NodeSystem.Editor
         private void ShowHideNewChoiceBtn()
         {
             NodeBuilder.ShowHide(ChoiceData.choices.Count < Window.NbMaxChoices, newChoiceBtn);
+
+            //Si on n'a qu'un seul choix, pas la peine d'afficher les petits boutons
+            for (int i = 0; i < boxesButtons.Count; i++)
+            {
+                NodeBuilder.ShowHide(ChoiceData.choices.Count > 1, boxesButtons[i]);
+            }
         }
 
         private void RenameChoices()

@@ -10,6 +10,9 @@ namespace Project.NodeSystem
     /// </summary>
     public class DialogueManager : DialogueGetData
     {
+
+        #region Fields
+
         [Tooltip("La langue du dialogue. Peut être modifiée en cours de dialogue pour afficher une traduction à la prochaine réplique.")]
         public LanguageType curLanguage = LanguageType.French;
 
@@ -17,12 +20,16 @@ namespace Project.NodeSystem
         DialogueUI dialogueUi;
 
         DialogueData curData;   //la DialogueNode en cours
-        DialogueData lastData;  //Si on veut revenir en arrière
 
         readonly List<DialogueButtonContainer> dialogueButtonContainers = new List<DialogueButtonContainer>();
         readonly List<NodeData_BaseContainer> baseContainers = new List<NodeData_BaseContainer>();
         private int curIndex = 0;
 
+
+        #endregion
+
+
+        #region Dialogue
 
         void Start()
         {
@@ -63,6 +70,9 @@ namespace Project.NodeSystem
                 case BranchData nodeData:
                     RunNode(nodeData);
                     break;
+                case ChoiceData nodeData:
+                    RunNode(nodeData);
+                    break;
                 case EventData nodeData:
                     RunNode(nodeData);
                     break;
@@ -75,6 +85,7 @@ namespace Project.NodeSystem
         }
 
 
+        #endregion
 
 
 
@@ -101,6 +112,13 @@ namespace Project.NodeSystem
             CheckNodeType(GetNodeByGuid(nextNode));
         }
 
+        private void RunNode(ChoiceData nodeData)
+        {
+            //On doit maintenant récupérer les choix de la node et leurs conditions
+            //pour les assigner aux boutons de l'interface
+            AssignActionsToButtons(nodeData);
+        }
+
         private void RunNode(EventData nodeData)
         {
             //Si on a un DialogueEvent à jouer, celui-ci va appeler la classe statique GameEvents
@@ -123,48 +141,11 @@ namespace Project.NodeSystem
         private void RunNode(EndData nodeData)
         {
             dialogueUi.EndDialogue();
-
-
-            /* EDIT : Je viens de me rendre compte qu'en fait, on s'en fout de toutes ces options.
-             * Si on veut revenir en arrière, il suffit juste de lier la node précédente à la DialogueNode qu'on veut
-             * répéter.
-             * Je sais que ces options évitaient de faire de trop gros liens, mais elles restent plutôt limitées.
-             * Elles fonctionnent, c'est déjà ça, mais sinon on n'en a pas besoin. On les laisse au cas où.
-             */
-
-            //switch (nodeData.endNodeType.value)
-            //{
-            //    //On termine le dialogue et on désactive le UI pour rendre le contrôle au joueur.
-            //    case EndNodeType.End:
-            //        dialogueUi.EndDialogue();
-            //        break;
-
-            //    //Rejoue la dernière DialogueNode lue.
-            //    case EndNodeType.Repeat:
-            //        CheckNodeType(GetNodeByGuid(curData.nodeGuid));
-            //        break;
-
-            //    //Si on a une lastNode, on revient à celle-ci, sinon on peut revenir plus loin en arrière.
-            //    case EndNodeType.GoBack:
-            //        if (lastData != null)
-            //            CheckNodeType(GetNodeByGuid(lastData.nodeGuid));
-            //        else
-            //            goto case EndNodeType.Repeat;
-            //        break;
-
-            //    //Rejoue le dialogue depuis le début
-            //    case EndNodeType.ReturnToStart:
-            //        StartDialogue();
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
 
         private void RunNode(DialogueData nodeData)
         {
-            //Assigne les nodes pour la EndNode
-            lastData = curData;
+            //Cache la node pour l'utiliser plus tard
             curData = nodeData;
 
             /* Les conteneurs de la DialogueNode (Persos et textes) peuvent changer d'ordre d'exécution selon leur ID.
@@ -181,14 +162,14 @@ namespace Project.NodeSystem
                 return x.ID.value.CompareTo(y.ID.value);
             });
 
-            DisplayDialogueAndCharacters();
+            DisplayDialogueAndCharacters(nodeData);
         }
 
 
 
 
 
-        private void DisplayDialogueAndCharacters()
+        private void DisplayDialogueAndCharacters(DialogueData nodeData)
         {
             //Pour chaque conteneur de la DialogueNode, on regarde s'il s'agit d'un perso ou d'une réplique
             for (int i = curIndex; i < baseContainers.Count; i++)
@@ -215,109 +196,109 @@ namespace Project.NodeSystem
                     dialogueUi.SetText(tmp.texts.Find(text => text.language == curLanguage).data);
                     dialogueUi.PlaySound(tmp.audioClips.Find(text => text.language == curLanguage).data);
 
-                    //Puis on assigne les fonctions aux boutons de l'interface.
-                    AssignActionsToButtons();
                     break;
+                }
+
+
+                //Quand on a fini de parcourir la node, on passe à la suivante
+                if (curIndex == baseContainers.Count-1)
+                {
+                    UnityAction displayNextNode = () => CheckNodeType(GetNextNode(nodeData));
+                    dialogueUi.SetContinueBtn(displayNextNode);
+                }
+                //Sinon, on continue de défiler les répliqus
+                else
+                {
+                    UnityAction redo = () => DisplayDialogueAndCharacters(nodeData);
+                    dialogueUi.SetContinueBtn(redo);
                 }
             }
         }
 
 
 
-        private void AssignActionsToButtons()
+        private void AssignActionsToButtons(ChoiceData nodeData)
         {
 
-            ////Assigne les fonctions du bouton Continuer et des boutons de choix.
-            ////Si la node n'a qu'un seul port, on passe à la réplique suivante
-            //UnityAction nextReplique = null;
-            //nextReplique += () => CheckNodeType(GetNodeByGuid(curData.dialogueNodePorts.First(port => port.inputGuid != string.Empty).inputGuid)); //Pour le bouton continuer, on récupère le premier port menant à une réplique
-            //dialogueUi.SetContinueBtn(curData.dialogueNodePorts.Where(port => port.inputGuid != string.Empty).Cast<ChoicePort>().ToList(), nextReplique);    //On ne passe que les ports branchés
-            //AssignChoiceButtons(curData.dialogueNodePorts);
+            // Assigne les fonctions du bouton Continuer et des boutons de choix.
+            // La ChoiceNode s'assure qu'on ait au moins 1 choix disponible pour éviter les bugs.
+            // Sinon, on parcourt la liste
 
-            //Si on n'a pas de ports choix...
-            if(curData.ports.Count == 0)
+
+            dialogueButtonContainers.Clear();
+
+            //On vérifie qu'il y a au moins un choix de connecté
+            bool hasChoices = false;
+
+            foreach (ChoiceData_Container container in nodeData.choices)
             {
-                //... Et qu'on atteint le dernier élément de la DialogueNode...
-                if (curIndex == baseContainers.Count)
+                //Si le port de choix est bien connecté, on peut ajouter le choix à la liste
+                if (!string.IsNullOrEmpty(container.linkedPort.inputGuid))
                 {
-                    //... On passe à la node suivante.
-                    UnityAction displayNextNode = () => CheckNodeType(GetNextNode(curData));
-                    dialogueUi.SetContinueBtn(displayNextNode);
+                    AssignChoice(container);
+                    hasChoices = true;
                 }
             }
-            else //Sinon, si on a des ports choix...
+
+            //Si on a des choix, on affiche le panel des choix.
+            if (hasChoices)
             {
-                //... Et qu'on atteint le dernier élément de la DialogueNode...
-                if (curIndex == baseContainers.Count)
-                {
-                    dialogueButtonContainers.Clear();
-
-                    //On vérifie qu'il y a au moins un choix de connecté
-                    bool hasChoices = false;
-
-                    foreach (NodeData_Port port in curData.ports)
-                    {
-                        //Si le port de choix est bien connecté, on peut ajouter le choix à la liste
-                        if (!string.IsNullOrEmpty(port.inputGuid))
-                        {
-                            AssignChoice(port.inputGuid);
-                            hasChoices = true;
-                        }
-                    }
-
-                    //Quand le joueur cliquera sur le bouton Continuer...
-                    UnityAction onChoicesAssigned = () =>
-                    {
-                        //Si on a des choix, on affiche le panel des choix.
-                        if (hasChoices)
-                        {
-                            dialogueUi.SetChoices(dialogueButtonContainers);
-                            dialogueUi.ShowChoicesPanel();
-                        }
-
-                        //Sinon, on passe à la node suivante.
-                        else
-                        {
-                            CheckNodeType(GetNextNode(curData));
-                        }
-                    };
-                    dialogueUi.SetContinueBtn(onChoicesAssigned);
-                }
-                else //Sinon, on continue de passer à l'élément suivant de la node en cours.
-                {
-                    UnityAction redo = () => DisplayDialogueAndCharacters();
-                    dialogueUi.SetContinueBtn(redo);
-                }
+                dialogueUi.SetChoices(dialogueButtonContainers);
+                dialogueUi.ShowChoicesPanel();
             }
+            //Sinon, la ChoiceNode n'a pas de points de sortie.
+            //Dans ce cas, pour éviter les erreurs, on arrête le dialogue.
+            else
+            {
+                dialogueUi.EndDialogue();
+            }
+
 
             
         }
 
-        private void AssignChoice(string guidID)
+
+        private void AssignChoice(ChoiceData_Container choice)
         {
-            //BaseData asd = GetNodeByGuid(guidID);
-            //ChoiceData choiceNode = asd as ChoiceData;
-            //DialogueButtonContainer dialogueButtonContainer = new DialogueButtonContainer();
+            bool checkBranch = true;
+            foreach (ChoiceData_Condition condition in choice.conditions)
+            {
+                if (!GameEvents.DialogueConditionEvents(condition.stringCondition.stringEvent.value, condition.stringCondition.conditionType.value, condition.stringCondition.number.value))
+                {
+                    checkBranch = false;
+                    break;
+                }
+            }
 
-            //bool checkBranch = true;
-            //foreach (EventData_StringCondition item in choiceNode.stringConditions)
-            //{
-            //    if (!GameEvents.DialogueConditionEvents(item.stringEvent.value, item.conditionType.value, item.number.value))
-            //    {
-            //        checkBranch = false;
-            //        break;
-            //    }
-            //}
+            //On crée un DialogueButtonContainer, qui indiquera au UI si un choix doit être disponible ou pas
+            UnityAction onChoiceClicked = () => CheckNodeType(GetNodeByGuid(choice.linkedPort.inputGuid));
 
-            ////On crée un DialogueButtonContainer, qui indiquera au UI si un choix doit être disponible ou pas
-            //UnityAction unityAction = () => CheckNodeType(GetNextNode(choiceNode));
+            DialogueButtonContainer dialogueButtonContainer = new DialogueButtonContainer();
 
-            //dialogueButtonContainer.ChoiceState = choiceNode.choiceStateType.value;
-            //dialogueButtonContainer.Text = choiceNode.texts.Find(text => text.language == curLanguage).data;
-            //dialogueButtonContainer.OnChoiceClicked = unityAction;
-            //dialogueButtonContainer.ConditionCheck = checkBranch;
+            dialogueButtonContainer.ChoiceState = choice.choiceStateType.value;
 
-            //dialogueButtonContainers.Add(dialogueButtonContainer);
+            //Pour le texte du choix, on met le texte de base + les descriptions si les conditions ne sont pas remplies.
+            dialogueButtonContainer.Text = choice.texts.Find(text => text.language == curLanguage).data;
+            if (!checkBranch)
+            {
+                foreach (ChoiceData_Condition condition in choice.conditions)
+                {
+                    string desc = condition.descriptionsIfNotMet.Find(desc => desc.language == curLanguage).data;
+
+                    if (!string.IsNullOrEmpty(desc))
+                    {
+                        dialogueButtonContainer.Text = string.Format("{0}   <size=30><i><color=#FF999999>({1})</color></i></size>",
+                                                                     dialogueButtonContainer.Text,
+                                                                     desc);
+                    }
+                }
+            }
+
+
+            dialogueButtonContainer.OnChoiceClicked = onChoiceClicked;
+            dialogueButtonContainer.ConditionCheck = checkBranch;
+
+            dialogueButtonContainers.Add(dialogueButtonContainer);
         }
     }
 }
