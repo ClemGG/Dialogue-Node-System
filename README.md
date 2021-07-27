@@ -4,9 +4,9 @@ The prototype of a Dialogue Node System realized in Unity 2021.1.11.
 ## Core features
 
 1. Multiple nodes available:
-  - DialogueNode (to add characters and text lines as well as audio),
+  - CharacterNode and RepliqueNode (to add characters and text lines as well as audio),
   - Support for branching dialogues (BranchNode for logic, ChoiceNode for multiple answers),
-  - Support for event callbacks with the EventNode,
+  - Support for sortable event callbacks with the EventNode,
 2. Flexible save system with .CSV files,
 3. Ability to write dialogue in multiple langugages
 4. A demo example scene.
@@ -14,7 +14,6 @@ The prototype of a Dialogue Node System realized in Unity 2021.1.11.
 Future updates will include :
 
 1. Multiple StartNodes depending on certain in-game conditions
-2. Separation of DialogueNode into CharacterNode and RepliqueNode to reduce clutter
 3. Addition of BackgroundNode to add 2D textures as background and fade
 4. Ability to add and remove languages directly in the editor window
 
