@@ -139,6 +139,7 @@ namespace Project.NodeSystem {
 
 
 
+        #region Buttons
 
         //Quand on clique sur le bouton continuer, on afficher le panel des choix 
         //s'il y a des ports, sinon, on joue la node suivante
@@ -166,6 +167,53 @@ namespace Project.NodeSystem {
         }
 
 
+        public void SetChoices(List<DialogueButtonContainer> dialogueButtonContainers)
+        {
+            choicesContent.SetActive(true);
+
+            for (int i = 0; i < choiceBtns.Length; i++)
+            {
+                Button b = choiceBtns[i];
+
+                //Si on a des boutons en trop, on les désactive
+                if (i >= dialogueButtonContainers.Count)
+                {
+                    b.gameObject.SetActive(false);
+                }
+                else
+                {
+                    //Si les conditions sont réunies, on active le bouton normalement
+                    if (dialogueButtonContainers[i].ConditionCheck)
+                    {
+                        b.gameObject.SetActive(true);
+                        b.interactable = true;
+
+                        b.onClick.RemoveAllListeners();
+                        b.onClick.AddListener(dialogueButtonContainers[i].OnChoiceClicked);
+                        b.onClick.AddListener(OnChoiceSelected);
+
+                        choiceTmps[i].text = dialogueButtonContainers[i].Text;
+                    }
+                    else
+                    {
+                        //On n'active le bouton que si on doit le griser, puis on met son interactable à false
+                        //pour montrer au joueur le choix indisponible en gris
+                        b.gameObject.SetActive(dialogueButtonContainers[i].ChoiceState == ChoiceStateType.GreyOut);
+                        b.interactable = false;
+
+                        choiceTmps[i].text = dialogueButtonContainers[i].Text;
+                    }
+
+
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        #region Repliques
 
         public virtual void SetText(string replique)
         {
@@ -242,8 +290,14 @@ namespace Project.NodeSystem {
         }
 
 
+        #endregion
+
+
+        #region Characters
+
         public void SetCharacter(string characterName, Color characterNameColor, Sprite characterSprite, DialogueSide faceDir, DialogueSide sidePlacement)
         {
+
             if (sidePlacement == DialogueSide.Left)
             {
                 //S'il n'y a pas de sprite en paramètre, on veut cacher le personnage de ce côté
@@ -304,58 +358,16 @@ namespace Project.NodeSystem {
         }
 
 
-
-
-
-        public void SetChoices(List<DialogueButtonContainer> dialogueButtonContainers)
-        {
-            choicesContent.SetActive(true);
-
-            for (int i = 0; i < choiceBtns.Length; i++)
-            {
-                Button b = choiceBtns[i];
-
-                //Si on a des boutons en trop, on les désactive
-                if (i >= dialogueButtonContainers.Count)
-                {
-                    b.gameObject.SetActive(false);
-                }
-                else
-                {
-                    //Si les conditions sont réunies, on active le bouton normalement
-                    if (dialogueButtonContainers[i].ConditionCheck)
-                    {
-                        b.gameObject.SetActive(true);
-                        b.interactable = true;
-
-                        b.onClick.RemoveAllListeners();
-                        b.onClick.AddListener(dialogueButtonContainers[i].OnChoiceClicked);
-                        b.onClick.AddListener(OnChoiceSelected);
-
-                        choiceTmps[i].text = dialogueButtonContainers[i].Text;
-                    }
-                    else
-                    {
-                        //On n'active le bouton que si on doit le griser, puis on met son interactable à false
-                        //pour montrer au joueur le choix indisponible en gris
-                        b.gameObject.SetActive(dialogueButtonContainers[i].ChoiceState == ChoiceStateType.GreyOut);
-                        b.interactable = false;
-
-                        choiceTmps[i].text = dialogueButtonContainers[i].Text;
-                    }
-
-
-                }
-            }
-        }
-
-
         public void PlaySound(AudioClip clip)
         {
-            if(voiceClipSource.clip) voiceClipSource.Stop();
+            if (voiceClipSource.clip) voiceClipSource.Stop();
             voiceClipSource.clip = clip;
             voiceClipSource.Play();
         }
+
+        #endregion
+
+
 
         #endregion
     }

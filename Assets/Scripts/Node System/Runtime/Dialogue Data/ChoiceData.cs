@@ -21,7 +21,7 @@ namespace Project.NodeSystem
 
 #if UNITY_EDITOR
 
-        public Box choiceContainer;        //Contient tous les éléments suivants + les Boxs contenant les conditions
+        public Box boxContainer;        //Contient tous les éléments suivants + les Boxs contenant les conditions
 
         public TextField TextField { get; set; }
         public TextField DescTextField { get; set; }

@@ -410,7 +410,7 @@ namespace Project.NodeSystem.Editor
             Action onClicked = () =>
             {
                 choice.conditions.Remove(condition);
-                node.DeleteBox(choice.choiceContainer, element);
+                node.DeleteBox(choice.boxContainer, element);
             };
             Button btn = NewButton("X", onClicked, "removeBtn");
 
@@ -652,12 +652,20 @@ namespace Project.NodeSystem.Editor
         }
 
 
+
+
+
+
+
+
+
+
         /// <summary>
         /// Get a new ObjectField with a Sprite as the Object.
         /// </summary>
         /// <param name="inputCharacter">Container_Sprite that need to be set in to the ObjectField</param>
         /// <returns></returns>
-        public static ObjectField NewCharacterField(DialogueData_CharacterSO container, ContainerValue<DialogueCharacterSO> inputCharacter, params string[] USSx)
+        public static ObjectField NewCharacterField(BaseNode node, CharacterData_CharacterSO newCharacter, ContainerValue<DialogueCharacterSO> inputCharacter, params string[] USSx)
         {
             ObjectField objectField = new ObjectField()
             {
@@ -672,27 +680,32 @@ namespace Project.NodeSystem.Editor
                 if (value.newValue != null)
                 {
                     inputCharacter.value = value.newValue as DialogueCharacterSO;
-                    container.characterName.value = inputCharacter.value.characterName;
+                    newCharacter.characterName.value = inputCharacter.value.characterNames[(int)node.Window.SelectedLanguage];
 
-                    if (container.mood.enumField == null)
-                        container.mood.value = CharacterMood.Idle;
+                    newCharacter.characterNames.AddRange(inputCharacter.value.characterNames);
+
+                    if (newCharacter.mood.enumField == null)
+                        newCharacter.mood.value = CharacterMood.Idle;
 
                     //Afficher l'image du nouveau perso quand on change de DialogueCharacterSO
-                    container.sprite.value = inputCharacter.value.GetFaceFromMood(container.mood.value);
-                    container.spriteField.image = inputCharacter.value != null ? container.sprite.value.texture : null;
+                    newCharacter.sprite.value = inputCharacter.value.GetFaceFromMood(newCharacter.mood.value);
+                    newCharacter.spriteField.image = inputCharacter.value != null ? newCharacter.sprite.value.texture : null;
+
+
                 }
                 else
                 {
                     inputCharacter.value = null;
-                    container.characterName.value = "";
-                    container.sprite.value = null;
-                    container.spriteField.image = null;
+                    newCharacter.characterName.value = "";
+                    newCharacter.characterNames.Clear();
+                    newCharacter.sprite.value = null;
+                    newCharacter.spriteField.image = null;
                 }
 
-                container.mood.enumField.SetValueWithoutNotify(container.mood.value);
-                container.nameField.SetValueWithoutNotify(container.characterName.value);
+                newCharacter.mood.enumField.SetValueWithoutNotify(newCharacter.mood.value);
+                newCharacter.nameField.SetValueWithoutNotify(newCharacter.characterName.value);
             });
-            container.spriteField.image = inputCharacter.value != null ? container.sprite.value.texture : null;
+            newCharacter.spriteField.image = inputCharacter.value != null ? newCharacter.sprite.value.texture : null;
 
             // Set uss class for stylesheet.
             objectField.AddStyle(USSx);
@@ -822,7 +835,7 @@ namespace Project.NodeSystem.Editor
         }
 
 
-        public static EnumField NewCharacterMoodField(DialogueData_CharacterSO container, ContainerEnum<CharacterMood> enumType, params string[] USSx)
+        public static EnumField NewCharacterMoodField(CharacterData_CharacterSO container, ContainerEnum<CharacterMood> enumType, params string[] USSx)
         {
             EnumField enumField = new EnumField()
             {

@@ -1,5 +1,5 @@
 .node #title{
-	background-color: #D1B00C;
+	background-color: green;
 }
 
 .node #title #title-label{
@@ -47,12 +47,10 @@
 }
 
 /* ----------------- Name -----------------*/
-.NameColor{
-	color:green;
-}
+
 .CharacterName{
 	width:260px;
-	white-space: normal; /*Quand la longueur max de la TextBox est atteinte, on retourne à la ligne*/
+	/*white-space: normal;*/ /*Quand la longueur max de la TextBox est atteinte, on retourne à la ligne*/
 	padding-bottom: 10px;
 }
 
@@ -61,20 +59,6 @@
 .TextColor{
 	color:#D1B00C;
 }
-
-.TextBox{
-	flex-grow: 100;
-}
-
-/* Pour étirer les champs de tete jusqu'au bord de la node */
-.TextStretch{
-	
-}
-
-.AudioClip{
-	flex-grow: 100;
-}
-
 /* ----------------- Images -----------------*/
 .ImageColor{
 	color:#E8C411;

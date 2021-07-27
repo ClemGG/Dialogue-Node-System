@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846a94970f87695469a491017d59c231, type: 3}
   m_Name: TS_Choice slot moveX+ OnEnable
   m_EditorClassIdentifier: 
-  animationType: 0
+  animationType: 9
   curveType: 38
   curve:
     serializedVersion: 2
@@ -46,3 +46,6 @@ MonoBehaviour:
   relativeToTransform: 1
   from: {x: -50, y: 0, z: 0}
   to: {x: 0, y: 0, z: 0}
+  fromColor: {r: 0, g: 0, b: 0, a: 0}
+  toColor: {r: 0, g: 0, b: 0, a: 0}
+  OnComplete: []

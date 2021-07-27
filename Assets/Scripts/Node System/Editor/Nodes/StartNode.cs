@@ -18,6 +18,9 @@ namespace Project.NodeSystem.Editor
         public StartNode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("Start", position, window, graphView, "StartNodeStyleSheet")
         {
 
+            //La StartNode possède un port d'entrée dans le cas où l'on voudrait relancer le dialogue depuis le début 
+            //(incluant le nettoyage dans la Start() du DialogueManager)
+            NodeBuilder.AddPort(this, "Input", Direction.Input, Port.Capacity.Multi);
             NodeBuilder.AddPort(this, "Start", Direction.Output);
 
             //On appelle ces fonctions pour mettre à jour le visuel de la Node

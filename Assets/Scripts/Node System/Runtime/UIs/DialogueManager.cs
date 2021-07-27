@@ -20,13 +20,11 @@ namespace Project.NodeSystem
         DE_Trigger triggerScript;
 
         [Tooltip("La langue du dialogue. Peut être modifiée en cours de dialogue pour afficher une traduction à la prochaine réplique.")]
-        public LanguageType curLanguage = LanguageType.French;
+        public LanguageType selectedLanguage = LanguageType.French;
 
 
-
+        //Pour stocker les choix avant de les assigner dans le dialogueUI
         readonly List<DialogueButtonContainer> dialogueButtonContainers = new List<DialogueButtonContainer>();
-        readonly List<NodeData_BaseContainer> baseContainers = new List<NodeData_BaseContainer>();
-        private int curIndex = 0;
 
 
         #endregion
@@ -42,7 +40,7 @@ namespace Project.NodeSystem
             StartDialogue();
         }
 
-
+        //Pour lui assigner un triggerScript depuis un autre script
         public void SetDialogueTriggerSript(DE_Trigger newTriggerScript)
         {
             triggerScript = newTriggerScript;
@@ -58,7 +56,7 @@ namespace Project.NodeSystem
             //A faire : Récupérer plusieurs StartNodes et sélectionner celle à suivre en fonction de ses conditions.
             //La raison pour laquelle on peut avoir plusieurs StartNodes est dans le cas où l'on veut choisir une node
             //de départ en fonction de certaines conditions (Une BranchNode ne peut prendre que 2 chemins, "true" ou "false").
-            CheckNodeType(GetNextNode(dialogue.startDatas[0]));
+            RunNode(dialogue.startDatas[0]);
         }
 
 
@@ -66,10 +64,14 @@ namespace Project.NodeSystem
 
 
 
-        protected override void RunNode(StartData startNodeData)
+        protected override void RunNode(StartData nodeData)
         {
-            //C'est une StartNode, on n'a rien à faire. On récupère la node suivante.
-            CheckNodeType(GetNextNode(dialogue.startDatas[0]));
+            //Comme c'est la StartNode, on se contente de cacher les sprites des persos pour ne pas avoir à le faire manuellement.
+            dialogueUi.SetCharacter("", new Color(252, 3, 252, 1), null, DialogueSide.Right, DialogueSide.Left);    //Perso de gauche
+            dialogueUi.SetCharacter("", new Color(252, 3, 252, 1), null, DialogueSide.Left, DialogueSide.Right);    //Perso de droite
+
+            //On récupère la node suivante.
+            CheckNodeType(GetNextNode(nodeData));
         }
 
         protected override void RunNode(BranchData nodeData)
@@ -129,62 +131,77 @@ namespace Project.NodeSystem
             dialogueUi.EndDialogue();
         }
 
-        protected override void RunNode(DialogueData nodeData)
+        protected override void RunNode(CharacterData nodeData)
         {
-            /* Les conteneurs de la DialogueNode (Persos et textes) peuvent changer d'ordre d'exécution selon leur ID.
+            /* Les conteneurs de la CharacterNode peuvent changer d'ordre d'exécution selon leur ID.
              * On s'assure de les récupérer dans le bon ordre avant de les analyser.
              */
-            baseContainers.Clear();
-            baseContainers.AddRange(nodeData.characters);
-            baseContainers.AddRange(nodeData.repliques);
 
-            curIndex = 0;
-
-            baseContainers.Sort(delegate (NodeData_BaseContainer x, NodeData_BaseContainer y)
+            nodeData.characters.Sort(delegate (CharacterData_CharacterSO x, CharacterData_CharacterSO y)
             {
                 return x.ID.value.CompareTo(y.ID.value);
             });
 
-            DisplayDialogueAndCharacters(nodeData);
+            DisplayCharacters(nodeData);
+
+            //Quand on a fini de parcourir la node, on passe à la suivante
+            CheckNodeType(GetNextNode(nodeData));
+        }
+
+        protected override void RunNode(RepliqueData nodeData)
+        {
+            /* Les conteneurs de la RepliqueNode peuvent changer d'ordre d'exécution selon leur ID.
+             * On s'assure de les récupérer dans le bon ordre avant de les analyser.
+             */
+
+            nodeData.repliques.Sort(delegate (RepliqueData_Replique x, RepliqueData_Replique y)
+            {
+                return x.ID.value.CompareTo(y.ID.value);
+            });
+
+            DisplayRepliques(nodeData);
         }
 
 
 
 
 
-        private void DisplayDialogueAndCharacters(DialogueData nodeData)
+        private void DisplayCharacters(CharacterData nodeData)
         {
-            //Pour chaque conteneur de la DialogueNode, on regarde s'il s'agit d'un perso ou d'une réplique
-            for (int i = curIndex; i < baseContainers.Count; i++)
+            //Pour chaque conteneur de la CharacterNode...
+            for (int i = 0; i < nodeData.characters.Count; i++)
             {
-                curIndex = i + 1;
-                if (baseContainers[i] is DialogueData_CharacterSO)
+                //On regarde si le perso a un SO ou pas
+                CharacterData_CharacterSO tmp = nodeData.characters[i];
+                if (tmp.character.value == null)
                 {
-                    //Si c'est un perso, on regarde s'il a un SO ou pas
-                    DialogueData_CharacterSO tmp = baseContainers[i] as DialogueData_CharacterSO;
-                    if(tmp.character.value == null)
-                    {
-                        //Si on n'a pas de personnage, on n'affiche pas de perso à l'emplacement "sidePlacement"
-                        dialogueUi.SetCharacter("", new Color(252, 3, 252, 1), null, tmp.faceDirection.value, tmp.sidePlacement.value);
-                    }
-                    else
-                    {
-                        dialogueUi.SetCharacter(tmp.characterName.value, tmp.character.value.characterNameColor, tmp.sprite.value, tmp.faceDirection.value, tmp.sidePlacement.value);
-                    }
+                    //Si on n'a pas de personnage, on n'affiche pas de perso à l'emplacement "sidePlacement"
+                    dialogueUi.SetCharacter("", new Color(252, 3, 252, 1), null, tmp.faceDirection.value, tmp.sidePlacement.value);
                 }
-                if (baseContainers[i] is DialogueData_Repliques)
+                else
                 {
-                    //Si c'est une réplique, on récupère son texte et son audio en fonction de la langue...
-                    DialogueData_Repliques tmp = baseContainers[i] as DialogueData_Repliques;
-                    dialogueUi.SetText(tmp.texts.Find(text => text.language == curLanguage).data);
-                    dialogueUi.PlaySound(tmp.audioClips.Find(text => text.language == curLanguage).data);
+                    //Sinon on l'affiche normalement
+                    tmp.characterName.value = tmp.characterNames[(int)selectedLanguage];
+                    dialogueUi.SetCharacter(tmp.characterName.value, tmp.character.value.characterNameColor, tmp.sprite.value, tmp.faceDirection.value, tmp.sidePlacement.value);
+                }
 
-                    break;
-                }
+            }
+        }
+
+        private void DisplayRepliques(RepliqueData nodeData)
+        {
+            //Pour chaque conteneur de la RepliqueNode...
+            for (int i = 0; i < nodeData.repliques.Count; i++)
+            {
+                //On récupère son texte et son audio en fonction de la langue...
+                RepliqueData_Replique tmp = nodeData.repliques[i];
+                dialogueUi.SetText(tmp.texts.Find(text => text.language == selectedLanguage).data);
+                dialogueUi.PlaySound(tmp.audioClips.Find(text => text.language == selectedLanguage).data);
+
 
 
                 //Quand on a fini de parcourir la node, on passe à la suivante
-                if (curIndex == baseContainers.Count-1)
+                if (i == nodeData.repliques.Count - 1)
                 {
                     UnityAction displayNextNode = () => CheckNodeType(GetNextNode(nodeData));
                     dialogueUi.SetContinueBtn(displayNextNode);
@@ -192,13 +209,11 @@ namespace Project.NodeSystem
                 //Sinon, on continue de défiler les répliqus
                 else
                 {
-                    UnityAction redo = () => DisplayDialogueAndCharacters(nodeData);
+                    UnityAction redo = () => DisplayRepliques(nodeData);
                     dialogueUi.SetContinueBtn(redo);
                 }
             }
         }
-
-
 
         private void AssignActionsToButtons(ChoiceData nodeData)
         {
@@ -240,7 +255,6 @@ namespace Project.NodeSystem
             
         }
 
-
         private void AssignChoice(ChoiceData_Container choice)
         {
             bool checkBranch = true;
@@ -261,12 +275,12 @@ namespace Project.NodeSystem
             dialogueButtonContainer.ChoiceState = choice.choiceStateType.value;
 
             //Pour le texte du choix, on met le texte de base + les descriptions si les conditions ne sont pas remplies.
-            dialogueButtonContainer.Text = choice.texts.Find(text => text.language == curLanguage).data;
+            dialogueButtonContainer.Text = choice.texts.Find(text => text.language == selectedLanguage).data;
             if (!checkBranch)
             {
                 foreach (ChoiceData_Condition condition in choice.conditions)
                 {
-                    string desc = condition.descriptionsIfNotMet.Find(desc => desc.language == curLanguage).data;
+                    string desc = condition.descriptionsIfNotMet.Find(desc => desc.language == selectedLanguage).data;
 
                     if (!string.IsNullOrEmpty(desc))
                     {

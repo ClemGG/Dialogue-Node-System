@@ -51,7 +51,7 @@ namespace Project.NodeSystem.Editor
         {
             ChoiceData_Container newChoice = new ChoiceData_Container();
             ChoiceData.choices.Add(newChoice);
-            newChoice.choiceContainer = NodeBuilder.NewBox(this, "ChoiceBox");
+            newChoice.boxContainer = NodeBuilder.NewBox(this, "ChoiceBox");
 
             AddLabelAndButton(newChoice, $"Choice n°{(ChoiceData.choices.IndexOf(newChoice)+1).ToString()}");
             AddTextLine(newChoice);
@@ -138,7 +138,7 @@ namespace Project.NodeSystem.Editor
 
         private void AddLabelAndButton(ChoiceData_Container newChoice, string labelName)
         {
-            Box labelContainer = NodeBuilder.NewBox(newChoice.choiceContainer, "TopBox");
+            Box labelContainer = NodeBuilder.NewBox(newChoice.boxContainer, "TopBox");
 
             // Label Name
             Box buttonsBox = NodeBuilder.NewBox(labelContainer, "BtnBox");
@@ -179,7 +179,7 @@ namespace Project.NodeSystem.Editor
             Action onRemoveClicked = () =>
             {
                 boxesButtons.Remove(buttonsBox);
-                DeleteBox(newChoice.choiceContainer);
+                DeleteBox(newChoice.boxContainer);
                 NodeBuilder.DeleteChoicePort(this, newChoice.linkedPort.port);
 
 
@@ -200,7 +200,7 @@ namespace Project.NodeSystem.Editor
         public void AddTextLine(ChoiceData_Container newChoice)
         {
             // Make Container Box
-            Box boxContainer = NodeBuilder.NewBox(newChoice.choiceContainer, "TextLineBox");
+            Box boxContainer = NodeBuilder.NewBox(newChoice.boxContainer, "TextLineBox");
 
             // Text
             TextField textField = NodeBuilder.NewTextLanguagesField(this, boxContainer, newChoice.texts, "Text", "TextBox");
@@ -218,7 +218,7 @@ namespace Project.NodeSystem.Editor
         //si les conditions pour activer cette partie du dialogue ne sont pas remplies
         private void ChoiceStateEnum(ChoiceData_Container newChoice)
         {
-            newChoice.choiceStateEnumBox = NodeBuilder.NewBox(newChoice.choiceContainer, "BoxRow");
+            newChoice.choiceStateEnumBox = NodeBuilder.NewBox(newChoice.boxContainer, "BoxRow");
             ShowHideChoiceEnum();
 
             // Add fields to box.
@@ -230,7 +230,7 @@ namespace Project.NodeSystem.Editor
 
         public ChoiceData_Condition AddCondition(ChoiceData_Container newChoice, EventData_StringEventCondition stringEvent = null)
         {
-            Box boxContainer = NodeBuilder.NewBox(newChoice.choiceContainer, "TextLineBox");
+            Box boxContainer = NodeBuilder.NewBox(newChoice.boxContainer, "TextLineBox");
             ChoiceData_Condition condition = NodeBuilder.AddStringConditionEvent(this, boxContainer, newChoice, stringEvent);
 
             ShowHideChoiceEnum();
@@ -311,7 +311,7 @@ namespace Project.NodeSystem.Editor
 
             for (int i = 0; i < tmp.Count; i++)
             {
-                DeleteBox(ChoiceData.choices[i].choiceContainer);
+                DeleteBox(ChoiceData.choices[i].boxContainer);
                 tmp[i].ID.value = i;
             }
 
@@ -399,7 +399,7 @@ namespace Project.NodeSystem.Editor
         {
             for (int i = 0; i < ChoiceData.choices.Count; i++)
             {
-                ChoiceData.choices[i].choiceContainer.Q<Label>().text = $"Choice n°{(i + 1).ToString()}";
+                ChoiceData.choices[i].boxContainer.Q<Label>().text = $"Choice n°{(i + 1).ToString()}";
             }
         }
 

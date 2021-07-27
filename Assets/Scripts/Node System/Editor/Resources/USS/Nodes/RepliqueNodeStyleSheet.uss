@@ -1,0 +1,58 @@
+.node #title{
+	background-color: #D1B00C;
+}
+
+.node #title #title-label{
+	color: black;
+}
+
+.TopBox{
+	flex-direction: row;
+	padding-top:10px;
+}
+
+.LabelText{
+	margin-right:auto;
+	font-size: 18px;
+}
+
+
+
+
+.RemoveBtn{
+	margin-left:auto;
+}
+.MoveUpBtn{
+	margin-left:auto;
+	background-image: resource("Icons/arrowUp");/*Pour avoir l'image depuis le dossier Resources*/	
+	/*background-image: url("/Assets/Icons/arrowUp.png");*//*Pour avoir l'image de n'importe où*/	
+}
+.MoveDownBtn{
+	margin-left:auto;
+	background-image: resource("Icons/arrowDown");
+}
+.BtnBox{
+	flex-direction:row;
+}
+
+.BoxRow{
+	flex-direction: row;
+}
+
+
+
+
+/* ----------------- Text -----------------*/
+
+.TextColor{
+	color:#D1B00C;
+}
+
+.TextBox{
+	flex-grow: 100;
+}
+
+
+.AudioClip{
+	flex-grow: 100;
+}

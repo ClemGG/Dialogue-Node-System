@@ -1,9 +1,9 @@
 Dialogue Name,Node Guid ID,Text Guid ID,French,English,Spanish
-New Dialogue,a2a1083d-dc08-4cdc-8ec3-2c1514dee57b,20ef97e6-8509-4849-8a0e-7794c0c93399,Bonjour !,Good morning !,Buenos dias !
-New Dialogue,a2a1083d-dc08-4cdc-8ec3-2c1514dee57b,2259c72d-bd0a-4c66-9232-7b58654e7ef5,Salut ! Qu'est-ce que tu fais ?,Salvation ! What are you doing ?,Hola ! Que haces ?
-New Dialogue,8f0555b0-f478-45a0-bec3-2033990a3e31,02b864ef-5d7d-409e-bf4d-4aa62713f55b,"Ah, c'est dommage, mais si tu veux j'ai un truc à faire, ça te dit de m'aider ?","Ah, it's a shame, but if you want I have something to do, it tells you to help me?","Ah, es una pena, pero si quieres, tengo algo que hacer, te dice que me ayudes."
-New Dialogue,954464b2-aec6-4e8f-a214-309fa74ace46,46ca518a-0cfb-44d9-b694-9136055f8b0c,"Ah, bon ben je te laisse t'emmerder alors.","Oh, well, I let you eking you then.","Bueno, te dejo que ganarse a continuación."
-New Dialogue,b828da4f-6176-43a0-b8f8-b8f03acd3030,83d87bad-a722-4a2c-89c1-89c9cf2f3609,Allons-y !,Let's go!,¡Vamos!
+New Dialogue,79016ed5-394a-4237-8266-62c3ff41cdef,e25c4368-2b42-447c-8600-52583d5aa451,Bonjour !,Good morning !,Buenos dias !
+New Dialogue,252f2b6d-73d7-4134-b8bc-59cd6dac256c,20f5d849-8796-4002-b842-2d58f97dc0a7,Salut!  Qu'est-ce que tu fais ?,Salvation! What are you doing ?,¡Hola! Que haces ?
+New Dialogue,1102e459-1e79-4b48-9156-204fbd593b11,effd81c3-7347-41e3-9834-d3cfb68da4d0,Bon bah je te laisse t'emmerder alors.,"Well, I let you annoy you then.","Bueno, te dejo molestarte entonces."
+New Dialogue,b5027263-f0a8-408e-a955-4d4ac3722b44,0329748d-f533-42ea-8645-d933ba594dfa,"Ah c'est dommage, mais si tu veux j'ai un truc à faire, ça te dit de m'aider ?","Ah it's a shame, but if you want I have something to do, it tells you to help me?","Ah, es una pena, pero si quieres, tengo algo que hacer, te dice que me ayudes."
+New Dialogue,93a58b2a-eba2-4039-ad66-d486751cff42,84c65603-8668-4427-afda-4e66b191faff,Allons-y !,Let's go!,¡Vamos!
 New Dialogue,03e218b0-67ba-431b-9181-79a2ffc31c24,c52617ee-2702-45d9-bdbf-b0e9f974a064,"Rien, je m'ennuie.","Nothing, I'm bored.","Nada, estoy aburrido."
-New Dialogue,03e218b0-67ba-431b-9181-79a2ffc31c24,38c031ba-978e-4c20-96b5-3fb0b476dcb0,"Je fais un truc sympa, viens voir c'est marrant !","I'm doing a nice thing, come see it's funny!","¡Estoy haciendo una cosa agradable, ven a ver que es divertido!"
-New Dialogue,03e218b0-67ba-431b-9181-79a2ffc31c24,de71efe0-258a-4631-9e85-5fab7becdd19,hasSomethingToDo est à true,Hassomethingtodo is in True,Hassomethingtodo está en verdad
+New Dialogue,03e218b0-67ba-431b-9181-79a2ffc31c24,38c031ba-978e-4c20-96b5-3fb0b476dcb0,"Je fais un truc sympa, viens voir c'est marrant !","I'm doing something cool, check this out !","¡Estoy haciendo una cosa agradable, ven a ver que es divertido!"
+New Dialogue,03e218b0-67ba-431b-9181-79a2ffc31c24,de71efe0-258a-4631-9e85-5fab7becdd19,hasSomethingToDo est à true,School event locked in demo,Hassomethingtodo está en verdad

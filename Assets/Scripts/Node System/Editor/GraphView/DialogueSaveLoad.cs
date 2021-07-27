@@ -62,19 +62,23 @@ namespace Project.NodeSystem.Editor
 
         private void SaveNodes(DialogueContainerSO dialogueContainerSO)
         {
-            dialogueContainerSO.eventDatas.Clear();
-            dialogueContainerSO.endDatas.Clear();
             dialogueContainerSO.startDatas.Clear();
             dialogueContainerSO.branchDatas.Clear();
-            dialogueContainerSO.dialogueDatas.Clear();
+            dialogueContainerSO.characterDatas.Clear();
+            dialogueContainerSO.repliqueDatas.Clear();
             dialogueContainerSO.choiceDatas.Clear();
+            dialogueContainerSO.eventDatas.Clear();
+            dialogueContainerSO.endDatas.Clear();
 
             nodes.ForEach(node =>
             {
                 switch (node)
                 {
-                    case DialogueNode dialogueNode:
-                        dialogueContainerSO.dialogueDatas.Add(SaveNodeData(dialogueNode));
+                    case CharacterNode characterNode:
+                        dialogueContainerSO.characterDatas.Add(SaveNodeData(characterNode));
+                        break;
+                    case RepliqueNode repliqueNode:
+                        dialogueContainerSO.repliqueDatas.Add(SaveNodeData(repliqueNode));
                         break;
                     case StartNode startNode:
                         dialogueContainerSO.startDatas.Add(SaveNodeData(startNode));
@@ -97,107 +101,100 @@ namespace Project.NodeSystem.Editor
             });
         }
 
-        private DialogueData SaveNodeData(DialogueNode node)
+
+
+
+
+        private CharacterData SaveNodeData(CharacterNode node)
         {
-            DialogueData dialogueData = new DialogueData
+            CharacterData characterData = new CharacterData
             {
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
             };
 
             // Set ID (Instancie les éléments Traduction et Personnage dans le bon ordre)
-            for (int i = 0; i < node.DialogueData.baseContainers.Count; i++)
+            for (int i = 0; i < node.CharacterData.characters.Count; i++)
             {
-                node.DialogueData.baseContainers[i].ID.value = i;
+                node.CharacterData.characters[i].ID.value = i;
             }
 
-            foreach (NodeData_BaseContainer baseContainer in node.DialogueData.baseContainers)
+            foreach (CharacterData_CharacterSO character in node.CharacterData.characters)
             {
                 // Stocke le personnage
-                if (baseContainer is DialogueData_CharacterSO)
-                {
-                    DialogueData_CharacterSO tmp = (baseContainer as DialogueData_CharacterSO);
-                    DialogueData_CharacterSO tmpData = new DialogueData_CharacterSO();
+                CharacterData_CharacterSO tmpData = new CharacterData_CharacterSO();
 
-                    tmpData.ID.value = tmp.ID.value;
-                    tmpData.character.value = tmp.character.value;
-                    tmpData.characterName.value = tmp.characterName.value;
-                    tmpData.sprite.value = tmp.sprite.value;
-                    tmpData.mood.value = tmp.mood.value;
-                    tmpData.faceDirection.value = tmp.faceDirection.value;
-                    tmpData.sidePlacement.value = tmp.sidePlacement.value;
+                tmpData.ID.value = character.ID.value;
+                tmpData.character.value = character.character.value;
+                tmpData.characterName.value = character.characterName.value;
+                tmpData.characterNames.AddRange(character.characterNames);
+                tmpData.sprite.value = character.sprite.value;
+                tmpData.mood.value = character.mood.value;
+                tmpData.faceDirection.value = character.faceDirection.value;
+                tmpData.sidePlacement.value = character.sidePlacement.value;
 
 
-                    dialogueData.characters.Add(tmpData);
-
-                }
-
-                // Stocke les traductions
-                if (baseContainer is DialogueData_Repliques)
-                {
-                    DialogueData_Repliques tmp = (baseContainer as DialogueData_Repliques);
-                    DialogueData_Repliques tmpData = new DialogueData_Repliques();
-
-                    tmpData.ID = tmp.ID;
-                    tmpData.guid = tmp.guid;
-                    tmpData.texts = tmp.texts;
-                    tmpData.audioClips = tmp.audioClips;
-
-                    dialogueData.repliques.Add(tmpData);
-                }
-
+                characterData.characters.Add(tmpData);
             }
 
-            // Port
-            foreach (NodeData_Port port in node.DialogueData.ports)
-            {
-                NodeData_Port portData = new NodeData_Port();
-
-                portData.outputGuid = string.Empty;
-                portData.inputGuid = string.Empty;
-                portData.portGuid = port.portGuid;
-
-                foreach (Edge edge in edges)
-                {
-                    if (edge.output.portName == port.portGuid)
-                    {
-                        portData.outputGuid = (edge.output.node as BaseNode).NodeGuid;
-                        portData.inputGuid = (edge.input.node as BaseNode).NodeGuid;
-                    }
-                }
-
-                dialogueData.ports.Add(portData);
-            }
-
-            return dialogueData;
+            return characterData;
         }
 
-        private StartData SaveNodeData(StartNode node)
+        private RepliqueData SaveNodeData(RepliqueNode node)
         {
-            StartData nodeData = new StartData()
+            RepliqueData repliqueData = new RepliqueData
             {
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
             };
 
-            return nodeData;
+            // Set ID (Instancie les éléments Traduction et Personnage dans le bon ordre)
+            for (int i = 0; i < node.RepliqueData.repliques.Count; i++)
+            {
+                node.RepliqueData.repliques[i].ID.value = i;
+            }
+
+            foreach (RepliqueData_Replique replique in node.RepliqueData.repliques)
+            {
+                RepliqueData_Replique tmpData = new RepliqueData_Replique();
+
+                tmpData.ID = replique.ID;
+                tmpData.guid = replique.guid;
+                tmpData.texts = replique.texts;
+                tmpData.audioClips = replique.audioClips;
+
+                repliqueData.repliques.Add(tmpData);
+            }
+
+            return repliqueData;
+        }
+
+        private StartData SaveNodeData(StartNode node)
+        {
+            StartData startData = new StartData()
+            {
+                nodeGuid = node.NodeGuid,
+                position = node.GetPosition().position,
+            };
+
+            return startData;
         }
 
         private EndData SaveNodeData(EndNode node)
         {
-            EndData nodeData = new EndData()
+            EndData endData = new EndData()
             {
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
             };
             //nodeData.endNodeType.value = node.EndData.endNodeType.value;
 
-            return nodeData;
+            return endData;
         }
 
         private EventData SaveNodeData(EventNode node)
         {
-            EventData nodeData = new EventData()
+            EventData eventData = new EventData()
             {
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
@@ -221,7 +218,7 @@ namespace Project.NodeSystem.Editor
                         tmpScriptable.ID.value = scriptableEvent.ID.value;
                         tmpScriptable.scriptableObject.value = scriptableEvent.scriptableObject.value;
 
-                        nodeData.scriptableEvents.Add(tmpScriptable);
+                        eventData.scriptableEvents.Add(tmpScriptable);
                         break;
 
                     // Save String Event
@@ -233,12 +230,12 @@ namespace Project.NodeSystem.Editor
                         tmpString.stringEvent.value = stringEvent.stringEvent.value;
                         tmpString.modifierType.value = stringEvent.modifierType.value;
 
-                        nodeData.stringEvents.Add(tmpString);
+                        eventData.stringEvents.Add(tmpString);
                         break;
                 }
             }
 
-            return nodeData;
+            return eventData;
         }
 
         private BranchData SaveNodeData(BranchNode node)
@@ -248,7 +245,7 @@ namespace Project.NodeSystem.Editor
             Edge trueOutput = edges.FirstOrDefault(x => x.output.node == node && x.output.portName == "True");
             Edge flaseOutput = edges.FirstOrDefault(x => x.output.node == node && x.output.portName == "False");
 
-            BranchData nodeData = new BranchData()
+            BranchData branchData = new BranchData()
             {
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
@@ -263,15 +260,15 @@ namespace Project.NodeSystem.Editor
                 tmp.stringEvent.value = stringEvents.stringEvent.value;
                 tmp.conditionType.value = stringEvents.conditionType.value;
 
-                nodeData.stringConditions.Add(tmp);
+                branchData.stringConditions.Add(tmp);
             }
 
-            return nodeData;
+            return branchData;
         }
 
         private ChoiceData SaveNodeData(ChoiceNode node)
         {
-            ChoiceData newChoiceData = new ChoiceData()
+            ChoiceData choiceData = new ChoiceData()
             {
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
@@ -339,13 +336,15 @@ namespace Project.NodeSystem.Editor
                 tmpChoice.linkedPort = portData;
 
 
-                newChoiceData.choices.Add(tmpChoice);
+                choiceData.choices.Add(tmpChoice);
             }
 
 
-            return newChoiceData;
+            return choiceData;
         }
 
+
+       
 
         #endregion
 
@@ -358,47 +357,47 @@ namespace Project.NodeSystem.Editor
         #region Load
 
         private void ClearGraph()
-        {
-            edges.ForEach(edge => graphView.RemoveElement(edge));
-
-            foreach (BaseNode node in nodes)
             {
-                graphView.RemoveElement(node);
+                edges.ForEach(edge => graphView.RemoveElement(edge));
+
+                foreach (BaseNode node in nodes)
+                {
+                    graphView.RemoveElement(node);
+                }
             }
-        }
 
         private void GenerateNodes(DialogueContainerSO dialogueContainer)
         {
             // Start
-            foreach (StartData node in dialogueContainer.startDatas)
+            foreach (StartData savedData in dialogueContainer.startDatas)
             {
-                StartNode tempNode = graphView.CreateNode<StartNode>(node.position);
-                tempNode.NodeGuid = node.nodeGuid;
+                StartNode tmpNode = graphView.CreateNode<StartNode>(savedData.position);
+                tmpNode.NodeGuid = savedData.nodeGuid;
 
-                graphView.AddElement(tempNode);
+                graphView.AddElement(tmpNode);
             }
 
             // End Node 
-            foreach (EndData node in dialogueContainer.endDatas)
+            foreach (EndData savedData in dialogueContainer.endDatas)
             {
-                EndNode tempNode = graphView.CreateNode<EndNode>(node.position);
-                tempNode.NodeGuid = node.nodeGuid;
-                //tempNode.EndData.endNodeType.value = node.endNodeType.value;
+                EndNode tmpNode = graphView.CreateNode<EndNode>(savedData.position);
+                tmpNode.NodeGuid = savedData.nodeGuid;
+                //tmpNode.EndData.endNodeType.value = node.endNodeType.value;
 
-                //tempNode.LoadValueIntoField();
-                graphView.AddElement(tempNode);
+                //tmpNode.LoadValueIntoField();
+                graphView.AddElement(tmpNode);
             }
 
             // Event Node
-            foreach (EventData node in dialogueContainer.eventDatas)
+            foreach (EventData savedData in dialogueContainer.eventDatas)
             {
-                EventNode tempNode = graphView.CreateNode<EventNode>(node.position);
-                tempNode.NodeGuid = node.nodeGuid;
+                EventNode tmpNode = graphView.CreateNode<EventNode>(savedData.position);
+                tmpNode.NodeGuid = savedData.nodeGuid;
 
 
 
                 //Ils sont déjà concaténés et triés dans SortedEvents
-                List<NodeData_BaseContainer> newEvents = node.SortedEvents;
+                List<NodeData_BaseContainer> newEvents = savedData.SortedEvents;
 
                 foreach (NodeData_BaseContainer item in newEvents)
                 {
@@ -406,12 +405,12 @@ namespace Project.NodeSystem.Editor
                     {
                         // Load Dialogue Event
                         case EventData_ScriptableEvent scriptableEvent:
-                            tempNode.AddScriptableEvent(scriptableEvent);
+                            tmpNode.AddScriptableEvent(scriptableEvent);
                             break;
 
                         // Load String Event
                         case EventData_StringEventModifier stringEvent:
-                            tempNode.AddStringEvent(stringEvent);
+                            tmpNode.AddStringEvent(stringEvent);
                             break;
 
                         default:
@@ -420,37 +419,37 @@ namespace Project.NodeSystem.Editor
                 }
 
 
-                tempNode.LoadValueIntoField();
-                graphView.AddElement(tempNode);
+                tmpNode.LoadValueIntoField();
+                graphView.AddElement(tmpNode);
             }
 
             // Breach Node
-            foreach (BranchData node in dialogueContainer.branchDatas)
+            foreach (BranchData savedData in dialogueContainer.branchDatas)
             {
-                BranchNode tempNode = graphView.CreateNode<BranchNode>(node.position);
-                tempNode.NodeGuid = node.nodeGuid;
+                BranchNode tmpNode = graphView.CreateNode<BranchNode>(savedData.position);
+                tmpNode.NodeGuid = savedData.nodeGuid;
 
-                foreach (EventData_StringEventCondition item in node.stringConditions)
+                foreach (EventData_StringEventCondition item in savedData.stringConditions)
                 {
-                    tempNode.AddCondition(item);
+                    tmpNode.AddCondition(item);
                 }
 
-                tempNode.LoadValueIntoField();
-                tempNode.ReloadLanguage();
-                graphView.AddElement(tempNode);
+                tmpNode.LoadValueIntoField();
+                tmpNode.ReloadLanguage();
+                graphView.AddElement(tmpNode);
             }
 
             // Choice Node
-            foreach (ChoiceData node in dialogueContainer.choiceDatas)
+            foreach (ChoiceData savedData in dialogueContainer.choiceDatas)
             {
-                ChoiceNode tmpNode = graphView.CreateNode<ChoiceNode>(node.position);
-                tmpNode.NodeGuid = node.nodeGuid;
+                ChoiceNode tmpNode = graphView.CreateNode<ChoiceNode>(savedData.position);
+                tmpNode.NodeGuid = savedData.nodeGuid;
 
 
 
                 //Comme on crée un choix par défaut dans la node, on le supprime au chargement pour ne pas le recréer
                 //en plus de tous les autres
-                tmpNode.DeleteBox(tmpNode.ChoiceData.choices[0].choiceContainer);
+                tmpNode.DeleteBox(tmpNode.ChoiceData.choices[0].boxContainer);
                 NodeBuilder.DeleteChoicePort(tmpNode, tmpNode.ChoiceData.choices[0].linkedPort.port);
                 tmpNode.ChoiceData.choices.RemoveAt(0);
 
@@ -458,7 +457,7 @@ namespace Project.NodeSystem.Editor
 
 
                 List<ChoiceData_Container> newChoices = new List<ChoiceData_Container>();
-                newChoices.AddRange(node.choices);
+                newChoices.AddRange(savedData.choices);
 
 
                 newChoices.Sort(delegate (ChoiceData_Container x, ChoiceData_Container y)
@@ -477,45 +476,72 @@ namespace Project.NodeSystem.Editor
                 graphView.AddElement(tmpNode);
             }
 
-            // Dialogue Node
-            foreach (DialogueData node in dialogueContainer.dialogueDatas)
+            // Character Node
+            foreach (CharacterData savedData in dialogueContainer.characterDatas)
             {
-                DialogueNode tempNode = graphView.CreateNode<DialogueNode>(node.position);
-                tempNode.NodeGuid = node.nodeGuid;
+                CharacterNode tmpNode = graphView.CreateNode<CharacterNode>(savedData.position);
+                tmpNode.NodeGuid = savedData.nodeGuid;
 
-                List<NodeData_BaseContainer> data_BaseContainer = new List<NodeData_BaseContainer>();
 
-                data_BaseContainer.AddRange(node.characters);
-                data_BaseContainer.AddRange(node.repliques);
 
-                data_BaseContainer.Sort(delegate (NodeData_BaseContainer x, NodeData_BaseContainer y)
+                //Comme on crée une réplique par défaut dans la node, on la supprime au chargement pour ne pas la recréer
+                //en plus de toutes les autres
+                tmpNode.DeleteBox(tmpNode.CharacterData.characters[0].boxContainer);
+                tmpNode.CharacterData.characters.RemoveAt(0);
+
+
+
+
+                List<CharacterData_CharacterSO> newCharacters = new List<CharacterData_CharacterSO>();
+                newCharacters.AddRange(savedData.characters);
+
+                newCharacters.Sort(delegate (CharacterData_CharacterSO x, CharacterData_CharacterSO y)
                 {
                     return x.ID.value.CompareTo(y.ID.value);
                 });
 
-                foreach (NodeData_BaseContainer data in data_BaseContainer)
+                foreach (CharacterData_CharacterSO character in newCharacters)
                 {
-                    switch (data)
-                    {
-                        case DialogueData_CharacterSO character:
-                            tempNode.AddCharacter(character);
-                            break;
-                        case DialogueData_Repliques replique:
-                            tempNode.AddTextLine(replique);
-                            break;
-                        default:
-                            break;
-                    }
+                    tmpNode.AddCharacter(character);
                 }
 
-                foreach (NodeData_Port port in node.ports)
+                tmpNode.LoadValueIntoField();
+                tmpNode.ReloadLanguage();
+                graphView.AddElement(tmpNode);
+            }
+
+            // Replique Node
+            foreach (RepliqueData savedData in dialogueContainer.repliqueDatas)
+            {
+                RepliqueNode tmpNode = graphView.CreateNode<RepliqueNode>(savedData.position);
+                tmpNode.NodeGuid = savedData.nodeGuid;
+
+
+
+                //Comme on crée une réplique par défaut dans la node, on la supprime au chargement pour ne pas la recréer
+                //en plus de toutes les autres
+                tmpNode.DeleteBox(tmpNode.RepliqueData.repliques[0].boxContainer);
+                tmpNode.RepliqueData.repliques.RemoveAt(0);
+
+
+
+
+                List<RepliqueData_Replique> newRepliques = new List<RepliqueData_Replique>();
+                newRepliques.AddRange(savedData.repliques);
+
+                newRepliques.Sort(delegate (RepliqueData_Replique x, RepliqueData_Replique y)
                 {
-                    tempNode.AddChoicePort(tempNode, port);
+                    return x.ID.value.CompareTo(y.ID.value);
+                });
+
+                foreach (RepliqueData_Replique replique in newRepliques)
+                {
+                    tmpNode.AddReplique(replique);
                 }
 
-                tempNode.LoadValueIntoField();
-                tempNode.ReloadLanguage();
-                graphView.AddElement(tempNode);
+                tmpNode.LoadValueIntoField();
+                tmpNode.ReloadLanguage();
+                graphView.AddElement(tmpNode);
             }
         }
 

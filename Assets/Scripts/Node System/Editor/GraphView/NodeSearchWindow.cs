@@ -38,7 +38,8 @@ namespace Project.NodeSystem.Editor
 
                 //Les commandes affichées dans le sous-menu
                 AddNodeSearch("Start Node", new StartNode()),
-                AddNodeSearch("Dialogue Node", new DialogueNode()),
+                AddNodeSearch("Character Node", new CharacterNode()),
+                AddNodeSearch("Replique Node", new RepliqueNode()),
                 AddNodeSearch("Branch Node", new BranchNode()),
                 AddNodeSearch("Choice Node", new ChoiceNode()),
                 AddNodeSearch("Event Node", new EventNode()),

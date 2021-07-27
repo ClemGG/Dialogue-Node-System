@@ -46,7 +46,10 @@ namespace Project.NodeSystem
                 case StartData nodeData:
                     RunNode(nodeData);
                     break;
-                case DialogueData nodeData:
+                case CharacterData nodeData:
+                    RunNode(nodeData);
+                    break;
+                case RepliqueData nodeData:
                     RunNode(nodeData);
                     break;
                 case BranchData nodeData:
@@ -69,12 +72,13 @@ namespace Project.NodeSystem
 
 
 
-        protected abstract void RunNode(StartData startNodeData);
+        protected abstract void RunNode(StartData nodeData);
+        protected abstract void RunNode(CharacterData nodeData);
+        protected abstract void RunNode(RepliqueData nodeData);
         protected abstract void RunNode(BranchData nodeData);
         protected abstract void RunNode(ChoiceData nodeData);
         protected abstract void RunNode(EventData nodeData);
         protected abstract void RunNode(EndData nodeData);
-        protected abstract void RunNode(DialogueData nodeData);
 
 
 

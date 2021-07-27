@@ -26,9 +26,32 @@ namespace Project.NodeSystem.Editor
 
             foreach (DialogueContainerSO dialogueContainer in dialogueContainers)
             {
-                foreach (DialogueData nodeData in dialogueContainer.dialogueDatas)
                 {
-                    foreach (DialogueData_Repliques textData in nodeData.repliques)
+                    //foreach (DialogueData nodeData in dialogueContainer.dialogueDatas)
+                    //{
+                    //    foreach (DialogueData_Repliques textData in nodeData.repliques)
+                    //    {
+                    //        List<string> texts = new List<string>();
+
+                    //        texts.Add(dialogueContainer.name);
+                    //        texts.Add(nodeData.nodeGuid);
+                    //        texts.Add(textData.guid.value);
+
+                    //        ForEach<LanguageType>(languageType =>
+                    //        {
+                    //            string tmp = textData.texts.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
+                    //            texts.Add($"\"{tmp}\"");
+                    //        });
+
+                    //        AppendToFile(texts);
+                    //    }
+                    //}
+                }
+
+                //Répliques des dialogues
+                foreach (RepliqueData nodeData in dialogueContainer.repliqueDatas)
+                {
+                    foreach (RepliqueData_Replique textData in nodeData.repliques)
                     {
                         List<string> texts = new List<string>();
 
@@ -47,7 +70,7 @@ namespace Project.NodeSystem.Editor
                 }
 
 
-                //Répliques
+                //Répliques des choix
                 foreach (ChoiceData nodeData in dialogueContainer.choiceDatas)
                 {
                     foreach (ChoiceData_Container choice in nodeData.choices)

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using static Project.Utilities.ValueTypes.Enums;
 
 namespace Project.NodeSystem 
 {
@@ -8,28 +10,38 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class DialogueCharacterSO : ScriptableObject
     {
-        public string characterName;
+        public List<string> characterNames = new List<string>(); //Les noms traduits dans toutes les langues disponibles
         public Color characterNameColor = Color.white;
-        [SerializeField] private FaceAndMood[] faces;
-            
-            
+        [SerializeField] private List<FaceAndMood> faces = new List<FaceAndMood>();
 
 
-        //Initialiser les sprites et enums quand on crée le SO pour la première fois
-        private void Reset()
+        private void OnValidate()
         {
-            if(faces == null)
-            {
-                int length = Enum.GetValues(typeof(CharacterMood)).Length;
-                faces = new FaceAndMood[length];
+            int length = LengthOf<LanguageType>();
 
-                for (int i = 0; i < length; i++)
+            //Initialiser les noms du perso quand on crée le SO pour la première fois ou qu'on le réinitialise.
+            //Normalement le perso a tjs le même nom, mais s'il est écrit dans un alphabet différent (latin, cyrillique, mandarin, etc.),
+            //Cela nous permet de changer les caractères.
+            if (characterNames == null ^ characterNames.Count < length)
+            {
+                for (int i = characterNames.Count; i < length; i++)
                 {
-                    faces[i] = new FaceAndMood { face = null, mood = (CharacterMood)i };
+                    characterNames.Add(string.Empty);
+                }
+            }
+
+
+            length = LengthOf<CharacterMood>();
+
+            //Initialiser les sprites et enums quand on crée le SO pour la première fois ou qu'on le réinitialise.
+            if (faces == null ^ faces.Count < length)
+            {
+                for (int i = faces.Count; i < length; i++)
+                {
+                    faces.Add(new FaceAndMood { face = null, mood = (CharacterMood)i });
                 }
             }
         }
-
 
 
 

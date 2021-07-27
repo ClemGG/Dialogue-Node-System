@@ -12,7 +12,8 @@ namespace Project.NodeSystem
         public List<LinkData> linkDatas = new List<LinkData>();
 
         public List<StartData> startDatas = new List<StartData>();
-        public List<DialogueData> dialogueDatas = new List<DialogueData>();
+        public List<CharacterData> characterDatas = new List<CharacterData>();
+        public List<RepliqueData> repliqueDatas = new List<RepliqueData>();
         public List<BranchData> branchDatas = new List<BranchData>();
         public List<ChoiceData> choiceDatas = new List<ChoiceData>();
         public List<EventData> eventDatas = new List<EventData>();
@@ -24,7 +25,8 @@ namespace Project.NodeSystem
             {
                 List<BaseData> tmp = new List<BaseData>();
                 tmp.AddRange(startDatas);
-                tmp.AddRange(dialogueDatas);
+                tmp.AddRange(characterDatas);
+                tmp.AddRange(repliqueDatas);
                 tmp.AddRange(branchDatas);
                 tmp.AddRange(choiceDatas);
                 tmp.AddRange(eventDatas);

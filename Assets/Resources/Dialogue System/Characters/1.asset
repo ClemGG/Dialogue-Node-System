@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4059720b995f746868447ce14d192e, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  characterName: 1
-  characterNameColor: {r: 0.18536842, g: 0.39795512, b: 0.7735849, a: 1}
+  characterNames:
+  - Un
+  - One
+  - Uno
+  characterNameColor: {r: 0.23754002, g: 0.6270499, b: 0.8018868, a: 1}
   faces:
   - face: {fileID: 21300000, guid: e48439cfd142fd347a1ab3f4a5396fcb, type: 3}
     mood: 0

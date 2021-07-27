@@ -27,14 +27,18 @@ namespace Project.NodeSystem.Editor
 
             foreach (DialogueContainerSO dialogueContainer in dialogueContainers)
             {
-                foreach (DialogueData nodeData in dialogueContainer.dialogueDatas)
+
+                //Répliques des dialogues
+                foreach (RepliqueData nodeData in dialogueContainer.repliqueDatas)
                 {
-                    foreach (DialogueData_Repliques textData in nodeData.repliques)
+                    foreach (RepliqueData_Replique textData in nodeData.repliques)
                     {
                         LoadInToDialogueNodeText(result, headers, textData);
                     }
                 }
 
+
+                //Charger les choix et descriptions
                 foreach (ChoiceData nodeData in dialogueContainer.choiceDatas)
                 {
                     foreach (ChoiceData_Container choice in nodeData.choices)
@@ -53,8 +57,8 @@ namespace Project.NodeSystem.Editor
             }
         }
 
-        //Repliques DialogueNode
-        private void LoadInToDialogueNodeText(List<List<string>> result, List<string> headers, DialogueData_Repliques nodeData_Text)
+        //Repliques RepliqueNode
+        private void LoadInToDialogueNodeText(List<List<string>> result, List<string> headers, RepliqueData_Replique nodeData_Text)
         {
             foreach (List<string> line in result)
             {
