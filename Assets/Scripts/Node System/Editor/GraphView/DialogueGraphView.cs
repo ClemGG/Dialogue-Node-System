@@ -153,9 +153,12 @@ namespace Project.NodeSystem.Editor
         #endregion
 
 
+
+
         #region Create Nodes
 
-        public T CreateNode<T>(Vector2 pos)
+
+        public T CreateNode<T>(Vector2 pos) where T : BaseNode
         {
             return (T)Activator.CreateInstance(typeof(T), pos, window, this);
         }
@@ -165,7 +168,12 @@ namespace Project.NodeSystem.Editor
             return (BaseNode)Activator.CreateInstance(t, pos, window, this);
         }
 
-        
+        public BaseNode CreateNode(Type t)
+        {
+            return (BaseNode)Activator.CreateInstance(t);
+        }
+
+
         #endregion
     }
 }

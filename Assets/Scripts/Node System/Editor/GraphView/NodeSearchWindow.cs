@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -30,23 +33,54 @@ namespace Project.NodeSystem.Editor
         //Crée un menu de recherche où l'on peut choisir le type de node à ajouter au graphe
         public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
         {
+            
+
+
             List<SearchTreeEntry> tree = new List<SearchTreeEntry>
             {
                 //Affiche "Dialogue" en menu ppal, et "Dialogue Nodes" en sous-menu
                 new SearchTreeGroupEntry(new GUIContent("Dialogue"), 0),
                 new SearchTreeGroupEntry(new GUIContent("Dialogue Nodes"), 1),
 
+
                 //Les commandes affichées dans le sous-menu
-                AddNodeSearch("Start Node", new StartNode()),
-                AddNodeSearch("Character Node", new CharacterNode()),
-                AddNodeSearch("Replique Node", new RepliqueNode()),
-                AddNodeSearch("Branch Node", new BranchNode()),
-                AddNodeSearch("Choice Node", new ChoiceNode()),
-                AddNodeSearch("Event Node", new EventNode()),
-                AddNodeSearch("End Node", new EndNode()),
+                //AddNodeSearch("Start Node", new StartNode()),
+                //AddNodeSearch("Character Node", new CharacterNode()),
+                //AddNodeSearch("Replique Node", new RepliqueNode()),
+                //AddNodeSearch("Branch Node", new BranchNode()),
+                //AddNodeSearch("Choice Node", new ChoiceNode()),
+                //AddNodeSearch("Event Node", new EventNode()),
+                //AddNodeSearch("End Node", new EndNode()),
             };
 
+            //Les commandes affichées dans le sous-menu
+            AddEntries<BaseNode>(tree);
+
             return tree;
+        }
+
+        /// <summary>
+        /// Ajoute tous les types de node en un seul endroit pour ne pas avoir à les rajouter individuellement dans le constructeur
+        /// </summary>
+        /// <param name="tree"></param>
+        private void AddEntries<T>(List<SearchTreeEntry> tree) where T : BaseNode
+        {
+            //Récupère tous les types de nodes dérivant de BaseNode
+            List<Type> subclassTypes = Assembly
+               .GetAssembly(typeof(T))
+               .GetTypes()
+               .Where(t => t.IsSubclassOf(typeof(T))).ToList();
+
+            subclassTypes.Sort(delegate (Type x, Type y)
+            {
+                return x.Name.CompareTo(y.Name);
+            });
+
+            //Ajoute une commande à la liste pour chaque type de node dérivant de BaseNode
+            for (int i = 0; i < subclassTypes.Count; i++)
+            {
+                tree.Add(AddNodeSearch(subclassTypes[i].Name.Replace("Node", " Node"), graphView.CreateNode(subclassTypes[i])));
+            }
         }
 
         private SearchTreeEntry AddNodeSearch(string name, BaseNode baseNode)
