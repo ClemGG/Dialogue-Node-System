@@ -19,6 +19,18 @@ namespace Project.NodeSystem
         public List<EventData> eventDatas = new List<EventData>();
         public List<EndData> endDatas = new List<EndData>();
 
+
+#if UNITY_EDITOR
+
+        //Garde en mémoire les Groups et les nodes qu'ils contiennent
+        public List<GroupData> groupDatas = new List<GroupData>();
+
+        //Garde en mémoire les Notes
+        public List<NoteData> noteDatas = new List<NoteData>();
+
+#endif
+
+
         public List<BaseData> AllDatas
         {
             get

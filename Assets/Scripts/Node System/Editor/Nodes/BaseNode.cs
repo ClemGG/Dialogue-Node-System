@@ -4,7 +4,6 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using static Project.Utilities.ValueTypes.Enums;
 
 namespace Project.NodeSystem.Editor
 {

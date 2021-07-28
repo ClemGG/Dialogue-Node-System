@@ -196,7 +196,7 @@ namespace Project.NodeSystem.Editor
         }
 
 
-        private void Save()
+        public void Save()
         {
             if (currentDialogueContainer)
                 saveLoad.Save(currentDialogueContainer);

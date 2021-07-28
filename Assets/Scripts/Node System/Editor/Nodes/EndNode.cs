@@ -24,22 +24,21 @@ namespace Project.NodeSystem.Editor
         {
             NodeBuilder.AddPort(this, "End", Direction.Input, Port.Capacity.Multi);
             outputContainer.AddStyle("Hide");
-            //MakeMainContainer();
+            MakeMainContainer();
         }
 
 
-        //private void MakeMainContainer()
-        //{
-        //    EnumField enumField = NewEndNodeTypeField(endData.endNodeType);
-        //    mainContainer.Add(enumField);
-        //}
+        private void MakeMainContainer()
+        {
+            NodeBuilder.NewEndNodeTypeField(this, endData.endNodeType);
+        }
 
-        //public override void LoadValueIntoField()
-        //{
-        //    if(EndData.endNodeType.enumField != null)
-        //    {
-        //        EndData.endNodeType.enumField.SetValueWithoutNotify(EndData.endNodeType.value);
-        //    }
-        //}
+        public override void LoadValueIntoField()
+        {
+            if (EndData.endNodeType.enumField != null)
+            {
+                EndData.endNodeType.enumField.SetValueWithoutNotify(EndData.endNodeType.value);
+            }
+        }
     }
 }

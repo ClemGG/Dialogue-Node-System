@@ -36,16 +36,18 @@ namespace Project.NodeSystem.Editor
 
 
 
+        /// <summary>
+        /// Ajoute des conditions à la node
+        /// </summary>
         private void TopButton()
         {
-            ToolbarMenu tm = NodeBuilder.NewToolbar(this, "Add Condition");
-            tm.AddMenuActions
-                (
-                    ("String Event Condition", new Action<DropdownMenuAction>(x => AddCondition()))
-                );
+            NodeBuilder.NewTitleButton(this, "Add Condition", () => AddCondition(), "TopBtn");
         }
 
-
+        /// <summary>
+        /// Ajoute un champ contenant une nouvelle condition
+        /// </summary>
+        /// <param name="stringEvent"></param>
         public void AddCondition(EventData_StringEventCondition stringEvent = null)
         {
             NodeBuilder.AddStringConditionEvent(this, BranchData.stringConditions, stringEvent);

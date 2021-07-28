@@ -17,10 +17,14 @@ MonoBehaviour:
     basePortName: Start
     targetNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
     targetPortName: Input
+  - baseNodeGuid: 16261766-9fcf-4fce-b998-e1741d4b7df7
+    basePortName: Start
+    targetNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
+    targetPortName: Input
   - baseNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     basePortName: Output
-    targetNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
-    targetPortName: Input
+    targetNodeGuid: 9d31d82b-4d7d-4da7-8327-0d1f23e55197
+    targetPortName: End
   - baseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
     basePortName: True
     targetNodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
@@ -37,14 +41,6 @@ MonoBehaviour:
     basePortName: 3d43a709-6ee9-4e28-aff5-96b6b7f334a8
     targetNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     targetPortName: Input
-  - baseNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
-    basePortName: Output
-    targetNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
-    targetPortName: Input
-  - baseNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
-    basePortName: Output
-    targetNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
-    targetPortName: Input
   - baseNodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
     basePortName: Output
     targetNodeGuid: b5027263-f0a8-408e-a955-4d4ac3722b44
@@ -53,13 +49,17 @@ MonoBehaviour:
     basePortName: Output
     targetNodeGuid: 1102e459-1e79-4b48-9156-204fbd593b11
     targetPortName: Input
+  - baseNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
+    basePortName: Output
+    targetNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
+    targetPortName: Input
+  - baseNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
+    basePortName: Output
+    targetNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
+    targetPortName: Input
   - baseNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
     basePortName: Output
     targetNodeGuid: 93a58b2a-eba2-4039-ad66-d486751cff42
-    targetPortName: Input
-  - baseNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
-    basePortName: Output
-    targetNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
     targetPortName: Input
   - baseNodeGuid: 1102e459-1e79-4b48-9156-204fbd593b11
     basePortName: Output
@@ -68,6 +68,10 @@ MonoBehaviour:
   - baseNodeGuid: b5027263-f0a8-408e-a955-4d4ac3722b44
     basePortName: Output
     targetNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
+    targetPortName: Input
+  - baseNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
+    basePortName: Output
+    targetNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
     targetPortName: Input
   - baseNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
     basePortName: Output
@@ -79,52 +83,18 @@ MonoBehaviour:
     targetPortName: End
   startDatas:
   - nodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
-    position: {x: -293.6, y: 255.2}
+    position: {x: -88, y: 247.2}
+    isDefaultStartNode:
+      value: 1
+    stringConditions: []
+  - nodeGuid: 16261766-9fcf-4fce-b998-e1741d4b7df7
+    position: {x: -88, y: 156}
+    isDefaultStartNode:
+      value: 0
+    stringConditions: []
   characterDatas:
-  - nodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
-    position: {x: -155.2, y: 255.2}
-    characters:
-    - ID:
-        value: 0
-      character:
-        value: {fileID: 11400000, guid: 5f215a5940da20e459a503cc8cd42af9, type: 2}
-      characterNames:
-      - Un
-      - One
-      - Uno
-      characterName:
-        value: Un
-      sprite:
-        value: {fileID: 21300000, guid: e48439cfd142fd347a1ab3f4a5396fcb, type: 3}
-      mood:
-        value: 0
-      faceDirection:
-        value: 1
-      sidePlacement:
-        value: 0
-  - nodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
-    position: {x: 438.4, y: 255.2}
-    characters:
-    - ID:
-        value: 0
-      character:
-        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
-      characterNames:
-      - Deux
-      - Two
-      - Dos
-      characterName:
-        value: Dos
-      sprite:
-        value: {fileID: 21300000, guid: e8254267f2152494db2600b46693bca9, type: 3}
-      mood:
-        value: 1
-      faceDirection:
-        value: 0
-      sidePlacement:
-        value: 1
   - nodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
-    position: {x: 1720, y: -6.4000006}
+    position: {x: 2096, y: -14.400001}
     characters:
     - ID:
         value: 0
@@ -145,7 +115,7 @@ MonoBehaviour:
       sidePlacement:
         value: 1
   - nodeGuid: 57731a43-8328-4123-9c2c-b00e14a4435c
-    position: {x: 1720, y: 406.4}
+    position: {x: 2096, y: 398.4}
     characters:
     - ID:
         value: 0
@@ -165,8 +135,8 @@ MonoBehaviour:
         value: 0
       sidePlacement:
         value: 1
-  - nodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
-    position: {x: 2392.8, y: 180.8}
+  - nodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
+    position: {x: 826.4, y: 247.2}
     characters:
     - ID:
         value: 0
@@ -177,7 +147,49 @@ MonoBehaviour:
       - Two
       - Dos
       characterName:
-        value: Two
+        value: Deux
+      sprite:
+        value: {fileID: 21300000, guid: e8254267f2152494db2600b46693bca9, type: 3}
+      mood:
+        value: 1
+      faceDirection:
+        value: 0
+      sidePlacement:
+        value: 1
+  - nodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
+    position: {x: 220.8, y: 247.2}
+    characters:
+    - ID:
+        value: 0
+      character:
+        value: {fileID: 11400000, guid: 5f215a5940da20e459a503cc8cd42af9, type: 2}
+      characterNames:
+      - Un
+      - One
+      - Uno
+      characterName:
+        value: Un
+      sprite:
+        value: {fileID: 21300000, guid: e48439cfd142fd347a1ab3f4a5396fcb, type: 3}
+      mood:
+        value: 0
+      faceDirection:
+        value: 1
+      sidePlacement:
+        value: 0
+  - nodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
+    position: {x: 2768.8, y: 172.8}
+    characters:
+    - ID:
+        value: 0
+      character:
+        value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
+      characterNames:
+      - Deux
+      - Two
+      - Dos
+      characterName:
+        value: Deux
       sprite:
         value: {fileID: 21300000, guid: 7d328f6b87a60a043bd411179876c49f, type: 3}
       mood:
@@ -187,29 +199,8 @@ MonoBehaviour:
       sidePlacement:
         value: 1
   repliqueDatas:
-  - nodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
-    position: {x: 742.4, y: 255.2}
-    repliques:
-    - ID:
-        value: 0
-      guid:
-        value: 20f5d849-8796-4002-b842-2d58f97dc0a7
-      texts:
-      - data: Salut!  Qu'est-ce que tu fais ?
-        language: 0
-      - data: Salvation! What are you doing ?
-        language: 1
-      - data: "\xA1Hola! Que haces ?"
-        language: 2
-      audioClips:
-      - data: {fileID: 8300000, guid: 43678c408c8bb414886c451dd4e88457, type: 3}
-        language: 0
-      - data: {fileID: 0}
-        language: 1
-      - data: {fileID: 0}
-        language: 2
   - nodeGuid: 1102e459-1e79-4b48-9156-204fbd593b11
-    position: {x: 2077.6, y: 406.4}
+    position: {x: 2453.6, y: 398.4}
     repliques:
     - ID:
         value: 0
@@ -230,7 +221,7 @@ MonoBehaviour:
       - data: {fileID: 0}
         language: 2
   - nodeGuid: b5027263-f0a8-408e-a955-4d4ac3722b44
-    position: {x: 2076, y: -6.4000006}
+    position: {x: 2452, y: -14.400001}
     repliques:
     - ID:
         value: 0
@@ -253,8 +244,29 @@ MonoBehaviour:
         language: 1
       - data: {fileID: 0}
         language: 2
+  - nodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
+    position: {x: 1118.4, y: 247.2}
+    repliques:
+    - ID:
+        value: 0
+      guid:
+        value: 20f5d849-8796-4002-b842-2d58f97dc0a7
+      texts:
+      - data: Salut!  Qu'est-ce que tu fais ?
+        language: 0
+      - data: Salvation! What are you doing ?
+        language: 1
+      - data: "\xA1Hola! Que haces ?"
+        language: 2
+      audioClips:
+      - data: {fileID: 8300000, guid: 43678c408c8bb414886c451dd4e88457, type: 3}
+        language: 0
+      - data: {fileID: 0}
+        language: 1
+      - data: {fileID: 0}
+        language: 2
   - nodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
-    position: {x: 133.6, y: 255.2}
+    position: {x: 528, y: 247.2}
     repliques:
     - ID:
         value: 0
@@ -275,7 +287,7 @@ MonoBehaviour:
       - data: {fileID: 0}
         language: 2
   - nodeGuid: 93a58b2a-eba2-4039-ad66-d486751cff42
-    position: {x: 2708.8, y: 180.8}
+    position: {x: 3084.8, y: 172.8}
     repliques:
     - ID:
         value: 0
@@ -297,21 +309,21 @@ MonoBehaviour:
         language: 2
   branchDatas:
   - nodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
-    position: {x: 1371.2, y: 255.2}
+    position: {x: 1747.2, y: 247.2}
     trueNodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
     falseNodeGuid: 57731a43-8328-4123-9c2c-b00e14a4435c
     stringConditions:
     - ID:
         value: 0
       stringEvent:
-        value: hasSomethingToDo
+        value: HasSomethingToDo
       number:
         value: 0
       conditionType:
         value: 0
   choiceDatas:
   - nodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
-    position: {x: 1048, y: 255.2}
+    position: {x: 1424, y: 247.2}
     choices:
     - ID:
         value: 0
@@ -376,7 +388,7 @@ MonoBehaviour:
           ID:
             value: 0
           stringEvent:
-            value: hasSomethingToDo
+            value: HasSomethingToDo
           number:
             value: 0
           conditionType:
@@ -389,13 +401,13 @@ MonoBehaviour:
         outputGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
   eventDatas:
   - nodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-    position: {x: 1371.2, y: 792.8}
+    position: {x: 1747.2, y: 784.8}
     events: []
     stringEvents:
     - ID:
         value: 1
       stringEvent:
-        value: hasSomethingToDo
+        value: HasSomethingToDo
       number:
         value: 0
       modifierType:
@@ -403,7 +415,7 @@ MonoBehaviour:
     - ID:
         value: 2
       stringEvent:
-        value: money
+        value: Money
       number:
         value: 500
       modifierType:
@@ -413,6 +425,18 @@ MonoBehaviour:
         value: 0
       scriptableObject:
         value: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
+    - ID:
+        value: 3
+      scriptableObject:
+        value: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
   endDatas:
+  - nodeGuid: 9d31d82b-4d7d-4da7-8327-0d1f23e55197
+    position: {x: 2164, y: 784.8}
+    endNodeType:
+      value: 3
   - nodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
-    position: {x: 3011.2, y: 180.8}
+    position: {x: 3387.2, y: 172.8}
+    endNodeType:
+      value: 0
+  groupDatas: []
+  noteDatas: []

@@ -5,3 +5,8 @@
 .node #title #title-label{
 	color: white;
 }
+
+.ToggleLabel{
+	padding-left:2px;
+	padding-top:2px;
+}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -11,8 +12,20 @@ namespace Project.NodeSystem.Editor
     {
         private List<Edge> edges => graphView.edges.ToList();
         private List<BaseNode> nodes => graphView.nodes.ToList().Where(node => node is BaseNode).Cast<BaseNode>().ToList();
+        private List<Group> groups => graphView.graphElements.ToList().Where(node => node is Group).Cast<Group>().ToList();
+        private List<StickyNote> stickyNotes => graphView.graphElements.ToList().Where(node => node is StickyNote).Cast<StickyNote>().ToList();
+
+
+        private List<BaseNode> collectedNodes = new List<BaseNode>();
+
 
         private DialogueGraphView graphView;
+
+
+
+
+
+        #region Constructor
 
         public DialogueSaveLoad(DialogueGraphView graphView)
         {
@@ -23,6 +36,8 @@ namespace Project.NodeSystem.Editor
         {
             SaveEdges(dialogueContainerSO);
             SaveNodes(dialogueContainerSO);
+            SaveGroups(dialogueContainerSO);
+            SaveNotes(dialogueContainerSO);
 
             EditorUtility.SetDirty(dialogueContainerSO);
             AssetDatabase.SaveAssets();
@@ -31,10 +46,14 @@ namespace Project.NodeSystem.Editor
         public void Load(DialogueContainerSO dialogueContainerSO)
         {
             ClearGraph();
+
             GenerateNodes(dialogueContainerSO);
             ConnectNodes(dialogueContainerSO);
+            GroupNodes(dialogueContainerSO);
+            AddStickyNotes(dialogueContainerSO);
         }
 
+        #endregion
 
 
 
@@ -101,9 +120,48 @@ namespace Project.NodeSystem.Editor
             });
         }
 
+        private void SaveGroups(DialogueContainerSO dialogueContainerSO)
+        {
+            dialogueContainerSO.groupDatas.Clear();
 
+            groups.ForEach(group =>
+            {
+                dialogueContainerSO.groupDatas.Add(SaveGroupData(group));
+            });
+        }
 
+        private void SaveNotes(DialogueContainerSO dialogueContainerSO)
+        {
+            dialogueContainerSO.noteDatas.Clear();
 
+            stickyNotes.ForEach(note =>
+            {
+                dialogueContainerSO.noteDatas.Add(SaveNoteData(note));
+            });
+        }
+
+        private StartData SaveNodeData(StartNode node)
+        {
+            StartData startData = new StartData()
+            {
+                nodeGuid = node.NodeGuid,
+                position = node.GetPosition().position,
+            };
+
+            startData.isDefaultStartNode.value = node.StartData.isDefaultStartNode.value;
+
+            foreach (EventData_StringEventCondition stringEvents in node.StartData.stringConditions)
+            {
+                EventData_StringEventCondition tmp = new EventData_StringEventCondition();
+                tmp.number.value = stringEvents.number.value;
+                tmp.stringEvent.value = stringEvents.stringEvent.value;
+                tmp.conditionType.value = stringEvents.conditionType.value;
+
+                startData.stringConditions.Add(tmp);
+            }
+
+            return startData;
+        }
 
         private CharacterData SaveNodeData(CharacterNode node)
         {
@@ -169,17 +227,6 @@ namespace Project.NodeSystem.Editor
             return repliqueData;
         }
 
-        private StartData SaveNodeData(StartNode node)
-        {
-            StartData startData = new StartData()
-            {
-                nodeGuid = node.NodeGuid,
-                position = node.GetPosition().position,
-            };
-
-            return startData;
-        }
-
         private EndData SaveNodeData(EndNode node)
         {
             EndData endData = new EndData()
@@ -187,7 +234,7 @@ namespace Project.NodeSystem.Editor
                 nodeGuid = node.NodeGuid,
                 position = node.GetPosition().position,
             };
-            //nodeData.endNodeType.value = node.EndData.endNodeType.value;
+            endData.endNodeType.value = node.EndData.endNodeType.value;
 
             return endData;
         }
@@ -343,8 +390,39 @@ namespace Project.NodeSystem.Editor
             return choiceData;
         }
 
+        private GroupData SaveGroupData(Group group)
+        {
+            GroupData groupData = new GroupData
+            {
+                groupName = group.title,
+                position = group.GetPosition().position,
+            };
 
-       
+            //On récupère les éléments du Groupe qui sont des BaseNodes
+            collectedNodes = group.containedElements.ToList().FindAll(node => node is BaseNode).Cast<BaseNode>().ToList();
+
+            //Pour chaque BaseNode du Groupe, on stocke son guid pour la réattacher à un Groupe lors du chargement
+            for (int i = 0; i < collectedNodes.Count; i++)
+            {
+                BaseNode node = collectedNodes[i] as BaseNode;
+                groupData.containedGuids.Add(node.NodeGuid);
+            }
+
+            return groupData;
+        }
+
+        private NoteData SaveNoteData(StickyNote note)
+        {
+            NoteData noteData = new NoteData
+            {
+                title = note.title,
+                content = note.contents,
+                position = note.GetPosition().position,
+            };
+
+            return noteData;
+        }
+
 
         #endregion
 
@@ -357,23 +435,34 @@ namespace Project.NodeSystem.Editor
         #region Load
 
         private void ClearGraph()
-            {
-                edges.ForEach(edge => graphView.RemoveElement(edge));
+        {
+            edges.ForEach(edge => graphView.RemoveElement(edge));
 
-                foreach (BaseNode node in nodes)
-                {
-                    graphView.RemoveElement(node);
-                }
+            foreach (BaseNode node in nodes)
+            {
+                graphView.RemoveElement(node);
             }
+
+            groups.ForEach(group => graphView.RemoveElement(group));
+            stickyNotes.ForEach(note => graphView.RemoveElement(note));
+        }
 
         private void GenerateNodes(DialogueContainerSO dialogueContainer)
         {
+
             // Start
             foreach (StartData savedData in dialogueContainer.startDatas)
             {
                 StartNode tmpNode = graphView.CreateNode<StartNode>(savedData.position);
                 tmpNode.NodeGuid = savedData.nodeGuid;
+                tmpNode.StartData.isDefaultStartNode.value = savedData.isDefaultStartNode.value;
 
+                foreach (EventData_StringEventCondition item in savedData.stringConditions)
+                {
+                    tmpNode.AddCondition(item);
+                }
+
+                tmpNode.LoadValueIntoField();
                 graphView.AddElement(tmpNode);
             }
 
@@ -382,9 +471,9 @@ namespace Project.NodeSystem.Editor
             {
                 EndNode tmpNode = graphView.CreateNode<EndNode>(savedData.position);
                 tmpNode.NodeGuid = savedData.nodeGuid;
-                //tmpNode.EndData.endNodeType.value = node.endNodeType.value;
+                tmpNode.EndData.endNodeType.value = savedData.endNodeType.value;
 
-                //tmpNode.LoadValueIntoField();
+                tmpNode.LoadValueIntoField();
                 graphView.AddElement(tmpNode);
             }
 
@@ -435,7 +524,6 @@ namespace Project.NodeSystem.Editor
                 }
 
                 tmpNode.LoadValueIntoField();
-                tmpNode.ReloadLanguage();
                 graphView.AddElement(tmpNode);
             }
 
@@ -473,6 +561,7 @@ namespace Project.NodeSystem.Editor
 
                 tmpNode.LoadValueIntoField();
                 tmpNode.ReloadLanguage();
+                
                 graphView.AddElement(tmpNode);
             }
 
@@ -507,6 +596,7 @@ namespace Project.NodeSystem.Editor
 
                 tmpNode.LoadValueIntoField();
                 tmpNode.ReloadLanguage();
+                
                 graphView.AddElement(tmpNode);
             }
 
@@ -541,6 +631,7 @@ namespace Project.NodeSystem.Editor
 
                 tmpNode.LoadValueIntoField();
                 tmpNode.ReloadLanguage();
+                
                 graphView.AddElement(tmpNode);
             }
         }
@@ -575,14 +666,37 @@ namespace Project.NodeSystem.Editor
 
         private void LinkNodesTogether(Port outputPort, Port inputPort)
         {
-            Edge tempEdge = new Edge()
+            Edge tmpEdge = new Edge()
             {
                 output = outputPort,
                 input = inputPort
             };
-            tempEdge.input.Connect(tempEdge);
-            tempEdge.output.Connect(tempEdge);
-            graphView.Add(tempEdge);
+            tmpEdge.input.Connect(tmpEdge);
+            tmpEdge.output.Connect(tmpEdge);
+
+            graphView.Add(tmpEdge);
+        }
+
+        private void GroupNodes(DialogueContainerSO dialogueContainer)
+        {
+            foreach (GroupData savedData in dialogueContainer.groupDatas)
+            {
+                Group tmpGroup = GraphBuilder.AddGroup(graphView, savedData.groupName, savedData.position);
+
+                tmpGroup.AddElements(nodes.Where(node => savedData.containedGuids.Contains(node.NodeGuid)));
+
+                graphView.AddElement(tmpGroup);
+            }
+        }
+
+        private void AddStickyNotes(DialogueContainerSO dialogueContainer)
+        {
+            foreach (NoteData savedData in dialogueContainer.noteDatas)
+            {
+                StickyNote tmpNote = GraphBuilder.AddStickyNote(savedData.title, savedData.content, savedData.position);
+
+                graphView.AddElement(tmpNote);
+            }
         }
 
         #endregion

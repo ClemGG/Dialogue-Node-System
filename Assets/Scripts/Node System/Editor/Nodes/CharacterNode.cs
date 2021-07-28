@@ -188,7 +188,7 @@ namespace Project.NodeSystem.Editor
         private void AddCharacterInfo(CharacterData_CharacterSO character, Box boxContainer)
         {
 
-            TextField nameField = NodeBuilder.NewTextField(character.characterName, "Name", "CharacterName", "TextStretch");
+            TextField nameField = NodeBuilder.NewTextField(character.characterName, "", "CharacterName", "TextStretch");
             nameField.SetEnabled(false);
             character.nameField = nameField;
 

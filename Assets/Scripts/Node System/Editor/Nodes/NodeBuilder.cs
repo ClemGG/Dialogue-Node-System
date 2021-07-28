@@ -42,7 +42,8 @@ namespace Project.NodeSystem.Editor
 
         public static Port GetPortInstance(BaseNode node, Direction portDirection, Port.Capacity capacity = Port.Capacity.Single)
         {
-            return node.InstantiatePort(Orientation.Horizontal, portDirection, capacity, typeof(float));
+            Port newPort = node.InstantiatePort(Orientation.Horizontal, portDirection, capacity, typeof(float));
+            return newPort;
         }
 
         /// <summary>
@@ -570,6 +571,37 @@ namespace Project.NodeSystem.Editor
             return integerField;
         }
 
+
+
+        /// <summary>
+        /// Get a new Toggle.
+        /// </summary>
+        /// <param name="inputValue">Container_Bool that need to be set in to the Toggle</param>
+        /// <returns></returns>
+        public static Toggle NewToggle(VisualElement container, ContainerValue<bool> inputValue, Action onToggled, params string[] USSx)
+        {
+            Toggle toggle = new Toggle()
+            {
+                value = inputValue.value
+            };
+
+            // When we change the variable from graph view.
+            toggle.RegisterValueChangedCallback(value =>
+            {
+                inputValue.value = value.newValue;
+                onToggled?.Invoke();
+            });
+            toggle.SetValueWithoutNotify(inputValue.value);
+
+            // Set uss class for stylesheet.
+            toggle.AddStyle(USSx);
+            container.Add(toggle);
+
+            return toggle;
+        }
+
+
+
         /// <summary>
         /// Get a new FloatField.
         /// </summary>
@@ -812,7 +844,7 @@ namespace Project.NodeSystem.Editor
         /// </summary>
         /// <param name="enumType">Container_EndNodeType that need to be set in to the EnumField</param>
         /// <returns></returns>
-        public static EnumField NewEndNodeTypeField(ContainerEnum<EndNodeType> enumType, params string[] USSx)
+        public static EnumField NewEndNodeTypeField(BaseNode node, ContainerEnum<EndNodeType> enumType, params string[] USSx)
         {
             EnumField enumField = new EnumField()
             {
@@ -831,6 +863,8 @@ namespace Project.NodeSystem.Editor
             enumField.AddStyle(USSx);
 
             enumType.enumField = enumField;
+            node.mainContainer.Add(enumField);
+
             return enumField;
         }
 
@@ -1170,6 +1204,31 @@ namespace Project.NodeSystem.Editor
             {
                 element.AddToClassList(hideUssClass);
             }
+        }
+
+
+        /// <summary>
+        /// Change la couleur du groupe dans la Minimap
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="hexColor"></param>
+        public static void ChangeColorInMinimap(this GraphElement element, string hexColor)
+        {
+            if (ColorUtility.TryParseHtmlString(hexColor, out Color newCol))
+            {
+                element.elementTypeColor = newCol;
+            }
+        }
+
+
+        /// <summary>
+        /// Change la couleur du groupe dans la Minimap
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="hexColor"></param>
+        public static void ChangeColorInMinimap(this GraphElement element, Color color)
+        {
+            element.elementTypeColor = color;
         }
 
 

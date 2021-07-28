@@ -16,7 +16,8 @@ namespace Project.NodeSystem
             //automatiquement sans avoir à la réécrire dans un script à chaque fois.
 
 
-            FieldInfo prop = triggerScript.GetType().GetField(stringEvent);
+            //FieldInfo prop = triggerScript.GetType().GetField(stringEvent);
+            PropertyInfo prop = triggerScript.GetType().GetProperty(stringEvent);
             bool? propIsBool = (prop.GetValue(triggerScript) as bool?);
             float? propIsFloat = (prop.GetValue(triggerScript) as float?);
             int? propIsInt = (prop.GetValue(triggerScript) as int?);

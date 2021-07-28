@@ -71,7 +71,7 @@ namespace Project.NodeSystem
 
 
 
-
+        protected abstract void StartDialogue();
         protected abstract void RunNode(StartData nodeData);
         protected abstract void RunNode(CharacterData nodeData);
         protected abstract void RunNode(RepliqueData nodeData);

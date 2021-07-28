@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,12 +26,13 @@ namespace Project.NodeSystem
 
         //Pour stocker les choix avant de les assigner dans le dialogueUI
         readonly List<DialogueButtonContainer> dialogueButtonContainers = new List<DialogueButtonContainer>();
+        readonly List<StartData> eligibleDatas = new List<StartData>();
 
 
         #endregion
 
 
-        #region Dialogue
+        #region Init
 
         void Start()
         {
@@ -46,23 +48,72 @@ namespace Project.NodeSystem
             triggerScript = newTriggerScript;
         }
 
-        /// <summary>
-        /// Récupère la node de départ.
-        /// </summary>
-        public void StartDialogue()
-        {
-            dialogueUi.StartDialogue();
-
-            //A faire : Récupérer plusieurs StartNodes et sélectionner celle à suivre en fonction de ses conditions.
-            //La raison pour laquelle on peut avoir plusieurs StartNodes est dans le cas où l'on veut choisir une node
-            //de départ en fonction de certaines conditions (Une BranchNode ne peut prendre que 2 chemins, "true" ou "false").
-            RunNode(dialogue.startDatas[0]);
-        }
 
 
         #endregion
 
 
+        /// <summary>
+        /// Récupère la node de départ.
+        /// </summary>
+        protected override void StartDialogue()
+        {
+            dialogueUi.StartDialogue();
+
+            //Par défaut, on trie les nodes selon leur position en Y.
+            //Ainsi, la node de départ par défaut sera toujours la node éligible la plus haute dans le graphe.
+            dialogue.startDatas.Sort(delegate (StartData x, StartData y)
+            {
+                return x.position.y.CompareTo(y.position.y);
+            });
+
+            // On récupère toutes les StartNodes du dialogue et on sélectionne celle à suivre en fonction de ses conditions.
+            StartData selectedStartData = null;
+            eligibleDatas.Clear();
+
+            //Pour chaque StartNode du dialogue...
+            foreach (StartData startData in dialogue.startDatas)
+            {
+                bool eligible = true;
+
+                //Pour chaque condition de la node, on regarde si la valeur du DE_Trigger et celle de la node correspondent
+                foreach (EventData_StringEventCondition item in startData.stringConditions)
+                {
+                    //Si ce n'est pas le cas, la StartNode n'est pas éligible
+                    if (!UseStringEventCondition.DialogueConditionEvents(triggerScript, item.stringEvent.value, item.conditionType.value, item.number.value))
+                    {
+                        eligible = false;
+                        break;
+                    }
+                }
+
+                //On ajoute la node à la liste si elle est éligible
+                if(eligible) eligibleDatas.Add(startData);
+
+            }
+
+
+            // Si aucune n'est éligible ou que toutes sont éligibles... 
+            if (eligibleDatas.Count == 0 || eligibleDatas.Count == dialogue.startDatas.Count)
+            {
+                // On prend la première de la liste marquée par défaut
+                selectedStartData = dialogue.startDatas.FirstOrDefault(start => start.isDefaultStartNode.value == true);
+
+                // S'il n'y a pas de node par défaut, on prend la première qui vient
+                if (selectedStartData == null) selectedStartData = dialogue.startDatas[0];
+            }
+            else
+            {
+                // Si seulement certaines sont éligibles, on récupère la première par défaut si celle-ci est dans la liste éligible.
+                selectedStartData = eligibleDatas.FirstOrDefault(start => start.isDefaultStartNode.value == true);
+
+                // Sinon, on prend la première éligible, qu'elle soit par défaut ou non
+                if (selectedStartData == null) selectedStartData = eligibleDatas[0];
+            }
+
+
+            RunNode(selectedStartData);
+        }
 
         protected override void RunNode(StartData nodeData)
         {
@@ -128,7 +179,19 @@ namespace Project.NodeSystem
 
         protected override void RunNode(EndData nodeData)
         {
-            dialogueUi.EndDialogue();
+            switch (nodeData.endNodeType.value)
+            {
+                case EndNodeType.End:
+                    dialogueUi.EndDialogue();
+                    break;
+                case EndNodeType.ReturnToStart:
+                    StartDialogue();
+                    break;
+                default:
+                    Debug.Log($"End Node Type \"{nodeData.endNodeType.value}\" not implemented");
+                    break;
+            }
+
         }
 
         protected override void RunNode(CharacterData nodeData)

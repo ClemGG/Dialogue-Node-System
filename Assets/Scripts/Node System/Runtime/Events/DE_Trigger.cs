@@ -4,15 +4,16 @@ using UnityEngine;
 namespace Project.NodeSystem
 {
 
-    //Les variables doivent être publiques pour être modifiées par l'EventNode
+    //Les propriétés doivent être publiques pour être modifiées par l'EventNode
     public class DE_Trigger : MonoBehaviour
     {
         public DialogueEventSO dialogueEvent;
 
-        public int money = 50;
-        public bool hasSomethingToDo = false;
+        [SerializeField] private int money = 50;
+        [SerializeField] private bool hasSomethingToDo = false;
 
-
+        public int Money { get => money; set => money = value; }
+        public bool HasSomethingToDo { get => hasSomethingToDo; set => hasSomethingToDo = value; }
 
         private void Awake()
         {
@@ -21,7 +22,7 @@ namespace Project.NodeSystem
 
         private void Print()
         {
-            print("L'event de test a bien été appelé.");
+            print($"L'event de DE_Trigger a bien été appelé. Money : {Money} ; HasSomethingToDo : {HasSomethingToDo}.");
         }
 
         private void OnDestroy()

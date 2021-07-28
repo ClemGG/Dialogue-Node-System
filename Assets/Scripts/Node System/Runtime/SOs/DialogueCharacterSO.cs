@@ -15,6 +15,7 @@ namespace Project.NodeSystem
         [SerializeField] private List<FaceAndMood> faces = new List<FaceAndMood>();
 
 
+
         private void OnValidate()
         {
             int length = LengthOf<LanguageType>();
