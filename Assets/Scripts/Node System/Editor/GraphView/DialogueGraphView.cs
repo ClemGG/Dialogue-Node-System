@@ -3,7 +3,6 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 using UnityEditor;
 
 namespace Project.NodeSystem.Editor 
@@ -13,15 +12,13 @@ namespace Project.NodeSystem.Editor
     {
         #region Fields
 
-        private DialogueEditorWindow window;
-        private NodeSearchWindow searchWindow;
-        private DialogueSaveLoad saveLoad;
-        private MiniMap miniMap;
-        private string graphViewStyleSheet = "USS/GraphView/GraphViewStyleSheet";
-        private Vector2 minimapLastPos;
-        private GridBackground grid;
+        private NodeSearchWindow _searchWindow;
+        private MiniMap _miniMap;
+        private const string _graphViewStyleSheet = "USS/GraphView/GraphViewStyleSheet";
+        private Vector2 _minimapLastPos;
+        private readonly GridBackground _grid;
 
-        public DialogueEditorWindow Window { get => window; set => window = value; }
+        public DialogueEditorWindow Window { get; set; }
 
 
         #endregion
@@ -31,9 +28,8 @@ namespace Project.NodeSystem.Editor
         public DialogueGraphView(DialogueEditorWindow window)
         {
             Window = window;
-            saveLoad = new DialogueSaveLoad(this);
 
-            StyleSheet styleSheet = Resources.Load<StyleSheet>(graphViewStyleSheet);
+            StyleSheet styleSheet = Resources.Load<StyleSheet>(_graphViewStyleSheet);
             styleSheets.Add(styleSheet);
 
             //Définit les limites du zoom sur le graphe
@@ -47,9 +43,9 @@ namespace Project.NodeSystem.Editor
 
 
             //La grille (couleurs définies dans la styleSheet)
-            grid = new GridBackground();
-            Insert(0, grid);
-            grid.StretchToParentSize();
+            _grid = new GridBackground();
+            Insert(0, _grid);
+            _grid.StretchToParentSize();
 
             AddSearchWindow();
             CreateMinimap();
@@ -95,21 +91,21 @@ namespace Project.NodeSystem.Editor
         /// </summary>
         public void UpdateMinimap()
         {
-            if (minimapLastPos != miniMap.GetPosition().position)
+            if (_minimapLastPos != _miniMap.GetPosition().position)
             {
-                miniMap.SetPosition(new Rect(0, 20, 200, 200));
-                minimapLastPos = miniMap.GetPosition().position;
+                _miniMap.SetPosition(new Rect(0, 20, 200, 200));
+                _minimapLastPos = _miniMap.GetPosition().position;
             }
         }
 
 
         private void CreateMinimap()
         {
-            miniMap = new MiniMap { anchored = true };
+            _miniMap = new MiniMap { anchored = true };
 
             //Place la minimap en haut à fauche de l'écran
-            miniMap.SetPosition(new Rect(0, 20, 200, 200));
-            Add(miniMap);
+            _miniMap.SetPosition(new Rect(0, 20, 200, 200));
+            Add(_miniMap);
 
         }
 
@@ -120,9 +116,9 @@ namespace Project.NodeSystem.Editor
         /// </summary>
         private void AddSearchWindow()
         {
-            searchWindow = ScriptableObject.CreateInstance<NodeSearchWindow>();
-            searchWindow.Configure(Window, this);
-            nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), searchWindow);
+            _searchWindow = ScriptableObject.CreateInstance<NodeSearchWindow>();
+            _searchWindow.Configure(Window, this);
+            nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
         }
 
 
@@ -145,11 +141,11 @@ namespace Project.NodeSystem.Editor
             string hideUssClass = "Hide";
             if (makeGridVisible)
             {
-                grid.RemoveFromClassList(hideUssClass);
+                _grid.RemoveFromClassList(hideUssClass);
             }
             else
             {
-                grid.AddToClassList(hideUssClass);
+                _grid.AddToClassList(hideUssClass);
             }
         }
 
@@ -254,11 +250,11 @@ namespace Project.NodeSystem.Editor
                 switch (e.keyCode)
                 {
                     case KeyCode.S:
-                        window.Save();
+                        Window.Save();
                         e.StopPropagation();
                         break;
                     case KeyCode.L:
-                        window.Load();
+                        Window.Load();
                         e.StopPropagation();
                         break;
 

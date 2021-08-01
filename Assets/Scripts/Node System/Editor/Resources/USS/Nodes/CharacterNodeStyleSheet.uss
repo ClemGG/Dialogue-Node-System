@@ -44,6 +44,23 @@
 
 .EnumLabel{
 	padding-left:2px;
+	min-width: 100px;
+}
+.EnumField{
+	min-width: 100px;
+}
+
+
+
+.ToggleLabel{
+	padding-left:2px;
+	padding-top:3px;
+	min-width: 100px;
+}
+
+.FloatField{
+	min-width: 50px;
+	bottom:2px;
 }
 
 /* ----------------- Name -----------------*/

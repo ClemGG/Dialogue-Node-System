@@ -30,14 +30,14 @@ namespace Project.NodeSystem.Editor
 
         private void MakeMainContainer()
         {
-            NodeBuilder.NewEndNodeTypeField(this, endData.endNodeType);
+            NodeBuilder.NewEnumField("", this, endData.EndNodeType);
         }
 
         public override void LoadValueIntoField()
         {
-            if (EndData.endNodeType.enumField != null)
+            if (EndData.EndNodeType.EnumField != null)
             {
-                EndData.endNodeType.enumField.SetValueWithoutNotify(EndData.endNodeType.value);
+                EndData.EndNodeType.EnumField.SetValueWithoutNotify(EndData.EndNodeType.Value);
             }
         }
     }

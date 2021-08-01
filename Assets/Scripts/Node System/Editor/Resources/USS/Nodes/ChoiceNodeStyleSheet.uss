@@ -1,5 +1,5 @@
 .ChoiceLabel{
-	padding-top:11px;
+	padding-top:12px;
 	font-size: 12px;
 	padding-left:1px;
 }

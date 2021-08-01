@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Project.NodeSystem
 {
@@ -7,8 +8,8 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class BaseData
     {
-        public string nodeGuid;
-        public Vector2 position;
+        public string NodeGuid;
+        public Vector2 Position;
 
     }
 }

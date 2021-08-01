@@ -10,17 +10,17 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class DialogueEventSO : ScriptableObject
     {
-        public UnityAction onDialogueEventCalled;
+        public UnityAction OnDialogueEventCalled;
 
         public void Invoke()
         {
-            if(onDialogueEventCalled != null)
+            try
             {
-                onDialogueEventCalled.Invoke();
+                OnDialogueEventCalled.Invoke();
             }
-            else
+            catch
             {
-                Debug.LogError("DialogueEventSO was called but nothing was subscribed to it.");
+                Debug.LogError($"DialogueEventSO was called on \"{name}\" but nothing was subscribed to it.");
             }
         }
     }

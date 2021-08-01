@@ -89,9 +89,9 @@ namespace Project.NodeSystem.Editor
             // Reload Text
             textField.RegisterValueChangedCallback(value =>
             {
-                inputText.Find(text => text.language == Window.SelectedLanguage).data = value.newValue;
+                inputText.Find(text => text.Language == Window.SelectedLanguage).Data = value.newValue;
             });
-            textField.SetValueWithoutNotify(inputText.Find(text => text.language == Window.SelectedLanguage).data);
+            textField.SetValueWithoutNotify(inputText.Find(text => text.Language == Window.SelectedLanguage).Data);
 
             NodeBuilder.SetPlaceholderText(textField, placeholderText);
         }
@@ -106,9 +106,9 @@ namespace Project.NodeSystem.Editor
             // Reload Text
             objectField.RegisterValueChangedCallback(value =>
             {
-                inputAudioClip.Find(text => text.language == Window.SelectedLanguage).data = value.newValue as AudioClip;
+                inputAudioClip.Find(text => text.Language == Window.SelectedLanguage).Data = value.newValue as AudioClip;
             });
-            objectField.SetValueWithoutNotify(inputAudioClip.Find(text => text.language == Window.SelectedLanguage).data);
+            objectField.SetValueWithoutNotify(inputAudioClip.Find(text => text.Language == Window.SelectedLanguage).Data);
         }
 
 

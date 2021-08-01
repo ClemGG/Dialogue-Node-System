@@ -70,46 +70,60 @@ namespace Project.NodeSystem.Editor
         {
             RepliqueData_Replique newReplique = new RepliqueData_Replique();
 
+            if(replique != null)
+            {
+                newReplique.AppendToText.Value = replique.AppendToText.Value;
+                newReplique.CanClickOnContinue.Value = replique.CanClickOnContinue.Value;
+                newReplique.OverrideWriteSpeed.Value = replique.OverrideWriteSpeed.Value;
+                newReplique.WriteSpeed.Value = replique.WriteSpeed.Value;
+                newReplique.UseAutoDelay.Value = replique.UseAutoDelay.Value;
+                newReplique.AutoDelayDuration.Value = replique.AutoDelayDuration.Value;
+            }
+            else
+            {
+                newReplique.CanClickOnContinue.Value = true;
+            }
 
-            RepliqueData.repliques.Add(newReplique);
+
+            RepliqueData.Repliques.Add(newReplique);
 
             // Add Container Box
-            newReplique.boxContainer = NodeBuilder.NewBox(mainContainer, "DialogueBox");
+            newReplique.BoxContainer = NodeBuilder.NewBox(mainContainer, "DialogueBox");
 
 
             // Add Fields
-            AddLabelAndButton(newReplique, newReplique.boxContainer, "Text", "TextColor");
-            AddAudioClips(newReplique, newReplique.boxContainer);
-            AddTextField(newReplique, newReplique.boxContainer);
+            AddLabelAndButton(newReplique, newReplique.BoxContainer, "Text", "TextColor");
+            AddAudioClips(newReplique, newReplique.BoxContainer);
+            AddTextField(newReplique, newReplique.BoxContainer);
+            AddWriteInfo(newReplique, newReplique.BoxContainer);
 
 
             // Load in data if it got any
             if (replique != null)
             {
                 // Guid ID
-                newReplique.guid = replique.guid;
-
+                newReplique.Guid = replique.Guid;
 
                 // Text
-                foreach (LanguageGeneric<string> data_text in replique.texts)
+                foreach (LanguageGeneric<string> data_text in replique.Texts)
                 {
-                    foreach (LanguageGeneric<string> text in newReplique.texts)
+                    foreach (LanguageGeneric<string> text in newReplique.Texts)
                     {
-                        if (text.language == data_text.language)
+                        if (text.Language == data_text.Language)
                         {
-                            text.data = data_text.data;
+                            text.Data = data_text.Data;
                         }
                     }
                 }
 
                 // Audio
-                foreach (LanguageGeneric<AudioClip> data_audioclip in replique.audioClips)
+                foreach (LanguageGeneric<AudioClip> data_audioclip in replique.AudioClips)
                 {
-                    foreach (LanguageGeneric<AudioClip> audioclip in newReplique.audioClips)
+                    foreach (LanguageGeneric<AudioClip> audioclip in newReplique.AudioClips)
                     {
-                        if (audioclip.language == data_audioclip.language)
+                        if (audioclip.Language == data_audioclip.Language)
                         {
-                            audioclip.data = data_audioclip.data;
+                            audioclip.Data = data_audioclip.Data;
                         }
                     }
                 }
@@ -117,7 +131,7 @@ namespace Project.NodeSystem.Editor
             else
             {
                 // Make New Guid ID
-                newReplique.guid.value = Guid.NewGuid().ToString();
+                newReplique.Guid.Value = Guid.NewGuid().ToString();
             }
 
 
@@ -149,7 +163,7 @@ namespace Project.NodeSystem.Editor
             boxesButtons.Add(buttonsBox);
             for (int i = 0; i < boxesButtons.Count; i++)
             {
-                NodeBuilder.ShowHide(RepliqueData.repliques.Count > 1, boxesButtons[i]);
+                NodeBuilder.ShowHide(RepliqueData.Repliques.Count > 1, boxesButtons[i]);
             }
 
 
@@ -171,8 +185,8 @@ namespace Project.NodeSystem.Editor
             onClicked = () =>
             {
                 DeleteBox(boxContainer);
-                RepliqueData.repliques.Remove(replique);
-                ShouldShowHideMoveButtons();
+                RepliqueData.Repliques.Remove(replique);
+                ShowHideMoveButtons();
             };
             Button removeBtn = NodeBuilder.NewButton(buttonsBox, "X", onClicked, "RemoveBtn");
 
@@ -182,33 +196,33 @@ namespace Project.NodeSystem.Editor
         public override void MoveBox(NodeData_BaseContainer replique, bool moveUp)
         {
             List<NodeData_BaseContainer> tmp = new List<NodeData_BaseContainer>();
-            tmp.AddRange(repliqueData.repliques);
+            tmp.AddRange(repliqueData.Repliques);
 
 
             for (int i = 0; i < tmp.Count; i++)
             {
-                DeleteBox(RepliqueData.repliques[i].boxContainer);
-                tmp[i].ID.value = i;
+                DeleteBox(RepliqueData.Repliques[i].BoxContainer);
+                tmp[i].ID.Value = i;
             }
 
-            if (replique.ID.value > 0 && moveUp)
+            if (replique.ID.Value > 0 && moveUp)
             {
-                NodeData_BaseContainer tmp01 = tmp[replique.ID.value];
-                NodeData_BaseContainer tmp02 = tmp[replique.ID.value - 1];
+                NodeData_BaseContainer tmp01 = tmp[replique.ID.Value];
+                NodeData_BaseContainer tmp02 = tmp[replique.ID.Value - 1];
 
-                tmp[replique.ID.value] = tmp02;
-                tmp[replique.ID.value - 1] = tmp01;
+                tmp[replique.ID.Value] = tmp02;
+                tmp[replique.ID.Value - 1] = tmp01;
             }
-            else if (replique.ID.value < tmp.Count - 1 && !moveUp)
+            else if (replique.ID.Value < tmp.Count - 1 && !moveUp)
             {
-                NodeData_BaseContainer tmp01 = tmp[replique.ID.value];
-                NodeData_BaseContainer tmp02 = tmp[replique.ID.value + 1];
+                NodeData_BaseContainer tmp01 = tmp[replique.ID.Value];
+                NodeData_BaseContainer tmp02 = tmp[replique.ID.Value + 1];
 
-                tmp[replique.ID.value] = tmp02;
-                tmp[replique.ID.value + 1] = tmp01;
+                tmp[replique.ID.Value] = tmp02;
+                tmp[replique.ID.Value + 1] = tmp01;
             }
 
-            repliqueData.repliques.Clear();
+            repliqueData.Repliques.Clear();
 
             foreach (NodeData_BaseContainer data in tmp)
             {
@@ -220,24 +234,40 @@ namespace Project.NodeSystem.Editor
 
         private void AddTextField(RepliqueData_Replique replique, Box boxContainer)
         {
-            TextField textField = NodeBuilder.NewTextLanguagesField(this, boxContainer, replique.texts, "Write your dialogue here...", "TextBox", "TextStretch");
+            TextField textField = NodeBuilder.NewTextLanguagesField(this, boxContainer, replique.Texts, "Write your dialogue here...", "TextBox", "TextStretch");
             replique.TextField = textField;
         }
 
         private void AddAudioClips(RepliqueData_Replique replique, Box boxContainer)
         {
-            ObjectField objectField = NodeBuilder.NewAudioClipLanguagesField(this, boxContainer, replique.audioClips, "AudioClip");
+            ObjectField objectField = NodeBuilder.NewAudioClipLanguagesField(this, boxContainer, replique.AudioClips, "AudioClip");
             replique.AudioField = objectField;
         }
 
+        private void AddWriteInfo(RepliqueData_Replique replique, Box boxContainer)
+        {
+            //Append to text
+            NodeBuilder.NewToggle(NodeBuilder.NewBox(boxContainer, "BoxRow"), replique.AppendToText, "Append To Previous Text", "Toggle");
+
+            //Steal control from player
+            NodeBuilder.NewToggle(NodeBuilder.NewBox(boxContainer, "BoxRow"), replique.CanClickOnContinue, "Can Click On Continue", "Toggle");
 
 
-        private void ShouldShowHideMoveButtons()
+            //Override Write Speed
+            NodeBuilder.AddToggleFloatField(this, boxContainer, replique.OverrideWriteSpeed, replique.WriteSpeed, "Override Write Speed");
+
+            //Auto Delay Duration
+            NodeBuilder.AddToggleFloatField(this, boxContainer, replique.UseAutoDelay, replique.AutoDelayDuration, "Use Auto Delay");
+
+        }
+
+
+        private void ShowHideMoveButtons()
         {
             //Si on n'a qu'une seule réplique, pas la peine d'afficher les petits boutons
             for (int i = 0; i < boxesButtons.Count; i++)
             {
-                NodeBuilder.ShowHide(RepliqueData.repliques.Count > 1, boxesButtons[i]);
+                NodeBuilder.ShowHide(RepliqueData.Repliques.Count > 1, boxesButtons[i]);
             }
         }
 
@@ -247,19 +277,6 @@ namespace Project.NodeSystem.Editor
 
 
 
-
-
-        // ------------------------------------------------------------------------------------------
-
-        public override void ReloadLanguage()
-        {
-            base.ReloadLanguage();
-        }
-
-        public override void LoadValueIntoField()
-        {
-
-        }
 
 
     }

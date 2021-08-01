@@ -35,14 +35,16 @@ namespace Project.NodeSystem.Editor
             RefreshPorts();
         }
 
+
+        #region Fields
+
+
         /// <summary>
         /// Ajoute un toggle à la StartNode pour indiquer qu'elle est la node de départ par défaut si à true.
         /// </summary>
         private void AddDefaultStartNodeMarker()
         {
-            Box boxContainer = NodeBuilder.NewBox(this, "StringEventBox");
-
-            NodeBuilder.NewLabel(boxContainer, "Default", "ToggleLabel");
+            Box boxContainer = NodeBuilder.NewBox(this, "BoxRow");
 
             //Quand on clique passe le toggle à true, on prend toutes les StartNodes qui ne sont pas celle-ci et on passe leurs toggles à false
             //de sorte à n'avoir qu'une seule node de départ par défaut
@@ -52,12 +54,12 @@ namespace Project.NodeSystem.Editor
                 {
                     if(startNode != this)
                     {
-                        startNode.StartData.isDefaultStartNode.value = false;
+                        startNode.StartData.isDefault.Value = false;
                         startNode.LoadValueIntoField();
                     }
                 });
             };
-            StartData.toggle = NodeBuilder.NewToggle(boxContainer, StartData.isDefaultStartNode, onToggled, "Toggle");
+            StartData.Toggle = NodeBuilder.NewToggle(boxContainer, StartData.isDefault, onToggled, "Default", "Toggle");
         }
 
 
@@ -77,17 +79,23 @@ namespace Project.NodeSystem.Editor
         /// <param name="stringEvent"></param>
         public void AddCondition(EventData_StringEventCondition stringEvent = null)
         {
-            NodeBuilder.AddStringConditionEvent(this, StartData.stringConditions, stringEvent);
+            NodeBuilder.AddStringConditionEvent(this, StartData.StringConditions, stringEvent);
         }
 
+        #endregion
 
+
+
+        #region On Load
 
         public override void LoadValueIntoField()
         {
-            if(startData.toggle != null)
+            if(startData.Toggle != null)
             {
-                startData.toggle.SetValueWithoutNotify(startData.isDefaultStartNode.value);
+                startData.Toggle.SetValueWithoutNotify(startData.isDefault.Value);
             }
         }
+
+        #endregion
     }
 }

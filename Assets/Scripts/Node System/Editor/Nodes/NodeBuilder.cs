@@ -250,11 +250,11 @@ namespace Project.NodeSystem.Editor
             // If we paramida value is not null we load in values.
             if (stringEvent != null)
             {
-                tmp.stringEvent.value = stringEvent.stringEvent.value;
-                tmp.number.value = stringEvent.number.value;
-                tmp.modifierType.value = stringEvent.modifierType.value;
+                tmp.StringEvent.Value = stringEvent.StringEvent.Value;
+                tmp.Number.Value = stringEvent.Number.Value;
+                tmp.ModifierType.Value = stringEvent.ModifierType.Value;
             }
-            eventData.events.Add(tmp);
+            eventData.Events.Add(tmp);
 
 
 
@@ -267,31 +267,31 @@ namespace Project.NodeSystem.Editor
             boxfloatField.AddStyle("StringEventBoxfloatField");
 
             // Text.
-            TextField textField = NewTextField(tmp.stringEvent, "String Event", "stringEvent");
+            TextField textField = NewTextField(tmp.StringEvent, "String Event", "stringEvent");
 
             // ID number.
-            FloatField floatField = NewFloatField(tmp.number, "StringEventInt");
+            FloatField floatField = NewFloatField(tmp.Number, "StringEventInt");
 
 
             // String Event Modifier
-            Action action = () => ShowHide_StringEventModifierType(tmp.modifierType.value, boxfloatField);
+            Action action = () => ShowHide_StringEventModifierType(tmp.ModifierType.Value, boxfloatField);
             // EnumField String Event Modifier
-            EnumField enumField = NewStringEventModifierTypeField(tmp.modifierType, action, "StringEventEnum");
+            EnumField enumField = NewEnumField(tmp.ModifierType, action, "StringEventEnum");
             // Run the show and hide.
-            ShowHide_StringEventModifierType(tmp.modifierType.value, boxfloatField);
+            ShowHide_StringEventModifierType(tmp.ModifierType.Value, boxfloatField);
 
             // Remove button.
             Action onClicked = () =>
             {
-                eventData.events.Remove(tmp); 
+                eventData.Events.Remove(tmp); 
                 node.DeleteBox(boxContainer);
             };
             Button btn = NewButton("X", onClicked, "removeBtn");
 
 
             //Ajoute les boutons pour déplacer le container
-            tmp.btnsBox = AddMoveButtons(node, tmp, boxContainer);
-            tmp.eventBox = boxContainer;
+            tmp.BtnsBox = AddMoveButtons(node, tmp, boxContainer);
+            tmp.EventBox = boxContainer;
 
             // Add it to the box
             boxContainer.Add(textField);
@@ -317,9 +317,9 @@ namespace Project.NodeSystem.Editor
             EventData_ScriptableEvent tmp = new EventData_ScriptableEvent();
             if (scriptableEvent != null)
             {
-                tmp.scriptableObject.value = scriptableEvent.scriptableObject.value;
+                tmp.ScriptableObject.Value = scriptableEvent.ScriptableObject.Value;
             }
-            eventData.events.Add(tmp);
+            eventData.Events.Add(tmp);
 
 
             //Container
@@ -329,22 +329,22 @@ namespace Project.NodeSystem.Editor
 
 
             //Scriptable Object Event
-            ObjectField eventField = NewDialogueEventField(tmp.scriptableObject, "EventObject");
+            ObjectField eventField = NewDialogueEventField(tmp.ScriptableObject, "EventObject");
 
 
 
             //Remove button
             Action onClicked = () =>
             {
-                eventData.events.Remove(tmp);
+                eventData.Events.Remove(tmp);
                 node.DeleteBox(boxContainer);
             };
             Button removeBtn = NewButton("X", onClicked, "removeBtn");
 
 
             //Ajoute les boutons pour déplacer le container
-            tmp.btnsBox = AddMoveButtons(node, tmp, boxContainer);
-            tmp.eventBox = boxContainer;
+            tmp.BtnsBox = AddMoveButtons(node, tmp, boxContainer);
+            tmp.EventBox = boxContainer;
 
             boxContainer.Add(eventField);
             boxContainer.Add(removeBtn);
@@ -370,19 +370,19 @@ namespace Project.NodeSystem.Editor
         public static ChoiceData_Condition AddStringConditionEvent(BaseNode node, VisualElement element, ChoiceData_Container choice, EventData_StringEventCondition stringEvent = null)
         {
             ChoiceData_Condition condition = new ChoiceData_Condition();
-            choice.conditions.Add(condition);
+            choice.Conditions.Add(condition);
 
             EventData_StringEventCondition tmpStringEventCondition = new EventData_StringEventCondition();
 
             // If we paramida value is not null we load in values.
             if (stringEvent != null)
             {
-                tmpStringEventCondition.stringEvent.value = stringEvent.stringEvent.value;
-                tmpStringEventCondition.number.value = stringEvent.number.value;
-                tmpStringEventCondition.conditionType.value = stringEvent.conditionType.value;
+                tmpStringEventCondition.StringEvent.Value = stringEvent.StringEvent.Value;
+                tmpStringEventCondition.Number.Value = stringEvent.Number.Value;
+                tmpStringEventCondition.ConditionType.Value = stringEvent.ConditionType.Value;
             }
-            condition.stringCondition = tmpStringEventCondition;
-            condition.guid.value = Guid.NewGuid().ToString();
+            condition.StringCondition = tmpStringEventCondition;
+            condition.Guid.Value = Guid.NewGuid().ToString();
 
 
 
@@ -395,23 +395,23 @@ namespace Project.NodeSystem.Editor
 
 
             // Text.
-            TextField textField = NewTextField(tmpStringEventCondition.stringEvent, "String Event", "stringEvent");
+            TextField textField = NewTextField(tmpStringEventCondition.StringEvent, "String Event", "stringEvent");
 
             // ID number.
-            FloatField floatField = NewFloatField(tmpStringEventCondition.number, "StringEventInt");
+            FloatField floatField = NewFloatField(tmpStringEventCondition.Number, "StringEventInt");
 
             // String Event Condition
-            Action tmp = () => ShowHide_StringEventConditionType(tmpStringEventCondition.conditionType.value, boxfloatField);
+            Action tmp = () => ShowHide_StringEventConditionType(tmpStringEventCondition.ConditionType.Value, boxfloatField);
             // EnumField String Event Condition
-            EnumField enumField = NewStringEventConditionTypeField(tmpStringEventCondition.conditionType, tmp, "StringEventEnum");
+            EnumField enumField = NewEnumField(tmpStringEventCondition.ConditionType, tmp, "StringEventEnum");
             // Run the show and hide.
-            ShowHide_StringEventConditionType(tmpStringEventCondition.conditionType.value, boxfloatField);
+            ShowHide_StringEventConditionType(tmpStringEventCondition.ConditionType.Value, boxfloatField);
 
             // Remove button.
             Action onClicked = () =>
             {
-                choice.conditions.Remove(condition);
-                node.DeleteBox(choice.boxContainer, element);
+                choice.Conditions.Remove(condition);
+                node.DeleteBox(choice.BoxContainer, element);
             };
             Button btn = NewButton("X", onClicked, "removeBtn");
 
@@ -430,7 +430,7 @@ namespace Project.NodeSystem.Editor
 
 
             // Text
-            TextField descTextField = NewTextLanguagesField(node, element, condition.descriptionsIfNotMet, "Description if not met", "TextBox");
+            TextField descTextField = NewTextLanguagesField(node, element, condition.DescriptionsIfNotMet, "Description if not met", "TextBox");
             condition.DescTextField = descTextField;
 
 
@@ -456,9 +456,9 @@ namespace Project.NodeSystem.Editor
             // If we paramida value is not null we load in values.
             if (stringEvent != null)
             {
-                tmpStringEventCondition.stringEvent.value = stringEvent.stringEvent.value;
-                tmpStringEventCondition.number.value = stringEvent.number.value;
-                tmpStringEventCondition.conditionType.value = stringEvent.conditionType.value;
+                tmpStringEventCondition.StringEvent.Value = stringEvent.StringEvent.Value;
+                tmpStringEventCondition.Number.Value = stringEvent.Number.Value;
+                tmpStringEventCondition.ConditionType.Value = stringEvent.ConditionType.Value;
             }
             stringEventConditions.Add(tmpStringEventCondition);
 
@@ -474,17 +474,17 @@ namespace Project.NodeSystem.Editor
 
 
             // Text.
-            TextField textField = NewTextField(tmpStringEventCondition.stringEvent, "String Event", "stringEvent");
+            TextField textField = NewTextField(tmpStringEventCondition.StringEvent, "String Event", "stringEvent");
 
             // ID number.
-            FloatField floatField = NewFloatField(tmpStringEventCondition.number, "StringEventInt");
+            FloatField floatField = NewFloatField(tmpStringEventCondition.Number, "StringEventInt");
 
             // String Event Condition
-            Action tmp = () => ShowHide_StringEventConditionType(tmpStringEventCondition.conditionType.value, boxfloatField);
+            Action tmp = () => ShowHide_StringEventConditionType(tmpStringEventCondition.ConditionType.Value, boxfloatField);
             // EnumField String Event Condition
-            EnumField enumField = NewStringEventConditionTypeField(tmpStringEventCondition.conditionType, tmp, "StringEventEnum");
+            EnumField enumField = NewEnumField(tmpStringEventCondition.ConditionType, tmp, "StringEventEnum");
             // Run the show and hide.
-            ShowHide_StringEventConditionType(tmpStringEventCondition.conditionType.value, boxfloatField);
+            ShowHide_StringEventConditionType(tmpStringEventCondition.ConditionType.Value, boxfloatField);
 
             // Remove button.
             Action onClicked = () =>
@@ -513,6 +513,126 @@ namespace Project.NodeSystem.Editor
         #endregion
 
 
+        #region Replique Node
+
+
+        /// <summary>
+        /// Add String Condition Event to UI element.
+        /// </summary>
+        /// <param name="stringEventConditions">The List<EventData_StringComparer> that EventData_StringComparer should be added to.</param>
+        /// <param name="stringEvent">EventData_StringComparer that should be use.</param>
+        public static void AddToggleFloatField(BaseNode node, VisualElement container, ContainerValue<bool> boolValue, ContainerValue<float> floatValue, string label)
+        {
+            Box overrideContainer = NewBox(container, "BoxRow");
+            FloatField floatField = NewFloatField(floatValue, new Vector2(0, int.MaxValue), "FloatField");
+
+            Action onToggled = () =>  { ShowHide(boolValue.Value, floatField); };
+
+            NewToggle(overrideContainer, boolValue, onToggled, label, "Toggle");
+            overrideContainer.Add(floatField);
+            ShowHide(boolValue.Value, floatField);
+
+            container.Add(overrideContainer);
+
+            node.RefreshExpandedState();
+        }
+
+        #endregion
+
+
+        #region Character Node
+
+
+
+
+
+        /// <summary>
+        /// Get a new ObjectField with a Sprite as the Object.
+        /// </summary>
+        /// <param name="inputCharacter">Container_Sprite that need to be set in to the ObjectField</param>
+        /// <returns></returns>
+        public static ObjectField NewCharacterField(BaseNode node, CharacterData_CharacterSO newCharacter, ContainerValue<DialogueCharacterSO> inputCharacter, params string[] USSx)
+        {
+            ObjectField objectField = new ObjectField()
+            {
+                objectType = typeof(DialogueCharacterSO),
+                allowSceneObjects = false,
+                value = inputCharacter.Value,
+            };
+
+            // When we change the variable from graph view.
+            objectField.RegisterValueChangedCallback(value =>
+            {
+                if (value.newValue != null)
+                {
+                    inputCharacter.Value = value.newValue as DialogueCharacterSO;
+                    newCharacter.CharacterName.Value = inputCharacter.Value.CharacterNames[(int)node.Window.SelectedLanguage];
+
+                    newCharacter.CharacterNames.Clear();
+                    newCharacter.CharacterNames.AddRange(inputCharacter.Value.CharacterNames);
+
+                    if (newCharacter.Mood.EnumField == null)
+                        newCharacter.Mood.Value = CharacterMood.Idle;
+
+                    //Afficher l'image du nouveau perso quand on change de DialogueCharacterSO
+                    newCharacter.Sprite.Value = inputCharacter.Value.GetFaceFromMood(newCharacter.Mood.Value);
+                    newCharacter.SpriteField.image = inputCharacter.Value != null ? newCharacter.Sprite.Value.texture : null;
+
+
+                }
+                else
+                {
+                    inputCharacter.Value = null;
+                    newCharacter.CharacterName.Value = "";
+                    newCharacter.CharacterNames.Clear();
+                    newCharacter.Sprite.Value = null;
+                    newCharacter.SpriteField.image = null;
+                }
+
+                newCharacter.Mood.EnumField.SetValueWithoutNotify(newCharacter.Mood.Value);
+                newCharacter.NameField.SetValueWithoutNotify(newCharacter.CharacterName.Value);
+            });
+            newCharacter.SpriteField.image = inputCharacter.Value != null ? newCharacter.Sprite.Value.texture : null;
+
+            // Set uss class for stylesheet.
+            objectField.AddStyle(USSx);
+
+            return objectField;
+        }
+
+
+        /// <summary>
+        /// Get a new ObjectField with a Sprite as the Object.
+        /// </summary>
+        /// <param name="inputSprite">Container_Sprite that need to be set in to the ObjectField</param>
+        /// <param name="imagePreview">Image that need to be set as preview image</param>
+        /// <returns></returns>
+        public static ObjectField NewSpriteField(ContainerValue<Sprite> inputSprite, Image imagePreview, params string[] USSx)
+        {
+            ObjectField objectField = new ObjectField()
+            {
+                objectType = typeof(Sprite),
+                allowSceneObjects = false,
+                value = inputSprite.Value,
+            };
+
+            // When we change the variable from graph view.
+            objectField.RegisterValueChangedCallback(value =>
+            {
+                inputSprite.Value = value.newValue as Sprite;
+
+                imagePreview.image = inputSprite.Value != null ? inputSprite.Value.texture : null;
+            });
+            imagePreview.image = inputSprite.Value != null ? inputSprite.Value.texture : null;
+
+            // Set uss class for stylesheet.
+            objectField.AddStyle(USSx);
+
+            return objectField;
+        }
+
+
+        #endregion
 
 
         public static Box AddMoveButtons(BaseNode node, NodeData_BaseContainer idContainer, VisualElement container)
@@ -549,6 +669,129 @@ namespace Project.NodeSystem.Editor
 
         #region Values
 
+
+
+        /// <summary>
+        /// Get a new Toggle.
+        /// </summary>
+        /// <param name="inputValue">Container_Bool that need to be set in to the Toggle</param>
+        /// <returns></returns>
+        public static Toggle NewToggle(VisualElement container, ContainerValue<bool> inputValue, params string[] USSx)
+        {
+            Toggle toggle = new Toggle()
+            {
+                value = inputValue.Value
+            };
+
+            // When we change the variable from graph view.
+            toggle.RegisterValueChangedCallback(value =>
+            {
+                inputValue.Value = value.newValue;
+            });
+            toggle.SetValueWithoutNotify(inputValue.Value);
+
+            // Set uss class for stylesheet.
+            toggle.AddStyle(USSx);
+            container.Add(toggle);
+
+            return toggle;
+        }
+
+
+        /// <summary>
+        /// Get a new Toggle.
+        /// </summary>
+        /// <param name="inputValue">Container_Bool that need to be set in to the Toggle</param>
+        /// <returns></returns>
+        public static Toggle NewToggle(VisualElement container, ContainerValue<bool> inputValue, string label, params string[] USSx)
+        {
+            Toggle toggle = new Toggle()
+            {
+                value = inputValue.Value
+            };
+
+            // When we change the variable from graph view.
+            toggle.RegisterValueChangedCallback(value =>
+            {
+                inputValue.Value = value.newValue;
+            });
+            toggle.SetValueWithoutNotify(inputValue.Value);
+
+            // Set uss class for stylesheet.
+            toggle.AddStyle(USSx);
+
+            //Add elements to container
+            NewLabel(container, label, "ToggleLabel");
+            container.Add(toggle);
+
+            return toggle;
+        }
+
+
+        /// <summary>
+        /// Get a new Toggle.
+        /// </summary>
+        /// <param name="inputValue">Container_Bool that need to be set in to the Toggle</param>
+        /// <returns></returns>
+        public static Toggle NewToggle(VisualElement container, ContainerValue<bool> inputValue, Action onToggled, params string[] USSx)
+        {
+            Toggle toggle = new Toggle()
+            {
+                value = inputValue.Value
+            };
+
+            // When we change the variable from graph view.
+            toggle.RegisterValueChangedCallback(value =>
+            {
+                inputValue.Value = value.newValue;
+                onToggled?.Invoke();
+            });
+            toggle.SetValueWithoutNotify(inputValue.Value);
+
+            // Set uss class for stylesheet.
+            toggle.AddStyle(USSx);
+            container.Add(toggle);
+
+            return toggle;
+        }
+
+
+        /// <summary>
+        /// Get a new Toggle.
+        /// </summary>
+        /// <param name="inputValue">Container_Bool that need to be set in to the Toggle</param>
+        /// <returns></returns>
+        public static Toggle NewToggle(VisualElement container, ContainerValue<bool> inputValue, Action onToggled, string label, params string[] USSx)
+        {
+            Toggle toggle = new Toggle()
+            {
+                value = inputValue.Value
+            };
+
+            // When we change the variable from graph view.
+            toggle.RegisterValueChangedCallback(value =>
+            {
+                inputValue.Value = value.newValue;
+                onToggled?.Invoke();
+            });
+            toggle.SetValueWithoutNotify(inputValue.Value);
+
+            // Set uss class for stylesheet.
+            toggle.AddStyle(USSx);
+
+            //Add elements to container
+            NewLabel(container, label, "ToggleLabel");
+            container.Add(toggle);
+
+            return toggle;
+        }
+
+
+
+
+
+
+
         /// <summary>
         /// Get a new IntegerField.
         /// </summary>
@@ -561,46 +804,15 @@ namespace Project.NodeSystem.Editor
             // When we change the variable from graph view.
             integerField.RegisterValueChangedCallback(value =>
             {
-                inputValue.value = value.newValue;
+                inputValue.Value = value.newValue;
             });
-            integerField.SetValueWithoutNotify(inputValue.value);
+            integerField.SetValueWithoutNotify(inputValue.Value);
 
             // Set uss class for stylesheet.
             integerField.AddStyle(USSx);
 
             return integerField;
         }
-
-
-
-        /// <summary>
-        /// Get a new Toggle.
-        /// </summary>
-        /// <param name="inputValue">Container_Bool that need to be set in to the Toggle</param>
-        /// <returns></returns>
-        public static Toggle NewToggle(VisualElement container, ContainerValue<bool> inputValue, Action onToggled, params string[] USSx)
-        {
-            Toggle toggle = new Toggle()
-            {
-                value = inputValue.value
-            };
-
-            // When we change the variable from graph view.
-            toggle.RegisterValueChangedCallback(value =>
-            {
-                inputValue.value = value.newValue;
-                onToggled?.Invoke();
-            });
-            toggle.SetValueWithoutNotify(inputValue.value);
-
-            // Set uss class for stylesheet.
-            toggle.AddStyle(USSx);
-            container.Add(toggle);
-
-            return toggle;
-        }
-
-
 
         /// <summary>
         /// Get a new FloatField.
@@ -614,15 +826,88 @@ namespace Project.NodeSystem.Editor
             // When we change the variable from graph view.
             floatField.RegisterValueChangedCallback(value =>
             {
-                inputValue.value = value.newValue;
+                inputValue.Value = value.newValue;
             });
-            floatField.SetValueWithoutNotify(inputValue.value);
+            floatField.SetValueWithoutNotify(inputValue.Value);
 
             // Set uss class for stylesheet.
             floatField.AddStyle(USSx);
 
             return floatField;
         }
+
+
+        /// <summary>
+        /// Get a new FloatField.
+        /// </summary>
+        /// <param name="inputValue">Container_Float that need to be set in to the FloatField</param>
+        /// <returns></returns>
+        public static FloatField NewFloatField(ContainerValue<float> inputValue, Vector2 clampValues, params string[] USSx)
+        {
+            FloatField floatField = new FloatField();
+
+            // When we change the variable from graph view.
+            floatField.RegisterValueChangedCallback(value =>
+            {
+                inputValue.Value = Mathf.Clamp(value.newValue, clampValues.x, clampValues.y);
+            });
+            floatField.SetValueWithoutNotify(Mathf.Clamp(inputValue.Value, clampValues.x, clampValues.y));
+
+            // Set uss class for stylesheet.
+            floatField.AddStyle(USSx);
+
+            return floatField;
+        }
+
+
+        /// <summary>
+        /// Get a new FloatField.
+        /// </summary>
+        /// <param name="inputValue">Container_Float that need to be set in to the FloatField</param>
+        /// <returns></returns>
+        public static FloatField NewFloatField(VisualElement container, ContainerValue<float> inputValue, params string[] USSx)
+        {
+            FloatField floatField = new FloatField();
+
+            // When we change the variable from graph view.
+            floatField.RegisterValueChangedCallback(value =>
+            {
+                inputValue.Value = value.newValue;
+            });
+            floatField.SetValueWithoutNotify(inputValue.Value);
+
+            // Set uss class for stylesheet.
+            floatField.AddStyle(USSx);
+            container.Add(floatField);
+
+            return floatField;
+        }
+
+
+        /// <summary>
+        /// Get a new FloatField.
+        /// </summary>
+        /// <param name="inputValue">Container_Float that need to be set in to the FloatField</param>
+        /// <returns></returns>
+        public static FloatField NewFloatField(VisualElement container, ContainerValue<float> inputValue, Vector2 clampValues, params string[] USSx)
+        {
+            FloatField floatField = new FloatField();
+
+            // When we change the variable from graph view.
+            floatField.RegisterValueChangedCallback(value =>
+            {
+                inputValue.Value = Mathf.Clamp(value.newValue, clampValues.x, clampValues.y);
+            });
+            floatField.SetValueWithoutNotify(Mathf.Clamp(inputValue.Value, clampValues.x, clampValues.y));
+
+            // Set uss class for stylesheet.
+            floatField.AddStyle(USSx);
+            container.Add(floatField);
+
+            return floatField;
+        }
+
+
 
         /// <summary>
         /// Get a new TextField.
@@ -637,9 +922,9 @@ namespace Project.NodeSystem.Editor
             // When we change the variable from graph view.
             textField.RegisterValueChangedCallback(value =>
             {
-                inputValue.value = value.newValue;
+                inputValue.Value = value.newValue;
             });
-            textField.SetValueWithoutNotify(inputValue.value);
+            textField.SetValueWithoutNotify(inputValue.Value);
 
             // Set uss class for stylesheet.
             textField.AddStyle(USSx);
@@ -649,6 +934,8 @@ namespace Project.NodeSystem.Editor
 
             return textField;
         }
+
+
 
 
 
@@ -689,93 +976,6 @@ namespace Project.NodeSystem.Editor
 
 
 
-
-
-
-        /// <summary>
-        /// Get a new ObjectField with a Sprite as the Object.
-        /// </summary>
-        /// <param name="inputCharacter">Container_Sprite that need to be set in to the ObjectField</param>
-        /// <returns></returns>
-        public static ObjectField NewCharacterField(BaseNode node, CharacterData_CharacterSO newCharacter, ContainerValue<DialogueCharacterSO> inputCharacter, params string[] USSx)
-        {
-            ObjectField objectField = new ObjectField()
-            {
-                objectType = typeof(DialogueCharacterSO),
-                allowSceneObjects = false,
-                value = inputCharacter.value,
-            };
-
-            // When we change the variable from graph view.
-            objectField.RegisterValueChangedCallback(value =>
-            {
-                if (value.newValue != null)
-                {
-                    inputCharacter.value = value.newValue as DialogueCharacterSO;
-                    newCharacter.characterName.value = inputCharacter.value.characterNames[(int)node.Window.SelectedLanguage];
-
-                    newCharacter.characterNames.AddRange(inputCharacter.value.characterNames);
-
-                    if (newCharacter.mood.enumField == null)
-                        newCharacter.mood.value = CharacterMood.Idle;
-
-                    //Afficher l'image du nouveau perso quand on change de DialogueCharacterSO
-                    newCharacter.sprite.value = inputCharacter.value.GetFaceFromMood(newCharacter.mood.value);
-                    newCharacter.spriteField.image = inputCharacter.value != null ? newCharacter.sprite.value.texture : null;
-
-
-                }
-                else
-                {
-                    inputCharacter.value = null;
-                    newCharacter.characterName.value = "";
-                    newCharacter.characterNames.Clear();
-                    newCharacter.sprite.value = null;
-                    newCharacter.spriteField.image = null;
-                }
-
-                newCharacter.mood.enumField.SetValueWithoutNotify(newCharacter.mood.value);
-                newCharacter.nameField.SetValueWithoutNotify(newCharacter.characterName.value);
-            });
-            newCharacter.spriteField.image = inputCharacter.value != null ? newCharacter.sprite.value.texture : null;
-
-            // Set uss class for stylesheet.
-            objectField.AddStyle(USSx);
-
-            return objectField;
-        }
-
-
-        /// <summary>
-        /// Get a new ObjectField with a Sprite as the Object.
-        /// </summary>
-        /// <param name="inputSprite">Container_Sprite that need to be set in to the ObjectField</param>
-        /// <param name="imagePreview">Image that need to be set as preview image</param>
-        /// <returns></returns>
-        public static ObjectField NewSpriteField(ContainerValue<Sprite> inputSprite, Image imagePreview, params string[] USSx)
-        {
-            ObjectField objectField = new ObjectField()
-            {
-                objectType = typeof(Sprite),
-                allowSceneObjects = false,
-                value = inputSprite.value,
-            };
-
-            // When we change the variable from graph view.
-            objectField.RegisterValueChangedCallback(value =>
-            {
-                inputSprite.value = value.newValue as Sprite;
-
-                imagePreview.image = inputSprite.value != null ? inputSprite.value.texture : null;
-            });
-            imagePreview.image = inputSprite.value != null ? inputSprite.value.texture : null;
-
-            // Set uss class for stylesheet.
-            objectField.AddStyle(USSx);
-
-            return objectField;
-        }
-
         /// <summary>
         /// Get a new ObjectField with a Container_DialogueEventSO as the Object.
         /// </summary>
@@ -787,15 +987,15 @@ namespace Project.NodeSystem.Editor
             {
                 objectType = typeof(DialogueEventSO),
                 allowSceneObjects = false,
-                value = inputDialogueEventSO.value,
+                value = inputDialogueEventSO.Value,
             };
 
             // When we change the variable from graph view.
             objectField.RegisterValueChangedCallback(value =>
             {
-                inputDialogueEventSO.value = value.newValue as DialogueEventSO;
+                inputDialogueEventSO.Value = value.newValue as DialogueEventSO;
             });
-            objectField.SetValueWithoutNotify(inputDialogueEventSO.value);
+            objectField.SetValueWithoutNotify(inputDialogueEventSO.Value);
 
             // Set uss class for stylesheet.
             objectField.AddStyle(USSx);
@@ -813,179 +1013,160 @@ namespace Project.NodeSystem.Editor
         #region Enums
 
         /// <summary>
-        /// Get a new EnumField where the emum is ChoiceStateType.
+        /// Generic enum constructor.
         /// </summary>
-        /// <param name="enumType">Container_ChoiceStateType that need to be set in to the EnumField</param>
+        /// <typeparam name="T">Enum type</typeparam>
+        /// <param name="container">The object to add this field to</param>
+        /// <param name="inputEnumValue">The value we want to modify</param>
+        /// <param name="USSx">USS Style</param>
         /// <returns></returns>
-        public static EnumField NewChoiceStateTypeField(ContainerEnum<ChoiceStateType> enumType, params string[] USSx)
+        public static EnumField NewEnumField<T>(ContainerEnum<T> inputEnumValue, params string[] USSx) where T : System.Enum
         {
             EnumField enumField = new EnumField()
             {
-                value = enumType.value
+                value = inputEnumValue.Value
             };
-            enumField.Init(enumType.value);
+            enumField.Init(inputEnumValue.Value);
 
             // When we change the variable from graph view.
             enumField.RegisterValueChangedCallback((value) =>
             {
-                enumType.value = (ChoiceStateType)value.newValue;
+                inputEnumValue.Value = (T)value.newValue;
             });
-            enumField.SetValueWithoutNotify(enumType.value);
+            enumField.SetValueWithoutNotify(inputEnumValue.Value);
 
             // Set uss class for stylesheet.
             enumField.AddStyle(USSx);
 
-            enumType.enumField = enumField;
+            inputEnumValue.EnumField = enumField;
             return enumField;
         }
 
         /// <summary>
-        /// Get a new EnumField where the emum is EndNodeType.
+        /// Generic enum constructor.
         /// </summary>
-        /// <param name="enumType">Container_EndNodeType that need to be set in to the EnumField</param>
+        /// <typeparam name="T">Enum type</typeparam>
+        /// <param name="container">The object to add this field to</param>
+        /// <param name="inputEnumValue">The value we want to modify</param>
+        /// <param name="USSx">USS Style</param>
         /// <returns></returns>
-        public static EnumField NewEndNodeTypeField(BaseNode node, ContainerEnum<EndNodeType> enumType, params string[] USSx)
+        public static EnumField NewEnumField<T>(ContainerEnum<T> inputEnumValue, Action onChanged = null, params string[] USSx) where T : System.Enum
         {
             EnumField enumField = new EnumField()
             {
-                value = enumType.value
+                value = inputEnumValue.Value
             };
-            enumField.Init(enumType.value);
+            enumField.Init(inputEnumValue.Value);
 
             // When we change the variable from graph view.
             enumField.RegisterValueChangedCallback((value) =>
             {
-                enumType.value = (EndNodeType)value.newValue;
+                inputEnumValue.Value = (T)value.newValue;
+                onChanged?.Invoke();
             });
-            enumField.SetValueWithoutNotify(enumType.value);
+            enumField.SetValueWithoutNotify(inputEnumValue.Value);
 
             // Set uss class for stylesheet.
             enumField.AddStyle(USSx);
 
-            enumType.enumField = enumField;
-            node.mainContainer.Add(enumField);
-
-            return enumField;
-        }
-
-
-        public static EnumField NewCharacterMoodField(CharacterData_CharacterSO container, ContainerEnum<CharacterMood> enumType, params string[] USSx)
-        {
-            EnumField enumField = new EnumField()
-            {
-                value = enumType.value
-            };
-            enumField.Init(enumType.value);
-
-            // When we change the variable from graph view.
-            enumField.RegisterValueChangedCallback((value) =>
-            {
-                enumType.value = (CharacterMood)value.newValue;
-
-                if (container.character.value != null)
-                {
-                    //Quand on change d'humeur, on affiche le sprite correspondant
-                    container.sprite.value = container.character.value.GetFaceFromMood(enumType.value);
-                    container.spriteField.image = container.sprite.value.texture;
-                }
-            });
-            enumField.SetValueWithoutNotify(enumType.value);
-
-            // Set uss class for stylesheet.
-            enumField.AddStyle(USSx);
-
-            enumType.enumField = enumField;
-            return enumField;
-        }
-
-        public static EnumField NewDialogueSideField(ContainerEnum<DialogueSide> enumType, params string[] USSx)
-        {
-            EnumField enumField = new EnumField()
-            {
-                value = enumType.value
-            };
-            enumField.Init(enumType.value);
-
-            // When we change the variable from graph view.
-            enumField.RegisterValueChangedCallback((value) =>
-            {
-                enumType.value = (DialogueSide)value.newValue;
-            });
-            enumField.SetValueWithoutNotify(enumType.value);
-
-            // Set uss class for stylesheet.
-            enumField.AddStyle(USSx);
-
-            enumType.enumField = enumField;
-            return enumField;
-        }
-
-
-
-        /// <summary>
-        /// Get a new EnumField where the emum is modifierType.
-        /// </summary>
-        /// <param name="enumType">ContainerEnum<modifierType> that need to be set in to the EnumField</param>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        public static EnumField NewStringEventModifierTypeField(ContainerEnum<StringEventModifierType> enumType, Action action, params string[] USSx)
-        {
-            EnumField enumField = new EnumField()
-            {
-                value = enumType.value,
-            };
-            enumField.Init(enumType.value);
-
-            // When we change the variable from graph view.
-            enumField.RegisterValueChangedCallback((value) =>
-            {
-                enumType.value = (StringEventModifierType)value.newValue;
-                action?.Invoke();
-            });
-            enumField.SetValueWithoutNotify(enumType.value);
-
-            // Set uss class for stylesheet.
-            enumField.AddStyle(USSx);
-
-            enumType.enumField = enumField;
+            inputEnumValue.EnumField = enumField;
             return enumField;
         }
 
         /// <summary>
-        /// Get a new EnumField where the emum is StringEventComparerType.
+        /// Generic enum constructor.
         /// </summary>
-        /// <param name="enumType">ContainerEnum<StringEventComparerType>  that need to be set in to the EnumField</param>
-        /// <param name="action">A Action that is use to hide/show depending on if a FloatField is needed</param>
+        /// <typeparam name="T">Enum type</typeparam>
+        /// <param name="container">The object to add this field to</param>
+        /// <param name="inputEnumValue">The value we want to modify</param>
+        /// <param name="USSx">USS Style</param>
         /// <returns></returns>
-        public static EnumField NewStringEventConditionTypeField(ContainerEnum<StringEventConditionType> enumType, Action action, params string[] USSx)
+        public static EnumField NewEnumField<T>(string label, VisualElement container, ContainerEnum<T> inputEnumValue, params string[] USSx) where T : System.Enum
         {
             EnumField enumField = new EnumField()
             {
-                value = enumType.value,
+                value = inputEnumValue.Value
             };
-            enumField.Init(enumType.value);
+            enumField.Init(inputEnumValue.Value);
 
             // When we change the variable from graph view.
             enumField.RegisterValueChangedCallback((value) =>
             {
-                enumType.value = (StringEventConditionType)value.newValue;
-                action?.Invoke();
+                inputEnumValue.Value = (T)value.newValue;
             });
-            enumField.SetValueWithoutNotify(enumType.value);
+            enumField.SetValueWithoutNotify(inputEnumValue.Value);
 
             // Set uss class for stylesheet.
             enumField.AddStyle(USSx);
 
-            enumType.enumField = enumField;
+            inputEnumValue.EnumField = enumField;
+
+            if (!string.IsNullOrEmpty(label))
+            {
+                Box b = NewBox(container, "BoxRow");
+                NewLabel(b, label, "EnumLabel");
+                b.Add(enumField);
+                container.Add(b);
+            }
+            else
+            {
+                container.Add(enumField);
+            }
+
+            return enumField;
+        }
+
+        /// <summary>
+        /// Generic enum constructor.
+        /// </summary>
+        /// <typeparam name="T">Enum type</typeparam>
+        /// <param name="container">The object to add this field to</param>
+        /// <param name="inputEnumValue">The value we want to modify</param>
+        /// <param name="USSx">USS Style</param>
+        /// <returns></returns>
+        public static EnumField NewEnumField<T>(string label, VisualElement container, ContainerEnum<T> inputEnumValue, Action onChanged = null, params string[] USSx) where T : System.Enum
+        {
+            EnumField enumField = new EnumField()
+            {
+                value = inputEnumValue.Value
+            };
+            enumField.Init(inputEnumValue.Value);
+
+            // When we change the variable from graph view.
+            enumField.RegisterValueChangedCallback((value) =>
+            {
+                inputEnumValue.Value = (T)value.newValue;
+                onChanged?.Invoke();
+            });
+            enumField.SetValueWithoutNotify(inputEnumValue.Value);
+
+            // Set uss class for stylesheet.
+            enumField.AddStyle(USSx);
+
+            inputEnumValue.EnumField = enumField;
+            container.Add(enumField);
+
+            if (!string.IsNullOrEmpty(label))
+            {
+                Box b = NewBox(container, "BoxRow");
+                NewLabel(b, label, "EnumLabel");
+                b.Add(enumField);
+                container.Add(b);
+            }
+            else
+            {
+                container.Add(enumField);
+            }
+
             return enumField;
         }
 
 
         #endregion
 
-        // Custom-made's --------------------------------------------------------------------------
+        // Translated Fields --------------------------------------------------------------------------
 
-        #region Custom
+        #region Translated Fields
 
 
         /// <summary>
@@ -1001,8 +1182,8 @@ namespace Project.NodeSystem.Editor
             {
                 texts.Add(new LanguageGeneric<string>
                 {
-                    language = languageType,
-                    data = ""
+                    Language = languageType,
+                    Data = ""
                 });
             });
 
@@ -1016,9 +1197,9 @@ namespace Project.NodeSystem.Editor
             // When we change the variable from graph view.
             textField.RegisterValueChangedCallback(value =>
             {
-                texts.Find(text => text.language == node.Window.SelectedLanguage).data = value.newValue;
+                texts.Find(text => text.Language == node.Window.SelectedLanguage).Data = value.newValue;
             });
-            textField.SetValueWithoutNotify(texts.Find(text => text.language == node.Window.SelectedLanguage).data);
+            textField.SetValueWithoutNotify(texts.Find(text => text.Language == node.Window.SelectedLanguage).Data);
 
             // Text field is set to be multiline.
             textField.multiline = true;
@@ -1045,8 +1226,8 @@ namespace Project.NodeSystem.Editor
             {
                 audioClips.Add(new LanguageGeneric<AudioClip>
                 {
-                    language = languageType,
-                    data = null
+                    Language = languageType,
+                    Data = null
                 });
             });
 
@@ -1055,7 +1236,7 @@ namespace Project.NodeSystem.Editor
             {
                 objectType = typeof(AudioClip),
                 allowSceneObjects = false,
-                value = audioClips.Find(audioClip => audioClip.language == node.Window.SelectedLanguage).data,
+                value = audioClips.Find(audioClip => audioClip.Language == node.Window.SelectedLanguage).Data,
             };
 
             // Add it to the reaload current language list.
@@ -1065,9 +1246,9 @@ namespace Project.NodeSystem.Editor
             // When we change the variable from graph view.
             objectField.RegisterValueChangedCallback(value =>
             {
-                audioClips.Find(audioClip => audioClip.language == node.Window.SelectedLanguage).data = value.newValue as AudioClip;
+                audioClips.Find(audioClip => audioClip.Language == node.Window.SelectedLanguage).Data = value.newValue as AudioClip;
             });
-            objectField.SetValueWithoutNotify(audioClips.Find(audioClip => audioClip.language == node.Window.SelectedLanguage).data);
+            objectField.SetValueWithoutNotify(audioClips.Find(audioClip => audioClip.Language == node.Window.SelectedLanguage).Data);
 
             // Set uss class for stylesheet.
             objectField.AddStyle(USSx);

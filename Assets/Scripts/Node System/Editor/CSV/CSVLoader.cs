@@ -5,33 +5,35 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+
 using static Project.Utilities.ValueTypes.Enums;
+using Project.Utilities.Assets;
 
 namespace Project.NodeSystem.Editor
 {
     public class CSVLoader
     {
-        private string csvDirName = "Resources/Dialogue System/CSV Files";
-        private string csvFileName = "CSV_Dialogue.csv";
+        private readonly string _csvDirName = "Resources/Dialogue System/CSV Files";
+        private readonly string _csvFileName = "CSV_Dialogue.csv";
 
 
 
         public void Load()
         {
-            string text = File.ReadAllText($"{Application.dataPath}/{csvDirName}/{csvFileName}");
+            string text = File.ReadAllText($"{Application.dataPath}/{_csvDirName}/{_csvFileName}");
             List<List<string>> result = ParseCSV(text);
 
             List<string> headers = result[0];
 
-            List<DialogueContainerSO> dialogueContainers = CSVHelper.FindAllDialogueContainers();
+            List<DialogueContainerSO> dialogueContainers = AssetFinderUtilities.FindAllAssetsOfType<DialogueContainerSO>();
 
             foreach (DialogueContainerSO dialogueContainer in dialogueContainers)
             {
 
                 //Répliques des dialogues
-                foreach (RepliqueData nodeData in dialogueContainer.repliqueDatas)
+                foreach (RepliqueData nodeData in dialogueContainer.RepliqueDatas)
                 {
-                    foreach (RepliqueData_Replique textData in nodeData.repliques)
+                    foreach (RepliqueData_Replique textData in nodeData.Repliques)
                     {
                         LoadInToDialogueNodeText(result, headers, textData);
                     }
@@ -39,13 +41,13 @@ namespace Project.NodeSystem.Editor
 
 
                 //Charger les choix et descriptions
-                foreach (ChoiceData nodeData in dialogueContainer.choiceDatas)
+                foreach (ChoiceData nodeData in dialogueContainer.ChoiceDatas)
                 {
-                    foreach (ChoiceData_Container choice in nodeData.choices)
+                    foreach (ChoiceData_Container choice in nodeData.Choices)
                     {
                         LoadInToChoiceNode(result, headers, choice);
 
-                        foreach (ChoiceData_Condition condition in choice.conditions)
+                        foreach (ChoiceData_Condition condition in choice.Conditions)
                         {
                             LoadInToChoiceNode(result, headers, condition);
                         }
@@ -62,7 +64,7 @@ namespace Project.NodeSystem.Editor
         {
             foreach (List<string> line in result)
             {
-                if (line[2] == nodeData_Text.guid.value)
+                if (line[2] == nodeData_Text.Guid.Value)
                 {
                     for (int i = 0; i < line.Count; i++)
                     {
@@ -70,7 +72,7 @@ namespace Project.NodeSystem.Editor
                         {
                             if (headers[i] == languageType.ToString())
                             {
-                                nodeData_Text.texts.Find(x => x.language == languageType).data = line[i];
+                                nodeData_Text.Texts.Find(x => x.Language == languageType).Data = line[i];
                             }
                         });
                     }
@@ -83,7 +85,7 @@ namespace Project.NodeSystem.Editor
         {
             foreach (List<string> line in result)
             {
-                if (line[2] == choice.guid.value)
+                if (line[2] == choice.Guid.Value)
                 {
                     for (int i = 0; i < line.Count; i++)
                     {
@@ -91,7 +93,7 @@ namespace Project.NodeSystem.Editor
                         {
                             if (headers[i] == languageType.ToString())
                             {
-                                choice.texts.Find(x => x.language == languageType).data = line[i];
+                                choice.Texts.Find(x => x.Language == languageType).Data = line[i];
                             }
                         });
                     }
@@ -104,7 +106,7 @@ namespace Project.NodeSystem.Editor
         {
             foreach (List<string> line in result)
             {
-                if (line[2] == condition.guid.value)
+                if (line[2] == condition.Guid.Value)
                 {
                     for (int i = 0; i < line.Count; i++)
                     {
@@ -112,7 +114,7 @@ namespace Project.NodeSystem.Editor
                         {
                             if (headers[i] == languageType.ToString())
                             {
-                                condition.descriptionsIfNotMet.Find(x => x.language == languageType).data = line[i];
+                                condition.DescriptionsIfNotMet.Find(x => x.Language == languageType).Data = line[i];
                             }
                         });
                     }

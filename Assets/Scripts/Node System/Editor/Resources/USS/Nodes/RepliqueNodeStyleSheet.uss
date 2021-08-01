@@ -56,3 +56,14 @@
 .AudioClip{
 	flex-grow: 100;
 }
+
+
+.ToggleLabel{
+	padding-left:2px;
+	padding-top:3px;
+}
+
+.FloatField{
+	min-width: 50px;
+	bottom:2px;
+}

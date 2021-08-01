@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
-namespace Project.NodeSystem.Editor
-{
-    public static class CSVHelper
-    {
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
+namespace Project.Utilities.Assets
+{
+
+    public class AssetFinderUtilities : MonoBehaviour
+    {
         /// <summary>
         /// Runtime version of finding assets in Resources.
         /// </summary>
@@ -27,7 +30,7 @@ namespace Project.NodeSystem.Editor
                 T[] result = Resources.LoadAll(dirPath, typeof(T)).Cast<T>().ToArray();
 
                 foreach (T obj in result)
-                { 
+                {
                     //Evite les duplicatas
                     if (!tmp.Contains(obj))
                         tmp.Add(obj);
@@ -38,23 +41,29 @@ namespace Project.NodeSystem.Editor
         }
 
 
+#if UNITY_EDITOR
+
+
         /// <summary>
         /// Version dans l'éditeur, permet de trouver les dialogues n'importe où dans le dossier Assets
         /// </summary>
         /// <returns></returns>
-        public static List<DialogueContainerSO> FindAllDialogueContainers()
+        public static List<T> FindAllAssetsOfType<T>() where T : Object
         {
             string[] guids = AssetDatabase.FindAssets("t:DialogueContainerSO");
 
-            DialogueContainerSO[] dialoguesFound = new DialogueContainerSO[guids.Length];
+            T[] assetsFound = new T[guids.Length];
 
             for (int i = 0; i < guids.Length; i++)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guids[i]);
-                dialoguesFound[i] = AssetDatabase.LoadAssetAtPath<DialogueContainerSO>(path);
+                assetsFound[i] = AssetDatabase.LoadAssetAtPath<T>(path);
             }
 
-            return dialoguesFound.ToList();
+            return assetsFound.ToList();
         }
+
+
+#endif
     }
 }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 846a94970f87695469a491017d59c231, type: 3}
-  m_Name: TS_Char sprite -fade OnRepliqueEnded
+  m_Name: TS_CharTalks sprite +moveX
   m_EditorClassIdentifier: 
-  animationType: 6
+  animationType: 9
   curveType: 38
   curve:
     serializedVersion: 2
@@ -20,8 +20,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -29,8 +29,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -38,14 +38,15 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  duration: 0.2
+  duration: 0.4
   delay: 0
   loop: 0
   pingPong: 0
-  useFromAsStart: 0
-  relativeToTransform: 0
-  from: {x: 0, y: 0, z: 0}
-  to: {x: 0.5, y: 0, z: 0}
+  useFromAsStart: 1
+  relativeToTransform: 1
+  from: {x: -100, y: 0, z: 0}
+  to: {x: 0, y: 0, z: 0}
   fromColor: {r: 0, g: 0, b: 0, a: 0}
   toColor: {r: 0, g: 0, b: 0, a: 0}
-  OnComplete: []
+  OnComplete:
+  - {fileID: 11400000, guid: 64c8ca17ad3e34645ab3f289537ccef4, type: 2}

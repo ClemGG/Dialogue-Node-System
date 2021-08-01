@@ -11,38 +11,38 @@ namespace Project.NodeSystem
     {
         public List<LinkData> linkDatas = new List<LinkData>();
 
-        public List<StartData> startDatas = new List<StartData>();
-        public List<CharacterData> characterDatas = new List<CharacterData>();
-        public List<RepliqueData> repliqueDatas = new List<RepliqueData>();
-        public List<BranchData> branchDatas = new List<BranchData>();
-        public List<ChoiceData> choiceDatas = new List<ChoiceData>();
-        public List<EventData> eventDatas = new List<EventData>();
-        public List<EndData> endDatas = new List<EndData>();
+        public List<StartData> StartDatas = new List<StartData>();
+        public List<CharacterData> CharacterDatas = new List<CharacterData>();
+        public List<RepliqueData> RepliqueDatas = new List<RepliqueData>();
+        public List<BranchData> BranchDatas = new List<BranchData>();
+        public List<ChoiceData> ChoiceDatas = new List<ChoiceData>();
+        public List<EventData> EventDatas = new List<EventData>();
+        public List<EndData> EndDatas = new List<EndData>();
 
 
 #if UNITY_EDITOR
 
         //Garde en mémoire les Groups et les nodes qu'ils contiennent
-        public List<GroupData> groupDatas = new List<GroupData>();
+        public List<GroupData> GroupDatas = new List<GroupData>();
 
         //Garde en mémoire les Notes
-        public List<NoteData> noteDatas = new List<NoteData>();
+        public List<NoteData> NoteDatas = new List<NoteData>();
 
 #endif
 
-
+        //Utilisé dans DialogueGetData pour récupérer la node suivante d'un Guid
         public List<BaseData> AllDatas
         {
             get
             {
                 List<BaseData> tmp = new List<BaseData>();
-                tmp.AddRange(startDatas);
-                tmp.AddRange(characterDatas);
-                tmp.AddRange(repliqueDatas);
-                tmp.AddRange(branchDatas);
-                tmp.AddRange(choiceDatas);
-                tmp.AddRange(eventDatas);
-                tmp.AddRange(endDatas);
+                tmp.AddRange(StartDatas);
+                tmp.AddRange(CharacterDatas);
+                tmp.AddRange(RepliqueDatas);
+                tmp.AddRange(BranchDatas);
+                tmp.AddRange(ChoiceDatas);
+                tmp.AddRange(EventDatas);
+                tmp.AddRange(EndDatas);
 
                 return tmp;
             }

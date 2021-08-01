@@ -70,27 +70,29 @@ namespace Project.NodeSystem.Editor
             CharacterData_CharacterSO newCharacter = new CharacterData_CharacterSO();
             if (character != null)
             {
-                newCharacter.character.value = character.character.value;
-                newCharacter.characterNames.AddRange(character.characterNames);
-                newCharacter.characterName.value = character.characterName.value;
-                newCharacter.mood.value = character.mood.value;
-                newCharacter.faceDirection.value = character.faceDirection.value;
-                newCharacter.sidePlacement.value = character.sidePlacement.value;
-                newCharacter.sprite.value = character.sprite.value;
+                newCharacter.Character.Value = character.Character.Value;
+                newCharacter.CharacterNames.AddRange(character.CharacterNames);
+                newCharacter.CharacterName.Value = character.CharacterName.Value;
+                newCharacter.Mood.Value = character.Mood.Value;
+                newCharacter.FaceDirection.Value = character.FaceDirection.Value;
+                newCharacter.SidePlacement.Value = character.SidePlacement.Value;
+                newCharacter.Sprite.Value = character.Sprite.Value;
+                newCharacter.useAutoDelay.Value = character.useAutoDelay.Value;
+                newCharacter.autoDelayDuration.Value = character.autoDelayDuration.Value;
             }
             else
             {
-                newCharacter.faceDirection.value = DialogueSide.Right;
-                newCharacter.sidePlacement.value = DialogueSide.Left;
+                newCharacter.FaceDirection.Value = DialogueSide.Right;
+                newCharacter.SidePlacement.Value = DialogueSide.Left;
             }
-            CharacterData.characters.Add(newCharacter);
+            CharacterData.Characters.Add(newCharacter);
 
-            newCharacter.boxContainer = NodeBuilder.NewBox(mainContainer, "CharacterNameBox");
+            newCharacter.BoxContainer = NodeBuilder.NewBox(mainContainer, "CharacterNameBox");
 
 
-            AddLabelAndButton(newCharacter, newCharacter.boxContainer, "Image", "ImageColor");
-            AddImages(newCharacter, newCharacter.boxContainer);
-            AddCharacterInfo(newCharacter, newCharacter.boxContainer);
+            AddLabelAndButton(newCharacter, newCharacter.BoxContainer, "Image", "ImageColor");
+            AddImages(newCharacter, newCharacter.BoxContainer);
+            AddCharacterInfo(newCharacter, newCharacter.BoxContainer);
 
         }
 
@@ -118,7 +120,7 @@ namespace Project.NodeSystem.Editor
             boxesButtons.Add(buttonsBox);
             for (int i = 0; i < boxesButtons.Count; i++)
             {
-                NodeBuilder.ShowHide(CharacterData.characters.Count > 1, boxesButtons[i]);
+                NodeBuilder.ShowHide(CharacterData.Characters.Count > 1, boxesButtons[i]);
             }
 
             // Move up button.
@@ -139,7 +141,7 @@ namespace Project.NodeSystem.Editor
             onClicked = () =>
             {
                 DeleteBox(boxContainer);
-                CharacterData.characters.Remove(character);
+                CharacterData.Characters.Remove(character);
                 ShouldShowHideMoveButtons();
             };
             Button removeBtn = NodeBuilder.NewButton(buttonsBox, "X", onClicked, "RemoveBtn");
@@ -148,33 +150,33 @@ namespace Project.NodeSystem.Editor
         public override void MoveBox(NodeData_BaseContainer character, bool moveUp)
         {
             List<NodeData_BaseContainer> tmp = new List<NodeData_BaseContainer>();
-            tmp.AddRange(CharacterData.characters);
+            tmp.AddRange(CharacterData.Characters);
 
 
             for (int i = 0; i < tmp.Count; i++)
             {
-                DeleteBox(CharacterData.characters[i].boxContainer);
-                tmp[i].ID.value = i;
+                DeleteBox(CharacterData.Characters[i].BoxContainer);
+                tmp[i].ID.Value = i;
             }
 
-            if (character.ID.value > 0 && moveUp)
+            if (character.ID.Value > 0 && moveUp)
             {
-                NodeData_BaseContainer tmp01 = tmp[character.ID.value];
-                NodeData_BaseContainer tmp02 = tmp[character.ID.value - 1];
+                NodeData_BaseContainer tmp01 = tmp[character.ID.Value];
+                NodeData_BaseContainer tmp02 = tmp[character.ID.Value - 1];
 
-                tmp[character.ID.value] = tmp02;
-                tmp[character.ID.value - 1] = tmp01;
+                tmp[character.ID.Value] = tmp02;
+                tmp[character.ID.Value - 1] = tmp01;
             }
-            else if (character.ID.value < tmp.Count - 1 && !moveUp)
+            else if (character.ID.Value < tmp.Count - 1 && !moveUp)
             {
-                NodeData_BaseContainer tmp01 = tmp[character.ID.value];
-                NodeData_BaseContainer tmp02 = tmp[character.ID.value + 1];
+                NodeData_BaseContainer tmp01 = tmp[character.ID.Value];
+                NodeData_BaseContainer tmp02 = tmp[character.ID.Value + 1];
 
-                tmp[character.ID.value] = tmp02;
-                tmp[character.ID.value + 1] = tmp01;
+                tmp[character.ID.Value] = tmp02;
+                tmp[character.ID.Value + 1] = tmp01;
             }
 
-            CharacterData.characters.Clear();
+            CharacterData.Characters.Clear();
 
             foreach (NodeData_BaseContainer data in tmp)
             {
@@ -187,19 +189,35 @@ namespace Project.NodeSystem.Editor
 
         private void AddCharacterInfo(CharacterData_CharacterSO character, Box boxContainer)
         {
-
-            TextField nameField = NodeBuilder.NewTextField(character.characterName, "", "CharacterName", "TextStretch");
+            //CharacterName
+            TextField nameField = NodeBuilder.NewTextField(character.CharacterName, "", "CharacterName", "TextStretch");
             nameField.SetEnabled(false);
-            character.nameField = nameField;
+            character.NameField = nameField;
 
-            boxContainer.Add(NodeBuilder.NewCharacterField(this, character, character.character, "Character"));
+            //Character SO
+            boxContainer.Add(NodeBuilder.NewCharacterField(this, character, character.Character, "Character"));
             boxContainer.Add(nameField);
-            boxContainer.Add(NodeBuilder.NewLabel("Mood", "EnumLabel"));
-            boxContainer.Add(NodeBuilder.NewCharacterMoodField(character, character.mood, "EnumField", "CharacterMood"));
-            boxContainer.Add(NodeBuilder.NewLabel("Face Direction", "EnumLabel"));
-            boxContainer.Add(NodeBuilder.NewDialogueSideField(character.faceDirection, "EnumField", "CharacterFaceDirection"));
-            boxContainer.Add(NodeBuilder.NewLabel("Side Placement", "EnumLabel"));
-            boxContainer.Add(NodeBuilder.NewDialogueSideField(character.sidePlacement, "EnumField", "CharacterSidePlacement"));
+
+
+            //Mood
+            Action onMoodChanged = () =>
+            {
+                if (character.Character.Value != null)
+                {
+                    //Quand on change d'humeur, on affiche le sprite correspondant
+                    character.Sprite.Value = character.Character.Value.GetFaceFromMood(character.Mood.Value);
+                    character.SpriteField.image = character.Sprite.Value.texture;
+                }
+            };
+            NodeBuilder.NewEnumField("Mood", boxContainer, character.Mood, onMoodChanged, "EnumField", "CharacterMood");
+
+            //Dialogue Sides
+            NodeBuilder.NewEnumField("Face Direction", boxContainer, character.FaceDirection, "EnumField", "CharacterFaceDirection");
+            NodeBuilder.NewEnumField("Side Placement", boxContainer, character.SidePlacement, "EnumField", "CharacterSidePlacement");
+
+
+            //Auto Delay Duration
+            NodeBuilder.AddToggleFloatField(this, boxContainer, character.useAutoDelay, character.autoDelayDuration, "Use Auto Delay");
         }
 
 
@@ -211,7 +229,7 @@ namespace Project.NodeSystem.Editor
             // Set up Image Preview.
             Image faceImage = NodeBuilder.NewImage(ImagePreviewBox, "ImagePreview");
 
-            character.spriteField = faceImage;  //On le garde en mémoire pour quand on veut changer l'humeur du perso
+            character.SpriteField = faceImage;  //On le garde en mémoire pour quand on veut changer l'humeur du perso
 
         }
 
@@ -222,7 +240,7 @@ namespace Project.NodeSystem.Editor
             //Si on n'a qu'un seul perso, pas la peine d'afficher les petits boutons
             for (int i = 0; i < boxesButtons.Count; i++)
             {
-                NodeBuilder.ShowHide(CharacterData.characters.Count > 1, boxesButtons[i]);
+                NodeBuilder.ShowHide(CharacterData.Characters.Count > 1, boxesButtons[i]);
             }
         }
 
@@ -240,12 +258,12 @@ namespace Project.NodeSystem.Editor
         {
             base.ReloadLanguage();
 
-            for (int i = 0; i < CharacterData.characters.Count; i++)
+            for (int i = 0; i < CharacterData.Characters.Count; i++)
             {
-                var tmp = CharacterData.characters[i];
-                if (tmp.nameField != null && tmp.characterNames.Count > 0)
+                var tmp = CharacterData.Characters[i];
+                if (tmp.NameField != null && tmp.CharacterNames.Count > 0)
                 {
-                    tmp.nameField.SetValueWithoutNotify(tmp.characterNames[(int)Window.SelectedLanguage]);
+                    tmp.NameField.SetValueWithoutNotify(tmp.CharacterNames[(int)Window.SelectedLanguage]);
                 }
             }
         }

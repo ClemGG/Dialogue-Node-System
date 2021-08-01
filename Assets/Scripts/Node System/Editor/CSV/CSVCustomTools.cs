@@ -7,12 +7,12 @@ namespace Project.NodeSystem.Editor
 {
     public class CSVCustomTools
     {
-        static CSVSaver saver;
-        static CSVLoader loader;
-        static DialogueEditorWindow window;
-        static CSVSaver Saver => saver ??= new CSVSaver();
-        static CSVLoader Loader => loader ??= new CSVLoader();
-        static DialogueEditorWindow Window => window ??= EditorUtilities.FindEditorWindow<DialogueEditorWindow>("Dialogue Editor", 0);
+        static CSVSaver s_saver;
+        static CSVLoader s_loader;
+        static DialogueEditorWindow s_window;
+        static CSVSaver Saver => s_saver ??= new CSVSaver();
+        static CSVLoader Loader => s_loader ??= new CSVLoader();
+        static DialogueEditorWindow Window => s_window ??= EditorUtilities.FindEditorWindow<DialogueEditorWindow>("Dialogue Editor", 0);
 
 
         [MenuItem("DalogueSystem/CSV/Save Dialogues To CSV")]

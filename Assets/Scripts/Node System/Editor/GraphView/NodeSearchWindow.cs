@@ -11,22 +11,22 @@ namespace Project.NodeSystem.Editor
 
     public class NodeSearchWindow : ScriptableObject, ISearchWindowProvider
     {
-        private DialogueEditorWindow window;
-        private DialogueGraphView graphView;
+        private DialogueEditorWindow _window;
+        private DialogueGraphView _graphView;
 
         //Pour décoller les suggestions du bord de la fenêtre
-        private Texture2D empty;
+        private Texture2D _empty;
 
 
         public void Configure(DialogueEditorWindow window, DialogueGraphView graphView)
         {
-            this.window = window;
-            this.graphView = graphView;
+            this._window = window;
+            this._graphView = graphView;
 
             //Pour décoller les suggestions du bord de la fenêtre
-            empty = new Texture2D(1, 1);
-            empty.SetPixel(0, 0, Color.clear);
-            empty.Apply();
+            _empty = new Texture2D(1, 1);
+            _empty.SetPixel(0, 0, Color.clear);
+            _empty.Apply();
         }
 
 
@@ -89,13 +89,13 @@ namespace Project.NodeSystem.Editor
             //Ajoute une commande à la liste pour chaque type de node dérivant de BaseNode
             for (int i = 0; i < subclassTypes.Count; i++)
             {
-                tree.Add(AddNodeEntry(subclassTypes[i].Name.Replace("Node", " Node"), graphView.CreateNode(subclassTypes[i])));
+                tree.Add(AddNodeEntry(subclassTypes[i].Name.Replace("Node", " Node"), _graphView.CreateNode(subclassTypes[i])));
             }
         }
 
         private SearchTreeEntry AddNodeEntry(string name, BaseNode baseNode)
         {
-            SearchTreeEntry tmp = new SearchTreeEntry(new GUIContent(name, empty))
+            SearchTreeEntry tmp = new SearchTreeEntry(new GUIContent(name, _empty))
             {
                 level = 2,
                 userData = baseNode
@@ -106,7 +106,7 @@ namespace Project.NodeSystem.Editor
 
         private SearchTreeEntry AddGroupEntry()
         {
-            return new SearchTreeEntry(new GUIContent("Group", empty))
+            return new SearchTreeEntry(new GUIContent("Group", _empty))
             {
                 level = 1,
                 userData = new Group()
@@ -115,7 +115,7 @@ namespace Project.NodeSystem.Editor
 
         private SearchTreeEntry AddStickyNoteEntry()
         {
-            return new SearchTreeEntry(new GUIContent("Sticky Note", empty))
+            return new SearchTreeEntry(new GUIContent("Sticky Note", _empty))
             {
                 level = 1,
                 userData = new StickyNote()
@@ -132,13 +132,13 @@ namespace Project.NodeSystem.Editor
         public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {
             //Position de la souris sur l'écran
-            Vector2 mousePos = window.rootVisualElement.ChangeCoordinatesTo
+            Vector2 mousePos = _window.rootVisualElement.ChangeCoordinatesTo
                 (
-                    window.rootVisualElement.parent, context.screenMousePosition - window.position.position
+                    _window.rootVisualElement.parent, context.screenMousePosition - _window.position.position
                 );
 
             //Convertit mousePos pour l'adapter au Rect de la fenêtre
-            Vector2 graphMousePos = graphView.contentViewContainer.WorldToLocal(mousePos);
+            Vector2 graphMousePos = _graphView.contentViewContainer.WorldToLocal(mousePos);
 
             return CheckForNodeType(searchTreeEntry, graphMousePos);
         }
@@ -150,15 +150,15 @@ namespace Project.NodeSystem.Editor
             switch (searchTreeEntry.userData)
             {
                 case BaseNode node:
-                    graphView.AddElement(graphView.CreateNode(node.GetType(), pos));
+                    _graphView.AddElement(_graphView.CreateNode(node.GetType(), pos));
                     return true;
 
                 case Group _:
-                    graphView.AddElement(GraphBuilder.AddGroup(graphView, "Group", pos));
+                    _graphView.AddElement(GraphBuilder.AddGroup(_graphView, "Group", pos));
                     return true;
 
                 case StickyNote _:
-                    graphView.AddElement(GraphBuilder.AddStickyNote("Note", "<i>Write your text here...</i>", pos));
+                    _graphView.AddElement(GraphBuilder.AddStickyNote("Note", "<i>Write your text here...</i>", pos));
                     return true;
             }
 

@@ -102,36 +102,36 @@ namespace Project.NodeSystem.Editor
         public override void MoveBox(NodeData_BaseContainer eventToMove, bool moveUp)
         {
             List<NodeData_BaseContainer> tmp = new List<NodeData_BaseContainer>();
-            tmp.AddRange(EventData.events);
+            tmp.AddRange(EventData.Events);
 
 
             for (int i = 0; i < tmp.Count; i++)
             {
-                DeleteBox(tmp[i].eventBox);
-                tmp[i].ID.value = i;
+                DeleteBox(tmp[i].EventBox);
+                tmp[i].ID.Value = i;
             }
 
-            if (eventToMove.ID.value > 0 && moveUp)
+            if (eventToMove.ID.Value > 0 && moveUp)
             {
-                NodeData_BaseContainer tmp01 = tmp[eventToMove.ID.value];
-                NodeData_BaseContainer tmp02 = tmp[eventToMove.ID.value - 1];
+                NodeData_BaseContainer tmp01 = tmp[eventToMove.ID.Value];
+                NodeData_BaseContainer tmp02 = tmp[eventToMove.ID.Value - 1];
 
-                tmp[eventToMove.ID.value] = tmp02;
-                tmp[eventToMove.ID.value - 1] = tmp01;
+                tmp[eventToMove.ID.Value] = tmp02;
+                tmp[eventToMove.ID.Value - 1] = tmp01;
 
             }
-            else if (eventToMove.ID.value < tmp.Count - 1 && !moveUp)
+            else if (eventToMove.ID.Value < tmp.Count - 1 && !moveUp)
             {
-                NodeData_BaseContainer tmp01 = tmp[eventToMove.ID.value];
-                NodeData_BaseContainer tmp02 = tmp[eventToMove.ID.value + 1];
+                NodeData_BaseContainer tmp01 = tmp[eventToMove.ID.Value];
+                NodeData_BaseContainer tmp02 = tmp[eventToMove.ID.Value + 1];
 
-                tmp[eventToMove.ID.value] = tmp02;
-                tmp[eventToMove.ID.value + 1] = tmp01;
+                tmp[eventToMove.ID.Value] = tmp02;
+                tmp[eventToMove.ID.Value + 1] = tmp01;
 
             }
 
 
-            EventData.events.Clear();
+            EventData.Events.Clear();
 
             for (int i = 0; i < tmp.Count; i++)
             {
@@ -154,9 +154,9 @@ namespace Project.NodeSystem.Editor
 
         private void ShowHideButtons()
         {
-            for (int i = 0; i < EventData.events.Count; i++)
+            for (int i = 0; i < EventData.Events.Count; i++)
             {
-                NodeBuilder.ShowHide(EventData.events.Count > 1, EventData.events[i].btnsBox);
+                NodeBuilder.ShowHide(EventData.Events.Count > 1, EventData.Events[i].BtnsBox);
             }
         }
 

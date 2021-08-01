@@ -50,7 +50,7 @@ namespace Project.NodeSystem.Editor
         /// <param name="stringEvent"></param>
         public void AddCondition(EventData_StringEventCondition stringEvent = null)
         {
-            NodeBuilder.AddStringConditionEvent(this, BranchData.stringConditions, stringEvent);
+            NodeBuilder.AddStringConditionEvent(this, BranchData.StringConditions, stringEvent);
         }
 
 

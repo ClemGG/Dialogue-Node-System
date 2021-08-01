@@ -4,6 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 #endif
 
+
 namespace Project.NodeSystem
 {
 
@@ -14,8 +15,8 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class LanguageGeneric<T>
     {
-        public T data;   //Les données propres à chaque langue
-        public LanguageType language;
+        public T Data;   //Les données propres à chaque langue
+        public LanguageType Language;
     }
 
 
@@ -23,11 +24,11 @@ namespace Project.NodeSystem
     public class NodeData_Port : NodeData_BaseContainer
     {
 #if UNITY_EDITOR
-        public Port port;
+        public Port Port;
 #endif
-        public string portGuid;
-        public string inputGuid;
-        public string outputGuid;
+        public string PortGuid;
+        public string InputGuid;
+        public string OutputGuid;
     }
 
 
@@ -41,7 +42,7 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class ContainerValue<T>
     {
-        public T value;
+        public T Value;
     }
 
 
@@ -54,9 +55,9 @@ namespace Project.NodeSystem
     public class ContainerEnum<T> where T : System.Enum
     {
 #if UNITY_EDITOR
-        public EnumField enumField;
+        public EnumField EnumField;
 #endif
-        public T value;
+        public T Value;
     }
 
 
@@ -73,7 +74,8 @@ namespace Project.NodeSystem
     public class NodeData_BaseContainer
     {
 #if UNITY_EDITOR
-        public Box btnsBox, eventBox;
+        public Box BtnsBox;
+        public Box EventBox;
 #endif
 
         public ContainerValue<int> ID = new ContainerValue<int>();
@@ -87,8 +89,8 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class EventData_StringEvent : NodeData_BaseContainer
     {
-        public ContainerValue<string> stringEvent = new ContainerValue<string>();   //Name of the variable to modify
-        public ContainerValue<float> number = new ContainerValue<float>(); //The number to compare it to / to assign to it
+        public ContainerValue<string> StringEvent = new ContainerValue<string>();   //Name of the variable to modify
+        public ContainerValue<float> Number = new ContainerValue<float>(); //The number to compare it to / to assign to it
 
     }
 
@@ -98,7 +100,7 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class EventData_StringEventCondition : EventData_StringEvent
     {
-        public ContainerEnum<StringEventConditionType> conditionType = new ContainerEnum<StringEventConditionType>();
+        public ContainerEnum<StringEventConditionType> ConditionType = new ContainerEnum<StringEventConditionType>();
     }
 
     /// <summary>
@@ -108,7 +110,7 @@ namespace Project.NodeSystem
     public class EventData_StringEventModifier : EventData_StringEvent
     {
 
-        public ContainerEnum<StringEventModifierType> modifierType = new ContainerEnum<StringEventModifierType>();
+        public ContainerEnum<StringEventModifierType> ModifierType = new ContainerEnum<StringEventModifierType>();
 
         /// <summary>
         /// Pour chaque stringEvent, on récupère la variable correspondante dans DE_Trigger et on la modifie selon le modifierType
@@ -116,7 +118,7 @@ namespace Project.NodeSystem
         /// <param name="triggerScript"></param>
         public void Invoke(DE_Trigger triggerScript)
         {
-            UseStringEventModifier.DialogueModifierEvents(triggerScript, stringEvent.value, modifierType.value, number.value);
+            UseStringEventModifier.DialogueModifierEvents(triggerScript, StringEvent.Value, ModifierType.Value, Number.Value);
         }
     }
 
@@ -126,7 +128,7 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class EventData_ScriptableEvent : NodeData_BaseContainer
     {
-        public ContainerValue<DialogueEventSO> scriptableObject = new ContainerValue<DialogueEventSO>();
+        public ContainerValue<DialogueEventSO> ScriptableObject = new ContainerValue<DialogueEventSO>();
     }
 
 

@@ -9,25 +9,25 @@ namespace Project.NodeSystem
     {
         public DialogueEventSO dialogueEvent;
 
-        [SerializeField] private int money = 50;
-        [SerializeField] private bool hasSomethingToDo = false;
+        [ReadOnly, SerializeField] private int _money = 50;
+        [ReadOnly, SerializeField] private bool _hasSomethingToDo = false;
 
-        public int Money { get => money; set => money = value; }
-        public bool HasSomethingToDo { get => hasSomethingToDo; set => hasSomethingToDo = value; }
+        public int Money { get => _money; set => _money = value; }
+        public bool HasSomethingToDo { get => _hasSomethingToDo; set => _hasSomethingToDo = value; }
 
         private void Awake()
         {
-            dialogueEvent.onDialogueEventCalled += Print;
+            dialogueEvent.OnDialogueEventCalled += Print;
         }
 
         private void Print()
         {
-            print($"L'event de DE_Trigger a bien été appelé. Money : {Money} ; HasSomethingToDo : {HasSomethingToDo}.");
+            //print($"L'event de DE_Trigger a bien été appelé. Money : {Money} ; HasSomethingToDo : {HasSomethingToDo}.");
         }
 
         private void OnDestroy()
         {
-            dialogueEvent.onDialogueEventCalled -= Print;
+            dialogueEvent.OnDialogueEventCalled -= Print;
         }
     }
 }

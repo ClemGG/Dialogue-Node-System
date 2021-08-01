@@ -1,67 +1,47 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+
 using static Project.Utilities.ValueTypes.Enums;
+using Project.Utilities.Assets;
 
 namespace Project.NodeSystem.Editor
 {
     public class CSVSaver
     {
-        private string csvDirName = "Resources/Dialogue System/CSV Files";
-        private string csvFileName = "CSV_Dialogue.csv";
-        private string csvSeparator = ",";
-        private List<string> csvHeaders = new List<string>(); //Le nom des langues (French, English, Spanish, etc)
-        private string node_ID = "Node Guid ID";
-        private string text_ID = "Text Guid ID";
-        private string dialogueName = "Dialogue Name";
+        private readonly string _csvDirName = "Resources/Dialogue System/CSV Files";
+        private readonly string _csvFileName = "CSV_Dialogue.csv";
+        private readonly string _csvSeparator = ",";
+        private readonly List<string> _csvHeaders = new List<string>(); //Le nom des langues (French, English, Spanish, etc)
+        private readonly string _node_ID = "Node Guid ID";
+        private readonly string _text_ID = "Text Guid ID";
+        private readonly string _dialogueName = "Dialogue Name";
 
 
         public void Save()
         {
-            List<DialogueContainerSO> dialogueContainers = CSVHelper.FindAllDialogueContainers();
+            List<DialogueContainerSO> dialogueContainers = AssetFinderUtilities.FindAllAssetsOfType<DialogueContainerSO>();
 
             CreateFile();
 
             foreach (DialogueContainerSO dialogueContainer in dialogueContainers)
             {
-                {
-                    //foreach (DialogueData nodeData in dialogueContainer.dialogueDatas)
-                    //{
-                    //    foreach (DialogueData_Repliques textData in nodeData.repliques)
-                    //    {
-                    //        List<string> texts = new List<string>();
-
-                    //        texts.Add(dialogueContainer.name);
-                    //        texts.Add(nodeData.nodeGuid);
-                    //        texts.Add(textData.guid.value);
-
-                    //        ForEach<LanguageType>(languageType =>
-                    //        {
-                    //            string tmp = textData.texts.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
-                    //            texts.Add($"\"{tmp}\"");
-                    //        });
-
-                    //        AppendToFile(texts);
-                    //    }
-                    //}
-                }
-
+               
                 //Répliques des dialogues
-                foreach (RepliqueData nodeData in dialogueContainer.repliqueDatas)
+                foreach (RepliqueData nodeData in dialogueContainer.RepliqueDatas)
                 {
-                    foreach (RepliqueData_Replique textData in nodeData.repliques)
+                    foreach (RepliqueData_Replique textData in nodeData.Repliques)
                     {
                         List<string> texts = new List<string>();
 
                         texts.Add(dialogueContainer.name);
-                        texts.Add(nodeData.nodeGuid);
-                        texts.Add(textData.guid.value);
+                        texts.Add(nodeData.NodeGuid);
+                        texts.Add(textData.Guid.Value);
 
                         ForEach<LanguageType>(languageType =>
                         {
-                            string tmp = textData.texts.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
+                            string tmp = textData.Texts.Find(language => language.Language == languageType).Data.Replace("\"", "\"\"");
                             texts.Add($"\"{tmp}\"");
                         });
 
@@ -71,19 +51,19 @@ namespace Project.NodeSystem.Editor
 
 
                 //Répliques des choix
-                foreach (ChoiceData nodeData in dialogueContainer.choiceDatas)
+                foreach (ChoiceData nodeData in dialogueContainer.ChoiceDatas)
                 {
-                    foreach (ChoiceData_Container choice in nodeData.choices)
+                    foreach (ChoiceData_Container choice in nodeData.Choices)
                     {
                         List<string> texts = new List<string>();
 
                         texts.Add(dialogueContainer.name);
-                        texts.Add(nodeData.nodeGuid);
-                        texts.Add(choice.guid.value);
+                        texts.Add(nodeData.NodeGuid);
+                        texts.Add(choice.Guid.Value);
 
                         ForEach<LanguageType>(languageType =>
                         {
-                            string tmp = choice.texts.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
+                            string tmp = choice.Texts.Find(language => language.Language == languageType).Data.Replace("\"", "\"\"");
                             texts.Add($"\"{tmp}\"");
                         });
 
@@ -95,21 +75,21 @@ namespace Project.NodeSystem.Editor
 
 
                 //Descriptions des choix
-                foreach (ChoiceData nodeData in dialogueContainer.choiceDatas)
+                foreach (ChoiceData nodeData in dialogueContainer.ChoiceDatas)
                 {
-                    foreach (ChoiceData_Container choice in nodeData.choices)
+                    foreach (ChoiceData_Container choice in nodeData.Choices)
                     {
-                        foreach (ChoiceData_Condition condition in choice.conditions)
+                        foreach (ChoiceData_Condition condition in choice.Conditions)
                         {
                             List<string> texts = new List<string>();
 
                             texts.Add(dialogueContainer.name);
-                            texts.Add(nodeData.nodeGuid);
-                            texts.Add(condition.guid.value);
+                            texts.Add(nodeData.NodeGuid);
+                            texts.Add(condition.Guid.Value);
 
                             ForEach<LanguageType>(languageType =>
                             {
-                                string tmp = condition.descriptionsIfNotMet.Find(language => language.language == languageType).data.Replace("\"", "\"\"");
+                                string tmp = condition.DescriptionsIfNotMet.Find(language => language.Language == languageType).Data.Replace("\"", "\"\"");
                                 texts.Add($"\"{tmp}\"");
                             });
 
@@ -125,7 +105,7 @@ namespace Project.NodeSystem.Editor
             }
 
             AssetDatabase.Refresh();
-            Selection.activeObject = Resources.Load($"{csvDirName}/{csvFileName}".Replace("Resources/", string.Empty).Replace(".csv", string.Empty));
+            Selection.activeObject = Resources.Load($"{_csvDirName}/{_csvFileName}".Replace("Resources/", string.Empty).Replace(".csv", string.Empty));
         }
 
 
@@ -136,14 +116,14 @@ namespace Project.NodeSystem.Editor
 
         private void MakeHeader()
         {
-            csvHeaders.Clear();
-            csvHeaders.Add(dialogueName);
-            csvHeaders.Add(node_ID);
-            csvHeaders.Add(text_ID);
+            _csvHeaders.Clear();
+            _csvHeaders.Add(_dialogueName);
+            _csvHeaders.Add(_node_ID);
+            _csvHeaders.Add(_text_ID);
 
             ForEach<LanguageType>(languageType =>
             {
-                csvHeaders.Add(languageType.ToString());
+                _csvHeaders.Add(languageType.ToString());
             });
         }
 
@@ -156,11 +136,11 @@ namespace Project.NodeSystem.Editor
             {
                 string finalString = "";
 
-                foreach (string header in csvHeaders)
+                foreach (string header in _csvHeaders)
                 {
                     if (finalString != "")
                     {
-                        finalString += csvSeparator;    //On indique une nouvelle colonne
+                        finalString += _csvSeparator;    //On indique une nouvelle colonne
                     }
                     finalString += header;
                 }
@@ -179,7 +159,7 @@ namespace Project.NodeSystem.Editor
                 {
                     if (finalString != "")
                     {
-                        finalString += csvSeparator;    //On indique une nouvelle colonne
+                        finalString += _csvSeparator;    //On indique une nouvelle colonne
                     }
 
                     finalString += text;
@@ -207,12 +187,12 @@ namespace Project.NodeSystem.Editor
 
         private string GetDirectoryPath()
         {
-            return $"{Application.dataPath}/{csvDirName}";
+            return $"{Application.dataPath}/{_csvDirName}";
         }
 
         private string GetFilePath()
         {
-            return $"{GetDirectoryPath()}/{csvFileName}";
+            return $"{GetDirectoryPath()}/{_csvFileName}";
         }
 
         #endregion

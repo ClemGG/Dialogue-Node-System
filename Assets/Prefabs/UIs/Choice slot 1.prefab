@@ -312,24 +312,26 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 6994752813485774215}
-          m_TargetAssemblyTypeName: ObjectTweener, Project.Utilities.ObjectTweener
+          m_TargetAssemblyTypeName: Project.Utilities.Tween.ObjectTweener, Project.Utilities.ObjectTweener
           m_MethodName: BeginTween
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: ff1ebc1961241494681238f350210534, type: 2}
-            m_ObjectArgumentAssemblyTypeName: TweenSettings, Project.Utilities.ObjectTweener
+            m_ObjectArgumentAssemblyTypeName: Project.Utilities.Tween.TweenSettings,
+              Project.Utilities.ObjectTweener
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 606025824012122337}
-          m_TargetAssemblyTypeName: ObjectTweener, Project.Utilities.ObjectTweener
+          m_TargetAssemblyTypeName: Project.Utilities.Tween.ObjectTweener, Project.Utilities.ObjectTweener
           m_MethodName: BeginTween
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: ba1337a209e155341a6cc71660af0710, type: 2}
-            m_ObjectArgumentAssemblyTypeName: TweenSettings, Project.Utilities.ObjectTweener
+            m_ObjectArgumentAssemblyTypeName: Project.Utilities.Tween.TweenSettings,
+              Project.Utilities.ObjectTweener
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -340,24 +342,26 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 6994752813485774215}
-          m_TargetAssemblyTypeName: ObjectTweener, Project.Utilities.ObjectTweener
+          m_TargetAssemblyTypeName: Project.Utilities.Tween.ObjectTweener, Project.Utilities.ObjectTweener
           m_MethodName: BeginTween
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: e77bfec405f200a4cb239ef95d202a36, type: 2}
-            m_ObjectArgumentAssemblyTypeName: TweenSettings, Project.Utilities.ObjectTweener
+            m_ObjectArgumentAssemblyTypeName: Project.Utilities.Tween.TweenSettings,
+              Project.Utilities.ObjectTweener
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 606025824012122337}
-          m_TargetAssemblyTypeName: ObjectTweener, Project.Utilities.ObjectTweener
+          m_TargetAssemblyTypeName: Project.Utilities.Tween.ObjectTweener, Project.Utilities.ObjectTweener
           m_MethodName: BeginTween
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: 477b2572c110ce64f8ccc0a6a1375838, type: 2}
-            m_ObjectArgumentAssemblyTypeName: TweenSettings, Project.Utilities.ObjectTweener
+            m_ObjectArgumentAssemblyTypeName: Project.Utilities.Tween.TweenSettings,
+              Project.Utilities.ObjectTweener
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

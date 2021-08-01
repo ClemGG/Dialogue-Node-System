@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-
 
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
@@ -12,13 +10,13 @@ namespace Project.NodeSystem
     public class StartData : BaseData
     {
 #if UNITY_EDITOR
-        public Toggle toggle;
+        public Toggle Toggle { get; set; }
 #endif
 
         //Si à true, cette node sera la node de départ par défaut
-        public ContainerValue<bool> isDefaultStartNode = new ContainerValue<bool>();
+        public ContainerValue<bool> isDefault = new ContainerValue<bool>();
 
         //Si ses conditions sont réunies, cette StartNode pourra être choisie au lancement du dialogue
-        public List<EventData_StringEventCondition> stringConditions = new List<EventData_StringEventCondition>();
+        public List<EventData_StringEventCondition> StringConditions = new List<EventData_StringEventCondition>();
     }
 }

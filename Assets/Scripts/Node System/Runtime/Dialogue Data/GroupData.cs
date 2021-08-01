@@ -7,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class GroupData
 {
-    public string groupName;
-    public Vector2 position;
-    public List<string> containedGuids = new List<string>(); //Les guids des nodes contenus dans ce groupe, stockées dans DialogueSaveLoad
+    public string GroupName;
+    public Vector2 Position;
+    public List<string> ContainedGuids = new List<string>(); //Les guids des nodes contenus dans ce groupe, stockées dans DialogueSaveLoad
 }

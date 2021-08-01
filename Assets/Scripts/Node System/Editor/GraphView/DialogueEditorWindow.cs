@@ -13,12 +13,12 @@ namespace Project.NodeSystem.Editor
     {
         #region Fields
 
-        private DialogueContainerSO currentDialogueContainer;
-        private DialogueGraphView graphView;
-        private DialogueSaveLoad saveLoad;
-        private string graphViewStyleSheet = "USS/EditorWindow/EditorWindowStyleSheet";
-        private bool makeGridVisible = false;
-        private int nbMaxChoices = 4;
+        private DialogueContainerSO _currentDialogueContainer;
+        private DialogueGraphView _graphView;
+        private DialogueSaveLoad _saveLoad;
+        private const string _graphViewStyleSheet = "USS/EditorWindow/EditorWindowStyleSheet";
+        private bool _makeGridVisible = false;
+        private int _nbMaxChoices = 4;
         private LanguageType selectedLanguage = LanguageType.French;
 
 
@@ -29,7 +29,7 @@ namespace Project.NodeSystem.Editor
         /// La langue sélectionnée dans l'éditeur.
         /// </summary>
         public LanguageType SelectedLanguage { get => selectedLanguage; set => selectedLanguage = value; }
-        public int NbMaxChoices { get => nbMaxChoices; set => nbMaxChoices = value; }
+        public int NbMaxChoices { get => _nbMaxChoices; set => _nbMaxChoices = value; }
 
 
 
@@ -49,8 +49,8 @@ namespace Project.NodeSystem.Editor
 
         private void OnDisable()
         {
-            rootVisualElement.Remove(graphView);
-            PlayerPrefs.SetInt("Editor_makeGridVisible", makeGridVisible ? 1 : 0);
+            rootVisualElement.Remove(_graphView);
+            PlayerPrefs.SetInt("Editor_makeGridVisible", _makeGridVisible ? 1 : 0);
             PlayerPrefs.SetInt("Editor_NbMaxChoices", NbMaxChoices);
         }
 
@@ -74,7 +74,7 @@ namespace Project.NodeSystem.Editor
             {
                 DialogueEditorWindow window = GetWindow<DialogueEditorWindow>();
                 window.titleContent = new GUIContent("Dialogue Editor");
-                window.currentDialogueContainer = item as DialogueContainerSO;
+                window._currentDialogueContainer = item as DialogueContainerSO;
                 window.minSize = new Vector2(500, 250);
                 window.Load();
 
@@ -87,7 +87,7 @@ namespace Project.NodeSystem.Editor
 
         private void OnGUI()
         {
-            graphView.UpdateMinimap();
+            _graphView.UpdateMinimap();
         }
 
 
@@ -99,16 +99,16 @@ namespace Project.NodeSystem.Editor
 
         private void CreateGraphView()
         {
-            graphView = new DialogueGraphView(this);
-            graphView.StretchToParentSize();
-            rootVisualElement.Add(graphView);
+            _graphView = new DialogueGraphView(this);
+            _graphView.StretchToParentSize();
+            rootVisualElement.Add(_graphView);
 
-            saveLoad = new DialogueSaveLoad(graphView);
+            _saveLoad = new DialogueSaveLoad(_graphView);
         }
 
         private void CreateToolbar()
         {
-            StyleSheet styleSheet = Resources.Load<StyleSheet>(graphViewStyleSheet);
+            StyleSheet styleSheet = Resources.Load<StyleSheet>(_graphViewStyleSheet);
             rootVisualElement.styleSheets.Add(styleSheet);
 
             Toolbar toolbar = new Toolbar();
@@ -122,13 +122,13 @@ namespace Project.NodeSystem.Editor
             showGridLabel.AddToClassList("showGridLabel");
 
             Toggle showGridToggle = new Toggle();
-            makeGridVisible = PlayerPrefs.GetInt("Editor_makeGridVisible", makeGridVisible ? 1 : 0) == 1 ? true : false;
-            showGridToggle.value = makeGridVisible;
+            _makeGridVisible = PlayerPrefs.GetInt("Editor_makeGridVisible", _makeGridVisible ? 1 : 0) == 1 ? true : false;
+            showGridToggle.value = _makeGridVisible;
             showGridToggle.RegisterCallback<ChangeEvent<bool>>((evt) =>
             {
-                showGridToggle.value = makeGridVisible = evt.newValue;
-                graphView.ToggleGrid(makeGridVisible);
-                PlayerPrefs.SetInt("Editor_makeGridVisible", makeGridVisible ? 1 : 0);
+                showGridToggle.value = _makeGridVisible = evt.newValue;
+                _graphView.ToggleGrid(_makeGridVisible);
+                PlayerPrefs.SetInt("Editor_makeGridVisible", _makeGridVisible ? 1 : 0);
             });
 
 
@@ -149,7 +149,7 @@ namespace Project.NodeSystem.Editor
 
 
             //On l'active une fois pour synchroniser la grille avec le toggle
-            graphView.ToggleGrid(makeGridVisible);
+            _graphView.ToggleGrid(_makeGridVisible);
 
 
 
@@ -185,12 +185,12 @@ namespace Project.NodeSystem.Editor
 
         public void Load()
         {
-            if (currentDialogueContainer)
+            if (_currentDialogueContainer)
             {
                 SetLanguage(selectedLanguage);
-                dialogueContainerLabel.text = currentDialogueContainer.name;
+                dialogueContainerLabel.text = _currentDialogueContainer.name;
 
-                saveLoad.Load(currentDialogueContainer);
+                _saveLoad.Load(_currentDialogueContainer);
             }
 
         }
@@ -198,8 +198,8 @@ namespace Project.NodeSystem.Editor
 
         public void Save()
         {
-            if (currentDialogueContainer)
-                saveLoad.Save(currentDialogueContainer);
+            if (_currentDialogueContainer)
+                _saveLoad.Save(_currentDialogueContainer);
         }
 
 
@@ -209,7 +209,7 @@ namespace Project.NodeSystem.Editor
             selectedLanguage = newLanguage;
 
             //Le graphView récupère toutes ses DialogueNodes et les traduit
-            graphView.ReloadLanguage();
+            _graphView.ReloadLanguage();
         }
 
 

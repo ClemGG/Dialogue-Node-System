@@ -50,10 +50,10 @@ namespace Project.NodeSystem.Editor
         public void AddChoice(ChoiceData_Container loadedChoice = null)
         {
             ChoiceData_Container newChoice = new ChoiceData_Container();
-            ChoiceData.choices.Add(newChoice);
-            newChoice.boxContainer = NodeBuilder.NewBox(this, "ChoiceBox");
+            ChoiceData.Choices.Add(newChoice);
+            newChoice.BoxContainer = NodeBuilder.NewBox(this, "ChoiceBox");
 
-            AddLabelAndButton(newChoice, $"Choice n°{(ChoiceData.choices.IndexOf(newChoice)+1).ToString()}");
+            AddLabelAndButton(newChoice, $"Choice n°{(ChoiceData.Choices.IndexOf(newChoice)+1).ToString()}");
             AddTextLine(newChoice);
             ChoiceStateEnum(newChoice);
             
@@ -62,50 +62,50 @@ namespace Project.NodeSystem.Editor
             if (loadedChoice != null)
             {
                 // Guid ID
-                newChoice.guid = loadedChoice.guid;
-                newChoice.choiceStateType.value = loadedChoice.choiceStateType.value;
+                newChoice.Guid = loadedChoice.Guid;
+                newChoice.ChoiceStateType.Value = loadedChoice.ChoiceStateType.Value;
 
                 // Text
-                foreach (LanguageGeneric<string> data_text in loadedChoice.texts)
+                foreach (LanguageGeneric<string> data_text in loadedChoice.Texts)
                 {
-                    foreach (LanguageGeneric<string> text in newChoice.texts)
+                    foreach (LanguageGeneric<string> text in newChoice.Texts)
                     {
-                        if (text.language == data_text.language)
+                        if (text.Language == data_text.Language)
                         {
-                            text.data = data_text.data;
+                            text.Data = data_text.Data;
                         }
                     }
                 }
 
 
                 // Audio
-                foreach (LanguageGeneric<AudioClip> data_audioclip in loadedChoice.audioClips)
+                foreach (LanguageGeneric<AudioClip> data_audioclip in loadedChoice.AudioClips)
                 {
-                    foreach (LanguageGeneric<AudioClip> audioclip in newChoice.audioClips)
+                    foreach (LanguageGeneric<AudioClip> audioclip in newChoice.AudioClips)
                     {
-                        if (audioclip.language == data_audioclip.language)
+                        if (audioclip.Language == data_audioclip.Language)
                         {
-                            audioclip.data = data_audioclip.data;
+                            audioclip.Data = data_audioclip.Data;
                         }
                     }
                 }
 
 
                 //Conditions
-                foreach (ChoiceData_Condition loadedCondition in loadedChoice.conditions)
+                foreach (ChoiceData_Condition loadedCondition in loadedChoice.Conditions)
                 {
-                    ChoiceData_Condition newCondition = AddCondition(newChoice, loadedCondition.stringCondition);
-                    newCondition.guid.value = loadedCondition.guid.value;
+                    ChoiceData_Condition newCondition = AddCondition(newChoice, loadedCondition.StringCondition);
+                    newCondition.Guid.Value = loadedCondition.Guid.Value;
 
                     // Descriptions de chaque condition
-                    foreach (LanguageGeneric<string> loaded_desc in loadedCondition.descriptionsIfNotMet)
+                    foreach (LanguageGeneric<string> loaded_desc in loadedCondition.DescriptionsIfNotMet)
                     {
 
-                        foreach (LanguageGeneric<string> desc in newCondition.descriptionsIfNotMet)
+                        foreach (LanguageGeneric<string> desc in newCondition.DescriptionsIfNotMet)
                         {
-                            if (desc.language == loaded_desc.language)
+                            if (desc.Language == loaded_desc.Language)
                             {
-                                desc.data = loaded_desc.data;
+                                desc.Data = loaded_desc.Data;
                             }
                         }
                     }
@@ -115,13 +115,13 @@ namespace Project.NodeSystem.Editor
             }
             else
             {
-                newChoice.guid.value = Guid.NewGuid().ToString();
+                newChoice.Guid.Value = Guid.NewGuid().ToString();
             }
 
 
 
             //Crée un port quand un nouveau choix est créé
-            newChoice.linkedPort = AddChoicePort(this, loadedChoice);
+            newChoice.LinkedPort = AddChoicePort(this, loadedChoice);
 
 
 
@@ -138,7 +138,7 @@ namespace Project.NodeSystem.Editor
 
         private void AddLabelAndButton(ChoiceData_Container newChoice, string labelName)
         {
-            Box labelContainer = NodeBuilder.NewBox(newChoice.boxContainer, "TopBox");
+            Box labelContainer = NodeBuilder.NewBox(newChoice.BoxContainer, "TopBox");
 
             // Label Name
             Box buttonsBox = NodeBuilder.NewBox(labelContainer, "BtnBox");
@@ -151,7 +151,7 @@ namespace Project.NodeSystem.Editor
             boxesButtons.Add(buttonsBox);
             for (int i = 0; i < boxesButtons.Count; i++)
             {
-                NodeBuilder.ShowHide(ChoiceData.choices.Count > 1, boxesButtons[i]);
+                NodeBuilder.ShowHide(ChoiceData.Choices.Count > 1, boxesButtons[i]);
             }
 
 
@@ -179,11 +179,11 @@ namespace Project.NodeSystem.Editor
             Action onRemoveClicked = () =>
             {
                 boxesButtons.Remove(buttonsBox);
-                DeleteBox(newChoice.boxContainer);
-                NodeBuilder.DeleteChoicePort(this, newChoice.linkedPort.port);
+                DeleteBox(newChoice.BoxContainer);
+                NodeBuilder.DeleteChoicePort(this, newChoice.LinkedPort.Port);
 
 
-                ChoiceData.choices.Remove(newChoice);
+                ChoiceData.Choices.Remove(newChoice);
                 RenameChoices();
                 ShowHideNewChoiceBtn();
             };
@@ -200,14 +200,14 @@ namespace Project.NodeSystem.Editor
         public void AddTextLine(ChoiceData_Container newChoice)
         {
             // Make Container Box
-            Box boxContainer = NodeBuilder.NewBox(newChoice.boxContainer, "TextLineBox");
+            Box boxContainer = NodeBuilder.NewBox(newChoice.BoxContainer, "TextLineBox");
 
             // Text
-            TextField textField = NodeBuilder.NewTextLanguagesField(this, boxContainer, newChoice.texts, "Text", "TextBox");
+            TextField textField = NodeBuilder.NewTextLanguagesField(this, boxContainer, newChoice.Texts, "Text", "TextBox");
             newChoice.TextField = textField;
 
             // Audio
-            ObjectField objectField = NodeBuilder.NewAudioClipLanguagesField(this, boxContainer, newChoice.audioClips, "AudioClip");
+            ObjectField objectField = NodeBuilder.NewAudioClipLanguagesField(this, boxContainer, newChoice.AudioClips, "AudioClip");
             newChoice.ObjectField = objectField;
 
             // Reload the current selected language
@@ -218,19 +218,19 @@ namespace Project.NodeSystem.Editor
         //si les conditions pour activer cette partie du dialogue ne sont pas remplies
         private void ChoiceStateEnum(ChoiceData_Container newChoice)
         {
-            newChoice.choiceStateEnumBox = NodeBuilder.NewBox(newChoice.boxContainer, "BoxRow");
+            newChoice.ChoiceStateEnumBox = NodeBuilder.NewBox(newChoice.BoxContainer, "BoxRow");
             ShowHideChoiceEnum();
 
             // Add fields to box.
-            newChoice.choiceStateEnumBox.Add(NodeBuilder.NewLabel( "If the conditions are not met", "ChoiceLabel"));
-            newChoice.choiceStateEnumBox.Add(NodeBuilder.NewChoiceStateTypeField(newChoice.choiceStateType, "enumHide"));
+            newChoice.ChoiceStateEnumBox.Add(NodeBuilder.NewLabel( "If the conditions are not met", "ChoiceLabel"));
+            NodeBuilder.NewEnumField("", newChoice.ChoiceStateEnumBox, newChoice.ChoiceStateType, "enumHide");
         }
 
 
 
         public ChoiceData_Condition AddCondition(ChoiceData_Container newChoice, EventData_StringEventCondition stringEvent = null)
         {
-            Box boxContainer = NodeBuilder.NewBox(newChoice.boxContainer, "TextLineBox");
+            Box boxContainer = NodeBuilder.NewBox(newChoice.BoxContainer, "TextLineBox");
             ChoiceData_Condition condition = NodeBuilder.AddStringConditionEvent(this, boxContainer, newChoice, stringEvent);
 
             ShowHideChoiceEnum();
@@ -254,27 +254,27 @@ namespace Project.NodeSystem.Editor
             // Check if we load it in with values
             if (loadedChoice != null)
             {
-                newPort.inputGuid = loadedChoice.linkedPort.inputGuid;
-                newPort.outputGuid = loadedChoice.linkedPort.outputGuid;
-                newPort.portGuid = loadedChoice.linkedPort.portGuid;
-                newPort.port = loadedChoice.linkedPort.port;
+                newPort.InputGuid = loadedChoice.LinkedPort.InputGuid;
+                newPort.OutputGuid = loadedChoice.LinkedPort.OutputGuid;
+                newPort.PortGuid = loadedChoice.LinkedPort.PortGuid;
+                newPort.Port = loadedChoice.LinkedPort.Port;
             }
             else
             {
-                newPort.portGuid = Guid.NewGuid().ToString();
+                newPort.PortGuid = Guid.NewGuid().ToString();
             }
 
-            if(newPort.port == null)
+            if(newPort.Port == null)
             {
                 Port port = NodeBuilder.GetPortInstance(this, Direction.Output);
 
-                port.portName = newPort.portGuid;                      // We use portName as port ID
+                port.portName = newPort.PortGuid;                      // We use portName as port ID
                 Label portNameLabel = port.contentContainer.Q<Label>("type");   // Get Labal in port that is used to contain the port name.
                 portNameLabel.AddStyle("PortName");                       // Here we add a uss class to it so we can hide it in the editor window.
 
 
                 baseNode.outputContainer.Add(port);
-                newPort.port = port;
+                newPort.Port = port;
 
                 // Refresh
                 ShowHideNewChoiceBtn();
@@ -305,47 +305,47 @@ namespace Project.NodeSystem.Editor
             List<NodeData_BaseContainer> tmp = new List<NodeData_BaseContainer>();
             List<VisualElement> ports = new List<VisualElement>();
 
-            tmp.AddRange(ChoiceData.choices);
+            tmp.AddRange(ChoiceData.Choices);
             ports.AddRange(outputContainer.Children());
 
 
             for (int i = 0; i < tmp.Count; i++)
             {
-                DeleteBox(ChoiceData.choices[i].boxContainer);
-                tmp[i].ID.value = i;
+                DeleteBox(ChoiceData.Choices[i].BoxContainer);
+                tmp[i].ID.Value = i;
             }
 
-            if (choiceToMove.ID.value > 0 && moveUp)
+            if (choiceToMove.ID.Value > 0 && moveUp)
             {
-                NodeData_BaseContainer tmp01 = tmp[choiceToMove.ID.value];
-                NodeData_BaseContainer tmp02 = tmp[choiceToMove.ID.value - 1];
+                NodeData_BaseContainer tmp01 = tmp[choiceToMove.ID.Value];
+                NodeData_BaseContainer tmp02 = tmp[choiceToMove.ID.Value - 1];
 
-                tmp[choiceToMove.ID.value] = tmp02;
-                tmp[choiceToMove.ID.value - 1] = tmp01;
+                tmp[choiceToMove.ID.Value] = tmp02;
+                tmp[choiceToMove.ID.Value - 1] = tmp01;
 
-                VisualElement p01 = ports[choiceToMove.ID.value];
-                VisualElement p02 = ports[choiceToMove.ID.value - 1];
+                VisualElement p01 = ports[choiceToMove.ID.Value];
+                VisualElement p02 = ports[choiceToMove.ID.Value - 1];
 
-                ports[choiceToMove.ID.value] = p02;
-                ports[choiceToMove.ID.value - 1] = p01;
+                ports[choiceToMove.ID.Value] = p02;
+                ports[choiceToMove.ID.Value - 1] = p01;
 
             }
-            else if (choiceToMove.ID.value < tmp.Count - 1 && !moveUp)
+            else if (choiceToMove.ID.Value < tmp.Count - 1 && !moveUp)
             {
-                NodeData_BaseContainer tmp01 = tmp[choiceToMove.ID.value];
-                NodeData_BaseContainer tmp02 = tmp[choiceToMove.ID.value + 1];
+                NodeData_BaseContainer tmp01 = tmp[choiceToMove.ID.Value];
+                NodeData_BaseContainer tmp02 = tmp[choiceToMove.ID.Value + 1];
 
-                tmp[choiceToMove.ID.value] = tmp02;
-                tmp[choiceToMove.ID.value + 1] = tmp01;
+                tmp[choiceToMove.ID.Value] = tmp02;
+                tmp[choiceToMove.ID.Value + 1] = tmp01;
 
-                VisualElement p01 = ports[choiceToMove.ID.value];
-                VisualElement p02 = ports[choiceToMove.ID.value + 1];
+                VisualElement p01 = ports[choiceToMove.ID.Value];
+                VisualElement p02 = ports[choiceToMove.ID.Value + 1];
 
-                ports[choiceToMove.ID.value] = p02;
-                ports[choiceToMove.ID.value + 1] = p01;
+                ports[choiceToMove.ID.Value] = p02;
+                ports[choiceToMove.ID.Value + 1] = p01;
             }
 
-            ChoiceData.choices.Clear();
+            ChoiceData.Choices.Clear();
             outputContainer.Clear();
             boxesButtons.Clear();
 
@@ -378,30 +378,36 @@ namespace Project.NodeSystem.Editor
 
         private void ShowHideChoiceEnum()
         {
-            for (int i = 0; i < ChoiceData.choices.Count; i++)
+            for (int i = 0; i < ChoiceData.Choices.Count; i++)
             {
-                NodeBuilder.ShowHide(ChoiceData.choices[i].conditions.Count > 0, ChoiceData.choices[i].choiceStateEnumBox);
+                NodeBuilder.ShowHide(ChoiceData.Choices[i].Conditions.Count > 0, ChoiceData.Choices[i].ChoiceStateEnumBox);
             }
         }
 
         private void ShowHideNewChoiceBtn()
         {
-            NodeBuilder.ShowHide(ChoiceData.choices.Count < Window.NbMaxChoices, newChoiceBtn);
+            NodeBuilder.ShowHide(ChoiceData.Choices.Count < Window.NbMaxChoices, newChoiceBtn);
 
             //Si on n'a qu'un seul choix, pas la peine d'afficher les petits boutons
             for (int i = 0; i < boxesButtons.Count; i++)
             {
-                NodeBuilder.ShowHide(ChoiceData.choices.Count > 1, boxesButtons[i]);
+                NodeBuilder.ShowHide(ChoiceData.Choices.Count > 1, boxesButtons[i]);
             }
         }
 
         private void RenameChoices()
         {
-            for (int i = 0; i < ChoiceData.choices.Count; i++)
+            for (int i = 0; i < ChoiceData.Choices.Count; i++)
             {
-                ChoiceData.choices[i].boxContainer.Q<Label>().text = $"Choice n°{(i + 1).ToString()}";
+                ChoiceData.Choices[i].BoxContainer.Q<Label>().text = $"Choice n°{(i + 1).ToString()}";
             }
         }
+
+        #endregion
+
+
+        #region On Load
+
 
         public override void ReloadLanguage()
         {
@@ -410,13 +416,14 @@ namespace Project.NodeSystem.Editor
 
         public override void LoadValueIntoField()
         {
-            for (int i = 0; i < ChoiceData.choices.Count; i++)
+            for (int i = 0; i < ChoiceData.Choices.Count; i++)
             {
-                if (ChoiceData.choices[i].choiceStateType.enumField != null)
-                    ChoiceData.choices[i].choiceStateType.enumField.SetValueWithoutNotify(ChoiceData.choices[i].choiceStateType.value);
+                if (ChoiceData.Choices[i].ChoiceStateType.EnumField != null)
+                    ChoiceData.Choices[i].ChoiceStateType.EnumField.SetValueWithoutNotify(ChoiceData.Choices[i].ChoiceStateType.Value);
             }
-            
+
         }
+
 
 
         #endregion

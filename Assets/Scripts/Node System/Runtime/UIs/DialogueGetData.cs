@@ -16,21 +16,21 @@ namespace Project.NodeSystem
 
         protected BaseData GetNodeByGuid(string guid)
         {
-            return dialogue.AllDatas.Find(node => node.nodeGuid == guid);
+            return dialogue.AllDatas.Find(node => node.NodeGuid == guid);
         }
         
         
         //Pour savoir quelle node récupérer ensuite si on a plusieurs choix
         protected BaseData GetNodeByNodePort(ChoicePort nodePort)
         {
-            return dialogue.AllDatas.Find(node => node.nodeGuid == nodePort.inputGuid);
+            return dialogue.AllDatas.Find(node => node.NodeGuid == nodePort.InputGuid);
         }
 
         //Si la node n'a qu'une seule sortie, on cherche directement la node suivante
         protected BaseData GetNextNode(BaseData curNode)
         {
-            LinkData nodeLinkData = dialogue.linkDatas.Find(edge => edge.baseNodeGuid == curNode.nodeGuid);
-            return GetNodeByGuid(nodeLinkData.targetNodeGuid);
+            LinkData nodeLinkData = dialogue.linkDatas.Find(edge => edge.BaseNodeGuid == curNode.NodeGuid);
+            return GetNodeByGuid(nodeLinkData.TargetNodeGuid);
         }
 
 
@@ -70,8 +70,8 @@ namespace Project.NodeSystem
         }
 
 
-
-        protected abstract void StartDialogue();
+        protected abstract void EndDialogue();
+        protected abstract void StartDialogue(DialogueContainerSO newDialogue = null, DE_Trigger newTriggerScript = null);
         protected abstract void RunNode(StartData nodeData);
         protected abstract void RunNode(CharacterData nodeData);
         protected abstract void RunNode(RepliqueData nodeData);

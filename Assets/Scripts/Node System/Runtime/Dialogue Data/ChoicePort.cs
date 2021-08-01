@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.UIElements;
+using UnityEngine.Serialization;
 
 namespace Project.NodeSystem
 {
@@ -7,11 +8,11 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class ChoicePort
     {
-        public string portGuid;
-        public string inputGuid;
-        public string outputGuid;
-        public TextField textField;
-        public List<LanguageGeneric<string>> choicesTexts = new List<LanguageGeneric<string>>();
+        public string PortGuid;
+        public string InputGuid;
+        public string OutputGuid;
+        public TextField TextField;
+        public List<LanguageGeneric<string>> ChoicesTexts = new List<LanguageGeneric<string>>();
     }
 
 }

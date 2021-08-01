@@ -17,26 +17,27 @@ MonoBehaviour:
   - Two
   - Dos
   characterNameColor: {r: 0.8679245, g: 0.23253822, b: 0.23253822, a: 1}
+  charPrintClip: {fileID: 8300000, guid: 152928669f9f9934c886d3ff2d08eac5, type: 3}
   faces:
-  - face: {fileID: 21300000, guid: e48439cfd142fd347a1ab3f4a5396fcb, type: 3}
+  - face: {fileID: 21300000, guid: e591d129f6038b64d9c23a009a6d912a, type: 3}
     mood: 0
-  - face: {fileID: 21300000, guid: e8254267f2152494db2600b46693bca9, type: 3}
+  - face: {fileID: 21300000, guid: cbe66fd870dfe6244b0a83d80cb229ac, type: 3}
     mood: 1
-  - face: {fileID: 21300000, guid: d9415a2d52f6d5545921eb5b5861c95c, type: 3}
+  - face: {fileID: 21300000, guid: ad523eb8589f1b741bea50394ea12d29, type: 3}
     mood: 2
-  - face: {fileID: 21300000, guid: 6f57263fc966550419475918e747ba7b, type: 3}
+  - face: {fileID: 21300000, guid: 130bb20e661e38549a7e2794c177e93c, type: 3}
     mood: 3
-  - face: {fileID: 21300000, guid: 539648014ff35994db077a30c354c644, type: 3}
+  - face: {fileID: 21300000, guid: accfb69fb3c1d2f469bb6ef075b055da, type: 3}
     mood: 4
-  - face: {fileID: 21300000, guid: 7d328f6b87a60a043bd411179876c49f, type: 3}
+  - face: {fileID: 21300000, guid: a564c5dd45dbeff4ca44e4540be33d08, type: 3}
     mood: 5
-  - face: {fileID: 21300000, guid: 3c99313b8a193b74381a5ee2176c51da, type: 3}
+  - face: {fileID: 21300000, guid: 86291a0c2814e004cab14f809a52402f, type: 3}
     mood: 6
-  - face: {fileID: 21300000, guid: 16ccfa95a513e7a469dcd67459ad4b91, type: 3}
+  - face: {fileID: 21300000, guid: 0a8ee23ae60f0284fabad5538146d4b4, type: 3}
     mood: 7
-  - face: {fileID: 21300000, guid: 44aca66c66917224d9d3ef46d26d1ff1, type: 3}
+  - face: {fileID: 21300000, guid: e7b67dd46b665f740a5ca821bb2280ac, type: 3}
     mood: 8
-  - face: {fileID: 21300000, guid: 195131b272d86284f8101d9c77f23aca, type: 3}
+  - face: {fileID: 21300000, guid: 265294755ca5ecb44b56be9d15f68196, type: 3}
     mood: 9
-  - face: {fileID: 21300000, guid: 395dcc2048f777f468e4cec782937551, type: 3}
+  - face: {fileID: 21300000, guid: c5cccc58cd0b38949be691ecfda4541f, type: 3}
     mood: 10

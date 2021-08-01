@@ -2,6 +2,9 @@
 
 namespace Project.NodeSystem
 {
+    /// <summary>
+    /// La langue de l'éditeur ou de la donnée enregistrée
+    /// </summary>
     public enum LanguageType
     {
         French = 0,
@@ -10,6 +13,9 @@ namespace Project.NodeSystem
     }
 
 
+    /// <summary>
+    /// Indique l'action à exécuter quand le EndNode est atteinte
+    /// </summary>
     public enum EndNodeType
     {
         End = 0,   //FInit le dialogue
@@ -19,8 +25,9 @@ namespace Project.NodeSystem
     }
 
 
-    //Indique l'humeur du personnage en train de parler
-    //(Récupère le sprite correspondant à l'humeur donnée)
+    /// <summary>
+    /// Indique l'humeur du personnage en train de parler (Récupère le sprite correspondant à l'humeur donnée)
+    /// </summary>
     public enum CharacterMood
     {
         Idle = 0,
@@ -36,9 +43,13 @@ namespace Project.NodeSystem
         Empathetic = 10,
     }
 
-    // Utilisé pour :
-    // Faire regarder le sprite du perso à gauche ou à droite
-    // Placer le sprite à gauche ou à droite du canvas de dialogue
+
+
+    /// <summary>
+    ///  Utilisé pour :
+    ///  - Faire regarder le sprite du perso à gauche ou à droite
+    ///  - Placer le sprite à gauche ou à droite du canvas de dialogue
+    /// </summary>
     public enum DialogueSide
     {
         Left = 0,
@@ -46,7 +57,9 @@ namespace Project.NodeSystem
     }
 
 
-    //Pour la ChoiceNode
+    /// <summary>
+    /// Pour griser ou cacher le choix si ses conditions ne sont pas remplies
+    /// </summary>
     public enum ChoiceStateType
     {
         Hide = 0,
@@ -57,7 +70,9 @@ namespace Project.NodeSystem
 
 
 
-    //Pour ajouter les comparateurs aux conditions des string events
+    /// <summary>
+    /// Pour ajouter les comparateurs aux conditions des string events
+    /// </summary>
     public enum StringEventConditionType
     {
         True = 0,
@@ -69,7 +84,9 @@ namespace Project.NodeSystem
         EqualsOrSmaller = 6,
     }
 
-    //Pour réaliser des opérations aux string events
+    /// <summary>
+    /// Pour réaliser des opérations aux string events
+    /// </summary>
     public enum StringEventModifierType
     {
         SetTrue = 0,

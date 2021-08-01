@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Pour savoir quels éléments sont attachés à ce Groupe
@@ -6,6 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class NoteData
 {
-    public string title, content;
-    public Vector2 position;
+    public string Title;
+    public string Content;
+    public Vector2 Position;
 }

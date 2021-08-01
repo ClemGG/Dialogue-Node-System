@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,19 +16,42 @@ namespace Project.NodeSystem
 
         #region Fields
 
-        [Tooltip("L'interface visuelle du dialogue.")]
-        DialogueUI dialogueUi;
+        #region Components
 
         [SerializeField, Tooltip("Le script qui s'abonnera aux fonctions des events.")]
-        DE_Trigger triggerScript;
+        DE_Trigger m_triggerScript;
+
+        #endregion
+
+
+        #region Node Info
 
         [Tooltip("La langue du dialogue. Peut être modifiée en cours de dialogue pour afficher une traduction à la prochaine réplique.")]
-        public LanguageType selectedLanguage = LanguageType.French;
+        public LanguageType SelectedLanguage = LanguageType.French;
 
+        int _curIndex = 0;
 
         //Pour stocker les choix avant de les assigner dans le dialogueUI
-        readonly List<DialogueButtonContainer> dialogueButtonContainers = new List<DialogueButtonContainer>();
-        readonly List<StartData> eligibleDatas = new List<StartData>();
+        readonly List<DialogueButtonContainer> _dialogueButtonContainers = new List<DialogueButtonContainer>();
+        readonly List<StartData> _eligibleDatas = new List<StartData>();
+
+        #endregion
+
+
+        #region Subscription
+
+        public Action OnStartDialogue { get; set; }
+        public Action OnEndDialogue { get; set; }
+        public Action OnRunStartNode { get; set; }
+        public Action OnChoicesSet { get; set; }
+        public Action<List<DialogueButtonContainer>> OnChoiceInfosSet { get; set; }
+        public Action<CharacterData_CharacterSO> OnRunCharacterNode { get; set; }
+        public Action<RepliqueData_Replique, LanguageType> OnRunRepliqueNode { get; set; }
+
+        public Action<UnityAction> OnContinueBtnReached { get; set; }
+
+        #endregion
+
 
 
         #endregion
@@ -37,15 +62,21 @@ namespace Project.NodeSystem
         void Start()
         {
             //On affiche l'interface de dialogue
-            dialogueUi = GetComponent<DialogueUI>();
-
             StartDialogue();
         }
+
 
         //Pour lui assigner un triggerScript depuis un autre script
         public void SetDialogueTriggerSript(DE_Trigger newTriggerScript)
         {
-            triggerScript = newTriggerScript;
+            m_triggerScript = newTriggerScript;
+        }
+
+
+        //Pour lui assigner un dialogue depuis un autre script
+        public void SetDialogueContainer(DialogueContainerSO newDialogue)
+        {
+            dialogue = newDialogue;
         }
 
 
@@ -56,31 +87,39 @@ namespace Project.NodeSystem
         /// <summary>
         /// Récupère la node de départ.
         /// </summary>
-        protected override void StartDialogue()
+        protected override void StartDialogue(DialogueContainerSO newDialogue = null, DE_Trigger newTriggerScript = null)
         {
-            dialogueUi.StartDialogue();
+            if (newDialogue) SetDialogueContainer(newDialogue);
+            if (newTriggerScript) SetDialogueTriggerSript(newTriggerScript);
+
+
+
+            //Ouvre le ui du dialogue et lance les anims d'ouverture s'il y en a
+            OnStartDialogue?.Invoke();
+
+
 
             //Par défaut, on trie les nodes selon leur position en Y.
             //Ainsi, la node de départ par défaut sera toujours la node éligible la plus haute dans le graphe.
-            dialogue.startDatas.Sort(delegate (StartData x, StartData y)
+            dialogue.StartDatas.Sort(delegate (StartData x, StartData y)
             {
-                return x.position.y.CompareTo(y.position.y);
+                return x.Position.y.CompareTo(y.Position.y);
             });
 
             // On récupère toutes les StartNodes du dialogue et on sélectionne celle à suivre en fonction de ses conditions.
             StartData selectedStartData = null;
-            eligibleDatas.Clear();
+            _eligibleDatas.Clear();
 
             //Pour chaque StartNode du dialogue...
-            foreach (StartData startData in dialogue.startDatas)
+            foreach (StartData startData in dialogue.StartDatas)
             {
                 bool eligible = true;
 
                 //Pour chaque condition de la node, on regarde si la valeur du DE_Trigger et celle de la node correspondent
-                foreach (EventData_StringEventCondition item in startData.stringConditions)
+                foreach (EventData_StringEventCondition item in startData.StringConditions)
                 {
                     //Si ce n'est pas le cas, la StartNode n'est pas éligible
-                    if (!UseStringEventCondition.DialogueConditionEvents(triggerScript, item.stringEvent.value, item.conditionType.value, item.number.value))
+                    if (!UseStringEventCondition.DialogueConditionEvents(m_triggerScript, item.StringEvent.Value, item.ConditionType.Value, item.Number.Value))
                     {
                         eligible = false;
                         break;
@@ -88,57 +127,67 @@ namespace Project.NodeSystem
                 }
 
                 //On ajoute la node à la liste si elle est éligible
-                if(eligible) eligibleDatas.Add(startData);
+                if(eligible) _eligibleDatas.Add(startData);
 
             }
 
 
             // Si aucune n'est éligible ou que toutes sont éligibles... 
-            if (eligibleDatas.Count == 0 || eligibleDatas.Count == dialogue.startDatas.Count)
+            if (_eligibleDatas.Count == 0 || _eligibleDatas.Count == dialogue.StartDatas.Count)
             {
                 // On prend la première de la liste marquée par défaut
-                selectedStartData = dialogue.startDatas.FirstOrDefault(start => start.isDefaultStartNode.value == true);
+                selectedStartData = dialogue.StartDatas.FirstOrDefault(start => start.isDefault.Value == true);
 
                 // S'il n'y a pas de node par défaut, on prend la première qui vient
-                if (selectedStartData == null) selectedStartData = dialogue.startDatas[0];
+                if (selectedStartData == null) selectedStartData = dialogue.StartDatas[0];
             }
             else
             {
                 // Si seulement certaines sont éligibles, on récupère la première par défaut si celle-ci est dans la liste éligible.
-                selectedStartData = eligibleDatas.FirstOrDefault(start => start.isDefaultStartNode.value == true);
+                selectedStartData = _eligibleDatas.FirstOrDefault(start => start.isDefault.Value == true);
 
                 // Sinon, on prend la première éligible, qu'elle soit par défaut ou non
-                if (selectedStartData == null) selectedStartData = eligibleDatas[0];
+                if (selectedStartData == null) selectedStartData = _eligibleDatas[0];
             }
 
 
             RunNode(selectedStartData);
         }
 
+        protected override void EndDialogue()
+        {
+            //On lance les anims de fermeture s'il y en a et on ferme le ui
+            OnEndDialogue?.Invoke();
+        }
+
         protected override void RunNode(StartData nodeData)
         {
+
             //Comme c'est la StartNode, on se contente de cacher les sprites des persos pour ne pas avoir à le faire manuellement.
-            dialogueUi.SetCharacter("", new Color(252, 3, 252, 1), null, DialogueSide.Right, DialogueSide.Left);    //Perso de gauche
-            dialogueUi.SetCharacter("", new Color(252, 3, 252, 1), null, DialogueSide.Left, DialogueSide.Right);    //Perso de droite
+            OnRunStartNode?.Invoke();
 
             //On récupère la node suivante.
-            CheckNodeType(GetNextNode(nodeData));
+            Action onStart = () =>
+            {
+                CheckNodeType(GetNextNode(nodeData));
+            };
+            StartCoroutine(DelayCo(.5f, onStart));
         }
 
         protected override void RunNode(BranchData nodeData)
         {
             bool checkBranch = true;
-            foreach (EventData_StringEventCondition item in nodeData.stringConditions)
+            foreach (EventData_StringEventCondition item in nodeData.StringConditions)
             {
                 //Pour chaque condition de la BranchNode, on regarde si la valeur du DE_Trigger et celle de la node correspondent
-                if (!UseStringEventCondition.DialogueConditionEvents(triggerScript, item.stringEvent.value, item.conditionType.value, item.number.value))
+                if (!UseStringEventCondition.DialogueConditionEvents(m_triggerScript, item.StringEvent.Value, item.ConditionType.Value, item.Number.Value))
                 {
                     checkBranch = false;
                     break;
                 }
             }
 
-            string nextNode = (checkBranch ? nodeData.trueNodeGuid : nodeData.falseNodeGuid);
+            string nextNode = (checkBranch ? nodeData.TrueNodeGuid : nodeData.FalseNodeGuid);
             CheckNodeType(GetNodeByGuid(nextNode));
         }
 
@@ -160,16 +209,16 @@ namespace Project.NodeSystem
                 if (item is EventData_ScriptableEvent)
                 {
                     EventData_ScriptableEvent scriptableEvent = item as EventData_ScriptableEvent;
-                    if (scriptableEvent.scriptableObject.value != null)
+                    if (scriptableEvent.ScriptableObject.Value != null)
                     {
-                        scriptableEvent.scriptableObject.value.Invoke();
+                        scriptableEvent.ScriptableObject.Value.Invoke();
                     }
                 }
                 else
                 {
                     //Pour chaque stringEvent, on récupère la variable correspondante dans DE_Trigger et on la modifie selon le modifierType
                     EventData_StringEventModifier stringEvent = item as EventData_StringEventModifier;
-                    stringEvent.Invoke(triggerScript);
+                    stringEvent.Invoke(m_triggerScript);
 
                 }
             }
@@ -179,16 +228,16 @@ namespace Project.NodeSystem
 
         protected override void RunNode(EndData nodeData)
         {
-            switch (nodeData.endNodeType.value)
+            switch (nodeData.EndNodeType.Value)
             {
                 case EndNodeType.End:
-                    dialogueUi.EndDialogue();
+                    EndDialogue();
                     break;
                 case EndNodeType.ReturnToStart:
                     StartDialogue();
                     break;
                 default:
-                    Debug.Log($"End Node Type \"{nodeData.endNodeType.value}\" not implemented");
+                    Debug.Log($"End Node Type \"{nodeData.EndNodeType.Value}\" not implemented");
                     break;
             }
 
@@ -200,15 +249,14 @@ namespace Project.NodeSystem
              * On s'assure de les récupérer dans le bon ordre avant de les analyser.
              */
 
-            nodeData.characters.Sort(delegate (CharacterData_CharacterSO x, CharacterData_CharacterSO y)
+            _curIndex = 0;
+
+            nodeData.Characters.Sort(delegate (CharacterData_CharacterSO x, CharacterData_CharacterSO y)
             {
-                return x.ID.value.CompareTo(y.ID.value);
+                return x.ID.Value.CompareTo(y.ID.Value);
             });
 
             DisplayCharacters(nodeData);
-
-            //Quand on a fini de parcourir la node, on passe à la suivante
-            CheckNodeType(GetNextNode(nodeData));
         }
 
         protected override void RunNode(RepliqueData nodeData)
@@ -217,9 +265,11 @@ namespace Project.NodeSystem
              * On s'assure de les récupérer dans le bon ordre avant de les analyser.
              */
 
-            nodeData.repliques.Sort(delegate (RepliqueData_Replique x, RepliqueData_Replique y)
+            _curIndex = 0;
+
+            nodeData.Repliques.Sort(delegate (RepliqueData_Replique x, RepliqueData_Replique y)
             {
-                return x.ID.value.CompareTo(y.ID.value);
+                return x.ID.Value.CompareTo(y.ID.Value);
             });
 
             DisplayRepliques(nodeData);
@@ -232,49 +282,83 @@ namespace Project.NodeSystem
         private void DisplayCharacters(CharacterData nodeData)
         {
             //Pour chaque conteneur de la CharacterNode...
-            for (int i = 0; i < nodeData.characters.Count; i++)
+            for (int i = _curIndex; i < nodeData.Characters.Count; i++)
             {
+                _curIndex = i + 1;
+
                 //On regarde si le perso a un SO ou pas
-                CharacterData_CharacterSO tmp = nodeData.characters[i];
-                if (tmp.character.value == null)
+                CharacterData_CharacterSO tmp = nodeData.Characters[i];
+                if (tmp.Character.Value != null)
                 {
-                    //Si on n'a pas de personnage, on n'affiche pas de perso à l'emplacement "sidePlacement"
-                    dialogueUi.SetCharacter("", new Color(252, 3, 252, 1), null, tmp.faceDirection.value, tmp.sidePlacement.value);
+                    tmp.CharacterName.Value = tmp.CharacterNames[(int)SelectedLanguage];
+                }
+
+                OnRunCharacterNode?.Invoke(tmp);
+
+
+                //Utilise l'autoDelay de la nodeData pour afficher les persos les uns après les autres si besoin
+                Action onCharacterDisplayed;
+
+                //Quand on a fini de parcourir la node, on passe à la suivante
+                if (i == nodeData.Characters.Count - 1)
+                {
+                    onCharacterDisplayed = () => CheckNodeType(GetNextNode(nodeData));
+                }
+                //Sinon, on continue de défiler les personnages
+                else
+                {
+                    onCharacterDisplayed = () => DisplayCharacters(nodeData);
+                }
+
+                if (nodeData.Characters[i].useAutoDelay.Value)
+                {
+                    StartCoroutine(DelayCo(nodeData.Characters[i].autoDelayDuration.Value, onCharacterDisplayed));
                 }
                 else
                 {
-                    //Sinon on l'affiche normalement
-                    tmp.characterName.value = tmp.characterNames[(int)selectedLanguage];
-                    dialogueUi.SetCharacter(tmp.characterName.value, tmp.character.value.characterNameColor, tmp.sprite.value, tmp.faceDirection.value, tmp.sidePlacement.value);
+                    onCharacterDisplayed?.Invoke();
                 }
 
+                break;
             }
+        }
+
+        private IEnumerator DelayCo(float delay, Action onCharacterDisplayed)
+        {
+            WaitForSeconds wait = new WaitForSeconds(delay);
+            yield return wait;
+            onCharacterDisplayed?.Invoke();
         }
 
         private void DisplayRepliques(RepliqueData nodeData)
         {
             //Pour chaque conteneur de la RepliqueNode...
-            for (int i = 0; i < nodeData.repliques.Count; i++)
+            for (int i = _curIndex; i < nodeData.Repliques.Count; i++)
             {
+                _curIndex = i + 1;
                 //On récupère son texte et son audio en fonction de la langue...
-                RepliqueData_Replique tmp = nodeData.repliques[i];
-                dialogueUi.SetText(tmp.texts.Find(text => text.language == selectedLanguage).data);
-                dialogueUi.PlaySound(tmp.audioClips.Find(text => text.language == selectedLanguage).data);
+                RepliqueData_Replique tmp = nodeData.Repliques[i];
+
+                //Et on l'assigne à l'ui
+                OnRunRepliqueNode?.Invoke(tmp, SelectedLanguage);
+
 
 
 
                 //Quand on a fini de parcourir la node, on passe à la suivante
-                if (i == nodeData.repliques.Count - 1)
+                if (i == nodeData.Repliques.Count - 1)
                 {
                     UnityAction displayNextNode = () => CheckNodeType(GetNextNode(nodeData));
-                    dialogueUi.SetContinueBtn(displayNextNode);
+                    OnContinueBtnReached?.Invoke(displayNextNode);
                 }
                 //Sinon, on continue de défiler les répliqus
                 else
                 {
                     UnityAction redo = () => DisplayRepliques(nodeData);
-                    dialogueUi.SetContinueBtn(redo);
+                    OnContinueBtnReached?.Invoke(redo);
                 }
+
+                break;
             }
         }
 
@@ -286,15 +370,15 @@ namespace Project.NodeSystem
             // Sinon, on parcourt la liste
 
 
-            dialogueButtonContainers.Clear();
+            _dialogueButtonContainers.Clear();
 
             //On vérifie qu'il y a au moins un choix de connecté
             bool hasChoices = false;
 
-            foreach (ChoiceData_Container container in nodeData.choices)
+            foreach (ChoiceData_Container container in nodeData.Choices)
             {
                 //Si le port de choix est bien connecté, on peut ajouter le choix à la liste
-                if (!string.IsNullOrEmpty(container.linkedPort.inputGuid))
+                if (!string.IsNullOrEmpty(container.LinkedPort.InputGuid))
                 {
                     AssignChoice(container);
                     hasChoices = true;
@@ -304,14 +388,14 @@ namespace Project.NodeSystem
             //Si on a des choix, on affiche le panel des choix.
             if (hasChoices)
             {
-                dialogueUi.SetChoices(dialogueButtonContainers);
-                dialogueUi.ShowChoicesPanel();
+                OnChoiceInfosSet?.Invoke(_dialogueButtonContainers);
+                OnChoicesSet?.Invoke();
             }
             //Sinon, la ChoiceNode n'a pas de points de sortie.
             //Dans ce cas, pour éviter les erreurs, on arrête le dialogue.
             else
             {
-                dialogueUi.EndDialogue();
+                OnEndDialogue?.Invoke();
             }
 
 
@@ -321,9 +405,9 @@ namespace Project.NodeSystem
         private void AssignChoice(ChoiceData_Container choice)
         {
             bool checkBranch = true;
-            foreach (ChoiceData_Condition condition in choice.conditions)
+            foreach (ChoiceData_Condition condition in choice.Conditions)
             {
-                if (!UseStringEventCondition.DialogueConditionEvents(triggerScript, condition.stringCondition.stringEvent.value, condition.stringCondition.conditionType.value, condition.stringCondition.number.value))
+                if (!UseStringEventCondition.DialogueConditionEvents(m_triggerScript, condition.StringCondition.StringEvent.Value, condition.StringCondition.ConditionType.Value, condition.StringCondition.Number.Value))
                 {
                     checkBranch = false;
                     break;
@@ -331,19 +415,19 @@ namespace Project.NodeSystem
             }
 
             //On crée un DialogueButtonContainer, qui indiquera au UI si un choix doit être disponible ou pas
-            UnityAction onChoiceClicked = () => CheckNodeType(GetNodeByGuid(choice.linkedPort.inputGuid));
+            UnityAction onChoiceClicked = () => CheckNodeType(GetNodeByGuid(choice.LinkedPort.InputGuid));
 
             DialogueButtonContainer dialogueButtonContainer = new DialogueButtonContainer();
 
-            dialogueButtonContainer.ChoiceState = choice.choiceStateType.value;
+            dialogueButtonContainer.ChoiceState = choice.ChoiceStateType.Value;
 
             //Pour le texte du choix, on met le texte de base + les descriptions si les conditions ne sont pas remplies.
-            dialogueButtonContainer.Text = choice.texts.Find(text => text.language == selectedLanguage).data;
+            dialogueButtonContainer.Text = choice.Texts.Find(text => text.Language == SelectedLanguage).Data;
             if (!checkBranch)
             {
-                foreach (ChoiceData_Condition condition in choice.conditions)
+                foreach (ChoiceData_Condition condition in choice.Conditions)
                 {
-                    string desc = condition.descriptionsIfNotMet.Find(desc => desc.language == selectedLanguage).data;
+                    string desc = condition.DescriptionsIfNotMet.Find(desc => desc.Language == SelectedLanguage).Data;
 
                     if (!string.IsNullOrEmpty(desc))
                     {
@@ -358,7 +442,7 @@ namespace Project.NodeSystem
             dialogueButtonContainer.OnChoiceClicked = onChoiceClicked;
             dialogueButtonContainer.ConditionCheck = checkBranch;
 
-            dialogueButtonContainers.Add(dialogueButtonContainer);
+            _dialogueButtonContainers.Add(dialogueButtonContainer);
         }
     }
 }
