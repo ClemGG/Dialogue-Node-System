@@ -1,0 +1,49 @@
+/* ----------------- Colors -----------------*/
+
+
+.node #title{
+	background-color: #2787EE;
+}
+
+.node #title #title-label{
+	color: white;
+}
+
+.LabelColor{
+	color:#2787EE;
+}
+
+
+
+/* ----------------- Label -----------------*/
+
+
+
+.TopBox{
+	flex-direction: row;
+	padding-top:10px;
+}
+
+.LabelText{
+	margin-right:auto;
+	font-size: 18px;
+}
+
+
+
+/* ----------------- Name -----------------*/
+
+.BackgroundName{
+	display:flex;
+	padding-bottom: 10px;
+}
+
+/* ----------------- Images -----------------*/
+
+
+.ImagePreview{
+	height:	200px;
+	width:	400px;
+	margin:auto;
+
+}

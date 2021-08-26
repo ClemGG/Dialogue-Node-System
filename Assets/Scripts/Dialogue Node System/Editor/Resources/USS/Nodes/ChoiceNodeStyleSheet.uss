@@ -1,0 +1,41 @@
+/*----------- Colors --------------*/
+
+.node #title{
+	background-color: #FFFEB2;
+}
+
+.node #title #title-label{
+	color: #000000;
+}
+
+
+.LabelColor{
+	color:#D1B00C;
+}
+
+
+
+/*----------- Label Title --------------*/
+
+.ChoiceStateTypeLabel{
+	padding-top:12px;
+	font-size: 12px;
+	padding-left:1px;
+}
+
+.ChoiceStateTypeEnum{
+	padding-top:10px;
+	width:	70px;
+}
+
+
+
+
+/*----------- Buttons --------------*/
+
+.AddConditionBtn{
+	margin-left: auto;
+}
+.RemoveChoiceBtn{
+	margin-left: auto;
+}

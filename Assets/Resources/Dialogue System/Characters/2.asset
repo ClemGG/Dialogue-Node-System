@@ -12,32 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4059720b995f746868447ce14d192e, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  characterNames:
+  CharacterNames:
   - Deux
   - Two
   - Dos
-  characterNameColor: {r: 0.8679245, g: 0.23253822, b: 0.23253822, a: 1}
-  charPrintClip: {fileID: 8300000, guid: 152928669f9f9934c886d3ff2d08eac5, type: 3}
-  faces:
-  - face: {fileID: 21300000, guid: e591d129f6038b64d9c23a009a6d912a, type: 3}
-    mood: 0
-  - face: {fileID: 21300000, guid: cbe66fd870dfe6244b0a83d80cb229ac, type: 3}
-    mood: 1
-  - face: {fileID: 21300000, guid: ad523eb8589f1b741bea50394ea12d29, type: 3}
-    mood: 2
-  - face: {fileID: 21300000, guid: 130bb20e661e38549a7e2794c177e93c, type: 3}
-    mood: 3
-  - face: {fileID: 21300000, guid: accfb69fb3c1d2f469bb6ef075b055da, type: 3}
-    mood: 4
-  - face: {fileID: 21300000, guid: a564c5dd45dbeff4ca44e4540be33d08, type: 3}
-    mood: 5
-  - face: {fileID: 21300000, guid: 86291a0c2814e004cab14f809a52402f, type: 3}
-    mood: 6
-  - face: {fileID: 21300000, guid: 0a8ee23ae60f0284fabad5538146d4b4, type: 3}
-    mood: 7
-  - face: {fileID: 21300000, guid: e7b67dd46b665f740a5ca821bb2280ac, type: 3}
-    mood: 8
-  - face: {fileID: 21300000, guid: 265294755ca5ecb44b56be9d15f68196, type: 3}
-    mood: 9
-  - face: {fileID: 21300000, guid: c5cccc58cd0b38949be691ecfda4541f, type: 3}
-    mood: 10
+  CharacterNameColor: {r: 0.8301887, g: 0.30857953, b: 0.30857953, a: 1}
+  CharPrintClip: {fileID: 8300000, guid: 152928669f9f9934c886d3ff2d08eac5, type: 3}
+  m_faces:
+  - Face: {fileID: 21300000, guid: e591d129f6038b64d9c23a009a6d912a, type: 3}
+    Mood: 0
+  - Face: {fileID: 21300000, guid: cbe66fd870dfe6244b0a83d80cb229ac, type: 3}
+    Mood: 1
+  - Face: {fileID: 21300000, guid: ad523eb8589f1b741bea50394ea12d29, type: 3}
+    Mood: 2
+  - Face: {fileID: 21300000, guid: 130bb20e661e38549a7e2794c177e93c, type: 3}
+    Mood: 3
+  - Face: {fileID: 21300000, guid: accfb69fb3c1d2f469bb6ef075b055da, type: 3}
+    Mood: 4
+  - Face: {fileID: 21300000, guid: a564c5dd45dbeff4ca44e4540be33d08, type: 3}
+    Mood: 5
+  - Face: {fileID: 21300000, guid: 86291a0c2814e004cab14f809a52402f, type: 3}
+    Mood: 6
+  - Face: {fileID: 21300000, guid: 0a8ee23ae60f0284fabad5538146d4b4, type: 3}
+    Mood: 7
+  - Face: {fileID: 21300000, guid: e7b67dd46b665f740a5ca821bb2280ac, type: 3}
+    Mood: 8
+  - Face: {fileID: 21300000, guid: 265294755ca5ecb44b56be9d15f68196, type: 3}
+    Mood: 9
+  - Face: {fileID: 21300000, guid: c5cccc58cd0b38949be691ecfda4541f, type: 3}
+    Mood: 10

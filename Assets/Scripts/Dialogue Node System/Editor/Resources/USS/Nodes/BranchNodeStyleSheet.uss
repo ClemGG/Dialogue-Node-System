@@ -1,0 +1,9 @@
+/*--------------------------------------- Color -----------------------------------------*/
+
+.node #title{
+	background-color: #6A008C;
+}
+
+.node #title #title-label{
+	color: white;
+}

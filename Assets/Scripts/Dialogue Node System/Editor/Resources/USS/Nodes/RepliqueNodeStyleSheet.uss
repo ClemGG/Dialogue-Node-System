@@ -1,0 +1,17 @@
+/* ----------------- Colors -----------------*/
+
+.node #title{
+	background-color: #D1B00C;
+}
+
+.node #title #title-label{
+	color: black;
+}
+
+.LabelColor{
+	color:#D1B00C;
+}
+
+
+
+

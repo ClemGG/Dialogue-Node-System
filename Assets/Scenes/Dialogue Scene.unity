@@ -547,7 +547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5.000002}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: -40, y: -110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &464710733
@@ -1746,7 +1746,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 0.4
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1788,8 +1788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueEvent: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
-  money: 50
-  hasSomethingToDo: 0
+  _money: 50
+  _hasSomethingToDo: 0
 --- !u!114 &1356225559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1803,8 +1803,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 14654d24fb21fcb4ca3cb30cb3148d12, type: 2}
-  triggerScript: {fileID: 1356225558}
-  selectedLanguage: 0
+  m_triggerScript: {fileID: 1356225558}
+  SelectedLanguage: 0
 --- !u!114 &1356225560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,33 +1817,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dd9266a16ac964c80ad39dddb7c3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguePanel: {fileID: 1346824161}
-  writeCharByChar: 1
-  isWriting: 0
-  charWriteSpeed: 0.032
-  leftCharGo: {fileID: 1212530523}
-  rightCharGo: {fileID: 444171192}
-  leftCharImg: {fileID: 200367164}
-  rightCharImg: {fileID: 808846891}
-  leftNameText: {fileID: 1608813328}
-  rightNameText: {fileID: 1604180321}
-  dialogueContent: {fileID: 1540317014}
-  continueBtn: {fileID: 2072573133}
-  skipRepliqueBtn: {fileID: 1334228846}
-  dialogueText: {fileID: 464710734}
-  continueBtnText: {fileID: 1983899127}
-  choicesContent: {fileID: 885747013}
-  choiceBtns:
-  - {fileID: 1401744190}
-  - {fileID: 1086093257}
-  - {fileID: 40753341}
-  - {fileID: 2079636516}
-  choiceTmps:
-  - {fileID: 1401744189}
-  - {fileID: 1086093256}
-  - {fileID: 40753340}
-  - {fileID: 2079636515}
-  nbCharPrintClips: 10
+  m_dialoguePanel: {fileID: 1346824161}
+  m_writeCharByChar: 1
+  m_charWriteSpeed: 0.032
+  _isWriting: 0
   TS_CharAppears:
   - {fileID: 11400000, guid: dd2f1711164917744b2a7d6e0a049819, type: 2}
   - {fileID: 11400000, guid: 1f67a77769823364d9e9a03c2af348e2, type: 2}
@@ -1870,6 +1847,31 @@ MonoBehaviour:
   m_rightCharGoTweener: {fileID: 444171194}
   m_rightCharSpriteTweener: {fileID: 808846890}
   m_containerTweener: {fileID: 434197004}
+  m_screenFader: {fileID: 11400000, guid: 09e27f5f9bdc7864eb740d03eca26f20, type: 2}
+  m_backgroundImg: {fileID: 1327818177}
+  m_startTex: {fileID: 2800000, guid: 537c45cdcc1fa9f49b1600a7ccdf0e27, type: 3}
+  m_leftCharGo: {fileID: 1212530523}
+  m_rightCharGo: {fileID: 444171192}
+  m_leftCharImg: {fileID: 200367164}
+  m_rightCharImg: {fileID: 808846891}
+  m_leftNameText: {fileID: 1608813328}
+  m_rightNameText: {fileID: 1604180321}
+  m_dialogueContent: {fileID: 1540317014}
+  m_continueBtn: {fileID: 2072573133}
+  m_skipRepliqueBtn: {fileID: 1334228846}
+  m_dialogueText: {fileID: 464710734}
+  m_continueBtnText: {fileID: 1983899127}
+  m_choicesContent: {fileID: 885747013}
+  m_choiceBtns:
+  - {fileID: 1401744190}
+  - {fileID: 1086093257}
+  - {fileID: 40753341}
+  - {fileID: 2079636516}
+  m_choiceTmps:
+  - {fileID: 1401744189}
+  - {fileID: 1086093256}
+  - {fileID: 40753340}
+  - {fileID: 2079636515}
 --- !u!4 &1356225561
 Transform:
   m_ObjectHideFlags: 0

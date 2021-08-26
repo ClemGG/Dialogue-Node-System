@@ -15,7 +15,6 @@ namespace Project.Utilities.Assets
         /// <summary>
         /// Runtime version of finding assets in Resources.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static List<T> FindAllObjectsFromResources<T>()
         {
@@ -41,6 +40,26 @@ namespace Project.Utilities.Assets
         }
 
 
+        public static T FindInResourcesByName<T>(string assetName) where T : Object
+        {
+            List<T> assets = FindAllObjectsFromResources<T>();
+            return assets.Find(asset => asset.name == assetName);
+        }
+
+        public static T FindInResourcesAtPath<T>(string path) where T : Object
+        {
+            return Resources.Load<T>(path);
+        }
+
+
+
+        public static T FindInResourcesByID<T>(int instanceID) where T : Object
+        {
+            return Resources.InstanceIDToObject(instanceID) as T;
+        }
+
+
+
 #if UNITY_EDITOR
 
 
@@ -64,6 +83,24 @@ namespace Project.Utilities.Assets
         }
 
 
+
+        public static T FindAssetAtPath<T>(string path) where T : Object
+        {
+            return AssetDatabase.LoadAssetAtPath<T>(path);
+        }
+
+
+
+        public static string GetAssetPath(Object asset)
+        {
+            return AssetDatabase.GetAssetPath(asset);
+        }
+
+
+        public static string GetAssetPath(int instanceID)
+        {
+            return AssetDatabase.GetAssetPath(instanceID);
+        }
 #endif
     }
 }
