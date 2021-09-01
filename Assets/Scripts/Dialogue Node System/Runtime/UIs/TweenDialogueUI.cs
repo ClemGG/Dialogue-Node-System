@@ -237,7 +237,7 @@ namespace Project.NodeSystem
 
             //Background
             _dialogueManager.OnBackgroundNodeReached += SetBackground;
-            m_screenFader.OnCompleteTransitionPaused += SetBackgroundManually;
+            m_screenFader.OnCompleteTransitionMiddle += SetBackgroundManually;
             m_screenFader.OnTransitionEnded += _dialogueManager.OnTransitionEnded;
 
             //Buttons
@@ -260,7 +260,7 @@ namespace Project.NodeSystem
 
             //Background
             _dialogueManager.OnBackgroundNodeReached -= SetBackground;
-            m_screenFader.OnCompleteTransitionPaused -= SetBackgroundManually;
+            m_screenFader.OnCompleteTransitionMiddle -= SetBackgroundManually;
             m_screenFader.OnTransitionEnded -= _dialogueManager.OnTransitionEnded;
 
             //Buttons
@@ -415,7 +415,7 @@ namespace Project.NodeSystem
             switch (startSettings.TransitionType)
             {
                 case FaderTransitionType.TextureBlend:
-                    m_screenFader.StartBlend(m_backgroundImg, Time.unscaledTime, transition.BackgroundTex.Value, startSettings);
+                    m_screenFader.StartBlend(m_backgroundImg, Time.unscaledDeltaTime, transition.BackgroundTex.Value, startSettings);
                     break;
                 default:
                     if (endSettings)
@@ -434,8 +434,9 @@ namespace Project.NodeSystem
         //OnCompleteTransitionPaused (appelée entre le 1er et le 2è fade)
         private void SetBackgroundManually()
         {
-            m_backgroundImg.material.SetTexture("_MainTexture", _tmpTransition.BackgroundTex.Value);
-            m_backgroundImg.material.SetFloat("_Blend", 0f);
+            m_backgroundImg.materialForRendering.SetTexture("_MainTex", _tmpTransition.BackgroundTex.Value);
+            m_backgroundImg.materialForRendering.SetFloat("_Blend", 0f);
+            m_backgroundImg.SetMaterialDirty();
         }
 
 

@@ -46,6 +46,7 @@ namespace Project.ScreenFader
         private Material _fadeMaterial;
         private Material _blendMaterial;
         private bool _enabled;
+        private Camera _currentCam;
 
 
         #endregion
@@ -56,7 +57,7 @@ namespace Project.ScreenFader
         public Action OnTransitionStarted;          //Quand le fade démarre
         public Action<float> OnTransitionUpdated;   //Quand le fade met à jour m_maskValue (passée en paramètre pour que les autres scripts puissent faire leurs changements)
         public Action OnTransitionEnded;            //Quand le fade se termine
-        public Action OnCompleteTransitionPaused;   //Quand le double fade réalise son premier fade
+        public Action OnCompleteTransitionMiddle;   //Quand le double fade réalise son premier fade
 
         #endregion
 
@@ -124,17 +125,17 @@ namespace Project.ScreenFader
         /// <param name="parameters">Les paramètres de transition. Si null, on utilise les paramètres déjà assignés.</param>
         public Coroutine StartFade(MonoBehaviour target, bool show, bool shouldDestroyRendererOnEnded, float deltaTime, TransitionSettingsSO parameters = null)
         {
-            ScreenFadeRenderer sfr = target.gameObject.GetComponent<ScreenFadeRenderer>();
+            _currentCam = Camera.current;
+            ScreenFadeRenderer sfr = _currentCam.gameObject.GetComponent<ScreenFadeRenderer>();
             if (!sfr)
             {
-                sfr = target.gameObject.AddComponent<ScreenFadeRenderer>();
+                sfr = _currentCam.gameObject.AddComponent<ScreenFadeRenderer>();
             }
             sfr.SetScreenFader(this, shouldDestroyRendererOnEnded);   //Lie le Renderer à ce SO et s'abonne automatiquement pour être détruit à la fin de la transition
 
 
             if (parameters != null)
                 m_params = parameters;
-
 
             return target.StartCoroutine(FadeCo(show, deltaTime));
         }
@@ -152,10 +153,11 @@ namespace Project.ScreenFader
         /// <param name="endParams">Les paramètres de la 2è transition. Si null, on utilise les paramètres déjà assignés.</param>
         public Coroutine StartCompleteFade(MonoBehaviour target, bool show, bool shouldDestroyRendererOnEnded, float deltaTime, TransitionSettingsSO startParams = null, TransitionSettingsSO endParams = null)
         {
-            ScreenFadeRenderer sfr = target.gameObject.GetComponent<ScreenFadeRenderer>();
+            _currentCam = Camera.current;
+            ScreenFadeRenderer sfr = _currentCam.gameObject.GetComponent<ScreenFadeRenderer>();
             if (!sfr)
             {
-                sfr = target.gameObject.AddComponent<ScreenFadeRenderer>();
+                sfr = _currentCam.gameObject.AddComponent<ScreenFadeRenderer>();
             }
             sfr.SetScreenFader(this, shouldDestroyRendererOnEnded);   //Lie le Renderer à ce SO et s'abonne automatiquement pour être détruit à la fin de la transition
 
@@ -182,16 +184,17 @@ namespace Project.ScreenFader
             }
 
 
-            _blendMaterial = target.material;
+            _blendMaterial = target.materialForRendering;
 
             _blendMaterial.SetTexture("_SecTex", secTex);
             _blendMaterial.SetFloat("_Blend", 0f);
+            target.SetMaterialDirty();
 
             if (parameters != null)
                 m_params = parameters;
 
 
-            return target.StartCoroutine(BlendCo(deltaTime));
+            return target.StartCoroutine(BlendCo(target, deltaTime));
         }
 
 
@@ -260,7 +263,7 @@ namespace Project.ScreenFader
             }
 
 
-            OnCompleteTransitionPaused?.Invoke();
+            OnCompleteTransitionMiddle?.Invoke();
 
             WaitForSeconds wait = new WaitForSeconds(m_params.DelayAfterTransition);
             yield return wait;
@@ -308,7 +311,7 @@ namespace Project.ScreenFader
         /// Transitionne entre la 1è et la 2è texture du material de l'Image
         /// </summary>
         /// <returns></returns>
-        public IEnumerator BlendCo(float deltaTime)
+        public IEnumerator BlendCo(Image target, float deltaTime)
         {
             OnTransitionStarted?.Invoke();
 
@@ -330,6 +333,8 @@ namespace Project.ScreenFader
             }
 
             _blendMaterial.SetTexture("_MainTex", _blendMaterial.GetTexture("_SecTex"));
+            _blendMaterial.SetFloat("_Blend", 0f);
+            target.SetMaterialDirty();
 
             WaitForSeconds wait = new WaitForSeconds(m_params.DelayAfterTransition);
             yield return wait;

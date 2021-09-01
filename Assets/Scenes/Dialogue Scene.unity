@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: eaa69c941fc8ad64387c51831a666c6a, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1515,7 +1515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d81438db2b311d74a8691ce9f1498d1a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1847,6 +1847,7 @@ MonoBehaviour:
   m_rightCharGoTweener: {fileID: 444171194}
   m_rightCharSpriteTweener: {fileID: 808846890}
   m_containerTweener: {fileID: 434197004}
+  m_camera: {fileID: 0}
   m_screenFader: {fileID: 11400000, guid: 09e27f5f9bdc7864eb740d03eca26f20, type: 2}
   m_backgroundImg: {fileID: 1327818177}
   m_startTex: {fileID: 2800000, guid: 537c45cdcc1fa9f49b1600a7ccdf0e27, type: 3}

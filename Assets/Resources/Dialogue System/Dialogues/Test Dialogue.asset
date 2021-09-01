@@ -110,15 +110,15 @@ MonoBehaviour:
     StringConditions: []
   BackgroundDatas:
   - NodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
-    Position: {x: -285.6, y: 247.2}
+    Position: {x: -286.4, y: 247.2}
     Transition:
       Value:
         ID:
           Value: 0
         BackgroundTex:
-          Value: {fileID: 2800000, guid: 6295bebff7854d74aa08f81223be5e1f, type: 3}
+          Value: {fileID: 2800000, guid: c895f18b11355ac45a261a860e55f43b, type: 3}
         BackgroundName:
-          Value: tex_background1
+          Value: tex_background2
         StartSettings:
           Value: {fileID: 11400000, guid: 5ec31df453038664ba29df2bd88ea1cf, type: 2}
         EndSettings:
