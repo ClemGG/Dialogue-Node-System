@@ -46,6 +46,9 @@ namespace Project.NodeSystem
                 case StartData nodeData:
                     RunNode(nodeData);
                     break;
+                case UIData nodeData:
+                    RunNode(nodeData);
+                    break;
                 case BackgroundData nodeData:
                     RunNode(nodeData);
                     break;
@@ -79,6 +82,7 @@ namespace Project.NodeSystem
         protected abstract void StartDialogue();
         protected abstract void EndDialogue();
         protected virtual void RunNode(StartData nodeData) { }
+        protected virtual void RunNode(UIData nodeData) { }
         protected virtual void RunNode(BackgroundData nodeData) { }
         protected virtual void RunNode(CharacterData nodeData) { }
         protected virtual void RunNode(RepliqueData nodeData) { }

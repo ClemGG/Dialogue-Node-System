@@ -18,9 +18,14 @@ namespace Project.NodeSystem
         [Space(10)]
 
 
-        [SerializeField] protected GameObject m_dialoguePanel;
-
+        protected GameObject m_dialoguePanel;
         protected DialogueManager _dialogueManager;
+
+
+
+        private Transform t;
+        protected Transform T { get { return t ??= transform; } }
+
 
         #endregion
 
@@ -64,11 +69,12 @@ namespace Project.NodeSystem
 
         protected virtual void Awake()
         {
+            GetComponents();
+
             // On abonne les méthodes au DialogueManager
-            _dialogueManager = GetComponent<DialogueManager>();
             SubscribeToManager();
 
-            
+
         }
 
         private void OnDisable()
@@ -84,6 +90,15 @@ namespace Project.NodeSystem
 
 
         #region Init
+
+
+        //A surcharger dans les classes filles pour obtenir les sripts présents sur les UIs
+        protected virtual void GetComponents()
+        {
+            _dialogueManager = GetComponent<DialogueManager>();
+            m_dialoguePanel = T.GetChild(0).gameObject;
+        }
+
 
         private void StartDialogue()
         {

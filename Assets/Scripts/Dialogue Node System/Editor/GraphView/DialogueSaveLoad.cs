@@ -88,6 +88,7 @@ namespace Project.NodeSystem.Editor
         private void SaveNodes(DialogueContainerSO dialogueContainerSO)
         {
             dialogueContainerSO.StartDatas.Clear();
+            dialogueContainerSO.UIDatas.Clear();
             dialogueContainerSO.BackgroundDatas.Clear();
             dialogueContainerSO.BranchDatas.Clear();
             dialogueContainerSO.CharacterDatas.Clear();
@@ -104,6 +105,9 @@ namespace Project.NodeSystem.Editor
                 {
                     case StartNode startNode:
                         dialogueContainerSO.StartDatas.Add(SaveNodeData(startNode));
+                        break;
+                    case UINode uiNode:
+                        dialogueContainerSO.UIDatas.Add(SaveNodeData(uiNode));
                         break;
                     case BackgroundNode backgroundNode:
                         dialogueContainerSO.BackgroundDatas.Add(SaveNodeData(backgroundNode));
@@ -180,6 +184,19 @@ namespace Project.NodeSystem.Editor
             }
 
             return startData;
+        }
+
+        private UIData SaveNodeData(UINode node)
+        {
+            UIData uiData = new UIData()
+            {
+                NodeGuid = node.NodeGuid,
+                Position = node.GetPosition().position,
+            };
+
+            uiData.show.Value = node.UIData.show.Value;
+
+            return uiData;
         }
 
         private BackgroundData SaveNodeData(BackgroundNode node)
@@ -526,6 +543,18 @@ namespace Project.NodeSystem.Editor
                 {
                     tmpNode.AddCondition(item);
                 }
+
+                tmpNode.ReloadFields();
+                _graphView.AddElement(tmpNode);
+            }
+
+            // UI
+            foreach (UIData savedData in dialogueContainer.UIDatas)
+            {
+                UINode tmpNode = _graphView.CreateNode<UINode>(savedData.Position);
+                tmpNode.NodeGuid = savedData.NodeGuid;
+                tmpNode.UIData.show.Value = savedData.show.Value;
+
 
                 tmpNode.ReloadFields();
                 _graphView.AddElement(tmpNode);

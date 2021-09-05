@@ -66,7 +66,7 @@ namespace Project.NodeSystem.Editor
                     }
                 });
             };
-            StartData.Toggle = NodeBuilder.NewToggle("Default", boxContainer, StartData.isDefault, onToggled);
+            StartData.Toggle = NodeBuilder.NewToggle("Default", boxContainer, StartData.isDefault, onToggled, "ToggleLabel");
         }
 
 

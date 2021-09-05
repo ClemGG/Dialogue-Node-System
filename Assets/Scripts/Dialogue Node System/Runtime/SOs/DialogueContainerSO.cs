@@ -12,6 +12,7 @@ namespace Project.NodeSystem
         public List<LinkData> linkDatas = new List<LinkData>();
 
         public List<StartData> StartDatas = new List<StartData>();
+        public List<UIData> UIDatas = new List<UIData>();
         public List<BackgroundData> BackgroundDatas = new List<BackgroundData>();
         public List<CharacterData> CharacterDatas = new List<CharacterData>();
         public List<RepliqueData> RepliqueDatas = new List<RepliqueData>();
@@ -39,6 +40,7 @@ namespace Project.NodeSystem
             {
                 List<BaseData> tmp = new List<BaseData>();
                 tmp.AddRange(StartDatas);
+                tmp.AddRange(UIDatas);
                 tmp.AddRange(BackgroundDatas);
                 tmp.AddRange(CharacterDatas);
                 tmp.AddRange(RepliqueDatas);

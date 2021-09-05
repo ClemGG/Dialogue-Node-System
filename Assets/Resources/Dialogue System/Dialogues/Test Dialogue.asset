@@ -19,7 +19,11 @@ MonoBehaviour:
     TargetPortName: Input
   - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     BasePortName: Start
-    TargetNodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
+    TargetNodeGuid: 2de28802-30a3-4809-934e-efa8e76542ac
+    TargetPortName: Input
+  - BaseNodeGuid: 2de28802-30a3-4809-934e-efa8e76542ac
+    BasePortName: Output
+    TargetNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
     TargetPortName: Input
   - BaseNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     BasePortName: Output
@@ -40,10 +44,6 @@ MonoBehaviour:
   - BaseNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
     BasePortName: 3d43a709-6ee9-4e28-aff5-96b6b7f334a8
     TargetNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-    TargetPortName: Input
-  - BaseNodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
-    BasePortName: Output
-    TargetNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
     TargetPortName: Input
   - BaseNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
     BasePortName: Output
@@ -108,9 +108,14 @@ MonoBehaviour:
     isDefault:
       Value: 1
     StringConditions: []
+  UIDatas:
+  - NodeGuid: 2de28802-30a3-4809-934e-efa8e76542ac
+    Position: {x: -173.6, y: 247.2}
+    show:
+      Value: 1
   BackgroundDatas:
   - NodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
-    Position: {x: -286.4, y: 247.2}
+    Position: {x: -295.2, y: 458.4}
     Transition:
       Value:
         ID:

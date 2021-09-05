@@ -44,12 +44,14 @@ namespace Project.NodeSystem
         public Action OnStartDialogue { get; set; }
         public Action OnEndDialogue { get; set; }
         public Action OnRunStartNode { get; set; }
+        public Action OnRunUINode { get; set; }
+        public Action<CharacterData_CharacterSO> OnRunCharacterNode { get; set; }
+        public Action<BackgroundData_Transition, TransitionSettingsSO, TransitionSettingsSO> OnRunBackgroundNode { get; set; }
+        public Action<RepliqueData_Replique, LanguageType> OnRunRepliqueNode { get; set; }
+
         public Action OnChoicesSet { get; set; }
         public Action<List<DialogueButtonContainer>> OnChoiceInfosSet { get; set; }
-        public Action<CharacterData_CharacterSO> OnRunCharacterNode { get; set; }
-        public Action<RepliqueData_Replique, LanguageType> OnRunRepliqueNode { get; set; }
         public Action<UnityAction> OnContinueBtnReached { get; set; }
-        public Action<BackgroundData_Transition, TransitionSettingsSO, TransitionSettingsSO> OnBackgroundNodeReached { get; set; }
         public Action OnTransitionEnded { get; set; }
 
         #endregion
@@ -174,6 +176,11 @@ namespace Project.NodeSystem
             StartCoroutine(DelayCo(.5f, onStart));
         }
 
+        protected override void RunNode(UIData nodeData)
+        {
+            OnRunUINode?.Invoke();
+        }
+
         protected override void RunNode(BranchData nodeData)
         {
             bool checkBranch = true;
@@ -269,15 +276,9 @@ namespace Project.NodeSystem
                 tmp += () => OnTransitionEnded -= tmp;
                 OnTransitionEnded += tmp;
 
-                OnBackgroundNodeReached?.Invoke(transition, startSettings, endSettings);
             }
 
-            //Si la transition de départ est manquante, on ne lance pas la transition et on arrête le dialogue par sécurité
-            else
-            {
-                Debug.LogError($"Error : No start transition available for background \"{transition.BackgroundName.Value}\".");
-                EndDialogue();
-            }
+            OnRunBackgroundNode?.Invoke(transition, startSettings, endSettings);
         }
 
         protected override void RunNode(CharacterData nodeData)
@@ -421,7 +422,7 @@ namespace Project.NodeSystem
                 //Si le port de choix est bien connecté, on peut ajouter le choix à la liste
                 if (!string.IsNullOrEmpty(container.LinkedPort.InputGuid))
                 {
-                    AssignChoice(container);
+                    GetChoiceInfo(container);
                     hasChoices = true;
                 }
             }
@@ -443,7 +444,7 @@ namespace Project.NodeSystem
             
         }
 
-        private void AssignChoice(ChoiceData_Container choice)
+        private void GetChoiceInfo(ChoiceData_Container choice)
         {
             bool checkBranch = true;
             foreach (ChoiceData_Condition condition in choice.Conditions)

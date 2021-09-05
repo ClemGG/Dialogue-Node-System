@@ -70,11 +70,11 @@ namespace Project.NodeSystem
         [Header("Tweeners :")]
         [Space(10)]
 
-        [SerializeField] ObjectTweener m_leftCharGoTweener;
-        [SerializeField] ObjectTweener m_leftCharSpriteTweener;
-        [SerializeField] ObjectTweener m_rightCharGoTweener;
-        [SerializeField] ObjectTweener m_rightCharSpriteTweener;
-        [SerializeField] ObjectTweener m_containerTweener;
+        ObjectTweener m_leftCharGoTweener;
+        ObjectTweener m_leftCharImgTweener;
+        ObjectTweener m_rightCharGoTweener;
+        ObjectTweener m_rightCharImgTweener;
+        ObjectTweener m_containerTweener;
 
         DialogueSide? _whoIsTalking;  //On grise le perso qui n'est pas en train de parler
         Vector2 _leftStartPos, _rightStartPos;
@@ -92,12 +92,12 @@ namespace Project.NodeSystem
         [SerializeField, Tooltip("Le SO nous permettant de faire un fondu pour afficher le nouveau décor.")]
         ScreenFaderSO m_screenFader;
 
-        [SerializeField, Tooltip("L'image du décor, pour exécuter un blend sur son material.")]
-        Image m_backgroundImg;
-
         [SerializeField, Tooltip("La texture de départ pour le décor (un empty transparent).")]
         Texture2D m_startTex;
 
+
+        Image _backgroundImg;                       //L'image du décor, pour exécuter un blend sur son material.
+        Material _backgroundMat;                    //Pour accéder au Material plus rapidement
         BackgroundData_Transition _tmpTransition;   //Gardée en mémoire pour assigner la texture menuellement dans SetBackgroundManually
 
         #endregion
@@ -111,12 +111,12 @@ namespace Project.NodeSystem
         [Header("Dialogue Characters :")]
         [Space(10)]
 
-        [SerializeField] protected GameObject m_leftCharGo;
-        [SerializeField] protected GameObject m_rightCharGo;
-        [SerializeField] protected Image m_leftCharImg;
-        [SerializeField] protected Image m_rightCharImg;
-        [SerializeField] protected TextMeshProUGUI m_leftNameText;
-        [SerializeField] protected TextMeshProUGUI m_rightNameText;
+        protected GameObject m_leftCharGo;
+        protected GameObject m_rightCharGo;
+        protected Image m_leftCharImg;
+        protected Image m_rightCharImg;
+        protected TextMeshProUGUI m_leftNameText;
+        protected TextMeshProUGUI m_rightNameText;
 
         #endregion
 
@@ -128,11 +128,11 @@ namespace Project.NodeSystem
         [Header("Dialogue Text :")]
         [Space(10)]
 
-        [SerializeField] protected GameObject m_dialogueContent;
-        [SerializeField] protected Button m_continueBtn;
-        [SerializeField] protected Button m_skipRepliqueBtn;
-        [SerializeField] protected TextMeshProUGUI m_dialogueText;
-        [SerializeField] protected TextMeshProUGUI m_continueBtnText;
+        GameObject m_dialogueContent;
+        GameObject m_continueBtnText;
+        Button m_continueBtn;
+        Button m_skipRepliqueBtn;
+        TextMeshProUGUI m_dialogueText;
 
         #endregion
 
@@ -144,10 +144,10 @@ namespace Project.NodeSystem
         [Header("Dialogue Choices :")]
         [Space(10)]
 
-        [SerializeField] protected GameObject m_choicesContent;
+        GameObject m_choicesContent;
 
-        [SerializeField] protected Button[] m_choiceBtns;   //Rempli une seule fois par code pour y accéder plus rapidement
-        [SerializeField] protected TextMeshProUGUI[] m_choiceTmps;   //Rempli une seule fois par code pour y accéder plus rapidement
+        Button[] m_choiceBtns;   //Rempli une seule fois par code pour y accéder plus rapidement
+        TextMeshProUGUI[] m_choiceTmps;   //Rempli une seule fois par code pour y accéder plus rapidement
 
         #endregion
 
@@ -183,20 +183,6 @@ namespace Project.NodeSystem
         {
             base.Awake();
 
-            //Voice audio
-            _voiceClipSource = gameObject.AddComponent<AudioSource>();
-            _voiceClipSource.volume = .2f;
-            _voiceClipSource.playOnAwake = false;
-
-            //Char print audio
-            _charClipSources = new AudioSource[_nbCharPrintClips];
-            for (int i = 0; i < _nbCharPrintClips; i++)
-            {
-                _charClipSources[i] = gameObject.AddComponent<AudioSource>();
-                _charClipSources[i].volume = .2f;
-                _charClipSources[i].playOnAwake = false;
-            }
-
 
             m_choicesContent.SetActive(false);
             m_dialogueContent.SetActive(false);
@@ -210,7 +196,12 @@ namespace Project.NodeSystem
             m_rightCharGo.SetActive(false);
 
             //On empêche la remise à zéro auto des tweeners pour replacer les sprites nous-mêmes quand ils disparaîssent
-            m_leftCharSpriteTweener.resetTransformOnDisable = m_rightCharSpriteTweener.resetTransformOnDisable = false;
+            m_leftCharImgTweener.resetTransformOnDisable = m_rightCharImgTweener.resetTransformOnDisable = false;
+
+
+            //On assigne une texture transparent au _backgroundMat avant le début du dialogue
+            _backgroundMat.SetTexture("_MainTex", m_startTex);
+            _backgroundMat.SetFloat("_Blend", 0f);
 
         }
 
@@ -222,6 +213,69 @@ namespace Project.NodeSystem
 
 
         #region Init
+
+        protected override void GetComponents()
+        {
+            base.GetComponents();
+
+
+            //Voice audio
+            _voiceClipSource = gameObject.AddComponent<AudioSource>();
+            _voiceClipSource.volume = .2f;
+            _voiceClipSource.playOnAwake = false;
+
+
+            //Char print audio
+            _charClipSources = new AudioSource[_nbCharPrintClips];
+            for (int i = 0; i < _nbCharPrintClips; i++)
+            {
+                _charClipSources[i] = gameObject.AddComponent<AudioSource>();
+                _charClipSources[i].volume = .2f;
+                _charClipSources[i].playOnAwake = false;
+            }
+
+
+            //Character sprites & names
+            m_leftCharGo = T.Find("character left").gameObject;
+            m_leftCharImg = T.Find("character left sprite").GetComponent<Image>();
+            m_leftNameText = T.Find("left name text").GetComponent<TextMeshProUGUI>();
+
+            m_rightCharGo = T.Find("character right").gameObject;
+            m_rightCharImg = T.Find("character right sprite").GetComponent<Image>();
+            m_rightNameText = T.Find("right name text").GetComponent<TextMeshProUGUI>();
+
+
+            //Tweeners
+            m_leftCharGoTweener = m_leftCharGo.GetComponent<ObjectTweener>();
+            m_leftCharImgTweener = m_leftCharImg.GetComponent<ObjectTweener>();
+            m_rightCharGoTweener = m_rightCharGo.GetComponent<ObjectTweener>();
+            m_rightCharImgTweener = m_rightCharImg.GetComponent<ObjectTweener>();
+            m_containerTweener = T.Find("container").GetComponent<ObjectTweener>();
+
+
+            //Background
+            _backgroundImg = T.Find("background img").GetComponent<Image>();
+            _backgroundMat = _backgroundImg.material;
+
+            //Dialogue content
+            m_dialogueContent = T.Find("dialogue content").gameObject;
+            m_continueBtn = T.Find("continue btn").GetComponent<Button>();
+            m_continueBtnText = m_continueBtn.transform.GetChild(0).gameObject;
+            m_skipRepliqueBtn = T.Find("skip replique btn").GetComponent<Button>();
+            m_dialogueText = T.Find("dialogue text").GetComponent<TextMeshProUGUI>();
+
+
+            //Choices content
+            m_choicesContent = T.Find("choices content").gameObject;
+            int count = m_choicesContent.transform.childCount;
+            m_choiceBtns = new Button[count];
+            m_choiceTmps = new TextMeshProUGUI[count];
+            for (int i = 0; i < count; i++)
+            {
+                m_choiceBtns[i] = m_choicesContent.transform.GetChild(i).GetComponent<Button>();
+                m_choiceTmps[i] = m_choiceBtns[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            }
+        }
 
         protected override void SubscribeToManager()
         {
@@ -236,7 +290,7 @@ namespace Project.NodeSystem
             _dialogueManager.OnRunRepliqueNode += SetVoiceAudio;
 
             //Background
-            _dialogueManager.OnBackgroundNodeReached += SetBackground;
+            _dialogueManager.OnRunBackgroundNode += SetBackground;
             m_screenFader.OnCompleteTransitionMiddle += SetBackgroundManually;
             m_screenFader.OnTransitionEnded += _dialogueManager.OnTransitionEnded;
 
@@ -259,7 +313,7 @@ namespace Project.NodeSystem
             _dialogueManager.OnRunRepliqueNode -= SetVoiceAudio;
 
             //Background
-            _dialogueManager.OnBackgroundNodeReached -= SetBackground;
+            _dialogueManager.OnRunBackgroundNode -= SetBackground;
             m_screenFader.OnCompleteTransitionMiddle -= SetBackgroundManually;
             m_screenFader.OnTransitionEnded -= _dialogueManager.OnTransitionEnded;
 
@@ -274,7 +328,7 @@ namespace Project.NodeSystem
         protected override void ResetUI()
         {
             _whoIsTalking = null;
-            m_leftCharSpriteTweener.Cg.alpha = m_leftCharSpriteTweener.Cg.alpha = 1f;
+            m_leftCharImgTweener.Cg.alpha = m_leftCharImgTweener.Cg.alpha = 1f;
             m_leftCharGo.transform.position = _leftStartPos;
             m_rightCharGo.transform.position = _rightStartPos;
             m_leftCharImg.transform.rotation = m_rightCharImg.transform.rotation = Quaternion.identity;
@@ -415,7 +469,7 @@ namespace Project.NodeSystem
             switch (startSettings.TransitionType)
             {
                 case FaderTransitionType.TextureBlend:
-                    m_screenFader.StartBlend(m_backgroundImg, Time.unscaledDeltaTime, transition.BackgroundTex.Value, startSettings);
+                    m_screenFader.StartBlend(_backgroundImg, Time.unscaledDeltaTime, transition.BackgroundTex.Value, startSettings);
                     break;
                 default:
                     if (endSettings)
@@ -434,9 +488,9 @@ namespace Project.NodeSystem
         //OnCompleteTransitionPaused (appelée entre le 1er et le 2è fade)
         private void SetBackgroundManually()
         {
-            m_backgroundImg.materialForRendering.SetTexture("_MainTex", _tmpTransition.BackgroundTex.Value);
-            m_backgroundImg.materialForRendering.SetFloat("_Blend", 0f);
-            m_backgroundImg.SetMaterialDirty();
+            _backgroundMat.SetTexture("_MainTex", _tmpTransition.BackgroundTex.Value);
+            _backgroundMat.SetFloat("_Blend", 0f);
+            _backgroundImg.SetMaterialDirty();
         }
 
 
@@ -495,7 +549,7 @@ namespace Project.NodeSystem
             //On n'est plus en train d'écrire, donc on remet les valeurs par défaut
 
             m_skipRepliqueBtn.gameObject.SetActive(false);
-            m_continueBtnText.gameObject.SetActive(true);
+            m_continueBtnText.SetActive(true);
             m_continueBtn.gameObject.SetActive(true);
             _isWriting = false;
 
@@ -534,7 +588,7 @@ namespace Project.NodeSystem
             if (data.CanClickOnContinue.Value) m_skipRepliqueBtn.gameObject.SetActive(true);
 
 
-            m_continueBtnText.gameObject.SetActive(false);    //Désactive le texte du continueBtn
+            m_continueBtnText.SetActive(false);    //Désactive le texte du continueBtn
             m_continueBtn.gameObject.SetActive(false);        //Pour éviter de cliquer dessus
             _isWriting = true;                               //On indique au reste du script que l'écriture a commencé
 
@@ -594,7 +648,7 @@ namespace Project.NodeSystem
             //Si on a le droit d'appuyer sur continuer pour passer la réplique, on active le continueBtn
             if (data.CanClickOnContinue.Value) m_continueBtn.gameObject.SetActive(true);
 
-            m_continueBtnText.gameObject.SetActive(true);
+            m_continueBtnText.SetActive(true);
             m_skipRepliqueBtn.gameObject.SetActive(false);
 
 
@@ -769,7 +823,7 @@ namespace Project.NodeSystem
                     //Si on doit changer de direction et que le perso est visible, on peut l'animer
                     if (m_leftCharGo.activeSelf)
                     {
-                        m_leftCharSpriteTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative);
+                        m_leftCharImgTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative);
                     }
                     //Sinon, ça veut dire que notre perso a été désactivé ; on doit le tourner dans la bonne direction avant de l'afficher 
                     else
@@ -798,7 +852,7 @@ namespace Project.NodeSystem
                     //Si on doit changer de direction et que le perso est visible, on peut l'animer
                     if (m_rightCharGo.activeSelf)
                     {
-                        m_rightCharSpriteTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative);
+                        m_rightCharImgTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative);
                     }
                     //Sinon, ça veut dire que notre perso a été désactivé ; on doit le tourner dans la bonne direction avant de l'afficher 
                     else
@@ -821,17 +875,17 @@ namespace Project.NodeSystem
             {
                 //Animer le perso s'il affiche un sprite différent du précédent
                 if (lastSprite != m_leftCharImg.sprite && !shouldRotate)
-                    m_leftCharSpriteTweener.BeginTweens(TS_CharTalks);
+                    m_leftCharImgTweener.BeginTweens(TS_CharTalks);
 
-                m_rightCharSpriteTweener.BeginTweens(TS_CharMuted);
+                m_rightCharImgTweener.BeginTweens(TS_CharMuted);
             }
             else
             {
                 //Animer le perso s'il affiche un sprite différent du précédent
                 if (lastSprite != m_rightCharImg.sprite && !shouldRotate)
-                    m_rightCharSpriteTweener.BeginTweens(TS_CharTalks);
+                    m_rightCharImgTweener.BeginTweens(TS_CharTalks);
 
-                m_leftCharSpriteTweener.BeginTweens(TS_CharMuted);
+                m_leftCharImgTweener.BeginTweens(TS_CharMuted);
             }
         }
 
