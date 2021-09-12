@@ -1620,7 +1620,6 @@ GameObject:
   - component: {fileID: 1356225561}
   - component: {fileID: 1356225560}
   - component: {fileID: 1356225559}
-  - component: {fileID: 1356225558}
   m_Layer: 0
   m_Name: Dialogue Controller (Tween)
   m_TagString: Untagged
@@ -1628,21 +1627,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1356225558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356225557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 471bb235b41d9ed4fa387263df70545a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueEvent: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
-  _money: 50
-  _hasSomethingToDo: 0
 --- !u!114 &1356225559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1655,9 +1639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d7b7cda4ee64243bc418a17d1ad083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 14654d24fb21fcb4ca3cb30cb3148d12, type: 2}
-  m_triggerScript: {fileID: 1356225558}
-  SelectedLanguage: 0
 --- !u!114 &1356225560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1670,8 +1651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dd9266a16ac964c80ad39dddb7c3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_writeCharByChar: 1
-  m_charWriteSpeed: 0.032
+  _writeCharByChar: 1
+  _charWriteSpeed: 0.032
   _isWriting: 0
   TS_CharAppears:
   - {fileID: 11400000, guid: dd2f1711164917744b2a7d6e0a049819, type: 2}
@@ -1694,8 +1675,8 @@ MonoBehaviour:
   TS_ContainerOnDialogueEnded:
   - {fileID: 11400000, guid: b50645fdb109c454c83bf241d6572fd4, type: 2}
   - {fileID: 11400000, guid: dd9986ddbed3690498d9fb924ed9fac5, type: 2}
-  m_screenFader: {fileID: 11400000, guid: 09e27f5f9bdc7864eb740d03eca26f20, type: 2}
-  m_startTex: {fileID: 2800000, guid: 537c45cdcc1fa9f49b1600a7ccdf0e27, type: 3}
+  _screenFader: {fileID: 11400000, guid: 09e27f5f9bdc7864eb740d03eca26f20, type: 2}
+  _startTex: {fileID: 2800000, guid: 537c45cdcc1fa9f49b1600a7ccdf0e27, type: 3}
 --- !u!4 &1356225561
 Transform:
   m_ObjectHideFlags: 0

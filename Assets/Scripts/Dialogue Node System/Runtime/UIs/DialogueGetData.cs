@@ -10,26 +10,26 @@ namespace Project.NodeSystem
     /// </summary>
     public abstract class DialogueGetData : MonoBehaviour
     {
-        [SerializeField] protected DialogueContainerSO dialogue;
+        protected DialogueContainerSO _dialogue;
 
         #region Dialogue
 
         protected BaseData GetNodeByGuid(string guid)
         {
-            return dialogue.AllDatas.Find(node => node.NodeGuid == guid);
+            return _dialogue.AllDatas.Find(data => data.NodeGuid == guid);
         }
         
         
         //Pour savoir quelle node récupérer ensuite si on a plusieurs choix
         protected BaseData GetNodeByNodePort(ChoicePort nodePort)
         {
-            return dialogue.AllDatas.Find(node => node.NodeGuid == nodePort.InputGuid);
+            return _dialogue.AllDatas.Find(data => data.NodeGuid == nodePort.InputGuid);
         }
 
         //Si la node n'a qu'une seule sortie, on cherche directement la node suivante
         protected BaseData GetNextNode(BaseData curNode)
         {
-            LinkData nodeLinkData = dialogue.linkDatas.Find(edge => edge.BaseNodeGuid == curNode.NodeGuid);
+            LinkData nodeLinkData = _dialogue.linkDatas.Find(edge => edge.BaseNodeGuid == curNode.NodeGuid);
             return GetNodeByGuid(nodeLinkData.TargetNodeGuid);
         }
 

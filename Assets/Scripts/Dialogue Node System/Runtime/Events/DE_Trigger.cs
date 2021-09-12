@@ -7,7 +7,7 @@ namespace Project.NodeSystem
     //Les propriétés doivent être publiques pour être modifiées par l'EventNode
     public class DE_Trigger : MonoBehaviour
     {
-        public DialogueEventSO dialogueEvent;
+        [SerializeField] private DialogueEventSO _dialogueEvent;
 
         [ReadOnly, SerializeField] private int _money = 50;
         [ReadOnly, SerializeField] private bool _hasSomethingToDo = false;
@@ -17,7 +17,7 @@ namespace Project.NodeSystem
 
         private void Awake()
         {
-            dialogueEvent.OnDialogueEventCalled += Print;
+            _dialogueEvent.OnDialogueEventCalled += Print;
         }
 
         private void Print()
@@ -27,7 +27,7 @@ namespace Project.NodeSystem
 
         private void OnDestroy()
         {
-            dialogueEvent.OnDialogueEventCalled -= Print;
+            _dialogueEvent.OnDialogueEventCalled -= Print;
         }
     }
 }

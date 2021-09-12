@@ -18,14 +18,8 @@ namespace Project.NodeSystem
         [Space(10)]
 
 
-        protected GameObject m_dialoguePanel;
+        protected GameObject _dialoguePanel;
         protected DialogueManager _dialogueManager;
-
-
-
-        private Transform t;
-        protected Transform T { get { return t ??= transform; } }
-
 
         #endregion
 
@@ -38,10 +32,10 @@ namespace Project.NodeSystem
         [Space(10)]
 
         [SerializeField, Tooltip("Ecrire caractère par caractère ou afficher la réplique entière d'un coup ?")]
-        protected bool m_writeCharByChar = true;
+        protected bool _writeCharByChar = true;
 
         [SerializeField, Tooltip("Vitesse d'écriture caractère par caractère (Ne pas la mettre trop basse pour laisser le temps à l'audio de se jouer).")]
-        protected float m_charWriteSpeed = .032f;
+        protected float _charWriteSpeed = .032f;
 
         [ReadOnly, SerializeField, Tooltip("Drapeau qui indique si le UI est en train d'écrire la réplique en cours.")]
         protected bool _isWriting = false;
@@ -96,38 +90,8 @@ namespace Project.NodeSystem
         protected virtual void GetComponents()
         {
             _dialogueManager = GetComponent<DialogueManager>();
-            m_dialoguePanel = T.GetChild(0).gameObject;
+            _dialoguePanel = transform.GetChild(0).gameObject;
         }
-
-
-        private void StartDialogue()
-        {
-            //Quand on lance le dialogue, on active l'interface
-            ResetUI();
-            ShowUI();
-        }
-
-        private void EndDialogue()
-        {
-            HideUI(true);
-        }
-
-        protected virtual void ResetUI() { }
-
-        protected virtual void ShowUI()
-        {
-            m_dialoguePanel.SetActive(true);
-        }
-
-        protected virtual void HideUI(bool endDialogue = false)
-        {
-            if (endDialogue)
-            {
-                m_dialoguePanel.SetActive(false);
-            }
-        }
-
-
         protected virtual void SubscribeToManager()
         {
             _dialogueManager.OnStartDialogue += StartDialogue;
@@ -147,7 +111,40 @@ namespace Project.NodeSystem
 
 
 
+        #region Display
 
+
+        private void StartDialogue()
+        {
+            //Quand on lance le dialogue, on active l'interface
+            ResetUI();
+            ShowUI();
+        }
+
+        private void EndDialogue()
+        {
+            HideUI(true);
+        }
+
+        protected virtual void ResetUI() 
+        {
+        }
+
+        protected virtual void ShowUI()
+        {
+            _dialoguePanel.SetActive(true);
+        }
+
+        protected virtual void HideUI(bool endDialogue = false)
+        {
+            if (endDialogue)
+            {
+                _dialoguePanel.SetActive(false);
+            }
+        }
+
+
+        #endregion
 
 
 

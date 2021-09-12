@@ -17,7 +17,7 @@ MonoBehaviour:
   - Three
   - Tres
   CharacterNameColor: {r: 0.9528302, g: 0.7634173, b: 0.22831964, a: 1}
-  CharPrintClip: {fileID: 0}
+  CharPrintClip: {fileID: 8300000, guid: 152928669f9f9934c886d3ff2d08eac5, type: 3}
   m_faces:
   - Face: {fileID: 21300000, guid: af5e52e5850abfa4ebdf049ae46ee1d9, type: 3}
     Mood: 0
