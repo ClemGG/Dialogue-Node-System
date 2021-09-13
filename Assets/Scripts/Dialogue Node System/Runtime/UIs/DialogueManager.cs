@@ -88,7 +88,6 @@ namespace Project.NodeSystem
             OnStartDialogue?.Invoke();
 
 
-
             //Par défaut, on trie les nodes selon leur position en Y.
             //Ainsi, la node de départ par défaut sera toujours la node éligible la plus haute dans le graphe.
             _dialogue.StartDatas.Sort(delegate (StartData x, StartData y)
@@ -257,6 +256,7 @@ namespace Project.NodeSystem
             //pour passer à la node suivante
             Action tmp = () =>
             {
+                print("transition ended");
                 CheckNodeType(GetNextNode(nodeData));
             };
             tmp += () => OnTransitionEnded -= tmp;
@@ -303,6 +303,7 @@ namespace Project.NodeSystem
 
         private void DisplayCharacters(CharacterData nodeData)
         {
+
             //Pour chaque conteneur de la CharacterNode...
             for (int i = _curIndex; i < nodeData.Characters.Count; i++)
             {

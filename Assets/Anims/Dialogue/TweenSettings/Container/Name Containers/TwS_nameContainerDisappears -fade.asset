@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 846a94970f87695469a491017d59c231, type: 3}
-  m_Name: TwS_nameContainerDisappears +moveY
+  m_Name: TwS_nameContainerDisappears -fade
   m_EditorClassIdentifier: 
-  animationType: 10
+  animationType: 6
   curveType: 38
   curve:
     serializedVersion: 2
@@ -44,8 +44,8 @@ MonoBehaviour:
   pingPong: 0
   useFromAsStart: 1
   relativeToTransform: 1
-  from: {x: 0, y: 0, z: 0}
-  to: {x: 0, y: -50, z: 0}
+  from: {x: 1, y: 0, z: 0}
+  to: {x: 0, y: 0, z: 0}
   fromColor: {r: 0, g: 0, b: 0, a: 0}
   toColor: {r: 0, g: 0, b: 0, a: 0}
   OnComplete: []

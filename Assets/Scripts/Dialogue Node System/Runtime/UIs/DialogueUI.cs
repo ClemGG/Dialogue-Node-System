@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using UnityEngine;
 
@@ -65,6 +66,8 @@ namespace Project.NodeSystem
         {
             GetComponents();
 
+            SetUpComponents();
+
             // On abonne les méthodes au DialogueManager
             SubscribeToManager();
 
@@ -92,6 +95,13 @@ namespace Project.NodeSystem
             _dialogueManager = GetComponent<DialogueManager>();
             _dialoguePanel = transform.GetChild(0).gameObject;
         }
+
+
+        protected virtual void SetUpComponents()
+        {
+
+        }
+
         protected virtual void SubscribeToManager()
         {
             _dialogueManager.OnStartDialogue += StartDialogue;
@@ -116,9 +126,8 @@ namespace Project.NodeSystem
 
         private void StartDialogue()
         {
-            //Quand on lance le dialogue, on active l'interface
+            //Quand on lance le dialogue, on remet les éléments d'UI à leur valeur par défaut
             ResetUI();
-            ShowUI();
         }
 
         private void EndDialogue()
@@ -126,13 +135,18 @@ namespace Project.NodeSystem
             HideUI(true);
         }
 
+
+
+
+
         protected virtual void ResetUI() 
         {
+            _dialoguePanel.SetActive(true);
         }
 
         protected virtual void ShowUI()
         {
-            _dialoguePanel.SetActive(true);
+
         }
 
         protected virtual void HideUI(bool endDialogue = false)

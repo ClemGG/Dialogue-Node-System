@@ -38,7 +38,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Speed: 1
-  DelayAfterTransition: 1
+  DelayAfterTransition: 0.35
   FadeColor: {r: 0, g: 0, b: 0, a: 1}
   MaskTexture: {fileID: 2800000, guid: adaec23ca1254cd4495756d6640db47e, type: 3}
   InvertMask: 0

@@ -19,11 +19,11 @@ MonoBehaviour:
     TargetPortName: Input
   - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     BasePortName: Start
-    TargetNodeGuid: 2de28802-30a3-4809-934e-efa8e76542ac
+    TargetNodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
     TargetPortName: Input
-  - BaseNodeGuid: 2de28802-30a3-4809-934e-efa8e76542ac
+  - BaseNodeGuid: d377df9c-7a3e-4d82-8373-63cb05e81d44
     BasePortName: Output
-    TargetNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
+    TargetNodeGuid: 01793c26-ad00-4a51-bd35-1f6584dcab22
     TargetPortName: Input
   - BaseNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     BasePortName: Output
@@ -45,9 +45,9 @@ MonoBehaviour:
     BasePortName: 3d43a709-6ee9-4e28-aff5-96b6b7f334a8
     TargetNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     TargetPortName: Input
-  - BaseNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
+  - BaseNodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
     BasePortName: Output
-    TargetNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
+    TargetNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
     TargetPortName: Input
   - BaseNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
     BasePortName: Output
@@ -68,6 +68,10 @@ MonoBehaviour:
   - BaseNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
     BasePortName: Output
     TargetNodeGuid: 93a58b2a-eba2-4039-ad66-d486751cff42
+    TargetPortName: Input
+  - BaseNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
+    BasePortName: Output
+    TargetNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
     TargetPortName: Input
   - BaseNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
     BasePortName: Output
@@ -91,31 +95,35 @@ MonoBehaviour:
     TargetPortName: Input
   - BaseNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
     BasePortName: Output
-    TargetNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
+    TargetNodeGuid: d377df9c-7a3e-4d82-8373-63cb05e81d44
     TargetPortName: Input
   - BaseNodeGuid: 35432d0a-cef1-4dd6-8858-457c25692159
     BasePortName: Start
     TargetNodeGuid: 9d31d82b-4d7d-4da7-8327-0d1f23e55197
     TargetPortName: End
+  - BaseNodeGuid: 01793c26-ad00-4a51-bd35-1f6584dcab22
+    BasePortName: Start
+    TargetNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
+    TargetPortName: Input
   StartDatas:
   - NodeGuid: 16261766-9fcf-4fce-b998-e1741d4b7df7
-    Position: {x: 595.2, y: 114.40001}
+    Position: {x: -221.6, y: 114.40001}
     isDefault:
       Value: 0
     StringConditions: []
   - NodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
-    Position: {x: -540.8, y: 247.2}
+    Position: {x: -1357.6, y: 247.2}
     isDefault:
       Value: 1
     StringConditions: []
   UIDatas:
-  - NodeGuid: 2de28802-30a3-4809-934e-efa8e76542ac
-    Position: {x: -173.6, y: 247.2}
+  - NodeGuid: d377df9c-7a3e-4d82-8373-63cb05e81d44
+    Position: {x: 56, y: 293.59998}
     show:
-      Value: 1
+      Value: 0
   BackgroundDatas:
   - NodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
-    Position: {x: -295.2, y: 458.4}
+    Position: {x: -1084.8, y: 247.2}
     Transition:
       Value:
         ID:
@@ -129,31 +137,6 @@ MonoBehaviour:
         EndSettings:
           Value: {fileID: 11400000, guid: d1527db4a32ae5b438acf8b8737395b5, type: 2}
   CharacterDatas:
-  - NodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
-    Position: {x: 220.8, y: 247.2}
-    Characters:
-    - ID:
-        Value: 0
-      Character:
-        Value: {fileID: 11400000, guid: 5f215a5940da20e459a503cc8cd42af9, type: 2}
-      CharacterNames:
-      - Un
-      - One
-      - Uno
-      CharacterName:
-        Value: Un
-      Sprite:
-        Value: {fileID: 21300000, guid: e48439cfd142fd347a1ab3f4a5396fcb, type: 3}
-      Mood:
-        Value: 0
-      FaceDirection:
-        Value: 1
-      SidePlacement:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
   - NodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
     Position: {x: 826.4, y: 247.2}
     Characters:
@@ -294,6 +277,31 @@ MonoBehaviour:
         Value: 1
       SidePlacement:
         Value: 1
+      UseAutoDelay:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+  - NodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
+    Position: {x: -596, y: 247.2}
+    Characters:
+    - ID:
+        Value: 0
+      Character:
+        Value: {fileID: 11400000, guid: 5f215a5940da20e459a503cc8cd42af9, type: 2}
+      CharacterNames:
+      - Un
+      - One
+      - Uno
+      CharacterName:
+        Value: Un
+      Sprite:
+        Value: {fileID: 21300000, guid: e48439cfd142fd347a1ab3f4a5396fcb, type: 3}
+      Mood:
+        Value: 0
+      FaceDirection:
+        Value: 1
+      SidePlacement:
+        Value: 0
       UseAutoDelay:
         Value: 0
       AutoDelayDuration:
@@ -528,7 +536,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
-    Position: {x: 484, y: 247.2}
+    Position: {x: -332.8, y: 247.2}
     Repliques:
     - ID:
         Value: 0
@@ -657,6 +665,10 @@ MonoBehaviour:
     Position: {x: 2820.8, y: 1144}
     Delay:
       Value: 2
+  - NodeGuid: 01793c26-ad00-4a51-bd35-1f6584dcab22
+    Position: {x: 240, y: 293.59998}
+    Delay:
+      Value: 1.5
   EventDatas:
   - NodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
     Position: {x: 2419.2, y: 943.2}
@@ -689,7 +701,7 @@ MonoBehaviour:
     EndNodeType:
       Value: 0
   - NodeGuid: 9d31d82b-4d7d-4da7-8327-0d1f23e55197
-    Position: {x: 3023.2, y: 1144}
+    Position: {x: 3060.8, y: 1144}
     EndNodeType:
       Value: 3
   GroupDatas: []

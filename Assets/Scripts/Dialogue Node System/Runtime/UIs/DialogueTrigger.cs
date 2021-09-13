@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,20 +14,30 @@ namespace Project.NodeSystem
         [SerializeField, Tooltip("Le dialogue à jouer.")]
         private DialogueContainerSO _dialogue;
 
+        private DialogueManager _dm;
 
         #endregion
 
         // Start is called before the first frame update
         void Start()
         {
-            SceneManager.LoadSceneAsync("Dialogue Scene", LoadSceneMode.Additive);
             SceneManager.sceneLoaded += StartDialogue;
+            SceneManager.LoadSceneAsync("Dialogue Scene", LoadSceneMode.Additive);
         }
 
         private void StartDialogue(Scene sceneLoaded, LoadSceneMode loadSceneMode)
         {
             SceneManager.sceneLoaded -= StartDialogue;
-            FindObjectOfType<DialogueManager>().InitAndStartNewDialogue(_dialogue, LanguageType.French, _triggerScript);
+
+            _dm = FindObjectOfType<DialogueManager>();
+            _dm.OnEndDialogue += UnloadDialogueScene;
+            _dm.InitAndStartNewDialogue(_dialogue, LanguageType.French, _triggerScript);
+        }
+
+        private void UnloadDialogueScene()
+        {
+            _dm.OnEndDialogue -= UnloadDialogueScene;
+            SceneManager.UnloadSceneAsync("Dialogue Scene", UnloadSceneOptions.None);
         }
     }
 }

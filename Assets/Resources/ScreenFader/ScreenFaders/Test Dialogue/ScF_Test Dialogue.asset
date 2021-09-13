@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15468e117c99b94dbc0c6f3b263c1b2, type: 3}
   m_Name: ScF_Test Dialogue
   m_EditorClassIdentifier: 
-  m_fadeShader: {fileID: 4800000, guid: 52432dbdae239614b9d5d23b382317be, type: 3}
-  m_blendShader: {fileID: 4800000, guid: f66b769d04bb56d4bab3b4ada41a8eba, type: 3}
-  m_params: {fileID: 11400000, guid: d1527db4a32ae5b438acf8b8737395b5, type: 2}
-  m_maskValue: 1
+  _fadeShader: {fileID: 4800000, guid: 52432dbdae239614b9d5d23b382317be, type: 3}
+  _blendShader: {fileID: 4800000, guid: f66b769d04bb56d4bab3b4ada41a8eba, type: 3}
+  _params: {fileID: 11400000, guid: d1527db4a32ae5b438acf8b8737395b5, type: 2}
+  _maskValue: 1
