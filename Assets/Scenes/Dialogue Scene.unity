@@ -234,6 +234,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6994752813485774215, guid: 0e772ecacb4f9fe4994ff65b60d96427, type: 3}
+      propertyPath: resetTransformOnTweenEnded
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e772ecacb4f9fe4994ff65b60d96427, type: 3}
 --- !u!224 &40753339 stripped
@@ -306,6 +310,7 @@ MonoBehaviour:
   destroyOnStop: 0
   saveTransformOnEnable: 0
   resetTransformOnDisable: 0
+  resetTransformOnTweenEnded: 0
 --- !u!114 &200367164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +379,7 @@ MonoBehaviour:
   destroyOnStop: 0
   saveTransformOnEnable: 0
   resetTransformOnDisable: 1
+  resetTransformOnTweenEnded: 0
 --- !u!114 &434197005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +495,7 @@ MonoBehaviour:
   destroyOnStop: 0
   saveTransformOnEnable: 0
   resetTransformOnDisable: 1
+  resetTransformOnTweenEnded: 0
 --- !u!1 &464710731
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +728,7 @@ MonoBehaviour:
   destroyOnStop: 0
   saveTransformOnEnable: 0
   resetTransformOnDisable: 1
+  resetTransformOnTweenEnded: 1
 --- !u!1 &628429571
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,6 +976,7 @@ MonoBehaviour:
   destroyOnStop: 0
   saveTransformOnEnable: 0
   resetTransformOnDisable: 0
+  resetTransformOnTweenEnded: 0
 --- !u!114 &808846891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,6 +1157,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6994752813485774215, guid: 0e772ecacb4f9fe4994ff65b60d96427, type: 3}
+      propertyPath: resetTransformOnTweenEnded
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e772ecacb4f9fe4994ff65b60d96427, type: 3}
 --- !u!224 &1086093255 stripped
@@ -1215,6 +1228,7 @@ MonoBehaviour:
   destroyOnStop: 0
   saveTransformOnEnable: 0
   resetTransformOnDisable: 1
+  resetTransformOnTweenEnded: 1
 --- !u!114 &1183383648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,6 +1323,7 @@ MonoBehaviour:
   destroyOnStop: 0
   saveTransformOnEnable: 0
   resetTransformOnDisable: 1
+  resetTransformOnTweenEnded: 0
 --- !u!1 &1327818175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,8 +1631,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1356225561}
-  - component: {fileID: 1356225560}
   - component: {fileID: 1356225559}
+  - component: {fileID: 1356225558}
   m_Layer: 0
   m_Name: Dialogue Controller (Tween)
   m_TagString: Untagged
@@ -1625,6 +1640,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1356225558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356225557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06c93fbf7ceb1546945b8642d35310d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _writeCharByChar: 1
+  _charWriteSpeed: 0.032
+  _isWriting: 0
+  _screenFader: {fileID: 11400000, guid: 18ecf8edff258fc4c83f5b6a87f55e06, type: 2}
+  _startTex: {fileID: 2800000, guid: 537c45cdcc1fa9f49b1600a7ccdf0e27, type: 3}
+  TS_CharAppears:
+  - {fileID: 11400000, guid: dd2f1711164917744b2a7d6e0a049819, type: 2}
+  - {fileID: 11400000, guid: 1f67a77769823364d9e9a03c2af348e2, type: 2}
+  TS_CharDisappears:
+  - {fileID: 11400000, guid: 75379d9200bff744d9b2a877d633c2e8, type: 2}
+  - {fileID: 11400000, guid: 589b75401c6b79c4583966b0246742c1, type: 2}
+  TS_CharRotates:
+  - {fileID: 11400000, guid: f7cfdc43be166d343aeb3ce4675570db, type: 2}
+  TS_CharRotatesNegative:
+  - {fileID: 11400000, guid: 8d9970f85e426c243b15fef803828e0a, type: 2}
+  TS_CharTalks:
+  - {fileID: 11400000, guid: 22bc5ffe70cb224428ff6ebac85acd53, type: 2}
+  - {fileID: 11400000, guid: 43dd4bc236426c24b98e27191385c2da, type: 2}
+  TS_CharMuted:
+  - {fileID: 11400000, guid: a16b6d2079cd3ec4790fd8b02ac9bad7, type: 2}
+  TS_CharOnDialogueEnded:
+  - {fileID: 11400000, guid: 589b75401c6b79c4583966b0246742c1, type: 2}
+  - {fileID: 11400000, guid: 75379d9200bff744d9b2a877d633c2e8, type: 2}
+  TS_ContainerOnDialogueEnded:
+  - {fileID: 11400000, guid: b50645fdb109c454c83bf241d6572fd4, type: 2}
+  - {fileID: 11400000, guid: dd9986ddbed3690498d9fb924ed9fac5, type: 2}
+  TS_ContainerOnDialogueStarted:
+  - {fileID: 11400000, guid: fa72c8d2491c6914f8e7d5bdff57645d, type: 2}
+  - {fileID: 11400000, guid: d19949fc85f18864db57c889779b79a4, type: 2}
 --- !u!114 &1356225559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1637,47 +1693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d7b7cda4ee64243bc418a17d1ad083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1356225560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356225557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93dd9266a16ac964c80ad39dddb7c3af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _writeCharByChar: 1
-  _charWriteSpeed: 0.032
-  _isWriting: 0
-  TS_CharAppears:
-  - {fileID: 11400000, guid: dd2f1711164917744b2a7d6e0a049819, type: 2}
-  - {fileID: 11400000, guid: 1f67a77769823364d9e9a03c2af348e2, type: 2}
-  TS_CharDisappears:
-  - {fileID: 11400000, guid: 75379d9200bff744d9b2a877d633c2e8, type: 2}
-  - {fileID: 11400000, guid: 589b75401c6b79c4583966b0246742c1, type: 2}
-  TS_CharRotates:
-  - {fileID: 11400000, guid: f7cfdc43be166d343aeb3ce4675570db, type: 2}
-  TS_CharRotatesNegative:
-  - {fileID: 11400000, guid: 8d9970f85e426c243b15fef803828e0a, type: 2}
-  TS_CharTalks:
-  - {fileID: 11400000, guid: 43dd4bc236426c24b98e27191385c2da, type: 2}
-  - {fileID: 11400000, guid: 22bc5ffe70cb224428ff6ebac85acd53, type: 2}
-  TS_CharMuted:
-  - {fileID: 11400000, guid: a16b6d2079cd3ec4790fd8b02ac9bad7, type: 2}
-  TS_CharOnDialogueEnded:
-  - {fileID: 11400000, guid: 75379d9200bff744d9b2a877d633c2e8, type: 2}
-  - {fileID: 11400000, guid: 589b75401c6b79c4583966b0246742c1, type: 2}
-  TS_ContainerOnDialogueEnded:
-  - {fileID: 11400000, guid: b50645fdb109c454c83bf241d6572fd4, type: 2}
-  - {fileID: 11400000, guid: dd9986ddbed3690498d9fb924ed9fac5, type: 2}
-  TS_ContainerOnDialogueStarted:
-  - {fileID: 11400000, guid: fa72c8d2491c6914f8e7d5bdff57645d, type: 2}
-  - {fileID: 11400000, guid: 5907744a5bb21a64c8889da223050789, type: 2}
-  _screenFader: {fileID: 11400000, guid: 18ecf8edff258fc4c83f5b6a87f55e06, type: 2}
-  _startTex: {fileID: 2800000, guid: 537c45cdcc1fa9f49b1600a7ccdf0e27, type: 3}
 --- !u!4 &1356225561
 Transform:
   m_ObjectHideFlags: 0
@@ -1790,6 +1805,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3529474672710782238, guid: 0e772ecacb4f9fe4994ff65b60d96427, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994752813485774215, guid: 0e772ecacb4f9fe4994ff65b60d96427, type: 3}
+      propertyPath: resetTransformOnTweenEnded
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2262,6 +2281,7 @@ MonoBehaviour:
   destroyOnStop: 0
   saveTransformOnEnable: 0
   resetTransformOnDisable: 1
+  resetTransformOnTweenEnded: 1
 --- !u!1 &2072573129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,6 +2512,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3529474672710782238, guid: 0e772ecacb4f9fe4994ff65b60d96427, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994752813485774215, guid: 0e772ecacb4f9fe4994ff65b60d96427, type: 3}
+      propertyPath: resetTransformOnTweenEnded
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ using UnityEngine;
 namespace Project.NodeSystem 
 {
 
-    public class DialogueUI : MonoBehaviour
+    public abstract class DialogueUI : MonoBehaviour
     {
 
         #region Fields
@@ -62,7 +61,7 @@ namespace Project.NodeSystem
 
         #region Mono
 
-        protected virtual void Awake()
+        private void Awake()
         {
             GetComponents();
 
@@ -89,18 +88,16 @@ namespace Project.NodeSystem
         #region Init
 
 
-        //A surcharger dans les classes filles pour obtenir les sripts présents sur les UIs
+        //A surcharger dans les classes filles pour obtenir les scripts présents sur les UIs
         protected virtual void GetComponents()
         {
-            _dialogueManager = GetComponent<DialogueManager>();
             _dialoguePanel = transform.GetChild(0).gameObject;
+            _dialogueManager = GetComponent<DialogueManager>();
         }
 
 
-        protected virtual void SetUpComponents()
-        {
+        protected abstract void SetUpComponents();
 
-        }
 
         protected virtual void SubscribeToManager()
         {
@@ -116,14 +113,6 @@ namespace Project.NodeSystem
         }
 
 
-
-        #endregion
-
-
-
-        #region Display
-
-
         private void StartDialogue()
         {
             //Quand on lance le dialogue, on remet les éléments d'UI à leur valeur par défaut
@@ -137,6 +126,14 @@ namespace Project.NodeSystem
 
 
 
+        #endregion
+
+
+
+        #region Display
+
+
+
 
 
         protected virtual void ResetUI() 
@@ -144,10 +141,7 @@ namespace Project.NodeSystem
             _dialoguePanel.SetActive(true);
         }
 
-        protected virtual void ShowUI()
-        {
-
-        }
+        protected abstract void ShowUI();
 
         protected virtual void HideUI(bool endDialogue = false)
         {

@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846a94970f87695469a491017d59c231, type: 3}
   m_Name: TwS_Choice slot moveX+ OnEnable
   m_EditorClassIdentifier: 
-  animationType: 9
-  curveType: 38
-  curve:
+  AnimationType: 9
+  CurveType: 38
+  Curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -29,8 +29,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -38,14 +38,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  duration: 0.2
-  delay: 0
-  loop: 0
-  pingPong: 0
-  useFromAsStart: 1
-  relativeToTransform: 1
-  from: {x: -50, y: 0, z: 0}
-  to: {x: 0, y: 0, z: 0}
-  fromColor: {r: 0, g: 0, b: 0, a: 0}
-  toColor: {r: 0, g: 0, b: 0, a: 0}
+  Duration: 0.2
+  Delay: 0
+  Loop: 0
+  PingPong: 0
+  UseFromAsStart: 1
+  RelativeToTransform: 1
+  From: {x: -50, y: 0, z: 0}
+  To: {x: 0, y: 0, z: 0}
+  FromColor: {r: 0, g: 0, b: 0, a: 0}
+  ToColor: {r: 0, g: 0, b: 0, a: 0}
   OnComplete: []

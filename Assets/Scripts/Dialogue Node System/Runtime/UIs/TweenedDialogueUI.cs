@@ -1,117 +1,24 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
-using UnityEngine.Events;
-using System.Collections;
-using System.Text;
-
-
-using Project.Utilities.Tween;
-using static Project.Utilities.Tween.TweenUtilities;
-using static Project.Utilities.ValueTypes.Arrays;
-using Project.ScreenFader;
 using Project.Enums;
+using Project.ScreenFader;
+using Project.Utilities.Tween;
+using Project.Utilities.ValueTypes;
 using System;
-
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Project.NodeSystem
 {
-    public class TweenDialogueUI : DialogueUI
+    public class TweenedDialogueUI : DialogueUI
     {
 
         #region Fields
 
-
-        #region Tween Settings
-
-
-        [Space(10)]
-        [Header("Tween Settings :")]
-        [Space(10)]
-
-
-        [SerializeField, Tooltip("Les Tweens à jouer quand un perso apparaît à l'écran (et que l'emplacement était libre).")]
-        private TweenSettings[] TS_CharAppears;
-
-        [SerializeField, Tooltip("Les Tweens à jouer quand un perso se retire de la conversation.")]
-        private TweenSettings[] TS_CharDisappears;
-
-
-
-
-        [SerializeField, Tooltip("Le Tween à jouer quand un perso doit se retourner.")]
-        private TweenSettings[] TS_CharRotates;
-
-        [SerializeField, Tooltip("Le Tween à jouer quand un perso doit se retourner.")]
-        private TweenSettings[] TS_CharRotatesNegative;
-
-        [SerializeField, Tooltip("Le Tween à jouer quand un perso déjà présent commence à parler.")]
-        private TweenSettings[] TS_CharTalks;
-
-        [SerializeField, Tooltip("Le Tween à jouer quand ce n'est plus au tour du perso de parler.")]
-        private TweenSettings[] TS_CharMuted;
-
-
-
-
-        [SerializeField, Tooltip("Les Tweens à jouer sur les persos quand le dialogue est terminé.")]
-        private TweenSettings[] TS_CharOnDialogueEnded;
-        
-        [SerializeField, Tooltip("Les Tweens à jouer sur le container quand le dialogue est terminé.")]
-        private TweenSettings[] TS_ContainerOnDialogueEnded;
-
-        [SerializeField, Tooltip("Les Tweens à jouer sur le container quand le dialogue démarre.")]
-        private TweenSettings[] TS_ContainerOnDialogueStarted;
-
-        #endregion
-
-
-        #region Tweeners
-
-        [Space(10)]
-        [Header("Tweeners :")]
-        [Space(10)]
-
-        private ObjectTweener _leftCharGoTweener;
-        private ObjectTweener _leftCharImgTweener;
-        private ObjectTweener _rightCharGoTweener;
-        private ObjectTweener _rightCharImgTweener;
-        private ObjectTweener _containerTweener;
-        private ObjectTweener _leftNameContainerTweener;
-        private ObjectTweener _rightNameContainerTweener;
-
-        private DialogueSide? _whoIsTalking;            //On grise le perso qui n'est pas en train de parler
-        private Vector2 _leftStartPos, _rightStartPos;
-        private bool _uiVisibleFlag;                         //POur savoir si l'UI est visible ou non
-
-        #endregion
-
-
-
-        #region Background
-
-        [Space(10)]
-        [Header("Background :")]
-        [Space(10)]
-
-        [SerializeField, Tooltip("Le SO nous permettant de faire un fondu pour afficher le nouveau décor.")]
-        private ScreenFaderSO _screenFader;
-
-        [SerializeField, Tooltip("La texture de départ pour le décor (un empty transparent).")]
-        private Texture2D _startTex;
-
-
-        private Image _backgroundImg;                       //L'image du décor, pour exécuter un blend sur son material.
-        private Material _backgroundMat;                    //Pour accéder au Material plus rapidement
-        private BackgroundData_Transition _tmpTransition;   //Gardée en mémoire pour assigner la texture menuellement dans SetBackgroundManually
-
-        #endregion
-
-
-
-
-        #region Dialogue Characters
+        #region UI Components
 
         [Space(10)]
         [Header("Dialogue Characters :")]
@@ -124,11 +31,6 @@ namespace Project.NodeSystem
         private TextMeshProUGUI _leftNameText;
         private TextMeshProUGUI _rightNameText;
 
-        #endregion
-
-
-
-        #region Dialogue Text
 
         [Space(10)]
         [Header("Dialogue Text :")]
@@ -139,20 +41,31 @@ namespace Project.NodeSystem
         private Button _skipRepliqueBtn;
         private TextMeshProUGUI _dialogueText;
 
-        #endregion
-
-
-
-        #region Dialogue Choices
 
         [Space(10)]
         [Header("Dialogue Choices :")]
         [Space(10)]
 
         private GameObject _choicesContent;
-
         private Button[] _choiceBtns;
         private TextMeshProUGUI[] _choiceTmps;
+
+
+        [Space(10)]
+        [Header("Background :")]
+        [Space(10)]
+
+        [SerializeField, Tooltip("Le SO nous permettant de faire un fondu pour afficher le nouveau décor.")]
+        private ScreenFaderSO _screenFader;
+        [SerializeField, Tooltip("La texture de départ pour le décor (un empty transparent).")]
+        private Texture2D _startTex;                        
+
+
+        private Image _backgroundImg;                       //L'image du décor, pour exécuter un blend sur son material.
+        private Material _backgroundMat;                    //Pour accéder au Material plus rapidement
+        private BackgroundData_Transition _tmpTransition;   //Gardée en mémoire pour assigner la texture menuellement dans SetBackgroundManually
+
+
 
         #endregion
 
@@ -177,7 +90,68 @@ namespace Project.NodeSystem
         #endregion
 
 
+
+        #region Tween
+
+        [Space(10)]
+        [Header("Tween Settings :")]
+        [Space(10)]
+
+
+        [SerializeField, Tooltip("Les Tweens à jouer quand un perso apparaît à l'écran (et que l'emplacement était libre).")]
+        private TweenSettings[] TS_CharAppears;
+        [SerializeField, Tooltip("Les Tweens à jouer quand un perso se retire de la conversation.")]
+        private TweenSettings[] TS_CharDisappears;
+        [SerializeField, Tooltip("Le Tween à jouer quand un perso doit se retourner.")]
+        private TweenSettings[] TS_CharRotates, TS_CharRotatesNegative;
+        [SerializeField, Tooltip("Le Tween à jouer quand un perso déjà présent commence à parler.")]
+        private TweenSettings[] TS_CharTalks;
+        [SerializeField, Tooltip("Le Tween à jouer quand ce n'est plus au tour du perso de parler.")]
+        private TweenSettings[] TS_CharMuted;
+        [SerializeField, Tooltip("Les Tweens à jouer sur les persos quand le dialogue est terminé.")]
+        private TweenSettings[] TS_CharOnDialogueEnded;
+        [SerializeField, Tooltip("Les Tweens à jouer sur le container quand le dialogue est terminé.")]
+        private TweenSettings[] TS_ContainerOnDialogueEnded;
+        [SerializeField, Tooltip("Les Tweens à jouer sur le container quand le dialogue démarre.")]
+        private TweenSettings[] TS_ContainerOnDialogueStarted;
+
+
+        [Space(10)]
+        [Header("Tweeners :")]
+        [Space(10)]
+
+        private ObjectTweener _leftCharGoTweener;
+        private ObjectTweener _leftCharImgTweener;
+        private ObjectTweener _leftNameContainerTweener;
+        private ObjectTweener _rightCharGoTweener;
+        private ObjectTweener _rightCharImgTweener;
+        private ObjectTweener _rightNameContainerTweener;
+        private ObjectTweener _containerTweener;
+
+
         #endregion
+
+
+
+        #region Flags
+
+        private DialogueSide? _whoIsTalking;                    //On grise le perso qui n'est pas en train de parler
+        private bool _leftCharIsVisible, _rightCharIsVisible;   //Pour savoir si les persos sont affichés à l'écran ou non
+        private bool _uiVisibleFlag;                            //POur savoir si l'UI est visible ou non
+
+
+        #endregion
+
+        #endregion
+
+
+
+
+
+
+
+
+
 
 
 
@@ -256,9 +230,6 @@ namespace Project.NodeSystem
             //Le container sera activé automatiquement au moment d'afficher les persos ou une réplique
             _containerTweener.gameObject.SetActive(false);
 
-            //On garde les positions des sprites en mémoire pour les réinitialiser au prochain dialogue
-            _leftStartPos = _leftCharGo.transform.position;
-            _rightStartPos = _rightCharGo.transform.position;
 
             //Cache les persos pour les vérifs auto du script
             _leftCharGo.SetActive(false);
@@ -266,6 +237,7 @@ namespace Project.NodeSystem
 
             //On empêche la remise à zéro auto des tweeners pour replacer les sprites nous-mêmes quand ils disparaîssent
             _leftCharImgTweener.resetTransformOnDisable = _rightCharImgTweener.resetTransformOnDisable = false;
+            _leftCharImgTweener.resetTransformOnTweenEnded = _rightCharImgTweener.resetTransformOnTweenEnded = false;
 
             //On désactive les containers des noms pour éviter d'avoir à les attacher au container
             _leftNameText.transform.parent.gameObject.SetActive(false);
@@ -275,6 +247,7 @@ namespace Project.NodeSystem
             //On assigne une texture transparent au _backgroundMat avant le début du dialogue
             _backgroundMat.SetTexture("_MainTex", _startTex);
             _backgroundMat.SetFloat("_Blend", 0f);
+            _backgroundImg.SetMaterialDirty();
 
         }
 
@@ -286,8 +259,8 @@ namespace Project.NodeSystem
             _dialogueManager.OnRunUINode += OnRunUINode;
 
             //Character
-            _dialogueManager.OnRunStartNode += OnRunStartNode;
-            _dialogueManager.OnRunCharacterNode += OnRunCharacterNode;
+            //_dialogueManager.OnRunStartNode += OnRunStartNode;
+            //_dialogueManager.OnRunCharacterNode += OnRunCharacterNode;
 
             //Replique
             _dialogueManager.OnRunRepliqueNode += OnRunRepliqueNode;
@@ -311,8 +284,8 @@ namespace Project.NodeSystem
             _dialogueManager.OnRunUINode -= OnRunUINode;
 
             //Character
-            _dialogueManager.OnRunStartNode -= OnRunStartNode;
-            _dialogueManager.OnRunCharacterNode -= OnRunCharacterNode;
+            //_dialogueManager.OnRunStartNode -= OnRunStartNode;
+            //_dialogueManager.OnRunCharacterNode -= OnRunCharacterNode;
 
             //Replique
             _dialogueManager.OnRunRepliqueNode -= OnRunRepliqueNode;
@@ -334,27 +307,7 @@ namespace Project.NodeSystem
 
 
 
-
-        
-
         #region Display
-
-
-        //Ramène les valeurs internes à leur défaut pour la prochaine lecture d'un dialogue
-        protected override void ResetUI()
-        {
-            base.ResetUI();
-
-            _whoIsTalking = null;
-
-            //On ramène les positions et rotations des persos à zéro                    
-            _leftCharImgTweener.Cg.alpha = _leftCharImgTweener.Cg.alpha = 1f;
-            _leftCharGo.transform.position = _leftStartPos;
-            _rightCharGo.transform.position = _rightStartPos;
-            _leftCharImg.transform.rotation = _rightCharImg.transform.rotation = Quaternion.identity;
-
-        }
-
 
         protected override void ShowUI()
         {
@@ -374,12 +327,12 @@ namespace Project.NodeSystem
             if (_leftCharImg.sprite)
             {
                 _leftCharGoTweener.BeginTweens(TS_CharAppears);
-            } 
+            }
             else
             {
                 _leftNameText.transform.parent.gameObject.SetActive(false);
             }
-            if(_rightCharImg.sprite)
+            if (_rightCharImg.sprite)
             {
                 _rightCharGoTweener.BeginTweens(TS_CharAppears);
             }
@@ -387,7 +340,6 @@ namespace Project.NodeSystem
             {
                 _rightNameText.transform.parent.gameObject.SetActive(false);
             }
-                
 
         }
 
@@ -396,6 +348,8 @@ namespace Project.NodeSystem
         {
             _uiVisibleFlag = false;
 
+            //Clean text for next replique
+            _dialogueText.text = "";
 
             //Pour chaque perso, on joue le tween de fin de dialogue pour les faire disparaître
             //(S'il le perso n'est pas visible alors il est désactivé, donc ça craint rien)
@@ -403,11 +357,13 @@ namespace Project.NodeSystem
             _rightCharGoTweener.BeginTweens(TS_CharOnDialogueEnded);
 
             //Pour le container, on ferme la fenêtre de dialogue lorsque le tween de fin du container a terminé
-            _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded).SetOnTweensComplete(() =>
+            _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded, () =>
             {
+                _containerTweener.gameObject.SetActive(false);
                 base.HideUI(endDialogue);
             });
         }
+
 
 
         private void OnRunUINode(UIData data, Action onRunEnded)
@@ -426,7 +382,6 @@ namespace Project.NodeSystem
 
 
         #endregion
-        
 
 
 
@@ -513,56 +468,7 @@ namespace Project.NodeSystem
 
 
 
-        #region Background
-
-        private void OnRunBackgroundNode(BackgroundData_Transition transition, TransitionSettingsSO startSettings, TransitionSettingsSO endSettings)
-        {
-            _tmpTransition = transition;
-
-            //Si on a des paramètres pour une transition de départ, on lance la transition sur l'UI
-            //en spécifiant de passer à la node suivante une fois la transition terminée
-            if (startSettings)
-            {
-
-                switch (startSettings.TransitionType)
-                {
-                    case FaderTransitionType.TextureBlend:
-                        _screenFader.StartBlend(_backgroundImg, Time.unscaledDeltaTime, transition.BackgroundTex.Value, startSettings);
-                        break;
-                    default:
-                        if (endSettings)
-                        {
-                            _screenFader.StartCompleteFade(this, false, false, Time.unscaledDeltaTime, startSettings, endSettings);
-                        }
-                        else
-                        {
-                            _screenFader.StartFade(this, false, false, Time.unscaledDeltaTime, startSettings);
-                        }
-                        break;
-                }
-            }
-            else
-            {
-                SetBackgroundManually();
-                _screenFader.OnTransitionEnded?.Invoke();
-            }
-        }
-
-        //OnCompleteTransitionMiddle (appelée entre le 1er et le 2è fade)
-        private void SetBackgroundManually()
-        {
-            _backgroundMat.SetTexture("_MainTex", _tmpTransition.BackgroundTex.Value);
-            _backgroundMat.SetFloat("_Blend", 0f);
-            _backgroundImg.SetMaterialDirty();
-        }
-
-
-        #endregion
-
-
-
-
-        #region Repliques
+        #region Audio
 
         private void SetVoiceAudio(RepliqueData_Replique data, LanguageType selectedLanguage)
         {
@@ -575,25 +481,39 @@ namespace Project.NodeSystem
             }
         }
 
+        // Assigne un son d'écriture propre à chaque personnage (si null, l'écriture sera silencieuse)
+        private void SetCharClip(AudioClip charPrintClip)
+        {
+            for (int i = 0; i < _nbCharPrintClips; i++)
+            {
+                _charClipSources[i].clip = charPrintClip;
+            }
+        }
+
+
+        #endregion
+
+
+
+
+        #region Repliques
+
         private void OnRunRepliqueNode(RepliqueData_Replique data, LanguageType selectedLanguage)
         {
             //Charger l'audio du perso
             SetVoiceAudio(data, selectedLanguage);
 
+            //Affiche le canvas
+            if (!_uiVisibleFlag)
+            {
+                ShowUI();
+            }
 
             //Quand un choix est sélectionné, ramener la fenêtre de la réplique
             _dialogueContent.SetActive(true);
             _choicesContent.SetActive(false);
 
 
-            //Si aucun perso n'est affiché, on affiche le canvas
-            if (!_uiVisibleFlag)
-            {
-                ShowUI();
-            }
-
-            //Arrête les auto délais
-            _skipRepliqueBtn.onClick.RemoveAllListeners();
 
             //Quand appendToText est à true, cliquer sur skip ajoute du texte en trop
             //Cette variable permet de remettre le texte à son état initial
@@ -602,7 +522,12 @@ namespace Project.NodeSystem
 
             if (_writeCharByChar)
             {
-                _skipRepliqueBtn.onClick.AddListener(() => WriteAllText(previousText, data, selectedLanguage));    //On assigne au bouton skip sa fonction
+                //Arrête les auto délais
+                _skipRepliqueBtn.onClick.RemoveAllListeners();   
+
+                //On assigne au bouton skip sa fonction
+                _skipRepliqueBtn.onClick.AddListener(() => WriteAllText(previousText, data, selectedLanguage)); 
+
                 StartCoroutine(WriteRepliqueCharByCharCo(data, selectedLanguage));
             }
             else
@@ -747,219 +672,53 @@ namespace Project.NodeSystem
 
 
 
+        #region Background
 
-        #region Characters
-
-
-        /// <summary>
-        /// Abonné au DialogueManager, appelée quand le script analyse la StartData.
-        /// </summary>
-        private void OnRunStartNode()
+        private void OnRunBackgroundNode(BackgroundData_Transition transition, TransitionSettingsSO startSettings, TransitionSettingsSO endSettings)
         {
-            //Comme c'est la StartNode, on se contente de cacher les sprites des persos pour ne pas avoir à le faire manuellement.
+            _tmpTransition = transition;
 
-            //Crée un perso vide pour indiquer à DisplayCharacterAndName() qu'elle doit masquer le sprite correspondant
-            CharacterData_CharacterSO nullData = new CharacterData_CharacterSO();
-            nullData.CharacterName.Value = "";
-
-            //Perso de gauche
-            nullData.FaceDirection.Value = DialogueSide.Right;
-            nullData.SidePlacement.Value = DialogueSide.Left;
-            OnRunCharacterNode(nullData);
-
-            //Perso de droite
-            nullData.FaceDirection.Value = DialogueSide.Left;
-            nullData.SidePlacement.Value = DialogueSide.Right;
-            OnRunCharacterNode(nullData);
-
-        }
-
-
-        private void OnRunCharacterNode(CharacterData_CharacterSO data)
-        {
-            bool hasACharacter = data.Character.Value != null;
-
-            string characterName = hasACharacter ? data.CharacterName.Value : "";
-            Color characterNameColor = hasACharacter ? data.Character.Value.CharacterNameColor : new Color(252, 3, 252, 1);
-            Sprite characterSprite = hasACharacter ? data.Sprite.Value : null;
-            DialogueSide faceDir = data.FaceDirection.Value;
-            DialogueSide sidePlacement = data.SidePlacement.Value;
-            AudioClip charPrintClip = hasACharacter ? data.Character.Value.CharPrintClip : null;
-
-            //Si aucun perso n'est affiché, on affiche le canvas
-            if (!_uiVisibleFlag && hasACharacter) 
+            //Si on a des paramètres pour une transition de départ, on lance la transition sur l'UI
+            //en spécifiant de passer à la node suivante une fois la transition terminée
+            if (startSettings)
             {
-                ShowUI();
-            }
 
-            //On assigne le son d'écriture du perso en cours
-            SetCharClip(charPrintClip);
-
-            //On change le sprite du perso dans la bonne direction
-            if (characterSprite) OnCharacterSet(characterName, characterSprite, faceDir, sidePlacement);
-
-            //On affiche le perso et son nom à l'écran
-            DisplayCharacterAndName(characterName, characterNameColor, characterSprite, faceDir, sidePlacement);
-
-
-        }
-
-
-
-
-        /// <summary>
-        /// Assigne un son d'écriture propre à chaque personnage (si null, l'écriture sera silencieuse)
-        /// </summary>
-        /// <param name="charPrintClip"></param>
-        private void SetCharClip(AudioClip charPrintClip)
-        {
-            for (int i = 0; i < _nbCharPrintClips; i++)
-            {
-                _charClipSources[i].clip = charPrintClip;
-            }
-        }
-
-
-        private void DisplayCharacterAndName(string characterName, Color characterNameColor, Sprite characterSprite, DialogueSide faceDir, DialogueSide sidePlacement)
-        {
-            if (sidePlacement == DialogueSide.Left)
-            {
-                //S'il n'y a pas de sprite en paramètre, on veut cacher le personnage de ce côté
-                if (!characterSprite && _leftCharGo.activeSelf)
+                switch (startSettings.TransitionType)
                 {
-                    _leftCharGoTweener.BeginTweens(TS_CharDisappears, () => _leftCharGo.gameObject.SetActive(false));
-                    _leftNameText.transform.parent.gameObject.SetActive(false);
-                    return;
+                    case FaderTransitionType.TextureBlend:
+                        _screenFader.StartBlend(_backgroundImg, Time.unscaledDeltaTime, transition.BackgroundTex.Value, startSettings);
+                        break;
+                    default:
+                        if (endSettings)
+                        {
+                            _screenFader.StartCompleteFade(this, false, false, Time.unscaledDeltaTime, startSettings, endSettings);
+                        }
+                        else
+                        {
+                            _screenFader.StartFade(this, false, false, Time.unscaledDeltaTime, startSettings);
+                        }
+                        break;
                 }
-                //Sinon, on l'active
-                else if (characterSprite && !_leftCharGo.activeSelf)
-                {
-                    _leftCharGo.gameObject.SetActive(true);
-                    _leftCharGoTweener.BeginTweens(TS_CharAppears);
-
-                    //On change le nom du perso en question
-                    _leftNameText.transform.parent.gameObject.SetActive(true);
-                    _rightNameText.transform.parent.gameObject.SetActive(false);
-                }
-
-
             }
             else
             {
-                //S'il n'y a pas de sprite en paramètre, on veut cacher le personnage de ce côté
-                if (!characterSprite && _rightCharGo.activeSelf)
-                {
-                    _rightCharGoTweener.BeginTweens(TS_CharDisappears).SetOnTweensComplete(() => _rightCharGo.gameObject.SetActive(false));
-                    _rightNameText.transform.parent.gameObject.SetActive(false);
-                    return;
-                }
-                //Sinon, on l'active
-                else if (characterSprite && !_rightCharGo.activeSelf)
-                {
-                    _rightCharGo.gameObject.SetActive(true);
-                    _rightCharGoTweener.BeginTweens(TS_CharAppears);
-
-                    //On change le nom du perso en question
-                    _leftNameText.transform.parent.gameObject.SetActive(false);
-                    _rightNameText.transform.parent.gameObject.SetActive(true);
-                }
-
-
+                SetBackgroundManually();
+                _screenFader.OnTransitionEnded?.Invoke();
             }
-
-            _leftNameText.text = _rightNameText.text = characterName;
-            _leftNameText.color = _rightNameText.color = characterNameColor;
-
         }
 
-        private void OnCharacterSet(string characterName, Sprite characterSprite, DialogueSide faceDir, DialogueSide sidePlacement)
+        //OnCompleteTransitionMiddle (appelée entre le 1er et le 2è fade)
+        private void SetBackgroundManually()
         {
-            _whoIsTalking = sidePlacement;
-            Sprite lastSprite;
-            bool shouldRotate;
-
-            if (sidePlacement == DialogueSide.Left)
-            {
-                lastSprite = _leftCharImg.sprite;
-                _leftCharImg.sprite = characterSprite;
-
-                //Tourner le perso
-                float rotY = _leftCharImg.transform.eulerAngles.y;
-                bool rotYIsZero = Mathf.Approximately(rotY, 0f);
-                shouldRotate = faceDir == DialogueSide.Left ^ !rotYIsZero;
-                if (shouldRotate)
-                {
-                    //Si on doit changer de direction et que le perso est visible, on peut l'animer
-                    if (_leftCharGo.activeSelf)
-                    {
-                        _leftCharImgTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative);
-                    }
-                    //Sinon, ça veut dire que notre perso a été désactivé ; on doit le tourner dans la bonne direction avant de l'afficher 
-                    else
-                    {
-                        Vector3 euler = _leftCharImg.transform.eulerAngles;
-                        euler.y = faceDir == DialogueSide.Left ? 180f : 0f;
-                        _leftCharImg.transform.eulerAngles = euler;
-                    }
-                }
-
-
-            }
-            else
-            {
-                lastSprite = _rightCharImg.sprite;
-                _rightCharImg.sprite = characterSprite;
-
-
-
-                //Tourner le perso
-                float rotY = _rightCharImg.transform.eulerAngles.y;
-                bool rotYIsZero = Mathf.Approximately(rotY, 0f);
-                shouldRotate = faceDir == DialogueSide.Right ^ !rotYIsZero;
-                if (shouldRotate)
-                {
-                    //Si on doit changer de direction et que le perso est visible, on peut l'animer
-                    if (_rightCharGo.activeSelf)
-                    {
-                        _rightCharImgTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative);
-                    }
-                    //Sinon, ça veut dire que notre perso a été désactivé ; on doit le tourner dans la bonne direction avant de l'afficher 
-                    else
-                    {
-                        Vector3 euler = _rightCharImg.transform.eulerAngles;
-                        euler.y = faceDir == DialogueSide.Right ? 180f : 0f;
-                        _rightCharImg.transform.eulerAngles = euler;
-                    }
-                }
-
-
-            }
-
-
-
-
-
-
-            if (_whoIsTalking == DialogueSide.Left)
-            {
-                //Animer le perso s'il affiche un sprite différent du précédent
-                if (lastSprite != _leftCharImg.sprite && !shouldRotate)
-                    _leftCharImgTweener.BeginTweens(TS_CharTalks);
-
-                _rightCharImgTweener.BeginTweens(TS_CharMuted);
-            }
-            else
-            {
-                //Animer le perso s'il affiche un sprite différent du précédent
-                if (lastSprite != _rightCharImg.sprite && !shouldRotate)
-                    _rightCharImgTweener.BeginTweens(TS_CharTalks);
-
-                _leftCharImgTweener.BeginTweens(TS_CharMuted);
-            }
+            _backgroundMat.SetTexture("_MainTex", _tmpTransition.BackgroundTex.Value);
+            _backgroundMat.SetFloat("_Blend", 0f);
+            _backgroundImg.SetMaterialDirty();
         }
 
 
         #endregion
+
+
 
     }
 }

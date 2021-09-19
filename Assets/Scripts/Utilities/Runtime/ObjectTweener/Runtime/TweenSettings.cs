@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace Project.Utilities.Tween
 {
 
@@ -38,35 +37,35 @@ namespace Project.Utilities.Tween
     public class TweenSettings : ScriptableObject
     {
         [Tooltip("Indique la fonction de tween à utiliser pour cette transition.")]
-        public TweenAnimationType animationType = TweenAnimationType.Move;
+        public TweenAnimationType AnimationType = TweenAnimationType.Move;
 
         [Tooltip("Indique l'AnimationCurve à utiliser pour cette transition.")]
-        public LeanTweenType curveType = LeanTweenType.animationCurve;
+        public LeanTweenType CurveType = LeanTweenType.animationCurve;
 
         [Tooltip("Utilisée uniquement si curveType = LeanTweenType.animationCurve")]
-        public AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        public AnimationCurve Curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
 
         [Tooltip("La durée d'une transition.")]
-        public float duration = .2f;
+        public float Duration = .2f;
         [Tooltip("Le délai avant que la transition ne se joue.")]
-        public float delay = 0f;
+        public float Delay = 0f;
 
         [Tooltip("Rejoue le tween depuis le début.")]
-        public bool loop = false;
+        public bool Loop = false;
 
         [Tooltip("Rejoue le tween à l'envers et en boucle une fois terminé.")]
-        public bool pingPong = false;
+        public bool PingPong = false;
 
 
         [Tooltip("Si à true, le script utilisera from comme variable de départ (absolue) au lieu de la valeur actuelle de l'objet.")]
-        public bool useFromAsStart = false;
+        public bool UseFromAsStart = false;
         [Tooltip("Si à true, les transformations seront en relatives à l'objet au lieu d'être absolues.")]
-        public bool relativeToTransform = false;
-        public Vector3 from;
-        public Vector3 to;
-        public Color fromColor;
-        public Color toColor;
+        public bool RelativeToTransform = false;
+        public Vector3 From;
+        public Vector3 To;
+        public Color FromColor;
+        public Color ToColor;
 
         [Tooltip("Pour lancer des tweens en succession une fois ce tween terminé.")]
         public TweenSettings[] OnComplete;
@@ -80,7 +79,7 @@ namespace Project.Utilities.Tween
         /// <returns></returns>
         public Vector3 RelativeFrom(Transform t)
         {
-            return relativeToTransform ? t.TransformPoint(from) : from;
+            return RelativeToTransform ? t.TransformPoint(From) : From;
         }
 
         /// <summary>
@@ -90,7 +89,7 @@ namespace Project.Utilities.Tween
         /// <returns></returns>
         public Vector3 RelativeTo(Transform t)
         {
-            return relativeToTransform ? t.TransformPoint(to) : to;
+            return RelativeToTransform ? t.TransformPoint(To) : To;
         }
 
     }

@@ -8,6 +8,9 @@ namespace Project.NodeSystem
     {
         #region Components
 
+        [SerializeField, Tooltip("Le nom de la scène à charger contenant l'UI et le DialogueManager.")]
+        private string _dialogueSceneName = "Dialogue Scene";
+
         [SerializeField, Tooltip("Le script qui s'abonnera aux fonctions des events.")]
         private DE_Trigger _triggerScript;
 
@@ -18,18 +21,37 @@ namespace Project.NodeSystem
 
         #endregion
 
-        // Start is called before the first frame update
+        [ContextMenu("Load Dialogue Scene (Play Mode Only)")]
         void Start()
         {
+            if (!Application.isPlaying) return;
+
             SceneManager.sceneLoaded += StartDialogue;
-            SceneManager.LoadSceneAsync("Dialogue Scene", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(_dialogueSceneName, LoadSceneMode.Additive);
         }
 
         private void StartDialogue(Scene sceneLoaded, LoadSceneMode loadSceneMode)
         {
             SceneManager.sceneLoaded -= StartDialogue;
 
-            _dm = FindObjectOfType<DialogueManager>();
+            //Le DialogueManager que l'on doit récupérer doit être celui de la scène "Dialogue Scene"
+            GameObject[] roots = sceneLoaded.GetRootGameObjects();
+            do
+            {
+                for (int i = 0; i < roots.Length; i++)
+                {
+                    DialogueManager dm = roots[i].GetComponentInChildren<DialogueManager>();
+                    if (dm)
+                    {
+                        _dm = dm;
+                        break;
+                    }
+                }
+            }
+            while (!_dm);
+            
+
+            
             _dm.OnEndDialogue += UnloadDialogueScene;
             _dm.InitAndStartNewDialogue(_dialogue, LanguageType.French, _triggerScript);
         }
@@ -37,7 +59,7 @@ namespace Project.NodeSystem
         private void UnloadDialogueScene()
         {
             _dm.OnEndDialogue -= UnloadDialogueScene;
-            SceneManager.UnloadSceneAsync("Dialogue Scene", UnloadSceneOptions.None);
+            SceneManager.UnloadSceneAsync(_dialogueSceneName, UnloadSceneOptions.None);
         }
     }
 }

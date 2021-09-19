@@ -31,6 +31,8 @@ namespace Project.Utilities.Tween
         public bool saveTransformOnEnable;
         [Tooltip("Si à true, la transform est remise à zéro dans OnDisable().")]
         public bool resetTransformOnDisable = true;
+        [Tooltip("Si à true, la transform est remise à zéro quand le tween sera terminé.")]
+        public bool resetTransformOnTweenEnded = false;
 
         #endregion
 
@@ -39,7 +41,6 @@ namespace Project.Utilities.Tween
 
         private List<LTDescr> _tweeners = new List<LTDescr>();
         private LTSeq _sequence;
-        private TweenSettings _settings;
         private CanvasGroup cg;
         private Vector3 startPos, startRot, startScale;
 
@@ -54,7 +55,7 @@ namespace Project.Utilities.Tween
             get { if (_objectToAnimate == null) _objectToAnimate = gameObject.transform; return _objectToAnimate; }
             set => _objectToAnimate = value;
         }
-        public TweenSettings Settings { get => _settings; set => _settings = value; }
+        public TweenSettings Settings { get; set; }
         public Action<float> OnValueUpdated { get; set; }
         public CanvasGroup Cg
         {
@@ -102,11 +103,14 @@ namespace Project.Utilities.Tween
 
         private void OnDisable()
         {
-            Stop();
 
             if (resetTransformOnDisable)
             {
                 Disable();
+            }
+            else
+            {
+                Stop();
             }
         }
 
@@ -150,13 +154,13 @@ namespace Project.Utilities.Tween
 
         #region Tween
 
-        public void BeginTween(TweenSettings newSettings = null)
+        public void BeginTween(TweenSettings newSettings)
         {
             SetSettings(newSettings);
 
             LTDescr _tweener = new LTDescr();
 
-            switch (Settings.animationType)
+            switch (Settings.AnimationType)
             {
                 case TweenAnimationType.Move:
                     _tweener = Move();
@@ -222,20 +226,20 @@ namespace Project.Utilities.Tween
             }
 
 
-            _tweener.setDelay(Settings.delay);
+            _tweener.setDelay(Settings.Delay);
 
-            if (Settings.curveType == LeanTweenType.animationCurve)
-                _tweener.setEase(Settings.curve);
+            if (Settings.CurveType == LeanTweenType.animationCurve)
+                _tweener.setEase(Settings.Curve);
             else
-                _tweener.setEase(Settings.curveType);
+                _tweener.setEase(Settings.CurveType);
 
 
-            if (Settings.loop)
+            if (Settings.Loop)
             {
                 _tweener.loopCount = int.MaxValue;
                 _tweener.setLoopClamp();
             }
-            if (Settings.pingPong)
+            if (Settings.PingPong)
             {
                 _tweener.loopCount = int.MaxValue;
                 _tweener.setLoopPingPong();
@@ -244,7 +248,7 @@ namespace Project.Utilities.Tween
             _tweener.setOnComplete(() =>
             {
 
-                if (Settings.loop)
+                if (Settings.Loop)
                 {
                     _tweener.reset();
                     _tweener.resume();
@@ -260,7 +264,7 @@ namespace Project.Utilities.Tween
                     _tweener.reset();
                 }
 
-                if (!Settings.loop && !Settings.pingPong)
+                if (!Settings.Loop && !Settings.PingPong)
                 {
                     for (int i = 0; i < Settings.OnComplete.Length; i++)
                     {
@@ -273,13 +277,13 @@ namespace Project.Utilities.Tween
         }
 
         //Si on veut l'appeler par code et lui ajouter des fonctionnalités supplémentaires
-        public LTDescr BeginTweenByCode(TweenSettings newSettings = null)
+        public LTDescr BeginTweenByCode(TweenSettings newSettings)
         {
             SetSettings(newSettings);
 
             LTDescr _tweener = new LTDescr();
 
-            switch (Settings.animationType)
+            switch (Settings.AnimationType)
             {
                 case TweenAnimationType.Move:
                     _tweener = Move();
@@ -345,20 +349,20 @@ namespace Project.Utilities.Tween
             }
 
 
-            _tweener.setDelay(Settings.delay);
+            _tweener.setDelay(Settings.Delay);
 
-            if (Settings.curveType == LeanTweenType.animationCurve)
-                _tweener.setEase(Settings.curve);
+            if (Settings.CurveType == LeanTweenType.animationCurve)
+                _tweener.setEase(Settings.Curve);
             else
-                _tweener.setEase(Settings.curveType);
+                _tweener.setEase(Settings.CurveType);
 
 
-            if (Settings.loop)
+            if (Settings.Loop)
             {
                 _tweener.loopCount = int.MaxValue;
                 _tweener.setLoopClamp();
             }
-            if (Settings.pingPong)
+            if (Settings.PingPong)
             {
                 _tweener.loopCount = int.MaxValue;
                 _tweener.setLoopPingPong();
@@ -367,7 +371,7 @@ namespace Project.Utilities.Tween
             _tweener.setOnComplete(() =>
             {
 
-                if (Settings.loop)
+                if (Settings.Loop)
                 {
                     _tweener.reset();
                     _tweener.resume();
@@ -384,7 +388,7 @@ namespace Project.Utilities.Tween
                 }
 
 
-                if (!Settings.loop && !Settings.pingPong)
+                if (!Settings.Loop && !Settings.PingPong)
                 {
                     for (int i = 0; i < Settings.OnComplete.Length; i++)
                     {
@@ -398,7 +402,7 @@ namespace Project.Utilities.Tween
         }
 
         //Si on veut l'appeler par code et lui ajouter des fonctionnalités supplémentaires
-        public LTDescr[] BeginTweens(TweenSettings[] newSettings = null)
+        public LTDescr[] BeginTweens(TweenSettings[] newSettings, Action onComplete = null)
         {
             LTDescr[] tweens = new LTDescr[newSettings.Length];
 
@@ -406,6 +410,16 @@ namespace Project.Utilities.Tween
             {
                 tweens[i] = BeginTweenByCode(newSettings[i]);
                 _tweeners.Add(tweens[i]);
+            }
+
+            if (resetTransformOnTweenEnded)
+            {
+                onComplete += Disable;
+            }
+
+            if(onComplete != null)
+            {
+                tweens.SetOnTweensComplete(onComplete);
             }
 
             return tweens;
@@ -417,7 +431,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.position = Settings.RelativeFrom(rt);
 
@@ -425,14 +439,14 @@ namespace Project.Utilities.Tween
             }
             else
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     ObjectToAnimate.position = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
 
 
-            return LeanTween.move(ObjectToAnimate.gameObject, to, Settings.duration);
+            return LeanTween.move(ObjectToAnimate.gameObject, to, Settings.Duration);
 
         }
 
@@ -442,20 +456,20 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.position = Settings.RelativeFrom(rt);
                 }
             }
             else
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     ObjectToAnimate.position = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
 
-            return LeanTween.moveX(ObjectToAnimate.gameObject, to.x, Settings.duration);
+            return LeanTween.moveX(ObjectToAnimate.gameObject, to.x, Settings.Duration);
 
         }
 
@@ -465,7 +479,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.position = Settings.RelativeFrom(rt);
 
@@ -473,14 +487,14 @@ namespace Project.Utilities.Tween
             }
             else
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     ObjectToAnimate.position = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
 
 
-            return LeanTween.moveY(ObjectToAnimate.gameObject, to.y, Settings.duration);
+            return LeanTween.moveY(ObjectToAnimate.gameObject, to.y, Settings.Duration);
 
         }
 
@@ -490,7 +504,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.position = Settings.RelativeFrom(rt);
 
@@ -498,14 +512,14 @@ namespace Project.Utilities.Tween
             }
             else
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     ObjectToAnimate.position = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
 
 
-            return LeanTween.moveZ(ObjectToAnimate.gameObject, to.z, Settings.duration);
+            return LeanTween.moveZ(ObjectToAnimate.gameObject, to.z, Settings.Duration);
 
         }
 
@@ -516,21 +530,21 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.eulerAngles = Settings.RelativeFrom(rt);
                 }
             }
             else
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     ObjectToAnimate.eulerAngles = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
 
 
-            return LeanTween.rotate(ObjectToAnimate.gameObject, to, Settings.duration);
+            return LeanTween.rotate(ObjectToAnimate.gameObject, to, Settings.Duration);
         }
 
         private LTDescr RotX()
@@ -540,21 +554,21 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.eulerAngles = Settings.RelativeFrom(rt);
                 }
             }
             else
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     ObjectToAnimate.eulerAngles = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
 
 
-            return LeanTween.rotateX(ObjectToAnimate.gameObject, to.x, Settings.duration);
+            return LeanTween.rotateX(ObjectToAnimate.gameObject, to.x, Settings.Duration);
         }
 
         private LTDescr RotY()
@@ -564,21 +578,21 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.eulerAngles = Settings.RelativeFrom(rt);
                 }
             }
             else
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     ObjectToAnimate.eulerAngles = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
 
 
-            return LeanTween.rotateY(ObjectToAnimate.gameObject, to.y, Settings.duration);
+            return LeanTween.rotateY(ObjectToAnimate.gameObject, to.y, Settings.Duration);
         }
 
         private LTDescr RotZ()
@@ -588,21 +602,21 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.eulerAngles = Settings.RelativeFrom(rt);
                 }
             }
             else
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     ObjectToAnimate.eulerAngles = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
 
 
-            return LeanTween.rotateZ(ObjectToAnimate.gameObject, to.z, Settings.duration);
+            return LeanTween.rotateZ(ObjectToAnimate.gameObject, to.z, Settings.Duration);
         }
 
         private LTDescr Scale()
@@ -612,7 +626,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.localScale = Settings.RelativeFrom(rt);
                 }
@@ -623,7 +637,7 @@ namespace Project.Utilities.Tween
             }
 
 
-            return LeanTween.scale(ObjectToAnimate.gameObject, to, Settings.duration);
+            return LeanTween.scale(ObjectToAnimate.gameObject, to, Settings.Duration);
         }
 
         private LTDescr ScaleX()
@@ -633,7 +647,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.localScale = Settings.RelativeFrom(rt);
                 }
@@ -644,7 +658,7 @@ namespace Project.Utilities.Tween
             }
 
 
-            return LeanTween.scaleX(ObjectToAnimate.gameObject, to.x, Settings.duration);
+            return LeanTween.scaleX(ObjectToAnimate.gameObject, to.x, Settings.Duration);
         }
 
         private LTDescr ScaleY()
@@ -654,7 +668,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.localScale = Settings.RelativeFrom(rt);
                 }
@@ -665,7 +679,7 @@ namespace Project.Utilities.Tween
             }
 
 
-            return LeanTween.scaleY(ObjectToAnimate.gameObject, to.y, Settings.duration);
+            return LeanTween.scaleY(ObjectToAnimate.gameObject, to.y, Settings.Duration);
         }
 
         private LTDescr ScaleZ()
@@ -675,7 +689,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.localScale = Settings.RelativeFrom(rt);
                 }
@@ -686,7 +700,7 @@ namespace Project.Utilities.Tween
             }
 
 
-            return LeanTween.scaleZ(ObjectToAnimate.gameObject, to.z, Settings.duration);
+            return LeanTween.scaleZ(ObjectToAnimate.gameObject, to.z, Settings.Duration);
         }
 
         private LTDescr Fade()
@@ -694,12 +708,12 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
-                    Cg.alpha = Settings.from.x;
+                    Cg.alpha = Settings.From.x;
                 }
             }
-            return LeanTween.alphaCanvas(Cg, Settings.to.x, Settings.duration);
+            return LeanTween.alphaCanvas(Cg, Settings.To.x, Settings.Duration);
         }
 
         private LTDescr Color()
@@ -707,20 +721,20 @@ namespace Project.Utilities.Tween
             //Graphic = Image, TextMeshPro, càd les Components qui portent une couleur
             if (ObjectToAnimate.TryGetComponent(out Graphic ui))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
-                    ui.color = Settings.fromColor;
+                    ui.color = Settings.FromColor;
                 }
 
 
-                return LeanTween.colorText(ui.GetComponent<RectTransform>(), Settings.toColor, Settings.duration);
+                return LeanTween.colorText(ui.GetComponent<RectTransform>(), Settings.ToColor, Settings.Duration);
             }
             return null;
         }
 
         private LTDescr Value()
         {
-            return LeanTween.value(ObjectToAnimate.gameObject, Settings.from.x, Settings.to.x, Settings.duration);
+            return LeanTween.value(ObjectToAnimate.gameObject, Settings.From.x, Settings.To.x, Settings.Duration);
         }
 
 
@@ -732,7 +746,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.localScale = Settings.RelativeFrom(rt);
                 }
@@ -756,7 +770,7 @@ namespace Project.Utilities.Tween
 
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
-                if (Settings.useFromAsStart)
+                if (Settings.UseFromAsStart)
                 {
                     rt.localScale = Settings.RelativeFrom(rt);
                 }
