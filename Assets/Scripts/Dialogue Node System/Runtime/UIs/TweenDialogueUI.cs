@@ -356,7 +356,7 @@ namespace Project.NodeSystem
         }
 
 
-        protected override void ShowUI()
+        protected override void ShowUI(Action onRunEnded = null)
         {
 
             _uiVisibleFlag = true;
@@ -392,7 +392,7 @@ namespace Project.NodeSystem
         }
 
 
-        protected override void HideUI(bool endDialogue = false)
+        protected override void HideUI(Action onRunEnded = null)
         {
             _uiVisibleFlag = false;
 
@@ -405,7 +405,7 @@ namespace Project.NodeSystem
             //Pour le container, on ferme la fenêtre de dialogue lorsque le tween de fin du container a terminé
             _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded).SetOnTweensComplete(() =>
             {
-                base.HideUI(endDialogue);
+                onRunEnded?.Invoke();
             });
         }
 

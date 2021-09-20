@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using UnityEngine;
 
@@ -121,7 +122,7 @@ namespace Project.NodeSystem
 
         private void EndDialogue()
         {
-            HideUI(true);
+            HideUI();
         }
 
 
@@ -141,15 +142,17 @@ namespace Project.NodeSystem
             _dialoguePanel.SetActive(true);
         }
 
-        protected abstract void ShowUI();
+        /// <summary>
+        /// Affiche le canvas à l'écran
+        /// </summary>
+        /// <param name="onRunEnded">L'action à effectuer une fois le canvas affiché</param>
+        protected abstract void ShowUI(Action onRunEnded = null);
 
-        protected virtual void HideUI(bool endDialogue = false)
-        {
-            if (endDialogue)
-            {
-                _dialoguePanel.SetActive(false);
-            }
-        }
+        /// <summary>
+        /// Cache le canvas à l'écran
+        /// </summary>
+        /// <param name="onRunEnded">L'action à effectuer une fois le canvas caché</param>
+        protected abstract void HideUI(Action onRunEnded = null);
 
 
         #endregion

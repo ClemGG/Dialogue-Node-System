@@ -309,7 +309,7 @@ namespace Project.NodeSystem
 
         #region Display
 
-        protected override void ShowUI()
+        protected override void ShowUI(Action onRunEnded = null)
         {
 
             _uiVisibleFlag = true;
@@ -318,9 +318,6 @@ namespace Project.NodeSystem
             _dialogueText.text = "";
 
 
-            //On active le tweener du container pour le faire apparaître
-            _containerTweener.gameObject.SetActive(true);
-            _containerTweener.BeginTweens(TS_ContainerOnDialogueStarted);
 
             //On affiche les persos s'ils ont des sprites assignés
             //et on désactive les containers des noms pour éviter d'avoir à les attacher au container
@@ -341,10 +338,17 @@ namespace Project.NodeSystem
                 _rightNameText.transform.parent.gameObject.SetActive(false);
             }
 
+
+            //On active le tweener du container pour le faire apparaître
+            _containerTweener.gameObject.SetActive(true);
+            _containerTweener.BeginTweens(TS_ContainerOnDialogueStarted, () =>
+            {
+                onRunEnded?.Invoke();
+            });
         }
 
 
-        protected override void HideUI(bool endDialogue = false)
+        protected override void HideUI(Action onRunEnded = null)
         {
             _uiVisibleFlag = false;
 
@@ -359,8 +363,8 @@ namespace Project.NodeSystem
             //Pour le container, on ferme la fenêtre de dialogue lorsque le tween de fin du container a terminé
             _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded, () =>
             {
+                onRunEnded?.Invoke();
                 _containerTweener.gameObject.SetActive(false);
-                base.HideUI(endDialogue);
             });
         }
 
@@ -370,14 +374,12 @@ namespace Project.NodeSystem
         {
             if (data.show.Value)
             {
-                ShowUI();
+                ShowUI(onRunEnded);
             }
             else
             {
-                HideUI();
+                HideUI(onRunEnded);
             }
-
-            onRunEnded?.Invoke();
         }
 
 
@@ -506,7 +508,15 @@ namespace Project.NodeSystem
             //Affiche le canvas
             if (!_uiVisibleFlag)
             {
-                ShowUI();
+                //Pour s'assurer que le dialogue apparaisse une fois le canvas affiché, on 
+                //passe deux fois dans OnRunUINode pour passer _uiVisibleFlag à true
+                UIData uiData = new UIData();
+                uiData.show.Value = true;
+                OnRunUINode(uiData, () => 
+                {
+                    OnRunRepliqueNode(data, selectedLanguage);
+                });
+                return;
             }
 
             //Quand un choix est sélectionné, ramener la fenêtre de la réplique
