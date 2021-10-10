@@ -14,7 +14,7 @@ namespace Project.NodeSystem.Editor
         private DialogueEditorWindow _window;
         private DialogueGraphView _graphView;
 
-        //Pour décoller les suggestions du bord de la fenêtre
+        //To move the suggestions away from the border of the window
         private Texture2D _empty;
 
 
@@ -23,14 +23,14 @@ namespace Project.NodeSystem.Editor
             this._window = window;
             this._graphView = graphView;
 
-            //Pour décoller les suggestions du bord de la fenêtre
+            //To move the suggestions away from the border of the window
             _empty = new Texture2D(1, 1);
             _empty.SetPixel(0, 0, Color.clear);
             _empty.Apply();
         }
 
 
-        //Crée un menu de recherche où l'on peut choisir le type de node à ajouter au graphe
+        //Creates the Search menu where you can search for nodes by type
         public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
         {
 
@@ -38,17 +38,17 @@ namespace Project.NodeSystem.Editor
 
             List<SearchTreeEntry> tree = new List<SearchTreeEntry>
             {
-                //Affiche "Dialogue" en menu ppal, et "Dialogue Nodes" en sous-menu
+                //Displays "Dialogue" in the main menu, and "Dialogue Nodes" as a sub-menu
                 new SearchTreeGroupEntry(new GUIContent("Dialogue"), 0),
                 new SearchTreeGroupEntry(new GUIContent("Dialogue Nodes"), 1),
 
             };
 
-            //Les commandes affichées dans le sous-menu
+            //The nodes displayed in the submenu
             AddNodeEntries(tree);
-            //La commande d'ajout de Groupes
+            //Add Group Command
             AddGroupEntry(tree);
-            //La commande d'ajout de StickyNotes
+            //Add StikyNote Command
             AddStickyNoteEntry(tree);
 
             return tree;
@@ -58,12 +58,12 @@ namespace Project.NodeSystem.Editor
         #region Entries
 
         /// <summary>
-        /// Ajoute tous les types de node en un seul endroit pour ne pas avoir à les rajouter individuellement dans le constructeur
+        /// Adds all node types in the same place to not have to add them manually in the constructor
         /// </summary>
         /// <param name="tree"></param>
         private void AddNodeEntries(List<SearchTreeEntry> tree)
         {
-            //Récupère tous les types de nodes dérivant de BaseNode
+            //Grabs all node types deriving from BaseNode
 
             Type[] allNodeTypes = SubclassesOf<BaseNode>();
             allNodeTypes.ForEach(type =>
@@ -111,23 +111,21 @@ namespace Project.NodeSystem.Editor
 
         #region On Entry Selected
 
-        //Une fois l'action sélectionnée, on place la node correspondante à la position de la souris
+        //Once the command selected, place the node at the mouse's position
         public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {
-            //Position de la souris sur l'écran
             Vector2 mousePos = _window.rootVisualElement.ChangeCoordinatesTo
                 (
                     _window.rootVisualElement.parent, context.screenMousePosition - _window.position.position
                 );
 
-            //Convertit mousePos pour l'adapter au Rect de la fenêtre
             Vector2 graphMousePos = _graphView.contentViewContainer.WorldToLocal(mousePos);
 
             return CheckForNodeType(searchTreeEntry, graphMousePos);
         }
 
 
-        //Crée la node correspondant au type de la commande entrée
+        //Creates the node and adds it to the GraphView
         private bool CheckForNodeType(SearchTreeEntry searchTreeEntry, Vector2 pos)
         {
             switch (searchTreeEntry.userData)

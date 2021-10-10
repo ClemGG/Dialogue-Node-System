@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Project.NodeSystem
 {
 
-    //Contient l'ensemble des nodes d'un graphe
+    //Contains all nodes in a graph
     [CreateAssetMenu(menuName = "Dialogue/New Dialogue", fileName = "New Dialogue")]
     [System.Serializable]
     public class DialogueContainerSO : ScriptableObject
@@ -25,15 +25,15 @@ namespace Project.NodeSystem
 
 #if UNITY_EDITOR
 
-        //Garde en mémoire les Groups et les nodes qu'ils contiennent
+        //Stores groupes and the Guids they contain
         public List<GroupData> GroupDatas = new List<GroupData>();
 
-        //Garde en mémoire les Notes
+        //Stores Sticky Notes
         public List<StickyNoteData> NoteDatas = new List<StickyNoteData>();
 
 #endif
 
-        //Utilisé dans DialogueGetData pour récupérer la node suivante d'un Guid
+        //Used in DialogueGetData pour reach for the next node by Guid
         public List<BaseData> AllDatas
         {
             get

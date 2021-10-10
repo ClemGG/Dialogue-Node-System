@@ -62,9 +62,9 @@ namespace Project.NodeSystem
         private Texture2D _startTex;                        
 
 
-        private Image _backgroundImg;                       //L'image du décor, pour exécuter un blend sur son material.
-        private Material _backgroundMat;                    //Pour accéder au Material plus rapidement
-        private BackgroundData_Transition _tmpTransition;   //Gardée en mémoire pour assigner la texture menuellement dans SetBackgroundManually
+        private Image _backgroundImg;                       //The background image, stored to execute a blend on its material
+        private Material _backgroundMat;                    //To access the material more quickly
+        private BackgroundData_Transition _tmpTransition;   //Stored to assign the texture manually in SetBackgroundManually()
 
 
 
@@ -315,7 +315,7 @@ namespace Project.NodeSystem
             _dialogueContent.SetActive(false);
 
 
-            //Pour lancer les tweens des persos depuis ShowUI()
+            //To start the characters' tweens from ShowUI()
             _leftCharImg.sprite = _rightCharImg.sprite = null;
 
         }
@@ -330,7 +330,7 @@ namespace Project.NodeSystem
             _dialogueText.text = "";
 
 
-            //On n'affiche les persos que s'ils ont déjà un sprite
+            //We display the characters only if they have a sprite
             if (_leftCharImg.sprite)
             {
                 _leftCharGo.SetActive(true);
@@ -350,13 +350,13 @@ namespace Project.NodeSystem
                 _rightNameText.transform.parent.gameObject.SetActive(false);
             }
 
-            //On active le tweener du container pour le faire apparaître
+            //Container appears
             _containerTweener.gameObject.SetActive(true);
             _containerTweener.BeginTweens(TS_ContainerOnDialogueStarted);
         }
 
-        //N'est pas appelée depuis le DialogueManager si le EndNoeType = End
-        //car le DialogueTrigger assigne la fonction UnloadScene qui quitte immédiatement le dialogue
+        //Is not called from the DialogueManager if EndNodeType = End
+        //Bc the DialogueTrigger assigns the UnloadScene() method which closes the dialogue immediately
         protected override void HideUI()
         {
             _uiVisibleFlag = false;
@@ -364,13 +364,13 @@ namespace Project.NodeSystem
             //Clean text for next replique
             _dialogueText.text = "";
 
-            //Pour chaque perso, on joue le tween de fin de dialogue pour les faire disparaître
-            //(S'il le perso n'est pas visible alors il est désactivé, donc ça craint rien)
+            //Character Dissapears
+            //(If the character isn't visible then he's disabled, so we risk nothing)
             if (_leftCharGo.activeSelf)
             {
                 _leftCharGoTweener.BeginTweens(TS_CharOnDialogueEnded, () => 
                 {
-                    _leftCharImgTweener.ResetAlpha();  //Pour que le perso ne garde pas l'apparence "muet"
+                    _leftCharImgTweener.ResetAlpha();  //So that the character doesn't stay "muted"
                     _leftCharGo.gameObject.SetActive(false);
                 });
             }
@@ -378,12 +378,12 @@ namespace Project.NodeSystem
             {
                 _rightCharGoTweener.BeginTweens(TS_CharOnDialogueEnded, () => 
                 {
-                    _rightCharImgTweener.ResetAlpha();  //Pour que le perso ne garde pas l'apparence "muet"
+                    _rightCharImgTweener.ResetAlpha();  //So that the character doesn't stay "muted"
                     _rightCharGo.gameObject.SetActive(false);
                 });
             }
 
-            //Pour le container, on ferme la fenêtre de dialogue lorsque le tween de fin du container a terminé
+            //Once the container ends its tweening, we disable it.
             _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded, () => _containerTweener.gameObject.SetActive(false));
         }
 
@@ -424,28 +424,26 @@ namespace Project.NodeSystem
 
         #region Buttons
 
-        //Quand on clique sur le bouton continuer, on afficher le panel des choix 
-        //s'il y a des ports, sinon, on joue la node suivante
+        //When the continue btn is clicked
         private void OnContinueBtnReached(UnityAction onContinueClicked)
         {
             _continueBtn.onClick.RemoveAllListeners();
-            _continueBtn.onClick.AddListener(StopAllCoroutines); //Supprime la coroutine d'auto délai
+            _continueBtn.onClick.AddListener(StopAllCoroutines); //Removes the auto delay Coroutine
             _continueBtn.onClick.AddListener(onContinueClicked);
 
-            //Pour ne pas lancer de message vers la node suivante pendant un délai, sinon ça affiche n'importe quoi
+            //To prevent reading the next nodes during a delay, which creates a scrambled text
             _continueBtn.onClick.AddListener(() => _continueBtn.interactable = false);
         }
 
 
-        //Quand l'UI doit afficher des choix, le bouton continuer appelle cette fonction
+        //When the UI must display choices
         private void OnChoicesSet()
         {
 
-            //Si aucun choix n'est affiché, on affiche le canvas
+            //If no choice is displayed, show he canvas
             if (!_uiVisibleFlag)
             {
-                //Pour s'assurer que les choix apparaissent une fois le canvas affiché, on 
-                //passe deux fois dans OnRunUINode pour passer _uiVisibleFlag à true
+                //makes sure the canvas is visible first before reloading this method to enable the _choicesContent
                 UIData uiData = new UIData();
                 uiData.show.Value = true;
                 OnRunUINode(uiData, () => OnChoicesSet());
@@ -468,14 +466,14 @@ namespace Project.NodeSystem
             {
                 Button b = _choiceBtns[i];
 
-                //Si on a des boutons en trop, on les désactive
+                //If there are too many buttons, we disable them
                 if (i >= dialogueButtonContainers.Count)
                 {
                     b.gameObject.SetActive(false);
                 }
                 else
                 {
-                    //Si les conditions sont réunies, on active le bouton normalement
+                    //If all conditions are met, we enable the button normally
                     if (dialogueButtonContainers[i].ConditionCheck)
                     {
                         b.gameObject.SetActive(true);
@@ -483,26 +481,26 @@ namespace Project.NodeSystem
 
                         b.onClick.RemoveAllListeners();
 
-                        //On désactive tous les boutons; relance les anims dans le cas où l'on a 2 ChoiceNodes successives
+                        //disables all buttons once the choice is selected;
+                        //also restarts the animations of there are 2 consecutive ChoiceNodes
                         b.onClick.AddListener(() =>
                         {
                             _choicesContent.gameObject.SetActive(false);
                         });
 
-                        //Passe à la node suivante
+                        //Go to next node
                         b.onClick.AddListener(dialogueButtonContainers[i].OnChoiceClicked);
                     }
                     else
                     {
-                        //On n'active le bouton que si on doit le griser, puis on met son interactable à false
-                        //pour montrer au joueur le choix indisponible en gris
+                        //If we should grey out the button, we enable it but we set it as interactable = false
                         b.gameObject.SetActive(dialogueButtonContainers[i].ChoiceState == ChoiceStateType.GreyOut);
                         b.interactable = false;
 
                     }
 
 
-                    //On affiche le texte du choix sur le bouton
+                    //We print the text of the choice on the button
                     _choiceTmps[i].text = dialogueButtonContainers[i].Text;
                 }
             }
@@ -518,7 +516,7 @@ namespace Project.NodeSystem
 
 
         /// <summary>
-        /// Joue l'interjection liée à la réplique (si null, ne jouer aucune voix).
+        /// Plays the Replique field's audioclip if any
         /// </summary>
         private void SetVoiceAudio(RepliqueData_Replique data, LanguageType selectedLanguage)
         {
@@ -532,7 +530,7 @@ namespace Project.NodeSystem
         }
 
         /// <summary>
-        /// Assigne le son d'écriture propre à chaque personnage (si null, l'écriture sera silencieuse).
+        /// Plays the character's printing sound if any
         /// </summary>
         private void SetCharAudio(AudioClip charPrintClip)
         {
@@ -553,17 +551,17 @@ namespace Project.NodeSystem
 
 
         /// <summary>
-        /// Abonné au DialogueManager, appelée quand le script analyse la StartData.
+        /// Subscribed to the DialogueManager, called when the script analyzes StartData.
         /// </summary>
         private void OnRunStartNode()
         {
-            //Comme c'est la StartNode, on se contente de cacher les sprites des persos pour ne pas avoir à le faire manuellement.
+            //As it's the StartNode, we hide the characters here to not have to do it manually at each restart.
 
-            //Crée un perso vide pour indiquer à DisplayCharacterAndName() qu'elle doit masquer le sprite correspondant
+            //Creats an empty character to notify DisplayCharacterAndName() that it must hide the corresponding sprite
             CharacterData_CharacterSO nullData = new CharacterData_CharacterSO();
             nullData.CharacterName.Value = "";
 
-            //Perso de gauche
+            //Left
             if (_leftCharImg.sprite)
             {
                 nullData.FaceDirection.Value = DialogueSide.Right;
@@ -571,7 +569,7 @@ namespace Project.NodeSystem
                 OnRunCharacterNode(nullData);
             }
 
-            //Perso de droite
+            //Right
             if (_rightCharImg.sprite)
             {
                 nullData.FaceDirection.Value = DialogueSide.Left;
@@ -579,7 +577,7 @@ namespace Project.NodeSystem
                 OnRunCharacterNode(nullData);
             }
 
-            //Remet à zéro les flags et paramètres temporaires
+            //Resets flags and temporary settings
             ResetUI();
         }
 
@@ -596,11 +594,9 @@ namespace Project.NodeSystem
             AudioClip charPrintClip = hasACharacter ? data.Character.Value.CharPrintClip : null;
 
 
-            //Si aucun perso n'est affiché, on affiche le canvas
+            //makes sure the canvas is visible first before reloading this method to enable the characters
             if (!_uiVisibleFlag && hasACharacter)
             {
-                //Pour s'assurer que le perso apparaisse une fois le canvas affiché, on 
-                //passe deux fois dans OnRunUINode pour passer _uiVisibleFlag à true
                 UIData uiData = new UIData();
                 uiData.show.Value = true;
                 OnRunUINode(uiData, () => OnRunCharacterNode(data, onRunEnded));
@@ -609,13 +605,13 @@ namespace Project.NodeSystem
 
 
 
-            //On assigne le son d'écriture du perso en cours
+            //Assigns char printing sound
             SetCharAudio(charPrintClip);
 
-            //On change le sprite du perso dans la bonne direction
+            //Loads the character sprite in the right direction
             SetCharacterSprite(characterSprite, faceDir, sidePlacement, onRunEnded);
 
-            //On affiche le perso et son nom à l'écran
+            //Displays the character and his name on screen
             DisplayCharacterAndName(characterName, characterNameColor, hasACharacter, sidePlacement, onRunEnded);
 
 
@@ -638,18 +634,18 @@ namespace Project.NodeSystem
                 lastSprite = _leftCharImg.sprite;
                 _leftCharImg.sprite = newSprite;
 
-                //Tourner le perso
+                //Rotating the character
                 float rotY = _leftCharImg.transform.eulerAngles.y;
                 bool rotYIsZero = Mathf.Approximately(rotY, 0f);
                 shouldRotate = faceDir == DialogueSide.Left ^ !rotYIsZero;
                 if (shouldRotate)
                 {
-                    //Si on doit changer de direction et que le perso est visible, on peut l'animer
+                    //If the direction must be change, we can animate the rotation
                     if (_leftCharGo.activeSelf)
                     {
                         _leftCharImgTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative, onRunEnded);
                     }
-                    //Sinon, ça veut dire que notre perso a été désactivé ; on doit le tourner dans la bonne direction avant de l'afficher 
+                    //Otherwise, the character is disabled, so we rotate it manually
                     else
                     {
                         Vector3 euler = _leftCharImg.transform.eulerAngles;
@@ -666,19 +662,18 @@ namespace Project.NodeSystem
                 _rightCharImg.sprite = newSprite;
 
 
-
-                //Tourner le perso
+                //Rotating the character
                 float rotY = _rightCharImg.transform.eulerAngles.y;
                 bool rotYIsZero = Mathf.Approximately(rotY, 0f);
                 shouldRotate = faceDir == DialogueSide.Right ^ !rotYIsZero;
                 if (shouldRotate)
                 {
-                    //Si on doit changer de direction et que le perso est visible, on peut l'animer
+                    //If the direction must be change, we can animate the rotation
                     if (_rightCharGo.activeSelf)
                     {
                         _rightCharImgTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative, onRunEnded);
                     }
-                    //Sinon, ça veut dire que notre perso a été désactivé ; on doit le tourner dans la bonne direction avant de l'afficher 
+                    //Otherwise, the character is disabled, so we rotate it manually
                     else
                     {
                         Vector3 euler = _rightCharImg.transform.eulerAngles;
@@ -697,13 +692,13 @@ namespace Project.NodeSystem
 
             if (sidePlacement == DialogueSide.Left)
             {
-                //Animer le perso s'il affiche un sprite différent du précédent
+                //Animates the character if it displays a new sprite
                 if (lastSprite != _leftCharImg.sprite && !shouldRotate && _leftCharGo.activeSelf)
                 {
                     _leftCharImgTweener.BeginTweens(TS_CharTalks, onRunEnded);
                 }
 
-                //Si l'autre perso est visible, on le passe en muet
+                //Mutes the other character if visible
                 if (_rightCharImg.gameObject.activeInHierarchy)
                 {
                     _rightCharImgTweener.BeginTweens(TS_CharMuted);
@@ -711,13 +706,13 @@ namespace Project.NodeSystem
             }
             else
             {
-                //Animer le perso s'il affiche un sprite différent du précédent
+                //Animates the character if it displays a new sprite
                 if (lastSprite != _rightCharImg.sprite && !shouldRotate && _rightCharGo.activeSelf)
                 {
                     _rightCharImgTweener.BeginTweens(TS_CharTalks, onRunEnded);
                 }
 
-                //Si l'autre perso est visible, on le passe en muet
+                //Mutes the other character if visible
                 if (_leftCharImg.gameObject.activeInHierarchy)
                 {
                     _leftCharImgTweener.BeginTweens(TS_CharMuted);
@@ -732,7 +727,7 @@ namespace Project.NodeSystem
 
             if (sidePlacement == DialogueSide.Left)
             {
-                //S'il n'y a pas de sprite en paramètre, on veut cacher le personnage de ce côté
+                //Hides this character if it has no sprite
                 if (!hasSprite && _leftCharGo.activeSelf)
                 {
                     _leftCharGoTweener.BeginTweens(TS_CharDisappears, () =>
@@ -745,13 +740,13 @@ namespace Project.NodeSystem
                     _leftNameText.transform.parent.gameObject.SetActive(false);
                     return;
                 }
-                //Sinon, on l'active
+                //enables it otherwise
                 else if (hasSprite && !_leftCharGo.activeSelf)
                 {
                     _leftCharGo.gameObject.SetActive(true);
                     _leftCharGoTweener.BeginTweens(TS_CharAppears, onRunEnded);
 
-                    //On affiche le nom de gauche
+                    //Displays the character's name on the left container
                     _leftNameText.transform.parent.gameObject.SetActive(true);
                     _rightNameText.transform.parent.gameObject.SetActive(false);
                 }
@@ -760,7 +755,8 @@ namespace Project.NodeSystem
             }
             else
             {
-                //S'il n'y a pas de sprite en paramètre, on veut cacher le personnage de ce côté
+                //Hides this character if it has no sprite
+
                 if (!hasSprite && _rightCharGo.activeSelf)
                 {
                     _rightCharGoTweener.BeginTweens(TS_CharDisappears).SetOnTweensComplete(() =>
@@ -773,13 +769,13 @@ namespace Project.NodeSystem
                     _rightNameText.transform.parent.gameObject.SetActive(false);
                     return;
                 }
-                //Sinon, on l'active
+                //enables it otherwise
                 else if (hasSprite && !_rightCharGo.activeSelf)
                 {
                     _rightCharGo.gameObject.SetActive(true);
                     _rightCharGoTweener.BeginTweens(TS_CharAppears, onRunEnded);
 
-                    //On affiche le nom de droite
+                    //Displays the character's name on the right container
                     _leftNameText.transform.parent.gameObject.SetActive(false);
                     _rightNameText.transform.parent.gameObject.SetActive(true);
                 }
@@ -787,7 +783,7 @@ namespace Project.NodeSystem
 
             }
 
-            //On change le nom du perso en question
+            //Changes the name and the color of the containers
             _leftNameText.text = _rightNameText.text = characterName;
             _leftNameText.color = _rightNameText.color = characterNameColor;
 
@@ -803,37 +799,35 @@ namespace Project.NodeSystem
 
         private void OnRunRepliqueNode(RepliqueData_Replique data, LanguageType selectedLanguage)
         {
-            //Charger l'audio du perso
+            //Load character print sound
             SetVoiceAudio(data, selectedLanguage);
 
-            //Affiche le canvas
+            //makes sure the canvas is visible first before reloading this method to enable the _dialogueContent
             if (!_uiVisibleFlag)
             {
-                //Pour s'assurer que le dialogue apparaisse une fois le canvas affiché, on 
-                //passe deux fois dans OnRunUINode pour passer _uiVisibleFlag à true
+                
                 UIData uiData = new UIData();
                 uiData.show.Value = true;
                 OnRunUINode(uiData, () => OnRunRepliqueNode(data, selectedLanguage));
                 return;
             }
 
-            //Quand un choix est sélectionné, ramener la fenêtre de la réplique
             _dialogueContent.SetActive(true);
             _choicesContent.SetActive(false);
 
 
-            //Quand appendToText est à true, cliquer sur skip ajoute du texte en trop
-            //Cette variable permet de remettre le texte à son état initial
+            //When appendToText = true, clicking on skip adds too much text
+            //This variable restores the text to its initial value
             string previousText = _dialogueText.text;
 
 
             if (_writeCharByChar)
             {
-                //Arrête les auto délais
+                //Stops all auto delays
                 _skipRepliqueBtn.onClick.RemoveAllListeners();
                 _continueBtn.interactable = true;
 
-                //On assigne au bouton skip sa fonction
+                //Assign the skip method to the skip button
                 _skipRepliqueBtn.onClick.AddListener(() => WriteAllText(previousText, data, selectedLanguage)); 
 
                 StartCoroutine(WriteRepliqueCharByCharCo(data, selectedLanguage));
@@ -849,10 +843,8 @@ namespace Project.NodeSystem
 
         private void WriteAllText(string previousText, RepliqueData_Replique data, LanguageType selectedLanguage)
         {
-            //On arrête la coroutine pour éviter d'écrire à la suite de la réplique entière
+            //Stop writing Coroutine
             StopAllCoroutines();
-
-            //On n'est plus en train d'écrire, donc on remet les valeurs par défaut
 
             _skipRepliqueBtn.gameObject.SetActive(false);
             _continueBtn.gameObject.SetActive(true);
@@ -861,7 +853,7 @@ namespace Project.NodeSystem
             _isWriting = false;
 
 
-            //Arrêter le son d'écriture
+            //Stop printing sound
             for (int i = 0; i < _charClipSources.Length; i++)
             {
                 _charClipSources[i].Stop();
@@ -879,8 +871,7 @@ namespace Project.NodeSystem
                 _dialogueText.text = replique;
             }
 
-
-            //Si on veut un délai avant la prochaine réplique
+            //If we want a delay before the next replique
             if (data.UseAutoDelay.Value)
             {
                 StartCoroutine(DelayBeforeContinueCo(data));
@@ -888,10 +879,10 @@ namespace Project.NodeSystem
         }
 
 
-        //Pour écrire la réplique caractère par caractère à l'aide du StringBuilder
+        //Write the dialogue line caracter by caracter using the StringBuilder
         private IEnumerator WriteRepliqueCharByCharCo(RepliqueData_Replique data, LanguageType selectedLanguage)
         {
-            //Si on a le droit d'appuyer sur continuer pour passer la réplique, on active le skipRepliqueBtn
+            //Activates the skip button
             if (data.CanClickOnContinue.Value) 
             {
                 _skipRepliqueBtn.gameObject.SetActive(true);
@@ -899,39 +890,37 @@ namespace Project.NodeSystem
             }
 
 
-            _continueBtn.gameObject.SetActive(false);        //Pour éviter de cliquer dessus
-            _isWriting = true;                               //On indique au reste du script que l'écriture a commencé
+            _continueBtn.gameObject.SetActive(false);        
+            _isWriting = true;                               
 
 
             string replique = data.Texts.Find(text => text.Language == selectedLanguage).Data;
-
             int length = replique.Length;
 
 
-            //Si on doit attacher le nouveau texte à l'ancien, on s'assure que le StringBuilder est assez grand
+            //Makes sure the StringBuilder is large enough
             if (data.AppendToText.Value)
             {
                 _sb.EnsureCapacity(_sb.Capacity + length);
                 _sb.Clear();
-                _sb.Append(_dialogueText.text);   //Ajoute le texte dans le cas où la prochaine réplique doit être attachée elle aussi
+                _sb.Append(_dialogueText.text);   //Adds the previous text in cas the new text must be appended to it
             }
-            //Sinon, on doit vider le texte de dialogue, donc on réinitialise le StringBuilder
+            //Otherwise, we must empty the text field, so we reset the StringBuilder
             else
             {
                 _sb = new StringBuilder(length);
             }
 
-            //Si on doit remplacer la vitesse d'écriture de base par celle de la réplique
+            //Overwrites writing speed if needed
             WaitForSeconds wait = new WaitForSeconds(data.OverrideWriteSpeed.Value ? data.WriteSpeed.Value : _charWriteSpeed);
 
 
             for (int i = 0; i < length; i++)
             {
-                //Si le son est déjà occupé, jouer le suivant
                 if (_charClipSources[_curCharClipIndex].isPlaying)
                     _curCharClipIndex.Clamp360(1, _charClipSources);
 
-                //Joue le son d'écriture s'il y en a un
+                //Plays the printing sound if any
                 _charClipSources[_curCharClipIndex].Play();
                 _curCharClipIndex.Clamp360(1, _charClipSources);
 
@@ -945,7 +934,7 @@ namespace Project.NodeSystem
 
 
 
-            //Arrêter le son d'écriture
+            //We are done writing, so we stop the printing sound
             for (int i = 0; i < _charClipSources.Length; i++)
             {
                 _charClipSources[i].Stop();
@@ -955,7 +944,7 @@ namespace Project.NodeSystem
 
             _isWriting = false;
 
-            //Si on a le droit d'appuyer sur continuer pour passer la réplique, on active le continueBtn
+            //enables continueBtn
             if (data.CanClickOnContinue.Value) 
             {
                 _continueBtn.gameObject.SetActive(true);
@@ -966,7 +955,7 @@ namespace Project.NodeSystem
             _skipRepliqueBtn.gameObject.SetActive(false);
 
 
-            //Si on veut un délai avant la prochaine réplique
+            //If we want a delay before the next replique
             if (data.UseAutoDelay.Value)
             {
                 StartCoroutine(DelayBeforeContinueCo(data));
@@ -975,7 +964,7 @@ namespace Project.NodeSystem
 
 
 
-        //Si on veut un délai avant la prochaine réplique
+        //If we want a delay before the next replique
         private IEnumerator DelayBeforeContinueCo(RepliqueData_Replique data)
         {
             WaitForSeconds wait = new WaitForSeconds(data.AutoDelayDuration.Value);
@@ -996,13 +985,11 @@ namespace Project.NodeSystem
 
         private void OnRunBackgroundNode(BackgroundData_Transition transition, TransitionSettingsSO startSettings, TransitionSettingsSO endSettings)
         {
-            //Pour ne pas lancer la node suivante pendant la transition
+            //To avoid going to the next node during a transition
             _continueBtn.gameObject.SetActive(false);
 
             _tmpTransition = transition;
 
-            //Si on a des paramètres pour une transition de départ, on lance la transition sur l'UI
-            //en spécifiant de passer à la node suivante une fois la transition terminée
             if (startSettings)
             {
 
@@ -1030,7 +1017,7 @@ namespace Project.NodeSystem
             }
         }
 
-        //OnCompleteTransitionMiddle (appelée entre le 1er et le 2è fade)
+        //Changes the background texture (called manually or in OnCompleteTransitionMiddle)
         private void SetBackgroundManually()
         {
             _backgroundMat.SetTexture("_MainTex", _tmpTransition.BackgroundTex.Value);

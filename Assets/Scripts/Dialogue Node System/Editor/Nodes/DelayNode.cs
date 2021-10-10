@@ -24,8 +24,6 @@ namespace Project.NodeSystem.Editor
         public DelayNode(Vector2 position, DialogueEditorWindow window , DialogueGraphView graphView) : base("Delay", position, window, graphView, "DelayNodeStyleSheet")
         {
 
-            //La StartNode possède un port d'entrée dans le cas où l'on voudrait relancer le dialogue depuis le début
-            //(incluant le nettoyage dans la Start() du DialogueManager)
             NodeBuilder.AddPort(this, "Input", Direction.Input, Port.Capacity.Multi);
             NodeBuilder.AddPort(this, "Start", Direction.Output);
 
@@ -33,7 +31,7 @@ namespace Project.NodeSystem.Editor
             AddDelayFloatField();
 
 
-            //On appelle ces fonctions pour mettre à jour le visuel de la Node
+            //Repaint
             RefreshExpandedState();
             RefreshPorts();
         }

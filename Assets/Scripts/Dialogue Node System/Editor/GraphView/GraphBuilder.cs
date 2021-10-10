@@ -14,7 +14,7 @@ namespace Project.NodeSystem.Editor
         #region Manipulators
 
         /// <summary>
-        /// Ajoute un onglet "Add Group" dans le menu contextuel (clic droit)
+        /// Adds a "Add Group" option in the contextual menu (right click)
         /// </summary>
         /// <returns></returns>
         public static IManipulator AddGroupContextualMenu(DialogueGraphView graphView)
@@ -30,7 +30,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Ajoute un onglet "Remove Group" dans le menu contextuel (clic droit)
+        /// Adds a "Remove Group" option in the contextual menu (right click)
         /// </summary>
         /// <returns></returns>
         public static IManipulator RemoveGroupContextualMenu(DialogueGraphView graphView)
@@ -48,7 +48,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Ajoute un onglet "Add Sticky Node" dans le menu contextuel (clic droit)
+        /// Adds a "Add Sticky" option in the contextual menu (right click)
         /// </summary>
         /// <returns></returns>
         public static IManipulator AddStickyNoteContextualMenu(DialogueGraphView graphView)
@@ -72,7 +72,7 @@ namespace Project.NodeSystem.Editor
         #region Commands
 
         /// <summary>
-        /// Crée un Group dans la GraphView
+        /// Creates a Group in the GraphView
         /// </summary>
         /// <param name="title"></param>
         /// <param name="localMousePosition"></param>
@@ -88,13 +88,12 @@ namespace Project.NodeSystem.Editor
 
             group.SetPosition(new Rect(localMousePosition, Vector2.zero));
 
-            //Si on a sélectionné des nodes au moment de créer un groupe, on les ajoute à ce groupe
+            //If some nodes were already selected, add them to this Group
             if(graphView.selection.Count > 0)
             {
                 AddSelectionToGroup(group, graphView.selection);
             }
 
-            //Change la couleur du groupe dans la Minimap
             group.ChangeColorInMinimap("#33AACC");
             group.AddStyle("Group");
 
@@ -115,7 +114,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Retire les contenus des Groupes sélectionnés et supprime ces derniers de la GraphView
+        /// Remove the content of a Group and deletes this Group from the GraphView
         /// </summary>
         /// <param name="selection"></param>
         /// <returns></returns>
@@ -139,7 +138,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée une StickyNote dans la GraphView
+        /// Creates a StickyNote in the GraphView
         /// </summary>
         /// <param name="title"></param>
         /// <param name="localMousePosition"></param>
@@ -155,7 +154,7 @@ namespace Project.NodeSystem.Editor
 
             note.SetPosition(new Rect(localMousePosition, new Vector2(200, 200)));
 
-            //Change la couleur du groupe dans la Minimap
+
             note.ChangeColorInMinimap("#CCAA33");
             note.AddStyle("Note");
 
@@ -200,14 +199,14 @@ namespace Project.NodeSystem.Editor
 
         #region Callbacks
 
-        /// <summary>
-        /// Quand on charge un nouveau dialogue en additif, on change tous ses guids pour éviter les conflits de connexion
-        /// </summary>
-        /// <param name="loadedElements"></param>
-        public static void ChangerAllNodesAndConnectionsGuids(DialogueContainerSO dialogueContainerSO, List<GraphElement> loadedElements)
-        {
+        ///// <summary>
+        ///// Quand on charge un nouveau dialogue en additif, on change tous ses guids pour éviter les conflits de connexion
+        ///// </summary>
+        ///// <param name="loadedElements"></param>
+        //public static void ChangerAllNodesAndConnectionsGuids(DialogueContainerSO dialogueContainerSO, List<GraphElement> loadedElements)
+        //{
 
-        }
+        //}
 
 
 
@@ -221,7 +220,7 @@ namespace Project.NodeSystem.Editor
 
         public static Vector2 GetLocalMousePosition(this DialogueGraphView graphView, Vector2 localMousePosition)
         {
-            //Convertit localMousePosition pour l'adapter au Rect de la fenêtre
+            //Converts localMousePosition to adapt it to the window's rect
             Vector2 graphMousePos = graphView.contentViewContainer.WorldToLocal(localMousePosition);
 
             return graphMousePos;

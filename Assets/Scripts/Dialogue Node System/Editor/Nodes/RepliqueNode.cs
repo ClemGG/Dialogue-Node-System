@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -14,7 +13,7 @@ namespace Project.NodeSystem.Editor
 
         public RepliqueData RepliqueData { get; set; } = new RepliqueData();
 
-        private List<Box> _boxesButtons = new List<Box>();   //Pour cacher les boutons Up et Down
+        private List<Box> _boxesButtons = new List<Box>();   //To hide the Up and Down buttons
 
         #endregion
 
@@ -39,8 +38,8 @@ namespace Project.NodeSystem.Editor
 
             TopButton();
 
-            //Crée une réplique par défaut pour que le DialogueManager évite de planter si on n'a pas de choix.
-            //Retiré au moment du chargement dans DialogueSaveLoad pour éviter de créer un choix supplémentaire.
+            //Creates a text field by default so that the DialogueManager doesn't crash.
+            //Removed in DialogueSaveLoad to avoid creating an extra field.
             AddReplique();
 
         }
@@ -57,7 +56,7 @@ namespace Project.NodeSystem.Editor
         #region Add Replique
 
         /// <summary>
-        /// Crée un bouton en haut de la node pour ajouter une nouvelle réplique
+        /// Add New Replique Button
         /// </summary>
         private void TopButton()
         {
@@ -66,9 +65,9 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée une nouvelle réplique.
+        /// Creates a new replique
         /// </summary>
-        /// <param name="replique">Si à null, crée une réplique vide. Sinon, charge le contenu de cette réplique dans les champs créés.</param>
+        /// <param name="replique">If null, creates an empty replique, otherwise, assign it to the created field.</param>
         public void AddReplique(RepliqueData_Replique replique = null)
         {
             RepliqueData_Replique newReplique = new RepliqueData_Replique();
@@ -159,12 +158,12 @@ namespace Project.NodeSystem.Editor
             // Label Name
             NodeBuilder.NewLabel(topBoxContainer, "Text", "Label", "LabelColor");
 
-            //Le conteneur des boutons
+            //button container
             Box buttonsBox = NodeBuilder.NewBox(topBoxContainer, "BtnBox", "LabelBtn");
 
 
 
-            //Si on n'a qu'une seule réplique, pas la peine d'afficher les petits boutons
+            //If there is only one text line, no need to display the buttons
             _boxesButtons.Add(buttonsBox);
             for (int i = 0; i < _boxesButtons.Count; i++)
             {
@@ -269,7 +268,7 @@ namespace Project.NodeSystem.Editor
 
         private void ShowHideMoveButtons()
         {
-            //Si on n'a qu'une seule réplique, pas la peine d'afficher les petits boutons
+            //If there is only one text line, no need to display the buttons
             for (int i = 0; i < _boxesButtons.Count; i++)
             {
                 NodeBuilder.ShowHide(RepliqueData.Repliques.Count > 1, _boxesButtons[i]);

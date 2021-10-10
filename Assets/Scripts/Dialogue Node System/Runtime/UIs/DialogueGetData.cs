@@ -4,7 +4,7 @@ namespace Project.NodeSystem
 {
 
     /// <summary>
-    /// Cette classe nous permet de récupérer les données du DialogueContainerSO.
+    /// Allows us to get all datas contained in a DialogueContainerSO.
     /// </summary>
     public abstract class DialogueGetData : MonoBehaviour
     {
@@ -16,15 +16,19 @@ namespace Project.NodeSystem
         {
             return _dialogue.AllDatas.Find(data => data.NodeGuid == guid);
         }
-        
-        
-        //Pour savoir quelle node récupérer ensuite si on a plusieurs choix
-        protected BaseData GetNodeByNodePort(ChoicePort nodePort)
-        {
-            return _dialogue.AllDatas.Find(data => data.NodeGuid == nodePort.InputGuid);
-        }
 
-        //Si la node n'a qu'une seule sortie, on cherche directement la node suivante
+
+        //(Obsolete) To know which node link follow if we have multiple choices
+        //protected BaseData GetNodeByNodePort(ChoicePort nodePort)
+        //{
+        //    return _dialogue.AllDatas.Find(data => data.NodeGuid == nodePort.InputGuid);
+        //}
+
+
+        /// <summary>
+        /// Once a nodeData has been analyzed, this method goes to the next one.
+        /// </summary>
+        /// <returns></returns>
         protected BaseData GetNextNode(BaseData curNode)
         {
             LinkData nodeLinkData = _dialogue.linkDatas.Find(edge => edge.BaseNodeGuid == curNode.NodeGuid);
@@ -34,9 +38,9 @@ namespace Project.NodeSystem
 
 
         /// <summary>
-        /// Récupère l'action à exécuter en fonction du type de node atteint.
+        /// Executes different actions depending on the type of the reached node.
         /// </summary>
-        /// <param name="inputData">La node à convertir.</param>
+        /// <param name="inputData">The node to convert.</param>
         protected void CheckNodeType(BaseData inputData)
         {
             switch (inputData)

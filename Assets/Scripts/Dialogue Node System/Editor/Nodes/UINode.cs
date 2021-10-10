@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -25,15 +23,13 @@ namespace Project.NodeSystem.Editor
 
         public UINode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("UI", position, window, graphView, "UINodeStyleSheet")
         {
-            //La StartNode possède un port d'entrée dans le cas où l'on voudrait relancer le dialogue depuis le début
-            //(incluant le nettoyage dans la Start() du DialogueManager)
             NodeBuilder.AddPort(this, "Input", Direction.Input, Port.Capacity.Multi);
             NodeBuilder.AddPort(this, "Output", Direction.Output);
 
             AddFields();
 
 
-            //On appelle ces fonctions pour mettre à jour le visuel de la Node
+            //Repaint
             RefreshExpandedState();
             RefreshPorts();
         }

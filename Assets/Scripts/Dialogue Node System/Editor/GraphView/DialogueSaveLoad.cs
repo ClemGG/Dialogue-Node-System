@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-
-using static Project.Utilities.ValueTypes.Types;
 
 namespace Project.NodeSystem.Editor
 {
@@ -230,7 +226,7 @@ namespace Project.NodeSystem.Editor
                 Position = node.GetPosition().position,
             };
 
-            // Set ID (Instancie les éléments Traduction et Personnage dans le bon ordre)
+            // Set ID (Instantiates the modules by ID)
             for (int i = 0; i < node.CharacterData.Characters.Count; i++)
             {
                 node.CharacterData.Characters[i].ID.Value = i;
@@ -238,7 +234,7 @@ namespace Project.NodeSystem.Editor
 
             foreach (CharacterData_CharacterSO character in node.CharacterData.Characters)
             {
-                // Stocke le personnage
+                // Stores the character
                 CharacterData_CharacterSO tmpData = new CharacterData_CharacterSO();
 
                 tmpData.ID.Value = character.ID.Value;
@@ -267,7 +263,7 @@ namespace Project.NodeSystem.Editor
                 Position = node.GetPosition().position,
             };
 
-            // Set ID (Instancie les éléments Traduction et Personnage dans le bon ordre)
+            // Set ID (Instantiates the modules by ID)
             for (int i = 0; i < node.RepliqueData.Repliques.Count; i++)
             {
                 node.RepliqueData.Repliques[i].ID.Value = i;
@@ -315,7 +311,7 @@ namespace Project.NodeSystem.Editor
                 Position = node.GetPosition().position,
             };
 
-            // Set ID (Instancie les éléments Traduction et Personnage dans le bon ordre)
+            // Set ID (Instantiates the modules by ID)
             for (int i = 0; i < node.EventData.Events.Count; i++)
             {
                 node.EventData.Events[i].ID.Value = i;
@@ -389,7 +385,7 @@ namespace Project.NodeSystem.Editor
                 Position = node.GetPosition().position,
             };
 
-            // Set ID (Instancie les éléments Traduction et Personnage dans le bon ordre)
+            // Set ID (Instantiates the modules by ID)
             for (int i = 0; i < node.ChoiceData.Choices.Count; i++)
             {
                 node.ChoiceData.Choices[i].ID.Value = i;
@@ -481,10 +477,10 @@ namespace Project.NodeSystem.Editor
                 Position = group.GetPosition().position,
             };
 
-            //On récupère les éléments du Groupe qui sont des BaseNodes
+            //Get all BaseNodes in Group
             _collectedNodes = group.containedElements.ToList().FindAll(node => node is BaseNode).Cast<BaseNode>().ToList();
 
-            //Pour chaque BaseNode du Groupe, on stocke son guid pour la réattacher à un Groupe lors du chargement
+            //For each BaseNode, we store its Guid to reattach it to the Group during the loading phase
             for (int i = 0; i < _collectedNodes.Count; i++)
             {
                 BaseNode node = _collectedNodes[i] as BaseNode;
@@ -629,8 +625,8 @@ namespace Project.NodeSystem.Editor
 
 
 
-                //Comme on crée un choix par défaut dans la node, on le supprime au chargement pour ne pas le recréer
-                //en plus de tous les autres
+                //As we create a choice by default in the constructor, we destroy it here
+                //in order to avoid duplicates
                 tmpNode.DeleteBox(tmpNode.ChoiceData.Choices[0].BoxContainer);
                 NodeBuilder.DeleteChoicePort(tmpNode, tmpNode.ChoiceData.Choices[0].LinkedPort.Port);
                 tmpNode.ChoiceData.Choices.RemoveAt(0);
@@ -667,7 +663,9 @@ namespace Project.NodeSystem.Editor
 
 
 
-                //Comme on crée un décor par défaut dans la node, on le supprime au chargement pour ne pas le recréer
+
+                //As we create a background by default in the constructor, we destroy it here
+                //in order to avoid duplicates
                 tmpNode.DeleteBox(tmpNode.BackgroundData.Transition.Value.BoxContainer);
                 tmpNode.BackgroundData.Transition.Value = null;
 
@@ -687,8 +685,9 @@ namespace Project.NodeSystem.Editor
 
 
 
-                //Comme on crée une réplique par défaut dans la node, on la supprime au chargement pour ne pas la recréer
-                //en plus de toutes les autres
+
+                //As we create a character by default in the constructor, we destroy it here
+                //in order to avoid duplicates
                 tmpNode.DeleteBox(tmpNode.CharacterData.Characters[0].BoxContainer);
                 tmpNode.CharacterData.Characters.RemoveAt(0);
 
@@ -722,8 +721,9 @@ namespace Project.NodeSystem.Editor
 
 
 
-                //Comme on crée une réplique par défaut dans la node, on la supprime au chargement pour ne pas la recréer
-                //en plus de toutes les autres
+
+                //As we create a text field by default in the constructor, we destroy it here
+                //in order to avoid duplicates
                 tmpNode.DeleteBox(tmpNode.RepliqueData.Repliques[0].BoxContainer);
                 tmpNode.RepliqueData.Repliques.RemoveAt(0);
 

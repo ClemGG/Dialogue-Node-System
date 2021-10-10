@@ -30,7 +30,7 @@ namespace Project.NodeSystem.Editor
         #region Constructor
 
         /// <summary>
-        /// Toutes les classes filles possèdent un constructeur vide pour pouvoir les créer depuis la barre de recherche du graphe.
+        /// All child classes must implement an empty constructor in order to be called by the search window.
         /// </summary>
         /// <param name="name"></param>
         /// <param name="position"></param>
@@ -42,10 +42,10 @@ namespace Project.NodeSystem.Editor
             this.Window = window;
             this.GraphView = graphView;
 
-            //La StyleSheet de base
+            //The base Stylesheet
             styleSheets.Add(Resources.Load<StyleSheet>("USS/Nodes/NodeStyleSheet"));
 
-            //La StyleSheet propre à chaque node (si elle en a une)
+            //The Stylesheet corresponding to each node (if any)
             if (styleSheetName != string.Empty)
                 styleSheets.Add(Resources.Load<StyleSheet>($"USS/Nodes/{styleSheetName}"));
 
@@ -68,12 +68,12 @@ namespace Project.NodeSystem.Editor
         #region On Load
 
         /// <summary>
-        /// Quand on charge les données de la node, on les assigne à ses champs si elle en a
+        /// Assign the data to the node's fields if any
         /// </summary>
         public virtual void ReloadFields() { }
 
         /// <summary>
-        /// Quand on charge les données de la node, recharge les champs dépendant de la langue
+        /// Reloads language-dependent fields
         /// </summary>
         public virtual void ReloadLanguage()
         {
@@ -90,7 +90,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Reload all the text in the TextField to the current selected language.
+        /// Reloads language-dependent fields to the current selected language
         /// </summary>
         /// <param name="inputText">List of LanguageGeneric<string></param>
         /// <param name="textField">The TextField that is to be reload</param>
@@ -150,7 +150,7 @@ namespace Project.NodeSystem.Editor
         }
 
         /// <summary>
-        /// Si la node contient des BaseContainers, cette fonction permet de les réarranger selon leur ID
+        /// If the node contains some BaseContainers, this methods sorts them by ID
         /// </summary>
         /// <param name="itemToMove"></param>
         /// <param name="moveUp"></param>

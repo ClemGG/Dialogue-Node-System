@@ -25,8 +25,8 @@ namespace Project.NodeSystem.Editor
 
         public StartNode(Vector2 position, DialogueEditorWindow window, DialogueGraphView graphView) : base("Start", position, window, graphView, "StartNodeStyleSheet")
         {
-            //La StartNode possède un port d'entrée dans le cas où l'on voudrait relancer le dialogue depuis le début
-            //(incluant le nettoyage dans la Start() du DialogueManager)
+            //The StartNode uses an etry port in case we want to restat the dialogue from that specific node
+            //(including the cleanup in the DialogueManager)
             NodeBuilder.AddPort(this, "Input", Direction.Input, Port.Capacity.Multi);
             NodeBuilder.AddPort(this, "Start", Direction.Output);
 
@@ -35,7 +35,7 @@ namespace Project.NodeSystem.Editor
             TopButton();
 
 
-            //On appelle ces fonctions pour mettre à jour le visuel de la Node
+            //Repaint
             RefreshExpandedState();
             RefreshPorts();
         }
@@ -47,14 +47,14 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Ajoute un toggle à la StartNode pour indiquer qu'elle est la node de départ par défaut si à true.
+        /// Add isDefault toggle.
         /// </summary>
         private void AddDefaultStartNodeMarker()
         {
             Box boxContainer = NodeBuilder.NewBox(this, "BoxRow");
 
-            //Quand on clique passe le toggle à true, on prend toutes les StartNodes qui ne sont pas celle-ci et on passe leurs toggles à false
-            //de sorte à n'avoir qu'une seule node de départ par défaut
+            //When set to true, all other StartNodes' isDefault fields are set to false so that
+            //only one StartNode is marked as the default one.
             Action onToggled = () =>
             {
                 GraphView.nodes.ToList().Where(node => node is StartNode).Cast<StartNode>().ToList().ForEach(startNode =>
@@ -72,7 +72,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée un bouton en haut de la node pour ajouter des conditions
+        /// Add Condition button
         /// </summary>
         private void TopButton()
         {
@@ -81,7 +81,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Ajoute un champ contenant une nouvelle condition
+        /// Adds a field containing a new condition
         /// </summary>
         /// <param name="stringEvent"></param>
         public void AddCondition(EventData_StringEventCondition stringEvent = null)

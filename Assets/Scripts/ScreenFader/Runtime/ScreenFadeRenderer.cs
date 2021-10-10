@@ -4,13 +4,12 @@ using UnityEngine;
 
 
 
-/* Le ScreenFader étant un SO, il ne peut pas appeler OnRenderImage pour exécuter le fade.
- * Quand on ajoute ce Component sur la Camera.current, on lui ajoute un ScreenFadeRenderer
- * pour réaliser le OnRenderImage spécifié dans le ScreenFader.
- * Une fois la Coroutine du SO terminée, on peut détruire ce Component.
+/* The ScreenFader being an SO, it cannot call OnRenderImage to execute the fade.
+ * We add this component to call OnRenderImage() from a MonoBehaviour.
+ * Once the Coroutine finished, we can destroy this Component.
  * 
- * Ce script est aussi en charge de trouver tous les Canvas en mode Overlay et de les passer en mode Caméra.
- * (Car les canvas en Overlay ne sont pas affectés par le ScreenFader)
+ * This script is also in charge of fiding all canvases in Overlay Mode and setting them to Camera Mode.
+ * (Bc the canvas are only affected by the fade in this mode.)
  */
 
 namespace Project.ScreenFader
@@ -22,7 +21,7 @@ namespace Project.ScreenFader
         [Tooltip("Le SO en charge de la transition.")]
         private ScreenFaderSO _screenFader;
 
-        //Variables utilisées pour stocker les canvas au début de la transition pour les réinitialiser une fois celle-ci terminée.
+        //Temp. variable to store the canvases.
         private bool _setToCamera = false;
         private Canvas[] _overlayCanvases;
         private Camera _mainCam;
@@ -35,14 +34,13 @@ namespace Project.ScreenFader
         {
             _screenFader = screenFader;
 
-            //Au début de la transition, on récupère tous les canvas en Overlay et on les passe en mode Camera.
+            //Finds all canvases in Overlay Mode and sets them to Camera Mode.
             SetCanvases();
 
-            //Si shouldDestroy est à false, on garde ce Component sur l'objet jusqu'à
-            //ce qu'une transition future le détruise.
+            //If shouldDestroy = false, we keep this Component until a future transition gets rid of it.
 
-            //Si à true, on abonne et désabonne automatiquement ce renderer au ScreenFader
-            //pour détruire ce Component une fois la transition terminée.
+            //If shouldDestroy = true, we automatically sub and unsub this to the ScreenFader
+            //to destroy it once the transition completed.
             Subscribe(shouldDestroyRendererOnEnded);
         }
 
@@ -53,7 +51,7 @@ namespace Project.ScreenFader
             if (shouldDestroyRendererOnEnded)
             {
                 _screenFader.OnTransitionEnded += CleanUp;
-                _screenFader.OnTransitionEnded += SetCanvases;  //Vu que _setToCamera = true à ce moment, il repassera tous nos canvas en mode Overlay
+                _screenFader.OnTransitionEnded += SetCanvases;  //Since _setToCamera = true at this point, it will set all of them in Overlay mode
             }
         }
 
@@ -72,7 +70,7 @@ namespace Project.ScreenFader
 
             if (_setToCamera)
             {
-                //Si à true, on doit changer tous les canvas en mode Caméra et leur assigner la caméra avec laquelle on affiche la scène
+                //If true, we change all canvases in Camera Mode et assign them the camera used to draw the scene
                 _overlayCanvases = FindObjectsOfType<Canvas>().Where(canvas => canvas.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
 
                 for (int i = 0; i < _overlayCanvases.Length; i++)
@@ -84,7 +82,7 @@ namespace Project.ScreenFader
             }
             else
             {
-                //Si à false, on ramène tous les canvas stockés à leur état initial
+                //If false, all canvases return to normal.
                 for (int i = 0; i < _overlayCanvases.Length; i++)
                 {
                     _overlayCanvases[i].renderMode = RenderMode.ScreenSpaceOverlay;

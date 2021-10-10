@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 namespace Project.NodeSystem
 {
-    //Pour savoir quelles nodes sont connectées à quelles nodes
+    //To keep in memory which nodes are connected to which nodes
     [System.Serializable]
     public class LinkData
     {

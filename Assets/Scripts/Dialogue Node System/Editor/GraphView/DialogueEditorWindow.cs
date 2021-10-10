@@ -19,18 +19,14 @@ namespace Project.NodeSystem.Editor
         private DialogueSaveLoad _saveLoad;
         private const string _graphViewStyleSheet = "USS/EditorWindow/EditorWindowStyleSheet";
         private bool _makeGridVisible = false;
-        private int _nbMaxChoices = 4;
-        private LanguageType selectedLanguage = LanguageType.French;
-
-
-        private ToolbarMenu languageDropdown;   //Permet de choisir la langue dans la barre d'outils de la fenêtre
-        private Label dialogueContainerLabel;   //Affiche le nom du Dialogue en cours d'édition
+        private ToolbarMenu languageDropdown;
+        private Label dialogueContainerLabel;
 
         /// <summary>
-        /// La langue sélectionnée dans l'éditeur.
+        /// The selected language in the editor window
         /// </summary>
-        public LanguageType SelectedLanguage { get => selectedLanguage; set => selectedLanguage = value; }
-        public int NbMaxChoices { get => _nbMaxChoices; set => _nbMaxChoices = value; }
+        public LanguageType SelectedLanguage { get; set; } = LanguageType.French;
+        public int NbMaxChoices { get; set ; } = 4;
 
 
 
@@ -49,9 +45,8 @@ namespace Project.NodeSystem.Editor
 
 
 
-            // Au lancement de l'éditeur, si la fenêtre est ouverte mais qu'elle est vide, 
-            // on récupère le dialogue enregistré lors de la précédente session.
-            //Si l'asset a été déplacée alors que Unity était fermé, AssetFinderUtilities renverra juste null, donc on risque rien.
+            // When Unity starts, we retrive the last dialogue stored in memory and we open it.
+            // If the asset was moved while Unity was closed, AssetFinderUtilities will just return null, so we risk nothing
             if (!_currentDialogueContainer && PlayerPrefs.HasKey("lastDialogue"))
             {
                 _currentDialogueContainer = AssetFinderUtilities.FindAssetAtPath<DialogueContainerSO>(PlayerPrefs.GetString("lastDialogue"));
@@ -66,28 +61,23 @@ namespace Project.NodeSystem.Editor
             PlayerPrefs.SetInt("Editor_makeGridVisible", _makeGridVisible ? 1 : 0);
             PlayerPrefs.SetInt("Editor_NbMaxChoices", NbMaxChoices);
 
-            //Sauvegarde l'instanceID pour rouvrir le dernier dialogue édité au lancement de l'éditeur
-            if(_currentDialogueContainer)
+            //Stores the instanceID to open the last editoed dialogue when Unity starts
+            if (_currentDialogueContainer)
                 PlayerPrefs.SetString("lastDialogue", AssetFinderUtilities.GetAssetPath(_currentDialogueContainer));
         }
 
 
 
         /// <summary>
-        /// Ouvre un DialogueContainer dans l'éditeur quand on double clique sur son asset.
-        /// Plus le callbackOrder de OnOpenAsset est grand, plus cette fonction sera appelée en dernier.
-        /// (Dans le cas où l'on aurait d'autres OnOpenAssets dans ce script).
-        /// </summary>
-        /// <param name="instanceID">L'ID du dialogue, permet au script de le retrouver dans les Assets et l'ouvrir.</param>
-        /// <param name="line">Pas important.</param>
+        /// Open the dialogue in the Editor WIndow by double-clicking on it
         /// <returns></returns>
         [OnOpenAsset(1)]
         public static bool ShowWindow(int instanceID, int line)
         {
-            //Sauvegarde l'instanceID pour rouvrir le dernier dialogue édité au lancement de l'éditeur
+            //Stores the instanceID to open the last editoed dialogue when Unity starts
             PlayerPrefs.SetString("lastDialogue", AssetFinderUtilities.GetAssetPath(instanceID));
 
-            //Récupère le dialogue dans les Assets via son ID
+            //Retrieves the dialogue in the Asset folder by its ID
             UnityEngine.Object item = EditorUtility.InstanceIDToObject(instanceID);
 
             if (item is DialogueContainerSO)
@@ -139,7 +129,7 @@ namespace Project.NodeSystem.Editor
             Button importButton = new Button(() => CSVCustomTools.LoadDialoguesFromCSV()) { text = "Import CSV" };
 
 
-            //Pour afficher/cacher la grille
+            //Hide/Show grid
             Label showGridLabel = new Label("Show Grid");
             showGridLabel.AddToClassList("showGridLabel");
 
@@ -157,7 +147,7 @@ namespace Project.NodeSystem.Editor
             Label nbChoicesLabel = new Label("Nb Max Choices");
             showGridLabel.AddToClassList("showGridLabel");
 
-            //Pour changer le nombre de choix permis pour la ChoiceNode
+            //Change the number of maximum possible choices
             IntegerField nbChoicedAllowed = new IntegerField();
             NbMaxChoices = PlayerPrefs.GetInt("Editor_NbMaxChoices", NbMaxChoices);
             nbChoicedAllowed.value = NbMaxChoices;
@@ -170,13 +160,13 @@ namespace Project.NodeSystem.Editor
 
 
 
-            //On l'active une fois pour synchroniser la grille avec le toggle
+            //We activate the toggle once to synchronize it with its value
             _graphView.ToggleGrid(_makeGridVisible);
 
 
 
 
-            //Pour chaque langue, créer une option dans le dropdown pour changer la langue
+            //Language dropdown
             languageDropdown = new ToolbarMenu();
             ForEach<LanguageType>(language =>
             {
@@ -211,7 +201,7 @@ namespace Project.NodeSystem.Editor
         {
             if (_currentDialogueContainer)
             {
-                SetLanguage(selectedLanguage);
+                SetLanguage(SelectedLanguage);
                 dialogueContainerLabel.text = _currentDialogueContainer.name;
 
                 _saveLoad.Load(_currentDialogueContainer);
@@ -230,9 +220,9 @@ namespace Project.NodeSystem.Editor
         private void SetLanguage(LanguageType newLanguage)
         {
             languageDropdown.text = $"Language : {newLanguage.ToString()}";
-            selectedLanguage = newLanguage;
+            SelectedLanguage = newLanguage;
 
-            //Le graphView récupère toutes ses DialogueNodes et les traduit
+            //Translates all nodes in the graph
             _graphView.ReloadLanguage();
         }
 

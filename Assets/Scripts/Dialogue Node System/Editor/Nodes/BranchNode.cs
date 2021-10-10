@@ -18,7 +18,7 @@ namespace Project.NodeSystem.Editor
 
         #region Constructors
 
-        //Constructeur vide pour la NodeSearchWindow
+        //Empty constructor for the NodeSearchWindow
         public BranchNode() : base("Branch", Vector2.zero)
         {
 
@@ -33,7 +33,7 @@ namespace Project.NodeSystem.Editor
 
             TopButton();
 
-            //On appelle ces fonctions pour mettre à jour le visuel de la Node
+            //Repaint
             RefreshExpandedState();
             RefreshPorts();
         }
@@ -46,7 +46,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée un bouton en haut de la node pour ajouter des conditions
+        /// Creates a button to add conditions
         /// </summary>
         private void TopButton()
         {
@@ -54,9 +54,9 @@ namespace Project.NodeSystem.Editor
         }
 
         /// <summary>
-        /// Ajoute un champ contenant une nouvelle condition
+        /// Adds a new field containing a condition
         /// </summary>
-        /// <param name="stringEvent">L'event à charger (si null, le script en crée un nouveau)</param>
+        /// <param name="stringEvent">The event to load (if null, the script will create a new one)</param>
         public void AddCondition(EventData_StringEventCondition stringEvent = null)
         {
             NodeBuilder.AddStringConditionEvent(this, BranchData.StringConditions, stringEvent);

@@ -22,17 +22,17 @@ namespace Project.NodeSystem
         public ContainerValue<Texture2D> BackgroundTex = new ContainerValue<Texture2D>();
 
 
-        public ContainerValue<string> BackgroundName = new ContainerValue<string>();    //Grisé sur la node
+        public ContainerValue<string> BackgroundName = new ContainerValue<string>();
 
 
         /// <summary>
-        /// La transition avant de changer de décor
+        /// The transition before changing the background
         /// </summary>
         public ContainerValue<TransitionSettingsSO> StartSettings = new ContainerValue<TransitionSettingsSO>();
 
 
         /// <summary>
-        /// La transition après avoir changé de décor
+        /// The transition after changing the background
         /// </summary>
         public ContainerValue<TransitionSettingsSO> EndSettings = new ContainerValue<TransitionSettingsSO>();
 
@@ -41,19 +41,19 @@ namespace Project.NodeSystem
 #if UNITY_EDITOR
 
         /// <summary>
-        /// Contient le conteneur de l'arrière-plan pour le supprimer plus facilement dans DialogueSaveLoad
+        /// Contains the background container to remove it more easily in DialogueSaveLoad
         /// </summary>
         public Box BoxContainer { get; set; }
 
         /// <summary>
-        /// Le champ pour l'image de l'arrière-plan
+        /// The background image field
         /// </summary>
         public Image TextureField { get; set; }
 
         public ObjectField ObjectField { get; set; }
 
         /// <summary>
-        /// Le champ pour le nom de l'arrière-plan
+        /// The background name field
         /// </summary>
         public TextField NameField { get; set; }
 

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -30,7 +29,7 @@ namespace Project.NodeSystem.Editor
             foreach (DialogueContainerSO dialogueContainer in dialogueContainers)
             {
 
-                //Répliques des dialogues
+                //Dialogue mines
                 foreach (RepliqueData nodeData in dialogueContainer.RepliqueDatas)
                 {
                     foreach (RepliqueData_Replique textData in nodeData.Repliques)
@@ -40,7 +39,7 @@ namespace Project.NodeSystem.Editor
                 }
 
 
-                //Charger les choix et descriptions
+                //Choices and descriptions
                 foreach (ChoiceData nodeData in dialogueContainer.ChoiceDatas)
                 {
                     foreach (ChoiceData_Container choice in nodeData.Choices)

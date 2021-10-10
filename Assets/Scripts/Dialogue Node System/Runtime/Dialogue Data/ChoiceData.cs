@@ -21,11 +21,11 @@ namespace Project.NodeSystem
 
 #if UNITY_EDITOR
 
-        public Box BoxContainer { get; set; }       //Contient tous les éléments suivants + les Boxs contenant les conditions
+        public Box BoxContainer { get; set; }
         public TextField TextField { get; set; }
         public TextField DescTextField { get; set; }
         public ObjectField ObjectField { get; set; }
-        public Box ChoiceStateEnumBox { get; set; }  //Conteneur du choiceStateType et ses labels
+        public Box ChoiceStateEnumBox { get; set; } 
 
 
 #endif
@@ -54,7 +54,7 @@ namespace Project.NodeSystem
         public ContainerValue<string> Guid = new ContainerValue<string>();
 
         /// <summary>
-        /// Courte description pour indiquer au joueur pourquoi les conditions ne sont pas remplies (laisser vide si choix tjs dispo)
+        /// Short description to explain to the player why the conditions are not met (leave empty if choice always available)
         /// </summary>
         public List<LanguageGeneric<string>> DescriptionsIfNotMet = new List<LanguageGeneric<string>>();
         public EventData_StringEventCondition StringCondition = new EventData_StringEventCondition();

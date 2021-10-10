@@ -23,28 +23,28 @@ namespace Project.NodeSystem
 
 #if UNITY_EDITOR
 
-        public Box BoxContainer { get; set; }       //Contient le conteneur de la réplique pour le supprimer plus facilement dans DialogueSaveLoad
+        public Box BoxContainer { get; set; }
         public TextField TextField { get; set; }
         public ObjectField AudioField { get; set; }
 #endif
 
         /// <summary>
-        /// Si à true, le texte s'écrira à la suite du précédent au lieu de l'effacer
+        /// If true, append the new text to the previous one
         /// </summary>
         public ContainerValue<bool> AppendToText = new ContainerValue<bool>();
 
         /// <summary>
-        /// Si à true, le joueur ne peut pas cliquer sur Continuer tant que le texte s'écrit
+        /// If true, the player cannot click on Continue or Skip while the text is being written
         /// </summary>
         public ContainerValue<bool> CanClickOnContinue = new ContainerValue<bool>();
 
         /// <summary>
-        /// Si à true, on remplace la vitesse d'écriture par défaut par celle-ci
+        /// If true, overrides the writing speed
         /// </summary>
         public ContainerValue<bool> OverrideWriteSpeed = new ContainerValue<bool>();
 
         /// <summary>
-        /// Si à true, le script passera automatiquement à la node suivante au bout du temps donné
+        /// If true, go to the next node after some time has passed
         /// </summary>
         public ContainerValue<bool> UseAutoDelay = new ContainerValue<bool>();
 

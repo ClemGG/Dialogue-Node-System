@@ -12,7 +12,7 @@ namespace Project.NodeSystem.Editor
 
         public CharacterData CharacterData { get; set; } = new CharacterData();
 
-        private List<Box> _boxesButtons = new List<Box>();  //On les garde en mémoire pour les réarranger avec les flèches
+        private List<Box> _boxesButtons = new List<Box>();  //To hide the Up and Down buttons
 
         #endregion
 
@@ -38,8 +38,8 @@ namespace Project.NodeSystem.Editor
             TopButton();
 
 
-            //Crée un perso par défaut pour que le DialogueManager évite de planter si on n'a pas de choix.
-            //Retiré au moment du chargement dans DialogueSaveLoad pour éviter de créer un perso supplémentaire.
+            //Creates a character slot by default so that the DialogueManager doesn't crash.
+            //Removed in DialogueSaveLoad to avoid creating an extra field.
             AddCharacter();
         }
 
@@ -54,7 +54,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée un bouton en haut de la node pour rajouter un nouveau perso
+        /// Add New Character button
         /// </summary>
         private void TopButton()
         {
@@ -63,7 +63,7 @@ namespace Project.NodeSystem.Editor
 
 
 
-        //Appelé dans DialogueSaveLoad
+        //Called in DialogueSaveLoad
         public void AddCharacter(CharacterData_CharacterSO character = null)
         {
             CharacterData_CharacterSO newCharacter = new CharacterData_CharacterSO();
@@ -112,12 +112,12 @@ namespace Project.NodeSystem.Editor
             // Label Name
             NodeBuilder.NewLabel(topBoxContainer, "Character", "Label", "LabelColor");
 
-            //Le conteneur des boutons
+            //Buttons container
             Box buttonsBox = NodeBuilder.NewBox(topBoxContainer, "BtnBox", "LabelBtn");
 
 
 
-            //Si on n'a qu'un seul perso, pas la peine d'afficher les petits boutons
+            //If there's only one character, no need to show the buttons
             _boxesButtons.Add(buttonsBox);
             for (int i = 0; i < _boxesButtons.Count; i++)
             {
@@ -205,7 +205,7 @@ namespace Project.NodeSystem.Editor
             {
                 if (character.Character.Value != null)
                 {
-                    //Quand on change d'humeur, on affiche le sprite correspondant
+                    //When the mood is changed, we retrieve the corresponding sprite
                     character.Sprite.Value = character.Character.Value.GetFaceFromMood(character.Mood.Value);
                     character.SpriteField.image = character.Sprite.Value.texture;
                 }
@@ -230,7 +230,7 @@ namespace Project.NodeSystem.Editor
             // Set up Image Preview.
             Image faceImage = NodeBuilder.NewImage(ImagePreviewBox, "ImagePreview");
 
-            character.SpriteField = faceImage;  //On le garde en mémoire pour quand on veut changer l'humeur du perso
+            character.SpriteField = faceImage;  //Kept in memory in case we change the mood of the character
 
         }
 
@@ -238,7 +238,8 @@ namespace Project.NodeSystem.Editor
 
         private void ShouldShowHideMoveButtons()
         {
-            //Si on n'a qu'un seul perso, pas la peine d'afficher les petits boutons
+            //If there's only one character, no need to show the buttons
+
             for (int i = 0; i < _boxesButtons.Count; i++)
             {
                 NodeBuilder.ShowHide(CharacterData.Characters.Count > 1, _boxesButtons[i]);

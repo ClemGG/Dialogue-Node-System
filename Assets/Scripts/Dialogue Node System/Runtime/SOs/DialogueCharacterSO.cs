@@ -9,7 +9,7 @@ namespace Project.NodeSystem
     [System.Serializable]
     public class DialogueCharacterSO : ScriptableObject
     {
-        public List<string> CharacterNames = new List<string>(); //Les noms traduits dans toutes les langues disponibles
+        public List<string> CharacterNames = new List<string>(); //The names translated in all available languages
         public Color CharacterNameColor = Color.white;
         public AudioClip CharPrintClip;
         [SerializeField] private List<FaceAndMood> m_faces = new List<FaceAndMood>();
@@ -20,9 +20,9 @@ namespace Project.NodeSystem
         {
             int length = LengthOf<LanguageType>();
 
-            //Initialiser les noms du perso quand on crée le SO pour la première fois ou qu'on le réinitialise.
-            //Normalement le perso a tjs le même nom, mais s'il est écrit dans un alphabet différent (latin, cyrillique, mandarin, etc.),
-            //Cela nous permet de changer les caractères.
+            //Initializes the character's names when the ScriptableObject is reset or created for the 1st time.
+            //Normally the character has always the same name, but it might be written in a different alphabet (latin, cyrillic, mandarin, etc.),
+            //This allows us to change the caracters.
             if (CharacterNames == null ^ CharacterNames.Count < length)
             {
                 for (int i = CharacterNames.Count; i < length; i++)
@@ -34,7 +34,7 @@ namespace Project.NodeSystem
 
             length = LengthOf<CharacterMood>();
 
-            //Initialiser les sprites et enums quand on crée le SO pour la première fois ou qu'on le réinitialise.
+            //Initializes the sprites and enums when the ScriptableObject is reset or created for the 1st time.
             if (m_faces == null ^ m_faces.Count < length)
             {
                 for (int i = m_faces.Count; i < length; i++)

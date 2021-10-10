@@ -48,7 +48,7 @@ namespace Project.NodeSystem
 
         #region Dialogue Text
 
-        protected StringBuilder _sb = new StringBuilder();  //Pour afficher les caractères du texte un à la fois
+        protected StringBuilder _sb = new StringBuilder();  //To write each caracter one at a time
 
         #endregion
 
@@ -68,7 +68,6 @@ namespace Project.NodeSystem
 
             SetUpComponents();
 
-            // On abonne les méthodes au DialogueManager
             SubscribeToManager();
 
 
@@ -89,7 +88,7 @@ namespace Project.NodeSystem
         #region Init
 
 
-        //A surcharger dans les classes filles pour obtenir les scripts présents sur les UIs
+        //Override this in the child classes to get all UI components by script
         protected virtual void GetComponents()
         {
             _dialoguePanel = transform.GetChild(0).gameObject;
@@ -116,7 +115,7 @@ namespace Project.NodeSystem
 
         private void StartDialogue()
         {
-            //Quand on lance le dialogue, on remet les éléments d'UI à leur valeur par défaut
+            //When we (re)start the dialogue, we reset all the UIs to their default values.
             ResetUI();
         }
 
@@ -144,15 +143,15 @@ namespace Project.NodeSystem
         }
 
         /// <summary>
-        /// Affiche le canvas à l'écran
+        /// Displays the canvas on screen.
         /// </summary>
-        /// <param name="onRunEnded">L'action à effectuer une fois le canvas affiché</param>
+        /// <param name="onRunEnded">What to do once the canvas is displayed.</param>
         protected abstract void ShowUI();
 
         /// <summary>
-        /// Cache le canvas à l'écran
+        /// Hides the canvas on screen.
         /// </summary>
-        /// <param name="onRunEnded">L'action à effectuer une fois le canvas caché</param>
+        /// <param name="onRunEnded">What to do once the canvas is hidden.</param>
         protected abstract void HideUI();
 
 

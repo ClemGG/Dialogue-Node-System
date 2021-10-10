@@ -32,17 +32,17 @@ namespace Project.NodeSystem.Editor
             StyleSheet styleSheet = Resources.Load<StyleSheet>(_graphViewStyleSheet);
             styleSheets.Add(styleSheet);
 
-            //Définit les limites du zoom sur le graphe
+            //Zoom
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
 
-            //Des utilitaires d'Unity
+            //Utilities
             AddManipulators();
-            AddCopyPasteCallbacks();
+            AddCopyPasteCallbacks();    //Not yet implemented
             AddKeyboardAndMouseEvents();
 
 
 
-            //La grille (couleurs définies dans la styleSheet)
+            //The grid
             _grid = new GridBackground();
             Insert(0, _grid);
             _grid.StretchToParentSize();
@@ -58,13 +58,13 @@ namespace Project.NodeSystem.Editor
 
         private void AddManipulators()
         {
-            this.AddManipulator(new ContentDragger());      //Pour déplacer les nodes sur la grille
-            this.AddManipulator(new SelectionDragger());    //Pour déplacer la sélection
-            this.AddManipulator(new RectangleSelector());   //Pour sélectionner dans un Rect
-            this.AddManipulator(new FreehandSelector());    //Pour sélectionner une seule node
-            this.AddManipulator(GraphBuilder.AddGroupContextualMenu(this));  //Pour ajouter des Groupes
-            this.AddManipulator(GraphBuilder.RemoveGroupContextualMenu(this));  //Pour supprimer des Groupes
-            this.AddManipulator(GraphBuilder.AddStickyNoteContextualMenu(this));  //Pour ajouter des Notes
+            this.AddManipulator(new ContentDragger());      //Moves nodes on the grid
+            this.AddManipulator(new SelectionDragger());    //Moves the selection
+            this.AddManipulator(new RectangleSelector());   //To select items in a Rect
+            this.AddManipulator(new FreehandSelector());    //To select in a free "Rect"
+            this.AddManipulator(GraphBuilder.AddGroupContextualMenu(this));         //Add Groups
+            this.AddManipulator(GraphBuilder.RemoveGroupContextualMenu(this));      //Remove Groups
+            this.AddManipulator(GraphBuilder.AddStickyNoteContextualMenu(this));    //Add Notes
         }
 
 
@@ -87,7 +87,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Appelée depuis la fenêtre d'éditeur pour garder la carte en haut à gauche de l'écran
+        /// Keeps the minimap in the top left corner of the window
         /// </summary>
         public void UpdateMinimap()
         {
@@ -103,7 +103,7 @@ namespace Project.NodeSystem.Editor
         {
             _miniMap = new MiniMap { anchored = true };
 
-            //Place la minimap en haut à fauche de l'écran
+            // Places the minimap in the top left corner of the window
             _miniMap.SetPosition(new Rect(0, 20, 200, 200));
 
             Add(_miniMap);
@@ -113,7 +113,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Ajoute le menu de recherche des nodes à la fenêtre (Espace ou clic droit pour y accéder).
+        /// Add Node Search Window
         /// </summary>
         private void AddSearchWindow()
         {
@@ -124,7 +124,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Appelée depuis la fenêtre d'editeur pour récupérer toutes ses nodes dépendant de la langue et les traduire
+        /// Translate all nodes in the graph when the language type is changed
         /// </summary>
         public void ReloadLanguage()
         {
@@ -160,6 +160,7 @@ namespace Project.NodeSystem.Editor
         #region Commands
 
 
+
         /// <summary>
         /// Appelle la même fonction que le bouton Load du DialogueEditorWindow, mais ajoute le dialogue à charger en additif
         /// quand il est glissé-déposé dans la fenêtre, et sélectionne les nouveaux éléments chargés.
@@ -168,37 +169,30 @@ namespace Project.NodeSystem.Editor
         /// <param name="selectLoadedElements"></param>
         public void LoadAdditive(DialogueContainerSO dialogueContainerSO, bool selectLoadedElements = false)
         {
-            
+
         }
 
 
 
-
-        /// <summary>
-        /// Pour pouvoir dire au GraphView quelles nodes peuvent être connectées à quel port
-        /// </summary>
-        /// <param name="startPort">Le port qu'on veut connecter</param>
-        /// <param name="nodeAdapter">Pour connecter des nodes de différent types (On n'en a pas donc on s'en fout)</param>
-        /// <returns></returns>
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
         {
             List<Port> compatiblePorts = new List<Port>();
             
-            //On regarde si le port demandé est éligible pour la connexion
+            //We check if the port is eligible for connection
             ports.ForEach(compatiblePort =>
             {
                 Port portView = compatiblePort;
 
-                //D'abord, on dit au port qu'il ne peut pas se connecter avec lui-même, ou à un port de la même node.
-                //Ensuite, on lui dit qu'un port d'entrée ne peut se connecter qu'avec un port de sortie, et vice-versa.
-                //Les ports ne peuvent aussi se connecter qu'avec un port de la même couleur.
+                //The port can't connect with itself or the same node
+                //An input port can only connect with an output port, and vice versa.
+                //The ports must share the same color.
                 if(startPort != portView && startPort.node != portView.node && startPort.direction != portView.direction && startPort.portColor == portView.portColor)
                 {
                     compatiblePorts.Add(compatiblePort);
                 }
             });
 
-            return compatiblePorts; //Renvoie les ports pouvant se connecter au nôtre
+            return compatiblePorts;
         }
 
 

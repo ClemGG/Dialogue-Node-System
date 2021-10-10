@@ -30,8 +30,8 @@ namespace Project.NodeSystem.Editor
             NodeBuilder.AddPort(this, "Output", Direction.Output, Port.Capacity.Single);
 
 
-            //Crée un décor par défaut pour que le DialogueManager évite de planter si on n'a pas de choix.
-            //Retiré au moment du chargement dans DialogueSaveLoad pour éviter de créer un décor supplémentaire.
+            //Creates a default background so that the DialogueManager doesn't creash.
+            //Remove at loading time in the DialogueSaveLoad script.
             AddBackground();
         }
 
@@ -86,7 +86,7 @@ namespace Project.NodeSystem.Editor
             // Set up Image Preview.
             Image faceImage = NodeBuilder.NewImage(ImagePreviewBox, "ImagePreview");
 
-            newTransition.TextureField = faceImage;  //On le garde en mémoire pour changer de texture quand on change de champ
+            newTransition.TextureField = faceImage;  //Kept in memory to change texture when we change the field
 
         }
 
@@ -103,8 +103,8 @@ namespace Project.NodeSystem.Editor
             //Background ObjectField
             Action<UnityEngine.Object> onBackgroundChanged = (newValue) =>
             {
-                //Le champ ne doit jamais être null ; il doit avoir au moins une texture transparente
-                //pour que le shader ne pète pas
+                //The field must never be null; there must be at least a transparent texture
+                //so that the shader doesn't break
                 if(newValue == null)
                 {
                     newTransition.BackgroundTex.Value = FindInResourcesByName<Texture2D>("tex_emptyTransp");

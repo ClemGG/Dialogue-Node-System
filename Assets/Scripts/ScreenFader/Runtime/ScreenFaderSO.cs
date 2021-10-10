@@ -12,11 +12,11 @@ using System.Linq;
 
 
 
-/* Cette classe sert uniquement à gérer l'effet de transition sur la caméra.
- * On en fait un ScriptableObject pour permettre la persistence entre les scènes sans avoir à tout réassigner.
+/* Executes the transition effect on the specified camera.
+ * We made it a SO to allow reusability between scenes.
  * 
- * Pour exécuter des actions au début ou à la fin d'une transition (changement de niveau, etc.),
- * abonner ces actions aux delegates appropriés.
+ * To execute actions at the beginning/end of a transition (changing level, etc.),
+ * please subscribe those actions to their appropriate delegates.
  */
 
 
@@ -41,7 +41,7 @@ namespace Project.ScreenFader
         [SerializeField] private Shader _fadeShader;
         [SerializeField] private Shader _blendShader;
         [SerializeField] private TransitionSettingsSO _params;
-        [SerializeField, Range(0f, 2f)] private float _maskValue = 1f; //Mis à 1 pour qu'on puisse voir la scène
+        [SerializeField, Range(0f, 2f)] private float _maskValue = 1f; //Set to 1 so we can see the scene in Edit mode
 
 
         private Material _fadeMaterial;
@@ -49,8 +49,8 @@ namespace Project.ScreenFader
         private bool _enabled;
         private Camera _currentCam;
 
-        //Contient toutes les caméras de la scène. Celle qui fera office de Camera.current
-        //sera celle avec la depth la plus élevée.
+        //Contains all cameras in the scene. The one acting as Camera.current
+        //will be the one with the highest depth.
         private Camera[] allCamsInScene;
 
         #endregion
@@ -58,10 +58,10 @@ namespace Project.ScreenFader
 
         #region Actions
 
-        public Action OnTransitionStarted { get; set; }         //Quand le fade démarre
-        public Action<float> OnTransitionUpdated { get; set; }  //Quand le fade met à jour m_maskValue (passée en paramètre pour que les autres scripts puissent faire leurs changements)
-        public Action OnTransitionEnded { get; set; }           //Quand le fade se termine
-        public Action OnCompleteTransitionMiddle { get; set; }  //Quand le double fade réalise son premier fade
+        public Action OnTransitionStarted { get; set; }         //When the fade starts
+        public Action<float> OnTransitionUpdated { get; set; }  //When the fade updates m_maskValue (passed as a parameter so that other scripts can make their own changes)
+        public Action OnTransitionEnded { get; set; }           //When the fade ends
+        public Action OnCompleteTransitionMiddle { get; set; }  //When the double fade completes its first fade
 
         #endregion
 
@@ -91,8 +91,8 @@ namespace Project.ScreenFader
         {
             _enabled = true;
 
-            //Récupère le shader pour les fondus en noir et avec mask
-            //(le fade transparent est géré par les scripts abonnés aux delegates pour récupérer la maskValue)
+            //Retrieves the shader for the Fade and Mask modes
+            //(the Blend mode is run by the scripts subscribed to retrieve the maskValue)
 
             if(!_blendShader) _blendShader = Shader.Find("Custom/Effects/UI/BlendTexture");
             if(!_fadeShader) _fadeShader = Shader.Find("Custom/Effects/UI/ScreenTransitionImageEffect");
@@ -125,7 +125,7 @@ namespace Project.ScreenFader
 
         public void GetCurrentCamera()
         {
-            //Trie les caméras par depth; la depth la plus grande sera en dernier
+            //Sorts all cameras bu depth; the highest one will be the first
             allCamsInScene.ToList().Sort(delegate (Camera x, Camera y)
             {
                 return x.depth.CompareTo(y.depth);
@@ -135,13 +135,13 @@ namespace Project.ScreenFader
 
 
         /// <summary>
-        /// Crée une Coroutine de fade sur le GameObject en paramètre. (le ScreenFader étant un SO, il doit passer la Coroutine à un MonoBehaviour)
+        /// Creates a fade Coroutine on the target. (the ScreenFader being a SO, it must pass the Coroutine to a MonoBehaviour)
         /// </summary>
-        /// <param name="target">L'objet dans la scène qui doit porter la Coroutine</param>
-        /// <param name="show">Doit-on afficher ou masquer la scène ?</param>
-        /// <param name="shouldDestroyRendererOnEnded">Doit-on garder le renderer jusqu'à la prochaine transition ou le détruire ?</param>
-        /// <param name="deltaTime">Permet de changer le Time.deltaTime en fixed ou unscaled si besoin</param>
-        /// <param name="parameters">Les paramètres de transition. Si null, on utilise les paramètres déjà assignés.</param>
+        /// <param name="target">To object to start the Coroutine on.</param>
+        /// <param name="show">Shouldwe display or hide the scene?</param>
+        /// <param name="shouldDestroyRendererOnEnded">Keep the renderer until the next transition or destroy it?</param>
+        /// <param name="deltaTime">Allows to change Time.deltaTime into fixed or unscaled if needed.</param>
+        /// <param name="parameters">The Transition Settings. If null, it uses the one already assigned.</param>
         public Coroutine StartFade(MonoBehaviour target, bool show, bool shouldDestroyRendererOnEnded, float deltaTime, TransitionSettingsSO parameters = null)
         {
             //_currentCam = Camera.current;
@@ -151,7 +151,7 @@ namespace Project.ScreenFader
             {
                 sfr = _currentCam.gameObject.AddComponent<ScreenFadeRenderer>();
             }
-            sfr.SetScreenFader(this, shouldDestroyRendererOnEnded);   //Lie le Renderer à ce SO et s'abonne automatiquement pour être détruit à la fin de la transition
+            sfr.SetScreenFader(this, shouldDestroyRendererOnEnded);   //Links the Renderer to this SO and subscribes automatically to be destroyed at the end of the transition
 
 
             if (parameters != null)
@@ -159,18 +159,18 @@ namespace Project.ScreenFader
 
             return target.StartCoroutine(FadeCo(show, deltaTime));
         }
-        
-            
-            
+
+
+
         /// <summary>
-        /// Crée une Coroutine de fade sur le GameObject en paramètre. (le ScreenFader étant un SO, il doit passer la Coroutine à un MonoBehaviour)
+        /// Creates a fade Coroutine on the target. (the ScreenFader being a SO, it must pass the Coroutine to a MonoBehaviour)
         /// </summary>
-        /// <param name="target">L'objet dans la scène qui doit porter la Coroutine</param>
-        /// <param name="show">Doit-on afficher ou masquer la scène ?</param>
-        /// <param name="shouldDestroyRendererOnEnded">Doit-on garder le renderer jusqu'à la prochaine transition ou le détruire ?</param>
-        /// <param name="deltaTime">Permet de changer le Time.deltaTime en fixed ou unscaled si besoin</param>
-        /// <param name="endParams">Les paramètres de la 1è transition. Si null, on utilise les paramètres déjà assignés.</param>
-        /// <param name="endParams">Les paramètres de la 2è transition. Si null, on utilise les paramètres déjà assignés.</param>
+        /// <param name="target">To object to start the Coroutine on.</param>
+        /// <param name="show">Shouldwe display or hide the scene?</param>
+        /// <param name="shouldDestroyRendererOnEnded">Keep the renderer until the next transition or destroy it?</param>
+        /// <param name="deltaTime">Allows to change Time.deltaTime into fixed or unscaled if needed.</param>
+        /// <param name="startParams">The parameters of the 1st transition. If null, it uses the one already assigned.</param>
+        /// <param name="endParams">The parameters of the 2ns transition. If null, it uses the one already assigned.</param>
         public Coroutine StartCompleteFade(MonoBehaviour target, bool show, bool shouldDestroyRendererOnEnded, float deltaTime, TransitionSettingsSO startParams = null, TransitionSettingsSO endParams = null)
         {
             //_currentCam = Camera.current;
@@ -180,7 +180,7 @@ namespace Project.ScreenFader
             {
                 sfr = _currentCam.gameObject.AddComponent<ScreenFadeRenderer>();
             }
-            sfr.SetScreenFader(this, shouldDestroyRendererOnEnded);   //Lie le Renderer à ce SO et s'abonne automatiquement pour être détruit à la fin de la transition
+            sfr.SetScreenFader(this, shouldDestroyRendererOnEnded);   //Links the Renderer to this SO and subscribes automatically to be destroyed at the end of the transition
 
             return target.StartCoroutine(CompleteFadeCo(show, deltaTime, startParams, endParams));
 
@@ -190,12 +190,12 @@ namespace Project.ScreenFader
 
 
         /// <summary>
-        /// Crée une Coroutine de blend sur l'image en paramètre. (le ScreenFader étant un SO, il doit passer la Coroutine à un MonoBehaviour)
+        /// Creates a blend Coroutine on the target. (the ScreenFader being a SO, it must pass the Coroutine to a MonoBehaviour)
         /// </summary>
-        /// <param name="target">L'objet dans la scène qui doit porter la Coroutine</param>
-        /// <param name="deltaTime">Permet de changer le Time.deltaTime en fixed ou unscaled si besoin</param>
-        /// <param name="secTex">La texture vers laquelle transitionner.</param>
-        /// <param name="parameters">Les paramètres de transition. Si null, on utilise les paramètres déjà assignés.</param>
+        /// <param name="target">To object to start the Coroutine on.</param>
+        /// <param name="deltaTime">Allows to change Time.deltaTime into fixed or unscaled if needed.</param>
+        /// <param name="secTex">The texture to transition to.</param>
+        /// <param name="parameters">The Transition Settings. If null, it uses the one already assigned.</param>
         public Coroutine StartBlend(Image target, float deltaTime, Texture2D secTex, TransitionSettingsSO parameters = null)
         {
             if (!target.material)
@@ -220,24 +220,24 @@ namespace Project.ScreenFader
 
 
         /// <summary>
-        /// Diminue l'alpha du fondu pour faire apparaître la scène
+        /// Reduces the fade of the alpha to make the scene appear
         /// </summary>
         /// <returns></returns>
         public IEnumerator FadeCo(bool show, float deltaTime)
         {
             OnTransitionStarted?.Invoke();
 
-            //La valeur de départ du masque pour montrer ou cacher la scène au début de la transition
+            //init maskValue
             float t = _maskValue = show ? 0f : Mathf.Lerp(1f, 2f, _params.MaskSpread);
 
-            //Si on veut montrer la scène, on augmente m_maskValue, sinon on la diminue
+            //If we want to show the scene, we increase m_maskValue, otherwise we decrease it
             float coef = show ? 1f : -1f;
 
             while (show ? t < 1f : t > 0f)
             {
                 t += deltaTime * _params.Speed * coef;
                 float value = _params.FadeCurve.Evaluate(t);
-                _maskValue = Mathf.Lerp(value, value * 2f, _params.MaskSpread); //Pour le fade out, on ajoute le spread pour compenser l'ajout de noir sur le masques
+                _maskValue = Mathf.Lerp(value, value * 2f, _params.MaskSpread); //For the fade out, we add the spread of the mask to compensate the dark scattering on the masks
 
                 OnTransitionUpdated?.Invoke(_maskValue);
 
@@ -252,7 +252,7 @@ namespace Project.ScreenFader
 
 
         /// <summary>
-        /// Diminue l'alpha du fondu pour faire apparaître la scène (utilise 2 transitions)
+        /// Reduces the fade of the alpha to make the scene appear (2 transitions)
         /// </summary>
         /// <returns></returns>
         public IEnumerator CompleteFadeCo(bool show, float deltaTime, TransitionSettingsSO startParams, TransitionSettingsSO endParams)
@@ -261,22 +261,22 @@ namespace Project.ScreenFader
             OnTransitionStarted?.Invoke();
 
 
-            //--------------------------- 1è transition -----------------------
+            //--------------------------- 1st transition -----------------------
 
             if (startParams != null)
                 _params = startParams;
 
-            //La valeur de départ du masque pour montrer ou cacher la scène au début de la transition
+            //init maskValue
             float t = _maskValue = show ? 0f : Mathf.Lerp(1f, 2f, _params.MaskSpread);
 
-            //Si on veut montrer la scène, on augmente m_maskValue, sinon on la diminue
+            //If we want to show the scene, we increase m_maskValue, otherwise we decrease it
             float coef = show ? 1f : -1f;
 
             while (show ? t < 1f : t > 0f)
             {
                 t += deltaTime * _params.Speed * coef;
                 float value = _params.FadeCurve.Evaluate(t);
-                _maskValue = Mathf.Lerp(value, value * 2f, _params.MaskSpread); //Pour le fade out, on ajoute le spread pour compenser l'ajout de noir sur le masques
+                _maskValue = Mathf.Lerp(value, value * 2f, _params.MaskSpread); //For the fade out, we add the spread of the mask to compensate the dark scattering on the masks
 
                 OnTransitionUpdated?.Invoke(_maskValue);
 
@@ -297,20 +297,22 @@ namespace Project.ScreenFader
             if (endParams != null)
                 _params = endParams;
 
-            //La 2è transition est l'inverse de la première, donc on se contente juste d'inverser le bool
+            //The 2nd transition is the opposite of the first, so we just invert the bool
             show = !show;
 
-            //La valeur de départ du masque pour montrer ou cacher la scène au début de la transition
+
+            //init maskValue
             t = _maskValue = show ? 0f : Mathf.Lerp(1f, 2f, _params.MaskSpread);
 
-            //Si on veut montrer la scène, on augmente m_maskValue, sinon on la diminue
+
+            //If we want to show the scene, we increase m_maskValue, otherwise we decrease it
             coef = show ? 1f : -1f;
 
             while (show ? t < 1f : t > 0f)
             {
                 t += deltaTime * _params.Speed * coef;
                 float value = _params.FadeCurve.Evaluate(t);
-                _maskValue = Mathf.Lerp(value, value * 2f, _params.MaskSpread); //Pour le fade out, on ajoute le spread pour compenser l'ajout de noir sur le masques
+                _maskValue = Mathf.Lerp(value, value * 2f, _params.MaskSpread); //For the fade out, we add the spread of the mask to compensate the dark scattering on the masks
 
                 OnTransitionUpdated?.Invoke(_maskValue);
 
@@ -328,7 +330,7 @@ namespace Project.ScreenFader
 
 
         /// <summary>
-        /// Transitionne entre la 1è et la 2è texture du material de l'Image
+        /// Transitions between the 1st and 2nd texture of the image's material
         /// </summary>
         /// <returns></returns>
         public IEnumerator BlendCo(Image target, float deltaTime)
@@ -336,7 +338,7 @@ namespace Project.ScreenFader
             OnTransitionStarted?.Invoke();
 
 
-            //La valeur de départ du masque pour montrer ou cacher la scène au début de la transition
+            //init maskValue
             float t = _maskValue = 0f;
 
 
@@ -405,9 +407,8 @@ namespace Project.ScreenFader
 
         public void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            // Pour le TransparentFade, c'est un autre shader qui se charge du fade des textures 
-            // depuis un autre script qui se sera abonné aux delegates du ScreenFader.
-            // Le ScreenFader n'a rien d'autre à faire que de mettre à jour la maskValue dans ce cas.
+            //The Blend mode is managed by another material,
+            //all we do in this case is updating the maskVlue.
 
             if (!_enabled || _params == null || _params.TransitionType == FaderTransitionType.TextureBlend)
             {

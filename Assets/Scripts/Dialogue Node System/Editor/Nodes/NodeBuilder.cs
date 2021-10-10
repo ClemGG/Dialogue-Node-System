@@ -10,8 +10,8 @@ using static Project.Utilities.ValueTypes.Enums;
 namespace Project.NodeSystem.Editor
 {
     /// <summary>
-    /// Contient toutes les méthodes de création de UIElements pour les nodes (EnumField, ObjectField, Button, etc.)
-    /// Ca nous permet d'éviter d'encombrer la BaseNode de toutes ces fonctions.
+    /// Contains all UIElements creation methods for the nodes (EnumField, ObjectField, Button, etc.)
+    /// Allows us to lift some of the burden off the BaseNode.
     /// </summary>
     public static class NodeBuilder
     {

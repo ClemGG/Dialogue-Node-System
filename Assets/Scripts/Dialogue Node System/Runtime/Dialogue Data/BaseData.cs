@@ -3,8 +3,7 @@ using UnityEngine.Serialization;
 
 namespace Project.NodeSystem
 {
-    //Indique quelles données de la node doivent être sauvegardées en fonction
-    //de son type.
+    //Indicates which datas must be stored depending on the node's type.
     [System.Serializable]
     public class BaseData
     {

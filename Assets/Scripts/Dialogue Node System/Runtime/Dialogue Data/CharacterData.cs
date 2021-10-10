@@ -27,21 +27,21 @@ namespace Project.NodeSystem
 
 
         /// <summary>
-        /// Si à true, le script passera automatiquement au perso suivant où à la node suivante au bout du temps donné
+        /// If true, the script will go automatically to the next character after some time has passed
         /// </summary>
         public ContainerValue<bool> UseAutoDelay = new ContainerValue<bool>();
 
         /// <summary>
-        /// De préférence la même vitesse que le tween utilisé pour son animation.
-        /// Si pas de tween, on peut laisser à 0
+        /// Preferably at the same speed as the tween used for its animation.
+        /// If no tween, we can leave it at 0
         /// </summary>
         public ContainerValue<float> AutoDelayDuration = new ContainerValue<float>();
 
 #if UNITY_EDITOR
 
-        public Box BoxContainer { get; set; }      //Contient le conteneur du perso pour le supprimer plus facilement dans DialogueSaveLoad
-        public Image SpriteField { get; set; }  //Le champ pour l'image du perso
-        public TextField NameField { get; set; }  //Le champ pour le nom du perso
+        public Box BoxContainer { get; set; }      //Contains the character to remove it more easily in DialogueSaveLoad
+        public Image SpriteField { get; set; }
+        public TextField NameField { get; set; }
 
 #endif
     }

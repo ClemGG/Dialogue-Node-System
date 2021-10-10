@@ -13,7 +13,7 @@ namespace Project.NodeSystem.Editor
         private readonly string _csvDirName = "Resources/Dialogue System/CSV Files";
         private readonly string _csvFileName = "CSV_Dialogue.csv";
         private readonly string _csvSeparator = ",";
-        private readonly List<string> _csvHeaders = new List<string>(); //Le nom des langues (French, English, Spanish, etc)
+        private readonly List<string> _csvHeaders = new List<string>(); //(French, English, Spanish, etc)
         private readonly string _node_ID = "Node Guid ID";
         private readonly string _text_ID = "Text Guid ID";
         private readonly string _dialogueName = "Dialogue Name";
@@ -28,7 +28,7 @@ namespace Project.NodeSystem.Editor
             foreach (DialogueContainerSO dialogueContainer in dialogueContainers)
             {
                
-                //Répliques des dialogues
+                //Dialogue lines
                 foreach (RepliqueData nodeData in dialogueContainer.RepliqueDatas)
                 {
                     foreach (RepliqueData_Replique textData in nodeData.Repliques)
@@ -50,7 +50,7 @@ namespace Project.NodeSystem.Editor
                 }
 
 
-                //Répliques des choix
+                //Choices
                 foreach (ChoiceData nodeData in dialogueContainer.ChoiceDatas)
                 {
                     foreach (ChoiceData_Container choice in nodeData.Choices)
@@ -74,7 +74,7 @@ namespace Project.NodeSystem.Editor
                 }
 
 
-                //Descriptions des choix
+                //Descriptions
                 foreach (ChoiceData nodeData in dialogueContainer.ChoiceDatas)
                 {
                     foreach (ChoiceData_Container choice in nodeData.Choices)
@@ -140,7 +140,7 @@ namespace Project.NodeSystem.Editor
                 {
                     if (finalString != "")
                     {
-                        finalString += _csvSeparator;    //On indique une nouvelle colonne
+                        finalString += _csvSeparator;    //New column
                     }
                     finalString += header;
                 }
@@ -159,7 +159,7 @@ namespace Project.NodeSystem.Editor
                 {
                     if (finalString != "")
                     {
-                        finalString += _csvSeparator;    //On indique une nouvelle colonne
+                        finalString += _csvSeparator;    //New column
                     }
 
                     finalString += text;

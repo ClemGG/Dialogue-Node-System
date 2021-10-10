@@ -1,17 +1,15 @@
 
-// On crée un namespace à part pour les enums globaux qui peuvent être utilisés par différents systèmes
-// sans avoir à les rendre dépendants les uns des autres
 namespace Project.Enums
 {
 
     /// <summary>
-    /// Indique si la transition du ScreenFader se fait en fondu ou via un masque modifié par shader
+    /// The transition type of the ScreenFade (Mask, Fade or Blend)
     /// </summary>
     public enum FaderTransitionType
     {
-        Mask = 0,   //Utilise une texture pour masquer le ui
-        ColoredFade = 1, //Fondu en couleur vers la scène ou la texture suivante
-        TextureBlend = 2,   //Fondu en transparence vers la texture suivante
+        Mask = 0,           //Uses a texture to mask the UI
+        ColoredFade = 1,    //Creates a colored fade to transition towards the next scene
+        TextureBlend = 2,   //Creates a transparent blend towards the next texture
     }
 }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-//Ce script corrige le bug qui empêche le bouton de choix n°1 d'être sélectionné.
+//Fixes the bug preventing the choices slot #1 to be selected
 
 public class SelectButton : MonoBehaviour
 {

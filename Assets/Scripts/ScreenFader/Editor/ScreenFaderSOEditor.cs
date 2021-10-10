@@ -36,7 +36,7 @@ namespace Project.ScreenFader.Editor
             DestroyAllIn(o);
 
 
-            //Pour visualiser les effets, on crée une caméra par code sur laquelle on appelle OnRenderImage
+            //To visualiz the effects, we create a camera by code used to call OnRenderImage
             _camEmpty = new GameObject("ScreenFader cam test");
             _camEmpty.transform.SetPositionAndRotation(Camera.main.transform.position, Camera.main.transform.rotation);
             _camEmpty.hideFlags = HideFlags.HideAndDontSave | HideFlags.DontSaveInEditor;
@@ -45,7 +45,7 @@ namespace Project.ScreenFader.Editor
             _sfr.SetScreenFader(target as ScreenFaderSO, true);
             
 
-            _renderCam = _camEmpty.GetComponent<Camera>();  //La caméra est crée automatiquement par le ScreenFadeRenderer
+            _renderCam = _camEmpty.GetComponent<Camera>();  //The camera is created automatically by the ScreenFadeRenderer
             _renderCam.depth = 10f;
 
         }
@@ -72,7 +72,7 @@ namespace Project.ScreenFader.Editor
                 TransitionSettingsSO settings = _params.objectReferenceValue as TransitionSettingsSO;
                 if(settings.TransitionType == FaderTransitionType.TextureBlend)
                 {
-                    EditorGUILayout.HelpBox("Le Transition Type des paramètres est en TextureBlend ; aucun changement ne sera affiché à l'écran.", MessageType.Warning);
+                    EditorGUILayout.HelpBox("The Transition type is TextureBlend ; no change will be displayed on screen.", MessageType.Warning);
                 }
             }
 

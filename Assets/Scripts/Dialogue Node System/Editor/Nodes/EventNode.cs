@@ -7,9 +7,8 @@ using UnityEngine.UIElements;
 
 namespace Project.NodeSystem.Editor
 {
-    /* Cette classe nous permet de référencer un DialogueEvent,
-     * qui est un ScriptableObject nous permettant d'appeler des méthodes 
-     * depuis des scripts en jeu.
+    /* Allows us to reference a DialogueEvent,
+     * which is a ScriptableObject allowing us to call methods directly from a MonoBehaviour.
      */
     public class EventNode : BaseNode
     {
@@ -35,12 +34,12 @@ namespace Project.NodeSystem.Editor
             NodeBuilder.AddPort(this, "Output", Direction.Output, Port.Capacity.Single);
 
 
-            //Crée la barre d'outils
+            //Toolbar
             TopButton();
 
 
 
-            //On appelle ces fonctions pour mettre à jour le visuel de la Node
+            //Repaints the node
             RefreshExpandedState();
             RefreshPorts();
         }
@@ -52,7 +51,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée une liste d'options pour ajouter des events à la node
+        /// Option list to add events to the node
         /// </summary>
         private void TopButton()
         {
@@ -97,7 +96,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Déplace les boxContainers des choix ainsi que leurs ports associés
+        /// Changes the order of the events
         /// </summary>
         /// <param name="eventToMove"></param>
         /// <param name="moveUp"></param>

@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Pour savoir quels éléments sont attachés à ce Groupe
+/// Stores which elements are grouped under this VisualElement
 /// </summary>
 [System.Serializable]
 public class GroupData
 {
     public string GroupName;
     public Vector2 Position;
-    public List<string> ContainedGuids = new List<string>(); //Les guids des nodes contenus dans ce groupe, stockées dans DialogueSaveLoad
+    public List<string> ContainedGuids = new List<string>(); //The node Guids contained in this group, stored in DialogueSaveLoad
 }

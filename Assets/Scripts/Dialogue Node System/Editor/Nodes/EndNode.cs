@@ -35,7 +35,7 @@ namespace Project.NodeSystem.Editor
         #region New Fields
 
         /// <summary>
-        /// Crée le champ pour changer le type de fin
+        /// Creates the EndNodeType field
         /// </summary>
         private void MakeMainContainer()
         {

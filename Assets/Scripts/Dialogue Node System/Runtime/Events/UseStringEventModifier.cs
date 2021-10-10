@@ -1,5 +1,3 @@
-
-using System;
 using System.Reflection;
 
 namespace Project.NodeSystem
@@ -8,12 +6,12 @@ namespace Project.NodeSystem
     {
 
 
-        //Utilisé par l'EventNode
+        //Used by the EventNode
         public static void DialogueModifierEvents(DE_EventCaller triggerScript, string stringEvent, StringEventModifierType stringEventModifierType, float value = 0)
         {
 
-            //On utilise  la réflection pour récupérer la variable ou propriété 
-            //automatiquement sans avoir à la réécrire dans un script à chaque fois.
+            //Uses reflection to retrieve the variable or property
+            //automatically without having to rewrite it in a different scrip each time.
 
 
             //FieldInfo prop = triggerScript.GetType().GetField(stringEvent);

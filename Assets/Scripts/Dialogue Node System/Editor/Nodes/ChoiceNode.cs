@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -35,11 +34,11 @@ namespace Project.NodeSystem.Editor
 
             AddTopButton();
 
-            //Crée un choix par défaut pour que le DialogueManager évite de planter si on n'a pas de choix.
-            //Retiré au moment du chargement dans DialogueSaveLoad pour éviter de créer un choix supplémentaire.
+            //Creates a choice slot by default so that the DialogueManager doesn't crash.
+            //Removed in DialogueSaveLoad to avoid creating an extra field.
             AddChoice();
 
-            //On appelle ces fonctions pour mettre à jour le visuel de la Node
+            //Repaint
             RefreshExpandedState();
             RefreshPorts();
         }
@@ -53,7 +52,7 @@ namespace Project.NodeSystem.Editor
         #region Add Choice
 
         /// <summary>
-        /// Crée un bouton en haut de la node pour ajouter un choix
+        /// New Choice button
         /// </summary>
         private void AddTopButton()
         {
@@ -62,9 +61,9 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée un choix et l'ajoute à la node
+        /// Creates a choice slot and adds it to the node
         /// </summary>
-        /// <param name="loadedChoice">Si null, crée un choix vide. Sinon, assigne ses données aux champs du choix crée.</param>
+        /// <param name="loadedChoice">If null, creates an empty choice, otherwise adds its content to the newly created choice.</param>
         public void AddChoice(ChoiceData_Container loadedChoice = null)
         {
             ChoiceData_Container newChoice = new ChoiceData_Container();
@@ -138,12 +137,12 @@ namespace Project.NodeSystem.Editor
 
 
 
-            //Crée un port quand un nouveau choix est créé
+            //Creates a port each time a new choice is created
             newChoice.LinkedPort = AddChoicePort(this, loadedChoice);
 
 
 
-            // Reaload the current selected language fields
+            // Repaint
             ReloadLanguage();
             ReloadFields();
         }
@@ -166,7 +165,7 @@ namespace Project.NodeSystem.Editor
 
 
 
-            //Si on n'a qu'un seul choix, pas la peine d'afficher les petits boutons
+            //If there's only one single choice, no need to display the buttons
             _boxesButtons.Add(buttonsBox);
             for (int i = 0; i < _boxesButtons.Count; i++)
             {
@@ -189,12 +188,12 @@ namespace Project.NodeSystem.Editor
             Button moveDownBtn = NodeBuilder.NewButton(buttonsBox, "", onClicked, "MoveDownBtn");
 
 
-            //Ajoute un bouton pour ajouter une condition à ce choix
+            //Add condition button
             Action onAddConditionClicked = () => AddCondition(newChoice);
             NodeBuilder.NewButton(labelContainer, "+ Condition", onAddConditionClicked, "AddConditionBtn", "LabelBtn");
 
 
-            //Ajoute un bouton pour supprimer ce choix et son port associé
+            //Add delete choice button
             Action onRemoveClicked = () =>
             {
                 _boxesButtons.Remove(buttonsBox);
@@ -216,7 +215,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée un champ pour la réplique du choix et son audio
+        /// Texti field and audio field
         /// </summary>
         /// <param name="newChoice"></param>
         public void AddTextLine(ChoiceData_Container newChoice)
@@ -238,7 +237,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Permet de cacher ou griser le bouton choix correspondant. Si les conditions pour activer cette partie du dialogue ne sont pas remplies
+        /// Allows to hide or grey out the choice if its conditions are not met
         /// </summary>
         /// <param name="newChoice"></param>
         private void ChoiceStateEnum(ChoiceData_Container newChoice)
@@ -253,11 +252,8 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Ajoute un champ de condition au choix en cours d'édition.
+        /// Adds a condition field
         /// </summary>
-        /// <param name="newChoice">Le choix auquel ajouter la condition.</param>
-        /// <param name="stringEvent">La condition à ajouter ainsi que sa description.</param>
-        /// <returns></returns>
         public ChoiceData_Condition AddCondition(ChoiceData_Container newChoice, EventData_StringEventCondition stringEvent = null)
         {
             Box boxContainer = NodeBuilder.NewBox(newChoice.BoxContainer, "TextLineBox");
@@ -276,7 +272,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Crée un port de sortie à chaque fois qu'un choix est créé
+        /// Creates an output port each time a choice is created
         /// </summary>
         /// <param name="baseNode"></param>
         /// <param name="loadedChoice"></param>
@@ -329,10 +325,8 @@ namespace Project.NodeSystem.Editor
         #region UI
 
         /// <summary>
-        /// Déplace les boxContainers des choix ainsi que leurs ports associés
+        /// Moves the containers by their ID
         /// </summary>
-        /// <param name="choiceToMove"></param>
-        /// <param name="moveUp"></param>
         public override void MoveBox(NodeData_BaseContainer choiceToMove, bool moveUp)
         {
             List<NodeData_BaseContainer> tmp = new List<NodeData_BaseContainer>();
@@ -410,7 +404,7 @@ namespace Project.NodeSystem.Editor
         }
 
         /// <summary>
-        /// Affiche l'énum Hide/GreyOut si le choix a des conditions
+        /// Displays the enum Hide/GreyOut if the choice has conditions
         /// </summary>
         private void ShowHideChoiceEnum()
         {
@@ -422,13 +416,13 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Affiche le bouton AddChoice si la node n'a pas atteint la limite max de choix possibles
+        /// Displays AddChoice button if the max number of choices hasn't been reached
         /// </summary>
         private void ShowHideNewChoiceBtn()
         {
             NodeBuilder.ShowHide(ChoiceData.Choices.Count < Window.NbMaxChoices, _newChoiceBtn);
 
-            //Si on n'a qu'un seul choix, pas la peine d'afficher les petits boutons
+            //If there's only one single choice, no need to display the buttons
             for (int i = 0; i < _boxesButtons.Count; i++)
             {
                 NodeBuilder.ShowHide(ChoiceData.Choices.Count > 1, _boxesButtons[i]);
@@ -437,7 +431,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Renomme les choix par ID
+        /// Renames the choices depending on their ID
         /// </summary>
         private void RenameChoices()
         {

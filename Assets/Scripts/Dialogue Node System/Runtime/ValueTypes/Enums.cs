@@ -3,7 +3,7 @@
 namespace Project.NodeSystem
 {
     /// <summary>
-    /// La langue de l'éditeur ou de la donnée enregistrée
+    /// The editor window's language, or the language type of the data stored in the node
     /// </summary>
     public enum LanguageType
     {
@@ -14,19 +14,19 @@ namespace Project.NodeSystem
 
 
     /// <summary>
-    /// Indique l'action à exécuter quand le EndNode est atteinte
+    /// Indicates what to do when the EndNode is reached
     /// </summary>
     public enum EndNodeType
     {
-        End = 0,   //Finit le dialogue
-        Repeat = 1, //Rejoue la node
-        GoBack = 2, //Retourne à la node précédente
-        ReturnToStart = 3,   //Retourne au début du dialogue
+        End = 0,   //Ends the dialogue
+        Repeat = 1, //Replays the previous node (Obsolete)
+        GoBack = 2, //Go back to the previous node (Obsolete)
+        ReturnToStart = 3,   //restarts the dialogue
     }
 
 
     /// <summary>
-    /// Indique l'humeur du personnage en train de parler (Récupère le sprite correspondant à l'humeur donnée)
+    /// The mood of the character currently talking
     /// </summary>
     public enum CharacterMood
     {
@@ -46,9 +46,9 @@ namespace Project.NodeSystem
 
 
     /// <summary>
-    ///  Utilisé pour :
-    ///  - Faire regarder le sprite du perso à gauche ou à droite
-    ///  - Placer le sprite à gauche ou à droite du canvas de dialogue
+    /// Used to:
+    ///  - Rotate the sprite left and right
+    ///  - Place the sprite on the left/right side of the screen
     /// </summary>
     public enum DialogueSide
     {
@@ -58,7 +58,7 @@ namespace Project.NodeSystem
 
 
     /// <summary>
-    /// Pour griser ou cacher le choix si ses conditions ne sont pas remplies
+    /// To hide or grey out the choices if their conditions are not met
     /// </summary>
     public enum ChoiceStateType
     {
@@ -71,7 +71,7 @@ namespace Project.NodeSystem
 
 
     /// <summary>
-    /// Pour ajouter les comparateurs aux conditions des string events
+    /// To add comparators to the stringEvents' conditions
     /// </summary>
     public enum StringEventConditionType
     {
@@ -85,7 +85,7 @@ namespace Project.NodeSystem
     }
 
     /// <summary>
-    /// Pour réaliser des opérations aux string events
+    /// To execute operations on the stringEvents
     /// </summary>
     public enum StringEventModifierType
     {

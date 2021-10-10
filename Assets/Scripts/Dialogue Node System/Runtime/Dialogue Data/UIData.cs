@@ -12,7 +12,7 @@ namespace Project.NodeSystem
         public Toggle Toggle { get; set; }
 #endif
 
-        //Affiche le UI si à true, le cache sinon
+        //Displays the UI if true, hides it otherwise
         public ContainerValue<bool> show = new ContainerValue<bool>();
 
 

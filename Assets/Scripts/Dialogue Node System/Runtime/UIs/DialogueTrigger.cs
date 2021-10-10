@@ -7,16 +7,16 @@ namespace Project.NodeSystem
     {
         #region Fields
 
-        [SerializeField, Tooltip("Le nom de la scène à charger contenant l'UI et le DialogueManager.")]
+        [SerializeField, Tooltip("The scene containing the UI and the DialogueManager.")]
         private string _dialogueSceneName = "Dialogue Scene";
 
-        [SerializeField, Tooltip("Le nom de la scène à charger contenant l'UI et le DialogueManager.")]
+        [SerializeField, Tooltip("The language to start the dialogue in.")]
         private LanguageType selectedLanguage = LanguageType.English;
 
-        [SerializeField, Tooltip("Le script qui s'abonnera aux fonctions des events.")]
+        [SerializeField, Tooltip("The event script to subscribe to the manager.")]
         private DE_EventCaller _triggerScript;
 
-        [SerializeField, Tooltip("Le dialogue à jouer.")]
+        [SerializeField, Tooltip("The dialogue to play.")]
         private DialogueContainerSO _dialogue;
 
         private DialogueManager _dm;
@@ -39,7 +39,7 @@ namespace Project.NodeSystem
         {
             SceneManager.sceneLoaded -= StartDialogue;
 
-            //Le DialogueManager que l'on doit récupérer doit être celui de la scène "Dialogue Scene"
+            //The DialogueManager to retrive must be in the scene "Dialogue Scene"
             GameObject[] roots = sceneLoaded.GetRootGameObjects();
             do
             {

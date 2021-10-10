@@ -7,11 +7,11 @@ namespace Project.NodeSystem
 
     public static class UseStringEventCondition
     {
-        //Utilisé par la BranchNode et la ChoiceNode
+        //Used by the BranchNode and the ChoiceNode
         public static bool DialogueConditionEvents(DE_EventCaller triggerScript, string stringEvent, StringEventConditionType stringEventConditionType, float value = 0)
         {
-            //On utilise  la réflection pour récupérer la variable ou propriété 
-            //automatiquement sans avoir à la réécrire dans un script à chaque fois.
+            //Uses reflection to retrieve the variable or property
+            //automatically without having to rewrite it in a different scrip each time.
 
 
             //FieldInfo prop = triggerScript.GetType().GetField(stringEvent);
@@ -65,7 +65,7 @@ namespace Project.NodeSystem
                     return ValueSmaller(currentValue, checkValue);
 
                 default:
-                    Debug.LogWarning("GameEvents dint find a event");
+                    Debug.LogWarning("GameEvents didn't find a event");
                     return false;
             }
         }
@@ -90,7 +90,7 @@ namespace Project.NodeSystem
                     return ValueSmaller(currentValue, checkValue);
 
                 default:
-                    Debug.LogWarning("GameEvents dint find a event");
+                    Debug.LogWarning("GameEvents didn't find a event");
                     return false;
             }
         }
@@ -106,7 +106,7 @@ namespace Project.NodeSystem
                     return ValueBool(currentValue, false);
 
                 default:
-                    Debug.LogWarning("GameEvents dint find a event");
+                    Debug.LogWarning("GameEvents didn't find a event");
                     return false;
             }
         }

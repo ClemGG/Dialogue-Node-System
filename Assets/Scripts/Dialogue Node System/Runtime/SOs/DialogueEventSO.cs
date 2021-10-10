@@ -4,7 +4,8 @@ using UnityEngine.Events;
 namespace Project.NodeSystem
 {
     /// <summary>
-    /// La classe parente de tous les DialogueEvents activés lors de la lecture du dialogue.
+    /// The root class DialogueEvents activated during a dialogue.
+    /// Inherit from this class to implement more complex callbacks.
     /// </summary>
     [CreateAssetMenu(menuName = "Dialogue/New Dialogue Event", fileName = "New Dialogue Event")]
     [System.Serializable]

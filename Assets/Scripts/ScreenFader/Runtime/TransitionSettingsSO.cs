@@ -17,7 +17,7 @@ namespace Project.ScreenFader
         public Color FadeColor = Color.black;
         public Texture2D MaskTexture;
         public bool InvertMask;
-        [Range(0f, 1f)] public float MaskSpread; // Si TransitionType = Mask, indique le niveau d'adoucissement du masque (0 : Brut ; 1 : Flou)
+        [Range(0f, 1f)] public float MaskSpread; // If TransitionType = Mask, indicates the "softness of the mask" (0 : Hard ; 1 : Blur)
 
 
     }

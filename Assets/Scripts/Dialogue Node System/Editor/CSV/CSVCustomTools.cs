@@ -28,7 +28,7 @@ namespace Project.NodeSystem.Editor
         {
             Loader.Load();
 
-            //Si on a un DialogueEditor ouvert, on rafraîchit le GraphView
+            //If an editor window is already open, repaint it
             if (Window) 
             {
                 Window.Load();
