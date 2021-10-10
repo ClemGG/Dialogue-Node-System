@@ -7,6 +7,7 @@ using System.Collections;
 using Project.Enums;
 using System;
 using UnityEngine.UI;
+using System.Linq;
 
 
 
@@ -124,8 +125,12 @@ namespace Project.ScreenFader
 
         public void GetCurrentCamera()
         {
-            Array.Sort(allCamsInScene);
-            _currentCam = allCamsInScene[allCamsInScene.Length - 1];
+            //Trie les caméras par depth; la depth la plus grande sera en dernier
+            allCamsInScene.ToList().Sort(delegate (Camera x, Camera y)
+            {
+                return x.depth.CompareTo(y.depth);
+            });
+            _currentCam = allCamsInScene[0];
         }
 
 

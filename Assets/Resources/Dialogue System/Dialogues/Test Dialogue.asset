@@ -433,9 +433,18 @@ MonoBehaviour:
     BasePortName: Start
     TargetNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
     TargetPortName: Input
+  - BaseNodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
+    BasePortName: Start
+    TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    TargetPortName: Input
   StartDatas:
   - NodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     Position: {x: -2088, y: 247.2}
+    isDefault:
+      Value: 0
+    StringConditions: []
+  - NodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
+    Position: {x: 11916.8, y: -319.2}
     isDefault:
       Value: 0
     StringConditions: []
@@ -3460,12 +3469,12 @@ MonoBehaviour:
   - Title: Character
     Content: 
     Position: {x: 2636.8, y: -348.80002}
-  - Title: Background
-    Content: 
-    Position: {x: 12143.2, y: -272}
   - Title: Choice
     Content: 
     Position: {x: 5231.2, y: -258.4}
   - Title: Event
     Content: 
     Position: {x: 7139.2, y: -253.59999}
+  - Title: Background
+    Content: 
+    Position: {x: 12143.2, y: -272}

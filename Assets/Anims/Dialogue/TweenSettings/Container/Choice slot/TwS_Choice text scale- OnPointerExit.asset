@@ -44,7 +44,7 @@ MonoBehaviour:
   PingPong: 0
   UseFromAsStart: 0
   RelativeToTransform: 0
-  From: {x: 0, y: 0, z: 0}
-  To: {x: 1, y: 1, z: 0}
+  From: {x: 0, y: 0, z: 1}
+  To: {x: 1, y: 1, z: 1}
   FromColor: {r: 0, g: 0, b: 0, a: 0}
   ToColor: {r: 0, g: 0, b: 0, a: 0}

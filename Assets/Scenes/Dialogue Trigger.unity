@@ -270,7 +270,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -334,6 +334,7 @@ MonoBehaviour:
   _youtubeEvent: {fileID: 11400000, guid: 0ae387f077df34548b2b2a2160fd9b44, type: 2}
   _orLikeThat: 0
   _choiceBlocked: 1
+  _impossible: 1
 --- !u!114 &2131089595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogueSceneName: Dialogue Scene
-  selectedLanguage: 0
+  selectedLanguage: 1
   _triggerScript: {fileID: 2131089594}
   _dialogue: {fileID: 11400000, guid: 14654d24fb21fcb4ca3cb30cb3148d12, type: 2}
 --- !u!4 &2131089596
