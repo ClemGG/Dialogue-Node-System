@@ -17,210 +17,6 @@ MonoBehaviour:
     BasePortName: Start
     TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
     TargetPortName: Input
-  - BaseNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
-    BasePortName: Output
-    TargetNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
-    TargetPortName: Input
-  - BaseNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
-    BasePortName: Output
-    TargetNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
-    TargetPortName: Input
-  - BaseNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
-    BasePortName: Output
-    TargetNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
-    TargetPortName: Input
-  - BaseNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
-    BasePortName: Output
-    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
-    TargetPortName: End
-  - BaseNodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
-    BasePortName: Output
-    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
-    TargetPortName: End
-  - BaseNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
-    BasePortName: True
-    TargetNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
-    TargetPortName: Input
-  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    BasePortName: f371b000-a06a-4a08-9dd5-1590799aa77c
-    TargetNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
-    TargetPortName: Input
-  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    BasePortName: 9fae518d-48cd-48e7-be66-e0b32234e70c
-    TargetNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
-    TargetPortName: Input
-  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    BasePortName: b751bb31-5ce2-4bbd-aedf-ed37556e3ea2
-    TargetNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
-    TargetPortName: Input
-  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    BasePortName: be6d0a8c-63f7-4f8d-a87f-b4d8254ccc8d
-    TargetNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
-    TargetPortName: Input
-  - BaseNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
-    BasePortName: b5f0b489-ef0e-4335-a271-a5987d3ce4ef
-    TargetNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
-    TargetPortName: Input
-  - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
-    BasePortName: de748355-60d9-4379-9d7b-454be31a8e87
-    TargetNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
-    TargetPortName: Input
-  - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
-    BasePortName: 29e67d42-b4df-41f0-b517-890c03cd5eaa
-    TargetNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
-    TargetPortName: Input
-  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
-    BasePortName: e7cad1a1-a4f4-42d8-a82d-fb87d2cf8c14
-    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
-    TargetPortName: End
-  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
-    BasePortName: 8f9a3cf7-7cf9-4b8c-b8c5-151a50d88d28
-    TargetNodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
-    TargetPortName: Input
-  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
-    BasePortName: 9c52129d-041b-4229-a83d-f231082c9716
-    TargetNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
-    TargetPortName: Input
-  - BaseNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
-    BasePortName: Output
-    TargetNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
-    TargetPortName: Input
-  - BaseNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
-    BasePortName: Output
-    TargetNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
-    TargetPortName: Input
-  - BaseNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
-    BasePortName: Output
-    TargetNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
-    TargetPortName: Input
-  - BaseNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
-    BasePortName: Output
-    TargetNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
-    TargetPortName: Input
-  - BaseNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
-    BasePortName: Output
-    TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
-    TargetPortName: Input
-  - BaseNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
-    BasePortName: Output
-    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    TargetPortName: Input
-  - BaseNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
-    BasePortName: Output
-    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    TargetPortName: Input
-  - BaseNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
-    BasePortName: Output
-    TargetNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
-    TargetPortName: Input
-  - BaseNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
-    BasePortName: Output
-    TargetNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
-    TargetPortName: Input
-  - BaseNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
-    BasePortName: Output
-    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
-    TargetPortName: Input
-  - BaseNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
-    BasePortName: Output
-    TargetNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
-    TargetPortName: Input
-  - BaseNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
-    BasePortName: Output
-    TargetNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
-    TargetPortName: Input
-  - BaseNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
-    BasePortName: Output
-    TargetNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
-    TargetPortName: Input
-  - BaseNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
-    BasePortName: Output
-    TargetNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
-    TargetPortName: Input
-  - BaseNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
-    BasePortName: Output
-    TargetNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
-    TargetPortName: Input
-  - BaseNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
-    BasePortName: Output
-    TargetNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
-    TargetPortName: Input
-  - BaseNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
-    BasePortName: Output
-    TargetNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
-    TargetPortName: Input
-  - BaseNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
-    BasePortName: Output
-    TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
-    TargetPortName: Input
-  - BaseNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
-    BasePortName: Output
-    TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
-    TargetPortName: Input
-  - BaseNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
-    BasePortName: Output
-    TargetNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
-    TargetPortName: Input
-  - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
-    BasePortName: Output
-    TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
-    TargetPortName: Input
-  - BaseNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
-    BasePortName: Output
-    TargetNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
-    TargetPortName: Input
-  - BaseNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
-    BasePortName: Output
-    TargetNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
-    TargetPortName: Input
-  - BaseNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
-    BasePortName: Output
-    TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
-    TargetPortName: Input
-  - BaseNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
-    BasePortName: Output
-    TargetNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
-    TargetPortName: Input
-  - BaseNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
-    BasePortName: Output
-    TargetNodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
-    TargetPortName: Input
-  - BaseNodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
-    BasePortName: Output
-    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    TargetPortName: Input
-  - BaseNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
-    BasePortName: Output
-    TargetNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
-    TargetPortName: Input
-  - BaseNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
-    BasePortName: Output
-    TargetNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
-    TargetPortName: Input
-  - BaseNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
-    BasePortName: Output
-    TargetNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
-    TargetPortName: Input
-  - BaseNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
-    BasePortName: Output
-    TargetNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
-    TargetPortName: Input
-  - BaseNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
-    BasePortName: Output
-    TargetNodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
-    TargetPortName: Input
-  - BaseNodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
-    BasePortName: Output
-    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    TargetPortName: Input
-  - BaseNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
-    BasePortName: Start
-    TargetNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
-    TargetPortName: Input
-  - BaseNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
-    BasePortName: Start
-    TargetNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
-    TargetPortName: Input
   - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     BasePortName: Start
     TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
@@ -229,6 +25,14 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
     TargetPortName: Input
+  - BaseNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
+    BasePortName: Output
+    TargetNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
+    TargetPortName: Input
+  - BaseNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
+    BasePortName: Output
+    TargetNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
+    TargetPortName: Input
   - BaseNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
     BasePortName: Output
     TargetNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
@@ -237,7 +41,19 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
     TargetPortName: Input
+  - BaseNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
+    BasePortName: Output
+    TargetNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
+    TargetPortName: Input
   - BaseNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
+    BasePortName: Output
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+    TargetPortName: End
+  - BaseNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
+    BasePortName: Output
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+    TargetPortName: End
+  - BaseNodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
     BasePortName: Output
     TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
     TargetPortName: End
@@ -248,6 +64,26 @@ MonoBehaviour:
   - BaseNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
     BasePortName: True
     TargetNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    TargetPortName: Input
+  - BaseNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
+    BasePortName: True
+    TargetNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    TargetPortName: Input
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: f371b000-a06a-4a08-9dd5-1590799aa77c
+    TargetNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
+    TargetPortName: Input
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: 9fae518d-48cd-48e7-be66-e0b32234e70c
+    TargetNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
+    TargetPortName: Input
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: b751bb31-5ce2-4bbd-aedf-ed37556e3ea2
+    TargetNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
+    TargetPortName: Input
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: be6d0a8c-63f7-4f8d-a87f-b4d8254ccc8d
+    TargetNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
     TargetPortName: Input
   - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
     BasePortName: f371b000-a06a-4a08-9dd5-1590799aa77c
@@ -269,6 +105,22 @@ MonoBehaviour:
     BasePortName: b5f0b489-ef0e-4335-a271-a5987d3ce4ef
     TargetNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
     TargetPortName: Input
+  - BaseNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    BasePortName: b5f0b489-ef0e-4335-a271-a5987d3ce4ef
+    TargetNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
+    TargetPortName: Input
+  - BaseNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    BasePortName: 4f855831-9e5c-4bed-a61f-987d1917d6a2
+    TargetNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
+    TargetPortName: Input
+  - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    BasePortName: de748355-60d9-4379-9d7b-454be31a8e87
+    TargetNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
+    TargetPortName: Input
+  - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    BasePortName: 29e67d42-b4df-41f0-b517-890c03cd5eaa
+    TargetNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
+    TargetPortName: Input
   - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
     BasePortName: de748355-60d9-4379-9d7b-454be31a8e87
     TargetNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
@@ -289,9 +141,29 @@ MonoBehaviour:
     BasePortName: 9c52129d-041b-4229-a83d-f231082c9716
     TargetNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
     TargetPortName: Input
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: e7cad1a1-a4f4-42d8-a82d-fb87d2cf8c14
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+    TargetPortName: End
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: 8f9a3cf7-7cf9-4b8c-b8c5-151a50d88d28
+    TargetNodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
+    TargetPortName: Input
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: 9c52129d-041b-4229-a83d-f231082c9716
+    TargetNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
+    TargetPortName: Input
   - BaseNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
     BasePortName: Output
     TargetNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
+    TargetPortName: Input
+  - BaseNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    BasePortName: Output
+    TargetNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
+    TargetPortName: Input
+  - BaseNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
+    BasePortName: Output
+    TargetNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
     TargetPortName: Input
   - BaseNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
     BasePortName: Output
@@ -301,6 +173,14 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
     TargetPortName: Input
+  - BaseNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
+    BasePortName: Output
+    TargetNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
+    TargetPortName: Input
+  - BaseNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
+    BasePortName: Output
+    TargetNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
+    TargetPortName: Input
   - BaseNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
     BasePortName: Output
     TargetNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
@@ -309,7 +189,19 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
     TargetPortName: Input
+  - BaseNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
+    BasePortName: Output
+    TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
+    TargetPortName: Input
   - BaseNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
     BasePortName: Output
     TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
     TargetPortName: Input
@@ -321,13 +213,21 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
     TargetPortName: Input
+  - BaseNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
+    BasePortName: Output
+    TargetNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
+    TargetPortName: Input
   - BaseNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
     BasePortName: Output
     TargetNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
     TargetPortName: Input
-  - BaseNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+  - BaseNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
     BasePortName: Output
-    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    TargetNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+    TargetPortName: Input
+  - BaseNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
+    BasePortName: Output
+    TargetNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
     TargetPortName: Input
   - BaseNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
     BasePortName: Output
@@ -337,9 +237,21 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
     TargetPortName: Input
+  - BaseNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    BasePortName: Output
+    TargetNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
+    TargetPortName: Input
   - BaseNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
     BasePortName: Output
     TargetNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
+    TargetPortName: Input
+  - BaseNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
+    BasePortName: Output
+    TargetNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
+    TargetPortName: Input
+  - BaseNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
+    BasePortName: Output
+    TargetNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
     TargetPortName: Input
   - BaseNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
     BasePortName: Output
@@ -349,15 +261,27 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
     TargetPortName: Input
+  - BaseNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
+    BasePortName: Output
+    TargetNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    TargetPortName: Input
   - BaseNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
     BasePortName: Output
     TargetNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
     TargetPortName: Input
-  - BaseNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+  - BaseNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
     BasePortName: Output
-    TargetNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    TargetNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
     TargetPortName: Input
   - BaseNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
+    BasePortName: Output
+    TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    TargetPortName: Input
+  - BaseNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
+    BasePortName: Output
+    TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    TargetPortName: Input
+  - BaseNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
     BasePortName: Output
     TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
     TargetPortName: Input
@@ -369,13 +293,21 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
     TargetPortName: Input
+  - BaseNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
+    BasePortName: Output
+    TargetNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    TargetPortName: Input
   - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
     BasePortName: Output
     TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
     TargetPortName: Input
-  - BaseNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+  - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
     BasePortName: Output
-    TargetNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
+    TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
+    TargetPortName: Input
+  - BaseNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
+    BasePortName: Output
+    TargetNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
     TargetPortName: Input
   - BaseNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
     BasePortName: Output
@@ -385,9 +317,21 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
     TargetPortName: Input
+  - BaseNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
+    BasePortName: Output
+    TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    TargetPortName: Input
   - BaseNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
     BasePortName: Output
     TargetNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
+    TargetPortName: Input
+  - BaseNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
+    BasePortName: Output
+    TargetNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
+    TargetPortName: Input
+  - BaseNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
+    BasePortName: Output
+    TargetNodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
     TargetPortName: Input
   - BaseNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
     BasePortName: Output
@@ -397,9 +341,13 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
     TargetPortName: Input
-  - BaseNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+  - BaseNodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
     BasePortName: Output
-    TargetNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
+    BasePortName: Output
+    TargetNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
     TargetPortName: Input
   - BaseNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
     BasePortName: Output
@@ -409,9 +357,21 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
     TargetPortName: Input
+  - BaseNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
+    BasePortName: Output
+    TargetNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
+    TargetPortName: Input
   - BaseNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
     BasePortName: Output
     TargetNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
+    TargetPortName: Input
+  - BaseNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    BasePortName: Output
+    TargetNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
+    TargetPortName: Input
+  - BaseNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
+    BasePortName: Output
+    TargetNodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
     TargetPortName: Input
   - BaseNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
     BasePortName: Output
@@ -421,9 +381,53 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
     TargetPortName: Input
+  - BaseNodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+    BasePortName: Output
+    TargetNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    TargetPortName: Input
+  - BaseNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+    BasePortName: Output
+    TargetNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    TargetPortName: Input
+  - BaseNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    BasePortName: Output
+    TargetNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
+    TargetPortName: Input
+  - BaseNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    BasePortName: Output
+    TargetNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
+    TargetPortName: Input
+  - BaseNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+    BasePortName: Output
+    TargetNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    TargetPortName: Input
+  - BaseNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+    BasePortName: Output
+    TargetNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    TargetPortName: Input
+  - BaseNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    BasePortName: Output
+    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    TargetPortName: Input
+  - BaseNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    BasePortName: Output
+    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    TargetPortName: Input
   - BaseNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
     BasePortName: Start
     TargetNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
+    TargetPortName: Input
+  - BaseNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
+    BasePortName: Start
+    TargetNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
+    TargetPortName: Input
+  - BaseNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
+    BasePortName: Start
+    TargetNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
     TargetPortName: Input
   - BaseNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
     BasePortName: Start
@@ -433,7 +437,7 @@ MonoBehaviour:
   - NodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     Position: {x: -2088, y: 247.2}
     isDefault:
-      Value: 1
+      Value: 0
     StringConditions: []
   UIDatas:
   - NodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
@@ -841,7 +845,7 @@ MonoBehaviour:
       Texts:
       - Data: "\"Language\" affiche la traduction de vos r\xE9pliques correspondant
           \xE0 la langue affich\xE9e. Par souci de rapidit\xE9, il est conseill\xE9
-          de d'abord exporter vos ialogues en .CSV, puis d'utiliser cette option
+          de d'abord exporter vos dialogues en .CSV, puis d'utiliser cette option
           pour ajouter manuellement d'\xE9ventuelles modifications."
         Language: 0
       - Data: '"Language" Displays the translation of your dialogue lines corresponding
@@ -998,148 +1002,6 @@ MonoBehaviour:
           de modificar las condiciones del De_EventsCaller. En la actualidad, solo
           se implementan las opciones de \"End\" y \"Volver a Inicio\"; Los otros
           dos est\xE1n obsoletos y se incumplir\xE1n la misma acci\xF3n que \"FIN\"."
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-  - NodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
-    Position: {x: 1690.4, y: -124.8}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: a7f9f850-d016-43e3-a8df-c7ce4632816c
-      Texts:
-      - Data: "\"Append To Previous text\" : Permet de coller la nouvelle r\xE9plique
-          \xE0 la pr\xE9c\xE9dente sans supprimer cette derni\xE8re."
-        Language: 0
-      - Data: '"Append to Previous Text": allows you to append the new replique to
-          the previous one without deleting the latter.'
-        Language: 1
-      - Data: "\"Anexar al texto anterior\": le permite pegar la nueva r\xE9plica
-          a la anterior sin eliminar este \xFAltimo."
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-    - ID:
-        Value: 1
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: 8761f8d1-7b4b-4b74-a06a-04b1a2c48dd0
-      Texts:
-      - Data: "\"Can Click On Continue\" : Permet ou non au joueur de continuer le
-          dialogue en cliquant sur l'interface. Fonctionne de pair avec l'auto-d\xE9lai
-          pour avancer automatiquement un dialogue."
-        Language: 0
-      - Data: '"Can Click on Continue": Allows the player to continue the dialog
-          by clicking on the interface. Works with the auto-delay to automatically
-          progress in a dialog.'
-        Language: 1
-      - Data: "\"Puede hacer clic en Contin\xFAe\": o no permite que el reproductor
-          contin\xFAe con el cuadro de di\xE1logo haciendo clic en la interfaz. Funciona
-          con el autoayuda para avanzar autom\xE1ticamente un di\xE1logo."
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-    - ID:
-        Value: 2
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: 4a539c07-e49b-4e5b-b6c4-b5742f4de502
-      Texts:
-      - Data: "\"Overwrite Write Speed\" : Permet d'\xE9crire chaque caract\xE8re
-          \xE0 une diff\xE9rente vitesse que celle par d\xE9faut (en secondes). Utile
-          pour donner une sensation de suspens \xE0 votre r\xE9plique."
-        Language: 0
-      - Data: '"Overwrite Write Speed": Allows you to write each character to a different
-          speed than the default (in seconds). Useful for giving a feeling of suspense
-          to your replique.'
-        Language: 1
-      - Data: "\"Sobrescribe la velocidad de escritura\": le permite escribir cada
-          car\xE1cter a una velocidad diferente a la predeterminada (en segundos).
-          \xDAtil para dar una sensaci\xF3n de suspenso a su r\xE9plica."
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-    - ID:
-        Value: 3
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: 607bfdbe-6cce-4cd0-8a25-8dd09873b90f
-      Texts:
-      - Data: "\"Auto Delay\" : Si activ\xE9, le dialogue jouera la r\xE9plique suivante
-          automatiquement au bout du temps inscrit en param\xE8tre (en secondes)."
-        Language: 0
-      - Data: '"Auto Delay": If enabled, the dialog will play the next replique automatically
-          once the timer registered as a parameter has ended (in seconds).'
-        Language: 1
-      - Data: "\"Retardo autom\xE1tico\": si est\xE1 habilitado, el cuadro de di\xE1logo
-          reproducir\xE1 la siguiente r\xE9plica autom\xE1ticamente despu\xE9s de
-          la hora registrada como par\xE1metro (en segundos)."
         Language: 2
       AudioClips:
       - Data: {fileID: 0}
@@ -1605,93 +1467,17 @@ MonoBehaviour:
       AutoDelayDuration:
         Value: 0
       Guid:
-        Value: 4adc7958-2557-48ff-922b-74f2dbc1a34a
+        Value: 1943c484-6fc9-4845-bbac-bd53ade19fbd
       Texts:
-      - Data: "Ces conditions peuvent \xEAtre remlies au cours de la progression
-          de vos joueurs dans le jeu, ou directement au cours du m\xEAme dialogue,
-          gr\xE2ce au script DE_EventCaller et la node \"Event.\""
+      - Data: "Attention : M\xEAme si vous avez cr\xE9\xE9 des choix gris\xE9s, ils
+          ne seront pas affich\xE9s \xE0 l'\xE9cran si leur port n'est pas connect\xE9
+          \xE0 une node."
         Language: 0
-      - Data: These conditions can be fulfilled during the progress of your players
-          in the game, or directly during the same dialogue, thanks to the DE_EventCaller
-          script and the "Event" node.
+      - Data: 'Warning : Even if you created a greyed out choice, it won''t appear
+          on screen until you connect its port to a node.'
         Language: 1
-      - Data: "Estas condiciones se pueden eliminar durante el progreso de sus jugadores
-          en el juego, o directamente durante el mismo di\xE1logo, gracias al script
-          de evento y el nodo \"evento\" \"."
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-  - NodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
-    Position: {x: 7092.8, y: -132.8}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: 0c9b761b-e826-477c-b93e-f07c20087989
-      Texts:
-      - Data: "La node Event permet au diaogue d'interagir avec le reste du jeu.
-          Elle utilise le DE_EventCaller et un ScriptableObject pour lire et \xE9craser
-          les valeurs du script et pour appeler des fonctions."
-        Language: 0
-      - Data: "The Event node allows the dialogue to interact with the rest of the
-          game. It uses the DE_EventCaller and a ScriptableObject to read and overwrite
-          the script values \u200B\u200Band to call functions."
-        Language: 1
-      - Data: "El nodo del evento permite que la diagaluaci\xF3n interact\xFAe con
-          el resto del juego. Utiliza el DE_EVENTSCALLER y un ScriptableObject para
-          reproducir y sobrescribir los valores de script y para llamar a funciones."
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-    - ID:
-        Value: 1
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: c19f083f-fef0-48ce-a321-154c38d86452
-      Texts:
-      - Data: "Avec la node Event, vous pouvez r\xE9aliser n'importe quoi : Modifier
-          les choix acessibles au joueur, lancer une cin\xE9matique, jouer un son
-          ou un effet de particule, etc."
-        Language: 0
-      - Data: 'With the Event node, you can realize anything: change the choice of
-          the player, start a cutscene, play a sound or a particle effect, etc.'
-        Language: 1
-      - Data: "Con el nodo de evento, puede realizar cualquier cosa: cambiar la opci\xF3n
-          del reproductor, lanzar una cinem\xE1tica, jugar un sonido o un efecto
-          de part\xEDcula, etc."
+      - Data: "Advertencia: incluso si cre\xF3 una opci\xF3n en gris, no aparecer\xE1
+          en la pantalla hasta que conecte su puerto a un nodo."
         Language: 2
       AudioClips:
       - Data: {fileID: 0}
@@ -1715,21 +1501,19 @@ MonoBehaviour:
       AutoDelayDuration:
         Value: 0
       Guid:
-        Value: 288a206f-fd8b-415d-b883-9020d2736050
+        Value: 4adc7958-2557-48ff-922b-74f2dbc1a34a
       Texts:
-      - Data: "Pour cr\xE9er un Dialogue Event, Clic droit > Create > Dialogue >
-          New Dialogue Event. Ce ScriptableObject fera office de lien entre le dialogue
-          et le script en jeu, et peut m\xEAme \xEAtre partag\xE9 entre diff\xE9rents
-          diaogues."
+      - Data: "Ces conditions peuvent \xEAtre remlies au cours de la progression
+          de vos joueurs dans le jeu, ou directement au cours du m\xEAme dialogue,
+          gr\xE2ce au script DE_EventCaller et la node \"Event.\""
         Language: 0
-      - Data: To create an Event dialog, right click > Create > Dialogue > New Event
-          Dialogue. This ScriptableObject will serve as a link between the dialog
-          and the script in-game, and can even be shared between different dialogues.
+      - Data: These conditions can be fulfilled during the progress of your players
+          in the game, or directly during the same dialogue, thanks to the DE_EventCaller
+          script and the "Event" node.
         Language: 1
-      - Data: "Para crear un cuadro de di\xE1logo de evento, haga clic con el bot\xF3n
-          derecho> Crear> Di\xE1logo> Nuevo di\xE1logo de eventos. Este scriptableObject
-          servir\xE1 como un enlace entre el cuadro de di\xE1logo y el script en
-          juego, e incluso se puede compartir entre diferentes diaganchos."
+      - Data: "Estas condiciones se pueden eliminar durante el progreso de sus jugadores
+          en el juego, o directamente durante el mismo di\xE1logo, gracias al script
+          de evento y el nodo \"evento\" \"."
         Language: 2
       AudioClips:
       - Data: {fileID: 0}
@@ -2978,6 +2762,260 @@ MonoBehaviour:
         Language: 1
       - Data: {fileID: 0}
         Language: 2
+  - NodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+    Position: {x: 7092.8, y: -132.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 0c9b761b-e826-477c-b93e-f07c20087989
+      Texts:
+      - Data: "La node Event permet au diaogue d'interagir avec le reste du jeu.
+          Elle utilise le DE_EventCaller et un ScriptableObject pour lire et \xE9craser
+          les valeurs du script et pour appeler des fonctions."
+        Language: 0
+      - Data: "The Event node allows the dialogue to interact with the rest of the
+          game. It uses the DE_EventCaller and a ScriptableObject to read and overwrite
+          the script values \u200B\u200Band to call functions."
+        Language: 1
+      - Data: "El nodo del evento permite que la diagaluaci\xF3n interact\xFAe con
+          el resto del juego. Utiliza el DE_EVENTSCALLER y un ScriptableObject para
+          reproducir y sobrescribir los valores de script y para llamar a funciones."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: c19f083f-fef0-48ce-a321-154c38d86452
+      Texts:
+      - Data: "Avec la node Event, vous pouvez r\xE9aliser n'importe quoi : Modifier
+          les choix acessibles au joueur, lancer une cin\xE9matique, jouer un son
+          ou un effet de particule, etc."
+        Language: 0
+      - Data: 'With the Event node, you can realize anything: change the choice of
+          the player, start a cutscene, play a sound or a particle effect, etc.'
+        Language: 1
+      - Data: "Con el nodo de evento, puede realizar cualquier cosa: cambiar la opci\xF3n
+          del reproductor, lanzar una cinem\xE1tica, jugar un sonido o un efecto
+          de part\xEDcula, etc."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 288a206f-fd8b-415d-b883-9020d2736050
+      Texts:
+      - Data: "Pour cr\xE9er un Dialogue Event, Clic droit > Create > Dialogue >
+          New Dialogue Event. Ce ScriptableObject fera office de lien entre le dialogue
+          et le script en jeu, et peut m\xEAme \xEAtre partag\xE9 entre diff\xE9rents
+          diaogues."
+        Language: 0
+      - Data: To create an Event dialog, right click > Create > Dialogue > New Event
+          Dialogue. This ScriptableObject will serve as a link between the dialog
+          and the script in-game, and can even be shared between different dialogues.
+        Language: 1
+      - Data: "Para crear un cuadro de di\xE1logo de evento, haga clic con el bot\xF3n
+          derecho> Crear> Di\xE1logo> Nuevo di\xE1logo de eventos. Este scriptableObject
+          servir\xE1 como un enlace entre el cuadro de di\xE1logo y el script en
+          juego, e incluso se puede compartir entre diferentes diaganchos."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    Position: {x: 1690.4, y: -124.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: a7f9f850-d016-43e3-a8df-c7ce4632816c
+      Texts:
+      - Data: "\"Append To Previous text\" : Permet de coller la nouvelle r\xE9plique
+          \xE0 la pr\xE9c\xE9dente sans supprimer cette derni\xE8re."
+        Language: 0
+      - Data: '"Append to Previous Text": allows you to append the new replique to
+          the previous one without deleting the latter.'
+        Language: 1
+      - Data: "\"Anexar al texto anterior\": le permite pegar la nueva r\xE9plica
+          a la anterior sin eliminar este \xFAltimo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 8761f8d1-7b4b-4b74-a06a-04b1a2c48dd0
+      Texts:
+      - Data: "\"Can Click On Continue\" : Permet ou non au joueur de continuer le
+          dialogue en cliquant sur l'interface. Fonctionne de pair avec l'auto-d\xE9lai
+          pour avancer automatiquement un dialogue."
+        Language: 0
+      - Data: '"Can Click on Continue": Allows the player to continue the dialog
+          by clicking on the interface. Works with the auto-delay to automatically
+          progress in a dialog.'
+        Language: 1
+      - Data: "\"Puede hacer clic en Contin\xFAe\": o no permite que el reproductor
+          contin\xFAe con el cuadro de di\xE1logo haciendo clic en la interfaz. Funciona
+          con el autoayuda para avanzar autom\xE1ticamente un di\xE1logo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 4a539c07-e49b-4e5b-b6c4-b5742f4de502
+      Texts:
+      - Data: "\"Overwrite Write Speed\" : Permet d'\xE9crire chaque caract\xE8re
+          \xE0 une diff\xE9rente vitesse que celle par d\xE9faut (en secondes). Utile
+          pour donner une sensation de suspens \xE0 votre r\xE9plique."
+        Language: 0
+      - Data: '"Overwrite Write Speed": Allows you to write each character to a different
+          speed than the default (in seconds). Useful for giving a feeling of suspense
+          to your replique.'
+        Language: 1
+      - Data: "\"Sobrescribe la velocidad de escritura\": le permite escribir cada
+          car\xE1cter a una velocidad diferente a la predeterminada (en segundos).
+          \xDAtil para dar una sensaci\xF3n de suspenso a su r\xE9plica."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 3
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 607bfdbe-6cce-4cd0-8a25-8dd09873b90f
+      Texts:
+      - Data: "\"Auto Delay\" : Si activ\xE9, le dialogue jouera la r\xE9plique suivante
+          automatiquement au bout du temps inscrit en param\xE8tre (en secondes)."
+        Language: 0
+      - Data: '"Auto Delay": If enabled, the dialog will play the next replique automatically
+          once the timer registered as a parameter has ended (in seconds).'
+        Language: 1
+      - Data: "\"Retardo autom\xE1tico\": si est\xE1 habilitado, el cuadro de di\xE1logo
+          reproducir\xE1 la siguiente r\xE9plica autom\xE1ticamente despu\xE9s de
+          la hora registrada como par\xE1metro (en segundos)."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
   BranchDatas:
   - NodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
     Position: {x: 10088.8, y: -109.600006}
@@ -3187,8 +3225,8 @@ MonoBehaviour:
         ID:
           Value: 0
         PortGuid: 4f855831-9e5c-4bed-a61f-987d1917d6a2
-        InputGuid: 
-        OutputGuid: 
+        InputGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
+        OutputGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
   - NodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
     Position: {x: 8682.4, y: -132.8}
     Choices:
@@ -3413,21 +3451,21 @@ MonoBehaviour:
   - Title: Start & End
     Content: 
     Position: {x: -69.6, y: -338.40002}
-  - Title: Event
-    Content: 
-    Position: {x: 7139.2, y: -253.59999}
   - Title: Branch
     Content: 
     Position: {x: 9766.4, y: -219.2}
   - Title: Delay & UI
     Content: 
     Position: {x: 10424.8, y: -255.2}
-  - Title: Choice
-    Content: 
-    Position: {x: 5231.2, y: -258.4}
   - Title: Character
     Content: 
     Position: {x: 2636.8, y: -348.80002}
   - Title: Background
     Content: 
     Position: {x: 12143.2, y: -272}
+  - Title: Choice
+    Content: 
+    Position: {x: 5231.2, y: -258.4}
+  - Title: Event
+    Content: 
+    Position: {x: 7139.2, y: -253.59999}

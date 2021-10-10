@@ -239,6 +239,9 @@ namespace Project.NodeSystem
             _leftCharImgTweener.resetTransformOnTweenEnded = _rightCharImgTweener.resetTransformOnTweenEnded = false;
 
 
+            //On récupère toutes les caméras de la scène pour pouvoir récupérer celle en cours d'utilisation pour les transitions
+            _screenFader.GetAllCamerasInScene();
+
             //On assigne une texture transparent au _backgroundMat avant le début du dialogue
             _backgroundMat.SetTexture("_MainTex", _startTex);
             _backgroundMat.SetFloat("_Blend", 0f);
@@ -428,6 +431,9 @@ namespace Project.NodeSystem
             _continueBtn.onClick.RemoveAllListeners();
             _continueBtn.onClick.AddListener(StopAllCoroutines); //Supprime la coroutine d'auto délai
             _continueBtn.onClick.AddListener(onContinueClicked);
+
+            //Pour ne pas lancer de message vers la node suivante pendant un délai, sinon ça affiche n'importe quoi
+            _continueBtn.onClick.AddListener(() => _continueBtn.interactable = false);
         }
 
 
@@ -732,6 +738,7 @@ namespace Project.NodeSystem
                     _leftCharGoTweener.BeginTweens(TS_CharDisappears, () =>
                     {
                         onRunEnded?.Invoke();
+                        _leftCharImg.sprite = null;
                         _leftCharGo.gameObject.SetActive(false);
                     });
 
@@ -759,6 +766,7 @@ namespace Project.NodeSystem
                     _rightCharGoTweener.BeginTweens(TS_CharDisappears).SetOnTweensComplete(() =>
                     {
                         onRunEnded?.Invoke();
+                        _rightCharImg.sprite = null;
                         _rightCharGo.gameObject.SetActive(false);
                     });
 
@@ -814,7 +822,6 @@ namespace Project.NodeSystem
             _choicesContent.SetActive(false);
 
 
-
             //Quand appendToText est à true, cliquer sur skip ajoute du texte en trop
             //Cette variable permet de remettre le texte à son état initial
             string previousText = _dialogueText.text;
@@ -823,7 +830,8 @@ namespace Project.NodeSystem
             if (_writeCharByChar)
             {
                 //Arrête les auto délais
-                _skipRepliqueBtn.onClick.RemoveAllListeners();   
+                _skipRepliqueBtn.onClick.RemoveAllListeners();
+                _continueBtn.interactable = true;
 
                 //On assigne au bouton skip sa fonction
                 _skipRepliqueBtn.onClick.AddListener(() => WriteAllText(previousText, data, selectedLanguage)); 
@@ -848,6 +856,8 @@ namespace Project.NodeSystem
 
             _skipRepliqueBtn.gameObject.SetActive(false);
             _continueBtn.gameObject.SetActive(true);
+            _continueBtn.interactable = true;
+            _continueBtn.Select();
             _isWriting = false;
 
 
@@ -882,7 +892,11 @@ namespace Project.NodeSystem
         private IEnumerator WriteRepliqueCharByCharCo(RepliqueData_Replique data, LanguageType selectedLanguage)
         {
             //Si on a le droit d'appuyer sur continuer pour passer la réplique, on active le skipRepliqueBtn
-            if (data.CanClickOnContinue.Value) _skipRepliqueBtn.gameObject.SetActive(true);
+            if (data.CanClickOnContinue.Value) 
+            {
+                _skipRepliqueBtn.gameObject.SetActive(true);
+                _skipRepliqueBtn.Select();
+            }
 
 
             _continueBtn.gameObject.SetActive(false);        //Pour éviter de cliquer dessus
@@ -942,7 +956,12 @@ namespace Project.NodeSystem
             _isWriting = false;
 
             //Si on a le droit d'appuyer sur continuer pour passer la réplique, on active le continueBtn
-            if (data.CanClickOnContinue.Value) _continueBtn.gameObject.SetActive(true);
+            if (data.CanClickOnContinue.Value) 
+            {
+                _continueBtn.gameObject.SetActive(true);
+                _continueBtn.interactable = true;
+                _continueBtn.Select();
+            }
 
             _skipRepliqueBtn.gameObject.SetActive(false);
 
@@ -964,6 +983,7 @@ namespace Project.NodeSystem
             yield return wait;
 
             _continueBtn.gameObject.SetActive(true);
+            _continueBtn.interactable = true;
             _continueBtn.onClick?.Invoke();
 
         }
@@ -976,6 +996,9 @@ namespace Project.NodeSystem
 
         private void OnRunBackgroundNode(BackgroundData_Transition transition, TransitionSettingsSO startSettings, TransitionSettingsSO endSettings)
         {
+            //Pour ne pas lancer la node suivante pendant la transition
+            _continueBtn.gameObject.SetActive(false);
+
             _tmpTransition = transition;
 
             //Si on a des paramètres pour une transition de départ, on lance la transition sur l'UI

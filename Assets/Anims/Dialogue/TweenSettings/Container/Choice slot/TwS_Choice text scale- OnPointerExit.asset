@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 846a94970f87695469a491017d59c231, type: 3}
-  m_Name: TwS_Choice text scaleX- OnPointerExit
+  m_Name: TwS_Choice text scale- OnPointerExit
   m_EditorClassIdentifier: 
-  AnimationType: 15
+  AnimationType: 5
   CurveType: 38
   Curve:
     serializedVersion: 2
@@ -45,6 +45,6 @@ MonoBehaviour:
   UseFromAsStart: 0
   RelativeToTransform: 0
   From: {x: 0, y: 0, z: 0}
-  To: {x: 1, y: 0, z: 0}
+  To: {x: 1, y: 1, z: 0}
   FromColor: {r: 0, g: 0, b: 0, a: 0}
   ToColor: {r: 0, g: 0, b: 0, a: 0}

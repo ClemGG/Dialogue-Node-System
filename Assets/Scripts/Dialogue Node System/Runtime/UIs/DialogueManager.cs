@@ -264,7 +264,6 @@ namespace Project.NodeSystem
             //pour passer à la node suivante
             Action tmp = () =>
             {
-                print("transition ended");
                 CheckNodeType(GetNextNode(nodeData));
             };
             tmp += () => OnTransitionEnded -= tmp;

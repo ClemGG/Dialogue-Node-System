@@ -16,7 +16,7 @@ namespace Project.NodeSystem
         [ReadOnly, SerializeField] private bool _choiceBlocked = true;
 
         public bool OrLikeThat { get => _orLikeThat; set => _orLikeThat = value; }
-        public bool ChoiceBlocked { get => _orLikeThat; set => _orLikeThat = value; }
+        public bool ChoiceBlocked { get => _choiceBlocked; set => _choiceBlocked = value; }
 
         private void Awake()
         {
