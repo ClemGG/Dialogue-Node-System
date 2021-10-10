@@ -4,20 +4,14 @@ The prototype of a Dialogue Node System realized in Unity 2021.1.11.
 ## Core features
 
 1. Multiple nodes available:
-  - CharacterNode and RepliqueNode (to add characters and text lines as well as audio),
+  - Character Node and Replique Node (to add characters and text lines as well as audio),
+  - Background Node and UI Node (to change the background image and to apply effects to the UI),
   - Support for branching dialogues (BranchNode for logic, ChoiceNode for multiple answers, conditional StartNodes to start the dialogue at different points),
   - Support for sortable event callbacks with the EventNode,
 2. Flexible save system with .CSV files,
 3. Ability to write dialogue in multiple langugages
 4. A demo example scene.
 
-Future updates will include :
-
-1. More settings for the Replique Node (append text insted of overriding it, set delay between characters)
-2. Addition of BackgroundNode to add 2D textures as background and fade,
-3. Ability to add and remove languages directly in the editor window,
-4. Copy/Paste/Duplicate ability,
-5. Add nodes from another Dialogue by dragging its asset into the editor window.
 
 ## Screenshots
 
