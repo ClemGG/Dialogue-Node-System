@@ -24,6 +24,7 @@ namespace Project.NodeSystem
         [Header("Dialogue Characters :")]
         [Space(10)]
 
+        private Transform _container;
         private GameObject _leftCharGo;
         private GameObject _rightCharGo;
         private Image _leftCharImg;
@@ -122,10 +123,8 @@ namespace Project.NodeSystem
 
         private ObjectTweener _leftCharGoTweener;
         private ObjectTweener _leftCharImgTweener;
-        private ObjectTweener _leftNameContainerTweener;
         private ObjectTweener _rightCharGoTweener;
         private ObjectTweener _rightCharImgTweener;
-        private ObjectTweener _rightNameContainerTweener;
         private ObjectTweener _containerTweener;
 
 
@@ -135,8 +134,6 @@ namespace Project.NodeSystem
 
         #region Flags
 
-        private DialogueSide? _whoIsTalking;                    //On grise le perso qui n'est pas en train de parler
-        private bool _leftCharIsVisible, _rightCharIsVisible;   //Pour savoir si les persos sont affichés à l'écran ou non
         private bool _uiVisibleFlag;                            //POur savoir si l'UI est visible ou non
 
 
@@ -164,6 +161,9 @@ namespace Project.NodeSystem
             base.GetComponents();
 
 
+            //Container
+            _container = _dialoguePanel.transform.GetChild(3);
+
             //Voice audio
             _voiceClipSource = gameObject.AddComponent<AudioSource>();
             _voiceClipSource.volume = .2f;
@@ -180,37 +180,30 @@ namespace Project.NodeSystem
             }
 
 
+
+            //Background
+            _backgroundImg = _dialoguePanel.transform.GetChild(0).GetComponent<Image>();
+            _backgroundMat = _backgroundImg.material;
+
+
             //Character sprites & names
-            _leftCharGo = GameObject.Find("character left").gameObject;
-            _leftCharImg = GameObject.Find("character left img").GetComponent<Image>();
-            _leftNameText = GameObject.Find("left name text").GetComponent<TextMeshProUGUI>();
+            _leftCharGo = _dialoguePanel.transform.GetChild(1).gameObject;
+            _leftCharImg = _leftCharGo.transform.GetChild(0).GetComponent<Image>();
 
-            _rightCharGo = GameObject.Find("character right").gameObject;
-            _rightCharImg = GameObject.Find("character right img").GetComponent<Image>();
-            _rightNameText = GameObject.Find("right name text").GetComponent<TextMeshProUGUI>();
-
+            _rightCharGo = _dialoguePanel.transform.GetChild(2).gameObject;
+            _rightCharImg = _rightCharGo.transform.GetChild(0).GetComponent<Image>();
 
             //Tweeners
             _leftCharGoTweener = _leftCharGo.GetComponent<ObjectTweener>();
             _leftCharImgTweener = _leftCharImg.GetComponent<ObjectTweener>();
             _rightCharGoTweener = _rightCharGo.GetComponent<ObjectTweener>();
             _rightCharImgTweener = _rightCharImg.GetComponent<ObjectTweener>();
-            _containerTweener = GameObject.Find("container").GetComponent<ObjectTweener>();
+            _containerTweener = _container.GetComponent<ObjectTweener>();
 
-
-            //Background
-            _backgroundImg = GameObject.Find("background img").GetComponent<Image>();
-            _backgroundMat = _backgroundImg.material;
-
-            //Dialogue content
-            _dialogueContent = GameObject.Find("dialogue content").gameObject;
-            _continueBtn = GameObject.Find("continue btn").GetComponent<Button>();
-            _skipRepliqueBtn = GameObject.Find("skip replique btn").GetComponent<Button>();
-            _dialogueText = GameObject.Find("dialogue text").GetComponent<TextMeshProUGUI>();
 
 
             //Choices content
-            _choicesContent = GameObject.Find("choices content").gameObject;
+            _choicesContent = _container.GetChild(0).gameObject;
             int count = _choicesContent.transform.childCount;
             _choiceBtns = new Button[count];
             _choiceTmps = new TextMeshProUGUI[count];
@@ -219,14 +212,19 @@ namespace Project.NodeSystem
                 _choiceBtns[i] = _choicesContent.transform.GetChild(i).GetComponent<Button>();
                 _choiceTmps[i] = _choiceBtns[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             }
+
+
+            //Dialogue content
+            _dialogueContent = _container.GetChild(1).gameObject;
+            _dialogueText = _dialogueContent.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            _leftNameText = _dialogueContent.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+            _rightNameText = _dialogueContent.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
+            _continueBtn = _dialogueContent.transform.GetChild(3).GetComponent<Button>();
+            _skipRepliqueBtn = _dialogueContent.transform.GetChild(4).GetComponent<Button>();
         }
 
         protected override void SetUpComponents()
         {
-
-            _choicesContent.SetActive(false);
-            _dialogueContent.SetActive(false);
-
             //Le container sera activé automatiquement au moment d'afficher les persos ou une réplique
             _containerTweener.gameObject.SetActive(false);
 
@@ -235,13 +233,10 @@ namespace Project.NodeSystem
             _leftCharGo.SetActive(false);
             _rightCharGo.SetActive(false);
 
+
             //On empêche la remise à zéro auto des tweeners pour replacer les sprites nous-mêmes quand ils disparaîssent
             _leftCharImgTweener.resetTransformOnDisable = _rightCharImgTweener.resetTransformOnDisable = false;
             _leftCharImgTweener.resetTransformOnTweenEnded = _rightCharImgTweener.resetTransformOnTweenEnded = false;
-
-            //On désactive les containers des noms pour éviter d'avoir à les attacher au container
-            _leftNameText.transform.parent.gameObject.SetActive(false);
-            _rightNameText.transform.parent.gameObject.SetActive(false);
 
 
             //On assigne une texture transparent au _backgroundMat avant le début du dialogue
@@ -259,8 +254,8 @@ namespace Project.NodeSystem
             _dialogueManager.OnRunUINode += OnRunUINode;
 
             //Character
-            //_dialogueManager.OnRunStartNode += OnRunStartNode;
-            //_dialogueManager.OnRunCharacterNode += OnRunCharacterNode;
+            _dialogueManager.OnRunStartNode += OnRunStartNode;
+            _dialogueManager.OnRunCharacterNode += OnRunCharacterNode;
 
             //Replique
             _dialogueManager.OnRunRepliqueNode += OnRunRepliqueNode;
@@ -284,8 +279,8 @@ namespace Project.NodeSystem
             _dialogueManager.OnRunUINode -= OnRunUINode;
 
             //Character
-            //_dialogueManager.OnRunStartNode -= OnRunStartNode;
-            //_dialogueManager.OnRunCharacterNode -= OnRunCharacterNode;
+            _dialogueManager.OnRunStartNode -= OnRunStartNode;
+            _dialogueManager.OnRunCharacterNode -= OnRunCharacterNode;
 
             //Replique
             _dialogueManager.OnRunRepliqueNode -= OnRunRepliqueNode;
@@ -309,7 +304,21 @@ namespace Project.NodeSystem
 
         #region Display
 
-        protected override void ShowUI(Action onRunEnded = null)
+        protected override void ResetUI()
+        {
+            base.ResetUI();
+
+            _choicesContent.SetActive(false);
+            _dialogueContent.SetActive(false);
+
+
+            //Pour lancer les tweens des persos depuis ShowUI()
+            _leftCharImg.sprite = _rightCharImg.sprite = null;
+
+        }
+
+
+        protected override void ShowUI()
         {
 
             _uiVisibleFlag = true;
@@ -318,11 +327,10 @@ namespace Project.NodeSystem
             _dialogueText.text = "";
 
 
-
-            //On affiche les persos s'ils ont des sprites assignés
-            //et on désactive les containers des noms pour éviter d'avoir à les attacher au container
+            //On n'affiche les persos que s'ils ont déjà un sprite
             if (_leftCharImg.sprite)
             {
+                _leftCharGo.SetActive(true);
                 _leftCharGoTweener.BeginTweens(TS_CharAppears);
             }
             else
@@ -331,6 +339,7 @@ namespace Project.NodeSystem
             }
             if (_rightCharImg.sprite)
             {
+                _rightCharGo.SetActive(true);
                 _rightCharGoTweener.BeginTweens(TS_CharAppears);
             }
             else
@@ -338,17 +347,14 @@ namespace Project.NodeSystem
                 _rightNameText.transform.parent.gameObject.SetActive(false);
             }
 
-
             //On active le tweener du container pour le faire apparaître
             _containerTweener.gameObject.SetActive(true);
-            _containerTweener.BeginTweens(TS_ContainerOnDialogueStarted, () =>
-            {
-                onRunEnded?.Invoke();
-            });
+            _containerTweener.BeginTweens(TS_ContainerOnDialogueStarted);
         }
 
-
-        protected override void HideUI(Action onRunEnded = null)
+        //N'est pas appelée depuis le DialogueManager si le EndNoeType = End
+        //car le DialogueTrigger assigne la fonction UnloadScene qui quitte immédiatement le dialogue
+        protected override void HideUI()
         {
             _uiVisibleFlag = false;
 
@@ -357,15 +363,25 @@ namespace Project.NodeSystem
 
             //Pour chaque perso, on joue le tween de fin de dialogue pour les faire disparaître
             //(S'il le perso n'est pas visible alors il est désactivé, donc ça craint rien)
-            _leftCharGoTweener.BeginTweens(TS_CharOnDialogueEnded);
-            _rightCharGoTweener.BeginTweens(TS_CharOnDialogueEnded);
+            if (_leftCharGo.activeSelf)
+            {
+                _leftCharGoTweener.BeginTweens(TS_CharOnDialogueEnded, () => 
+                {
+                    _leftCharImgTweener.ResetAlpha();  //Pour que le perso ne garde pas l'apparence "muet"
+                    _leftCharGo.gameObject.SetActive(false);
+                });
+            }
+            if (_rightCharGo.activeSelf)
+            {
+                _rightCharGoTweener.BeginTweens(TS_CharOnDialogueEnded, () => 
+                {
+                    _rightCharImgTweener.ResetAlpha();  //Pour que le perso ne garde pas l'apparence "muet"
+                    _rightCharGo.gameObject.SetActive(false);
+                });
+            }
 
             //Pour le container, on ferme la fenêtre de dialogue lorsque le tween de fin du container a terminé
-            _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded, () =>
-            {
-                onRunEnded?.Invoke();
-                _containerTweener.gameObject.SetActive(false);
-            });
+            _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded, () => _containerTweener.gameObject.SetActive(false));
         }
 
 
@@ -374,12 +390,28 @@ namespace Project.NodeSystem
         {
             if (data.show.Value)
             {
-                ShowUI(onRunEnded);
+                if (!_uiVisibleFlag)
+                {
+                    ShowUI();
+                }
             }
             else
             {
-                HideUI(onRunEnded);
+                if (_uiVisibleFlag)
+                {
+                    HideUI();
+                }
             }
+
+            StartCoroutine(DelayCo(.5f, onRunEnded));
+        }
+
+        private IEnumerator DelayCo(float delay, Action onDelayEnded)
+        {
+            WaitForSeconds wait = new WaitForSeconds(delay);
+            yield return wait;
+
+            onDelayEnded?.Invoke();
         }
 
 
@@ -402,6 +434,19 @@ namespace Project.NodeSystem
         //Quand l'UI doit afficher des choix, le bouton continuer appelle cette fonction
         private void OnChoicesSet()
         {
+
+            //Si aucun choix n'est affiché, on affiche le canvas
+            if (!_uiVisibleFlag)
+            {
+                //Pour s'assurer que les choix apparaissent une fois le canvas affiché, on 
+                //passe deux fois dans OnRunUINode pour passer _uiVisibleFlag à true
+                UIData uiData = new UIData();
+                uiData.show.Value = true;
+                OnRunUINode(uiData, () => OnChoicesSet());
+                return;
+            }
+
+
             StopAllCoroutines();
 
             _dialogueContent.SetActive(false);
@@ -413,8 +458,6 @@ namespace Project.NodeSystem
 
         private void OnChoiceInfosSet(List<DialogueButtonContainer> dialogueButtonContainers)
         {
-            _choicesContent.SetActive(true);
-
             for (int i = 0; i < _choiceBtns.Length; i++)
             {
                 Button b = _choiceBtns[i];
@@ -433,20 +476,15 @@ namespace Project.NodeSystem
                         b.interactable = true;
 
                         b.onClick.RemoveAllListeners();
-                        b.onClick.AddListener(dialogueButtonContainers[i].OnChoiceClicked);
 
-                        //b.onClick.AddListener(OnChoiceSelected);
-                        //On désactive tous les boutons; le choiceContainer sera désactivé quand la prochaine réplique sera jouée
+                        //On désactive tous les boutons; relance les anims dans le cas où l'on a 2 ChoiceNodes successives
                         b.onClick.AddListener(() =>
                         {
-                            for (int j = 0; j < _choiceBtns.Length; j++)
-                            {
-                                _choiceBtns[j].gameObject.SetActive(false);
-                            }
+                            _choicesContent.gameObject.SetActive(false);
                         });
 
-                        //On affiche le texte du choix sur le bouton
-                        _choiceTmps[i].text = dialogueButtonContainers[i].Text;
+                        //Passe à la node suivante
+                        b.onClick.AddListener(dialogueButtonContainers[i].OnChoiceClicked);
                     }
                     else
                     {
@@ -455,11 +493,11 @@ namespace Project.NodeSystem
                         b.gameObject.SetActive(dialogueButtonContainers[i].ChoiceState == ChoiceStateType.GreyOut);
                         b.interactable = false;
 
-                        //On affiche le texte du choix sur le bouton
-                        _choiceTmps[i].text = dialogueButtonContainers[i].Text;
                     }
 
 
+                    //On affiche le texte du choix sur le bouton
+                    _choiceTmps[i].text = dialogueButtonContainers[i].Text;
                 }
             }
         }
@@ -472,6 +510,10 @@ namespace Project.NodeSystem
 
         #region Audio
 
+
+        /// <summary>
+        /// Joue l'interjection liée à la réplique (si null, ne jouer aucune voix).
+        /// </summary>
         private void SetVoiceAudio(RepliqueData_Replique data, LanguageType selectedLanguage)
         {
             AudioClip clip = data.AudioClips.Find(text => text.Language == selectedLanguage).Data;
@@ -483,13 +525,264 @@ namespace Project.NodeSystem
             }
         }
 
-        // Assigne un son d'écriture propre à chaque personnage (si null, l'écriture sera silencieuse)
-        private void SetCharClip(AudioClip charPrintClip)
+        /// <summary>
+        /// Assigne le son d'écriture propre à chaque personnage (si null, l'écriture sera silencieuse).
+        /// </summary>
+        private void SetCharAudio(AudioClip charPrintClip)
         {
             for (int i = 0; i < _nbCharPrintClips; i++)
             {
                 _charClipSources[i].clip = charPrintClip;
             }
+        }
+
+
+        #endregion
+
+
+
+
+
+        #region Characters
+
+
+        /// <summary>
+        /// Abonné au DialogueManager, appelée quand le script analyse la StartData.
+        /// </summary>
+        private void OnRunStartNode()
+        {
+            //Comme c'est la StartNode, on se contente de cacher les sprites des persos pour ne pas avoir à le faire manuellement.
+
+            //Crée un perso vide pour indiquer à DisplayCharacterAndName() qu'elle doit masquer le sprite correspondant
+            CharacterData_CharacterSO nullData = new CharacterData_CharacterSO();
+            nullData.CharacterName.Value = "";
+
+            //Perso de gauche
+            if (_leftCharImg.sprite)
+            {
+                nullData.FaceDirection.Value = DialogueSide.Right;
+                nullData.SidePlacement.Value = DialogueSide.Left;
+                OnRunCharacterNode(nullData);
+            }
+
+            //Perso de droite
+            if (_rightCharImg.sprite)
+            {
+                nullData.FaceDirection.Value = DialogueSide.Left;
+                nullData.SidePlacement.Value = DialogueSide.Right;
+                OnRunCharacterNode(nullData);
+            }
+
+            //Remet à zéro les flags et paramètres temporaires
+            ResetUI();
+        }
+
+
+        private void OnRunCharacterNode(CharacterData_CharacterSO data, Action onRunEnded = null)
+        {
+
+            bool hasACharacter = data.Character.Value != null;
+            string characterName = hasACharacter ? data.CharacterName.Value : "";
+            Color characterNameColor = hasACharacter ? data.Character.Value.CharacterNameColor : new Color(252, 3, 252, 1); //rose fluo débug
+            Sprite characterSprite = hasACharacter ? data.Sprite.Value : null;
+            DialogueSide faceDir = data.FaceDirection.Value;
+            DialogueSide sidePlacement = data.SidePlacement.Value;
+            AudioClip charPrintClip = hasACharacter ? data.Character.Value.CharPrintClip : null;
+
+
+            //Si aucun perso n'est affiché, on affiche le canvas
+            if (!_uiVisibleFlag && hasACharacter)
+            {
+                //Pour s'assurer que le perso apparaisse une fois le canvas affiché, on 
+                //passe deux fois dans OnRunUINode pour passer _uiVisibleFlag à true
+                UIData uiData = new UIData();
+                uiData.show.Value = true;
+                OnRunUINode(uiData, () => OnRunCharacterNode(data, onRunEnded));
+                return;
+            }
+
+
+
+            //On assigne le son d'écriture du perso en cours
+            SetCharAudio(charPrintClip);
+
+            //On change le sprite du perso dans la bonne direction
+            SetCharacterSprite(characterSprite, faceDir, sidePlacement, onRunEnded);
+
+            //On affiche le perso et son nom à l'écran
+            DisplayCharacterAndName(characterName, characterNameColor, hasACharacter, sidePlacement, onRunEnded);
+
+
+        }
+
+
+
+
+
+        private void SetCharacterSprite(Sprite newSprite, DialogueSide faceDir, DialogueSide sidePlacement, Action onRunEnded = null)
+        {
+            if (!newSprite) return;
+
+
+            Sprite lastSprite;
+            bool shouldRotate;
+
+            if (sidePlacement == DialogueSide.Left)
+            {
+                lastSprite = _leftCharImg.sprite;
+                _leftCharImg.sprite = newSprite;
+
+                //Tourner le perso
+                float rotY = _leftCharImg.transform.eulerAngles.y;
+                bool rotYIsZero = Mathf.Approximately(rotY, 0f);
+                shouldRotate = faceDir == DialogueSide.Left ^ !rotYIsZero;
+                if (shouldRotate)
+                {
+                    //Si on doit changer de direction et que le perso est visible, on peut l'animer
+                    if (_leftCharGo.activeSelf)
+                    {
+                        _leftCharImgTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative, onRunEnded);
+                    }
+                    //Sinon, ça veut dire que notre perso a été désactivé ; on doit le tourner dans la bonne direction avant de l'afficher 
+                    else
+                    {
+                        Vector3 euler = _leftCharImg.transform.eulerAngles;
+                        euler.y = faceDir == DialogueSide.Left ? 180f : 0f;
+                        _leftCharImg.transform.eulerAngles = euler;
+                    }
+                }
+
+
+            }
+            else
+            {
+                lastSprite = _rightCharImg.sprite;
+                _rightCharImg.sprite = newSprite;
+
+
+
+                //Tourner le perso
+                float rotY = _rightCharImg.transform.eulerAngles.y;
+                bool rotYIsZero = Mathf.Approximately(rotY, 0f);
+                shouldRotate = faceDir == DialogueSide.Right ^ !rotYIsZero;
+                if (shouldRotate)
+                {
+                    //Si on doit changer de direction et que le perso est visible, on peut l'animer
+                    if (_rightCharGo.activeSelf)
+                    {
+                        _rightCharImgTweener.BeginTweens(rotYIsZero ? TS_CharRotates : TS_CharRotatesNegative, onRunEnded);
+                    }
+                    //Sinon, ça veut dire que notre perso a été désactivé ; on doit le tourner dans la bonne direction avant de l'afficher 
+                    else
+                    {
+                        Vector3 euler = _rightCharImg.transform.eulerAngles;
+                        euler.y = faceDir == DialogueSide.Right ? 180f : 0f;
+                        _rightCharImg.transform.eulerAngles = euler;
+                    }
+                }
+
+
+            }
+
+
+
+
+
+
+            if (sidePlacement == DialogueSide.Left)
+            {
+                //Animer le perso s'il affiche un sprite différent du précédent
+                if (lastSprite != _leftCharImg.sprite && !shouldRotate && _leftCharGo.activeSelf)
+                {
+                    _leftCharImgTweener.BeginTweens(TS_CharTalks, onRunEnded);
+                }
+
+                //Si l'autre perso est visible, on le passe en muet
+                if (_rightCharImg.gameObject.activeInHierarchy)
+                {
+                    _rightCharImgTweener.BeginTweens(TS_CharMuted);
+                }
+            }
+            else
+            {
+                //Animer le perso s'il affiche un sprite différent du précédent
+                if (lastSprite != _rightCharImg.sprite && !shouldRotate && _rightCharGo.activeSelf)
+                {
+                    _rightCharImgTweener.BeginTweens(TS_CharTalks, onRunEnded);
+                }
+
+                //Si l'autre perso est visible, on le passe en muet
+                if (_leftCharImg.gameObject.activeInHierarchy)
+                {
+                    _leftCharImgTweener.BeginTweens(TS_CharMuted);
+                }
+            }
+        }
+
+
+
+        private void DisplayCharacterAndName(string characterName, Color characterNameColor, bool hasSprite, DialogueSide sidePlacement, Action onRunEnded = null)
+        {
+
+            if (sidePlacement == DialogueSide.Left)
+            {
+                //S'il n'y a pas de sprite en paramètre, on veut cacher le personnage de ce côté
+                if (!hasSprite && _leftCharGo.activeSelf)
+                {
+                    _leftCharGoTweener.BeginTweens(TS_CharDisappears, () =>
+                    {
+                        onRunEnded?.Invoke();
+                        _leftCharGo.gameObject.SetActive(false);
+                    });
+
+                    _leftNameText.transform.parent.gameObject.SetActive(false);
+                    return;
+                }
+                //Sinon, on l'active
+                else if (hasSprite && !_leftCharGo.activeSelf)
+                {
+                    _leftCharGo.gameObject.SetActive(true);
+                    _leftCharGoTweener.BeginTweens(TS_CharAppears, onRunEnded);
+
+                    //On affiche le nom de gauche
+                    _leftNameText.transform.parent.gameObject.SetActive(true);
+                    _rightNameText.transform.parent.gameObject.SetActive(false);
+                }
+
+
+            }
+            else
+            {
+                //S'il n'y a pas de sprite en paramètre, on veut cacher le personnage de ce côté
+                if (!hasSprite && _rightCharGo.activeSelf)
+                {
+                    _rightCharGoTweener.BeginTweens(TS_CharDisappears).SetOnTweensComplete(() =>
+                    {
+                        onRunEnded?.Invoke();
+                        _rightCharGo.gameObject.SetActive(false);
+                    });
+
+                    _rightNameText.transform.parent.gameObject.SetActive(false);
+                    return;
+                }
+                //Sinon, on l'active
+                else if (hasSprite && !_rightCharGo.activeSelf)
+                {
+                    _rightCharGo.gameObject.SetActive(true);
+                    _rightCharGoTweener.BeginTweens(TS_CharAppears, onRunEnded);
+
+                    //On affiche le nom de droite
+                    _leftNameText.transform.parent.gameObject.SetActive(false);
+                    _rightNameText.transform.parent.gameObject.SetActive(true);
+                }
+
+
+            }
+
+            //On change le nom du perso en question
+            _leftNameText.text = _rightNameText.text = characterName;
+            _leftNameText.color = _rightNameText.color = characterNameColor;
+
         }
 
 
@@ -512,10 +805,7 @@ namespace Project.NodeSystem
                 //passe deux fois dans OnRunUINode pour passer _uiVisibleFlag à true
                 UIData uiData = new UIData();
                 uiData.show.Value = true;
-                OnRunUINode(uiData, () => 
-                {
-                    OnRunRepliqueNode(data, selectedLanguage);
-                });
+                OnRunUINode(uiData, () => OnRunRepliqueNode(data, selectedLanguage));
                 return;
             }
 

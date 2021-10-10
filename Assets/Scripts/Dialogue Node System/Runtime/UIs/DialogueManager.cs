@@ -20,7 +20,7 @@ namespace Project.NodeSystem
         #region Components
 
         [Tooltip("Le script qui s'abonnera aux fonctions des events.")]
-        private DE_Trigger _triggerScript;
+        private DE_EventCaller _triggerScript;
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace Project.NodeSystem
         public Action OnEndDialogue { get; set; }
         public Action OnRunStartNode { get; set; }
         public Action<UIData, Action> OnRunUINode { get; set; }
-        public Action<CharacterData_CharacterSO> OnRunCharacterNode { get; set; }
+        public Action<CharacterData_CharacterSO, Action> OnRunCharacterNode { get; set; }
         public Action<BackgroundData_Transition, TransitionSettingsSO, TransitionSettingsSO> OnRunBackgroundNode { get; set; }
         public Action<RepliqueData_Replique, LanguageType> OnRunRepliqueNode { get; set; }
 
@@ -63,7 +63,7 @@ namespace Project.NodeSystem
 
         #region Init
 
-        public void InitAndStartNewDialogue(DialogueContainerSO newDialogue, LanguageType? newLanugage = null, DE_Trigger newTriggerScript = null)
+        public void InitAndStartNewDialogue(DialogueContainerSO newDialogue, LanguageType? newLanugage = null, DE_EventCaller newTriggerScript = null)
         {
             if (newLanugage.HasValue) _selectedLanguage = newLanugage.Value;
             _dialogue = newDialogue;
@@ -104,7 +104,7 @@ namespace Project.NodeSystem
             {
                 bool eligible = true;
 
-                //Pour chaque condition de la node, on regarde si la valeur du DE_Trigger et celle de la node correspondent
+                //Pour chaque condition de la node, on regarde si la valeur du DE_EventCaller est celle de la node correspondent
                 foreach (EventData_StringEventCondition item in startData.StringConditions)
                 {
                     //Si ce n'est pas le cas, la StartNode n'est pas éligible
@@ -175,7 +175,7 @@ namespace Project.NodeSystem
             bool checkBranch = true;
             foreach (EventData_StringEventCondition item in nodeData.StringConditions)
             {
-                //Pour chaque condition de la BranchNode, on regarde si la valeur du DE_Trigger et celle de la node correspondent
+                //Pour chaque condition de la BranchNode, on regarde si la valeur du DE_EventCaller et celle de la node correspondent
                 if (!UseStringEventCondition.DialogueConditionEvents(_triggerScript, item.StringEvent.Value, item.ConditionType.Value, item.Number.Value))
                 {
                     checkBranch = false;
@@ -212,7 +212,7 @@ namespace Project.NodeSystem
                 }
                 else
                 {
-                    //Pour chaque stringEvent, on récupère la variable correspondante dans DE_Trigger et on la modifie selon le modifierType
+                    //Pour chaque stringEvent, on récupère la variable correspondante dans DE_EventCaller et on la modifie selon le modifierType
                     EventData_StringEventModifier stringEvent = item as EventData_StringEventModifier;
                     stringEvent.Invoke(_triggerScript);
 
@@ -224,13 +224,21 @@ namespace Project.NodeSystem
 
         protected override void RunNode(EndData nodeData)
         {
+            //Pour la node de fin, on cache le UI avant de lancer Start ou End Dialogue.
+            UIData uiData = new UIData();
+            uiData.show.Value = false;
+
             switch (nodeData.EndNodeType.Value)
             {
                 case EndNodeType.End:
-                    EndDialogue();
+                    //Le DialogueTrigger assigne une fonction pour quitter la scène, qui est appelée avant HideUI() du DialogueUI.
+                    //Donc pas le choix, on doit l'activer manuellement.
+                    OnRunUINode?.Invoke(uiData, EndDialogue);
+                    //EndDialogue();
                     break;
                 case EndNodeType.ReturnToStart:
-                    StartDialogue();
+                    OnRunUINode?.Invoke(uiData, StartDialogue);
+                    //StartDialogue();
                     break;
                 default:
                     Debug.Log($"End Node Type \"{nodeData.EndNodeType.Value}\" not implemented");
@@ -301,11 +309,18 @@ namespace Project.NodeSystem
 
         #region Implementations
 
+        private IEnumerator DelayCo(float delay, Action onDelayEnded)
+        {
+            WaitForSeconds wait = new WaitForSeconds(delay);
+            yield return wait;
+            onDelayEnded?.Invoke();
+        }
+
         private void DisplayCharacters(CharacterData nodeData)
         {
 
             //Pour chaque conteneur de la CharacterNode...
-            for (int i = _curIndex; i < nodeData.Characters.Count; i++)
+            for (int i = _curIndex; i < nodeData.Characters.Count;)
             {
                 _curIndex = i + 1;
 
@@ -315,10 +330,6 @@ namespace Project.NodeSystem
                 {
                     character.CharacterName.Value = character.CharacterNames[(int)_selectedLanguage];
                 }
-
-                //Et on l'assigne à l'UI
-                OnRunCharacterNode?.Invoke(character);
-
 
 
                 //Utilise l'autoDelay de la nodeData pour afficher les persos les uns après les autres si besoin
@@ -337,28 +348,31 @@ namespace Project.NodeSystem
 
                 if (nodeData.Characters[i].UseAutoDelay.Value)
                 {
-                    StartCoroutine(DelayCo(nodeData.Characters[i].AutoDelayDuration.Value, onCharacterDisplayed));
+                    //Si le perso a un SO, on l'assigne à l'UI
+                    OnRunCharacterNode?.Invoke(character, () => 
+                    {
+                        StartCoroutine(DelayCo(nodeData.Characters[i].AutoDelayDuration.Value, onCharacterDisplayed));
+                    });
+
+                    
                 }
                 else
                 {
-                    onCharacterDisplayed?.Invoke();
+                    OnRunCharacterNode?.Invoke(character, onCharacterDisplayed);
+                    //onCharacterDisplayed?.Invoke();
                 }
+
+
+
 
                 break;
             }
         }
 
-        private IEnumerator DelayCo(float delay, Action onDelayEnded)
-        {
-            WaitForSeconds wait = new WaitForSeconds(delay);
-            yield return wait;
-            onDelayEnded?.Invoke();
-        }
-
         private void DisplayRepliques(RepliqueData nodeData)
         {
             //Pour chaque conteneur de la RepliqueNode...
-            for (int i = _curIndex; i < nodeData.Repliques.Count; i++)
+            for (int i = _curIndex; i < nodeData.Repliques.Count;)
             {
                 _curIndex = i + 1;
                 //On récupère son texte et son audio en fonction de la langue...
@@ -420,7 +434,7 @@ namespace Project.NodeSystem
             //Dans ce cas, pour éviter les erreurs, on arrête le dialogue.
             else
             {
-                OnEndDialogue?.Invoke();
+                EndDialogue();
             }
 
 

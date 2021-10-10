@@ -310,7 +310,7 @@ namespace Project.NodeSystem.Editor
 
 
         /// <summary>
-        /// Ajoute un ScriptableEvent à la Node, ce qui permet de lier des DialogueEventSO aux DE_Trigger de la scène.
+        /// Ajoute un ScriptableEvent à la Node, ce qui permet de lier des DialogueEventSO aux DE_EventCaller de la scène.
         /// </summary>
         /// <param name="node"></param>
         /// <param name="eventData"></param>

@@ -135,6 +135,8 @@ namespace Project.NodeSystem.Editor
 
             Button saveButton = new Button(() => Save()) { text = "Save" };
             Button loadButton = new Button(() => Load()) { text = "Load" };
+            Button exportButton = new Button(() => CSVCustomTools.SaveDialoguesToCSV()) { text = "Export CSV" };
+            Button importButton = new Button(() => CSVCustomTools.LoadDialoguesFromCSV()) { text = "Import CSV" };
 
 
             //Pour afficher/cacher la grille
@@ -184,14 +186,16 @@ namespace Project.NodeSystem.Editor
             dialogueContainerLabel = new Label();
             dialogueContainerLabel.AddToClassList("dialogueContainerName");
 
+            toolbar.Add(dialogueContainerLabel);
             toolbar.Add(saveButton);
             toolbar.Add(loadButton);
+            toolbar.Add(exportButton);
+            toolbar.Add(importButton);
             toolbar.Add(showGridLabel);
             toolbar.Add(showGridToggle);
             toolbar.Add(nbChoicesLabel);
             toolbar.Add(nbChoicedAllowed);
             toolbar.Add(languageDropdown);
-            toolbar.Add(dialogueContainerLabel);
 
             rootVisualElement.Add(toolbar);
         }

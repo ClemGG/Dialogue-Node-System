@@ -38,11 +38,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  Duration: 0.2
+  Duration: 0.4
   Delay: 0
   Loop: 0
   PingPong: 0
-  UseFromAsStart: 0
+  UseFromAsStart: 1
   RelativeToTransform: 1
   From: {x: 0, y: 0, z: 0}
   To: {x: -400, y: 0, z: 0}

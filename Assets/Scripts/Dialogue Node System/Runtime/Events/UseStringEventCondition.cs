@@ -8,7 +8,7 @@ namespace Project.NodeSystem
     public static class UseStringEventCondition
     {
         //Utilisé par la BranchNode et la ChoiceNode
-        public static bool DialogueConditionEvents(DE_Trigger triggerScript, string stringEvent, StringEventConditionType stringEventConditionType, float value = 0)
+        public static bool DialogueConditionEvents(DE_EventCaller triggerScript, string stringEvent, StringEventConditionType stringEventConditionType, float value = 0)
         {
             //On utilise  la réflection pour récupérer la variable ou propriété 
             //automatiquement sans avoir à la réécrire dans un script à chaque fois.

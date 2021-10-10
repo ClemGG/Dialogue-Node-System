@@ -23,7 +23,7 @@ namespace Project.Utilities.Tween.Editor
         private SerializedProperty _to;
         private SerializedProperty _fromColor;
         private SerializedProperty _toColor;
-        private SerializedProperty _onComplete;
+        //private SerializedProperty _onComplete;
 
 
         private void OnEnable()
@@ -41,7 +41,7 @@ namespace Project.Utilities.Tween.Editor
             _to = serializedObject.FindProperty("To");
             _fromColor = serializedObject.FindProperty("FromColor");
             _toColor = serializedObject.FindProperty("ToColor");
-            _onComplete = serializedObject.FindProperty("OnColor");
+            //_onComplete = serializedObject.FindProperty("OnComplete");
         }
 
         public override void OnInspectorGUI()
@@ -63,17 +63,17 @@ namespace Project.Utilities.Tween.Editor
             switch (_animationType.intValue)
             {
                 case (int)TweenAnimationType.Color:
-                    if (_useFromAsStart.boolValue)
-                    {
+                    //if (_useFromAsStart.boolValue)
+                    //{
                         EditorGUILayout.PropertyField(_fromColor);
-                    }
+                    //}
                     EditorGUILayout.PropertyField(_toColor);
                     break;
                 default:
-                    if (_useFromAsStart.boolValue)
-                    {
+                    //if (_useFromAsStart.boolValue)
+                    //{
                         EditorGUILayout.PropertyField(_from);
-                    }
+                    //}
                     EditorGUILayout.PropertyField(_to);
                     break;
             }

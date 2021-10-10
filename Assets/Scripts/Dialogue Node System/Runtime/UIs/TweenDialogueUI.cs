@@ -356,7 +356,7 @@ namespace Project.NodeSystem
         }
 
 
-        protected override void ShowUI(Action onRunEnded = null)
+        protected override void ShowUI()
         {
 
             _uiVisibleFlag = true;
@@ -392,7 +392,7 @@ namespace Project.NodeSystem
         }
 
 
-        protected override void HideUI(Action onRunEnded = null)
+        protected override void HideUI()
         {
             _uiVisibleFlag = false;
 
@@ -403,10 +403,7 @@ namespace Project.NodeSystem
             _rightCharGoTweener.BeginTweens(TS_CharOnDialogueEnded);
 
             //Pour le container, on ferme la fenêtre de dialogue lorsque le tween de fin du container a terminé
-            _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded).SetOnTweensComplete(() =>
-            {
-                onRunEnded?.Invoke();
-            });
+            _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded);
         }
 
 
@@ -775,7 +772,7 @@ namespace Project.NodeSystem
         }
 
 
-        private void OnRunCharacterNode(CharacterData_CharacterSO data)
+        private void OnRunCharacterNode(CharacterData_CharacterSO data, Action onRunEnded = null)
         {
             bool hasACharacter = data.Character.Value != null;
 

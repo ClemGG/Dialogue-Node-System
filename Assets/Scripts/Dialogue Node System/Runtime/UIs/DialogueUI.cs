@@ -120,6 +120,7 @@ namespace Project.NodeSystem
             ResetUI();
         }
 
+
         private void EndDialogue()
         {
             HideUI();
@@ -146,13 +147,13 @@ namespace Project.NodeSystem
         /// Affiche le canvas à l'écran
         /// </summary>
         /// <param name="onRunEnded">L'action à effectuer une fois le canvas affiché</param>
-        protected abstract void ShowUI(Action onRunEnded = null);
+        protected abstract void ShowUI();
 
         /// <summary>
         /// Cache le canvas à l'écran
         /// </summary>
         /// <param name="onRunEnded">L'action à effectuer une fois le canvas caché</param>
-        protected abstract void HideUI(Action onRunEnded = null);
+        protected abstract void HideUI();
 
 
         #endregion

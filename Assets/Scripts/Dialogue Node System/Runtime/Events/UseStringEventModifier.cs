@@ -9,7 +9,7 @@ namespace Project.NodeSystem
 
 
         //Utilisé par l'EventNode
-        public static void DialogueModifierEvents(DE_Trigger triggerScript, string stringEvent, StringEventModifierType stringEventModifierType, float value = 0)
+        public static void DialogueModifierEvents(DE_EventCaller triggerScript, string stringEvent, StringEventModifierType stringEventModifierType, float value = 0)
         {
 
             //On utilise  la réflection pour récupérer la variable ou propriété 

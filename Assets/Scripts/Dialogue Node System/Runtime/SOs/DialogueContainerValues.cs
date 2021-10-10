@@ -113,10 +113,10 @@ namespace Project.NodeSystem
         public ContainerEnum<StringEventModifierType> ModifierType = new ContainerEnum<StringEventModifierType>();
 
         /// <summary>
-        /// Pour chaque stringEvent, on récupère la variable correspondante dans DE_Trigger et on la modifie selon le modifierType
+        /// Pour chaque stringEvent, on récupère la variable correspondante dans DE_EventCaller et on la modifie selon le modifierType
         /// </summary>
         /// <param name="triggerScript"></param>
-        public void Invoke(DE_Trigger triggerScript)
+        public void Invoke(DE_EventCaller triggerScript)
         {
             UseStringEventModifier.DialogueModifierEvents(triggerScript, StringEvent.Value, ModifierType.Value, Number.Value);
         }

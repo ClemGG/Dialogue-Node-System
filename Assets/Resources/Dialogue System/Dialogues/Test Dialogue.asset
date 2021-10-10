@@ -13,284 +13,476 @@ MonoBehaviour:
   m_Name: Test Dialogue
   m_EditorClassIdentifier: 
   linkDatas:
-  - BaseNodeGuid: 16261766-9fcf-4fce-b998-e1741d4b7df7
+  - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     BasePortName: Start
-    TargetNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
+    TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
     TargetPortName: Input
-  - BaseNodeGuid: 16261766-9fcf-4fce-b998-e1741d4b7df7
+  - BaseNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
+    BasePortName: Output
+    TargetNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
+    TargetPortName: Input
+  - BaseNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
+    BasePortName: Output
+    TargetNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
+    TargetPortName: Input
+  - BaseNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
+    BasePortName: Output
+    TargetNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
+    TargetPortName: Input
+  - BaseNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
+    BasePortName: Output
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+    TargetPortName: End
+  - BaseNodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
+    BasePortName: Output
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+    TargetPortName: End
+  - BaseNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
+    BasePortName: True
+    TargetNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    TargetPortName: Input
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: f371b000-a06a-4a08-9dd5-1590799aa77c
+    TargetNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
+    TargetPortName: Input
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: 9fae518d-48cd-48e7-be66-e0b32234e70c
+    TargetNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
+    TargetPortName: Input
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: b751bb31-5ce2-4bbd-aedf-ed37556e3ea2
+    TargetNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
+    TargetPortName: Input
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: be6d0a8c-63f7-4f8d-a87f-b4d8254ccc8d
+    TargetNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
+    TargetPortName: Input
+  - BaseNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    BasePortName: b5f0b489-ef0e-4335-a271-a5987d3ce4ef
+    TargetNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
+    TargetPortName: Input
+  - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    BasePortName: de748355-60d9-4379-9d7b-454be31a8e87
+    TargetNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
+    TargetPortName: Input
+  - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    BasePortName: 29e67d42-b4df-41f0-b517-890c03cd5eaa
+    TargetNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
+    TargetPortName: Input
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: e7cad1a1-a4f4-42d8-a82d-fb87d2cf8c14
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+    TargetPortName: End
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: 8f9a3cf7-7cf9-4b8c-b8c5-151a50d88d28
+    TargetNodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
+    TargetPortName: Input
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: 9c52129d-041b-4229-a83d-f231082c9716
+    TargetNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
+    TargetPortName: Input
+  - BaseNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    BasePortName: Output
+    TargetNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
+    TargetPortName: Input
+  - BaseNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
+    BasePortName: Output
+    TargetNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
+    TargetPortName: Input
+  - BaseNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
+    BasePortName: Output
+    TargetNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
+    TargetPortName: Input
+  - BaseNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
+    BasePortName: Output
+    TargetNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
+    TargetPortName: Input
+  - BaseNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
+    BasePortName: Output
+    TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
+    TargetPortName: Input
+  - BaseNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
+    BasePortName: Output
+    TargetNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
+    TargetPortName: Input
+  - BaseNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
+    BasePortName: Output
+    TargetNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+    TargetPortName: Input
+  - BaseNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    BasePortName: Output
+    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    TargetPortName: Input
+  - BaseNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
+    BasePortName: Output
+    TargetNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
+    TargetPortName: Input
+  - BaseNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    BasePortName: Output
+    TargetNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
+    TargetPortName: Input
+  - BaseNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
+    BasePortName: Output
+    TargetNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
+    TargetPortName: Input
+  - BaseNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
+    BasePortName: Output
+    TargetNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
+    TargetPortName: Input
+  - BaseNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
+    BasePortName: Output
+    TargetNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    TargetPortName: Input
+  - BaseNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
+    BasePortName: Output
+    TargetNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+    TargetPortName: Input
+  - BaseNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+    BasePortName: Output
+    TargetNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    TargetPortName: Input
+  - BaseNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
+    BasePortName: Output
+    TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    TargetPortName: Input
+  - BaseNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
+    BasePortName: Output
+    TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    TargetPortName: Input
+  - BaseNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
+    BasePortName: Output
+    TargetNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    TargetPortName: Input
+  - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    BasePortName: Output
+    TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
+    TargetPortName: Input
+  - BaseNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    BasePortName: Output
+    TargetNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
+    TargetPortName: Input
+  - BaseNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
+    BasePortName: Output
+    TargetNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
+    TargetPortName: Input
+  - BaseNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
+    BasePortName: Output
+    TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    TargetPortName: Input
+  - BaseNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
+    BasePortName: Output
+    TargetNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
+    TargetPortName: Input
+  - BaseNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
+    BasePortName: Output
+    TargetNodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
+    TargetPortName: Input
+  - BaseNodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+    BasePortName: Output
+    TargetNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    TargetPortName: Input
+  - BaseNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
+    BasePortName: Output
+    TargetNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    TargetPortName: Input
+  - BaseNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
+    BasePortName: Output
+    TargetNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
+    TargetPortName: Input
+  - BaseNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    BasePortName: Output
+    TargetNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
+    TargetPortName: Input
+  - BaseNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
+    BasePortName: Output
+    TargetNodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
+    TargetPortName: Input
+  - BaseNodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
     BasePortName: Start
-    TargetNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
+    TargetNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
+    TargetPortName: Input
+  - BaseNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
+    BasePortName: Start
+    TargetNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
     TargetPortName: Input
   - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     BasePortName: Start
-    TargetNodeGuid: dfbb99f3-ee1c-46b8-94c8-59a7e1cbee6d
+    TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
     TargetPortName: Input
-  - BaseNodeGuid: d377df9c-7a3e-4d82-8373-63cb05e81d44
+  - BaseNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
     BasePortName: Output
-    TargetNodeGuid: 01793c26-ad00-4a51-bd35-1f6584dcab22
+    TargetNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
     TargetPortName: Input
-  - BaseNodeGuid: d377df9c-7a3e-4d82-8373-63cb05e81d44
+  - BaseNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
     BasePortName: Output
-    TargetNodeGuid: 01793c26-ad00-4a51-bd35-1f6584dcab22
+    TargetNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
     TargetPortName: Input
-  - BaseNodeGuid: 0097ede0-c4ee-4071-99ca-79a961ae7d4d
+  - BaseNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
     BasePortName: Output
-    TargetNodeGuid: d3912b84-79e3-4668-9ca5-0d0c781c134f
+    TargetNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
     TargetPortName: Input
-  - BaseNodeGuid: 0097ede0-c4ee-4071-99ca-79a961ae7d4d
+  - BaseNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
     BasePortName: Output
-    TargetNodeGuid: d3912b84-79e3-4668-9ca5-0d0c781c134f
-    TargetPortName: Input
-  - BaseNodeGuid: 73c80af5-3e99-42aa-ac3f-6bb063bd75f0
-    BasePortName: Output
-    TargetNodeGuid: 22f9a8e1-1a44-44be-86b6-79bd72926023
-    TargetPortName: Input
-  - BaseNodeGuid: 73c80af5-3e99-42aa-ac3f-6bb063bd75f0
-    BasePortName: Output
-    TargetNodeGuid: 22f9a8e1-1a44-44be-86b6-79bd72926023
-    TargetPortName: Input
-  - BaseNodeGuid: 552a26c6-73c0-4599-a6c8-4e9d6bdc4132
-    BasePortName: Output
-    TargetNodeGuid: 56b977c9-69ca-4097-8423-849c1a19c579
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
     TargetPortName: End
-  - BaseNodeGuid: 9fb48153-e1f6-4c6e-b606-dfa4504cab0c
+  - BaseNodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
     BasePortName: Output
-    TargetNodeGuid: d1e1a140-6d5f-417c-95d6-f4f3fd698a40
-    TargetPortName: Input
-  - BaseNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-    BasePortName: Output
-    TargetNodeGuid: 35432d0a-cef1-4dd6-8858-457c25692159
-    TargetPortName: Input
-  - BaseNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-    BasePortName: Output
-    TargetNodeGuid: 35432d0a-cef1-4dd6-8858-457c25692159
-    TargetPortName: Input
-  - BaseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+    TargetPortName: End
+  - BaseNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
     BasePortName: True
-    TargetNodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
+    TargetNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
     TargetPortName: Input
-  - BaseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
-    BasePortName: False
-    TargetNodeGuid: 57731a43-8328-4123-9c2c-b00e14a4435c
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: f371b000-a06a-4a08-9dd5-1590799aa77c
+    TargetNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
     TargetPortName: Input
-  - BaseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
-    BasePortName: True
-    TargetNodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: 9fae518d-48cd-48e7-be66-e0b32234e70c
+    TargetNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
     TargetPortName: Input
-  - BaseNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
-    BasePortName: False
-    TargetNodeGuid: 57731a43-8328-4123-9c2c-b00e14a4435c
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: b751bb31-5ce2-4bbd-aedf-ed37556e3ea2
+    TargetNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
     TargetPortName: Input
-  - BaseNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
-    BasePortName: a5057794-33ea-41b8-a12a-35d9523f5ecd
-    TargetNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+  - BaseNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    BasePortName: be6d0a8c-63f7-4f8d-a87f-b4d8254ccc8d
+    TargetNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
     TargetPortName: Input
-  - BaseNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
-    BasePortName: 3d43a709-6ee9-4e28-aff5-96b6b7f334a8
-    TargetNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
+  - BaseNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    BasePortName: b5f0b489-ef0e-4335-a271-a5987d3ce4ef
+    TargetNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
     TargetPortName: Input
-  - BaseNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
-    BasePortName: a5057794-33ea-41b8-a12a-35d9523f5ecd
-    TargetNodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
+  - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    BasePortName: de748355-60d9-4379-9d7b-454be31a8e87
+    TargetNodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
     TargetPortName: Input
-  - BaseNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
-    BasePortName: 3d43a709-6ee9-4e28-aff5-96b6b7f334a8
-    TargetNodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
+  - BaseNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    BasePortName: 29e67d42-b4df-41f0-b517-890c03cd5eaa
+    TargetNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
     TargetPortName: Input
-  - BaseNodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
-    BasePortName: Output
-    TargetNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
-    TargetPortName: Input
-  - BaseNodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
-    BasePortName: Output
-    TargetNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
-    TargetPortName: Input
-  - BaseNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
-    BasePortName: Output
-    TargetNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
-    TargetPortName: Input
-  - BaseNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
-    BasePortName: Output
-    TargetNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
-    TargetPortName: Input
-  - BaseNodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
-    BasePortName: Output
-    TargetNodeGuid: b5027263-f0a8-408e-a955-4d4ac3722b44
-    TargetPortName: Input
-  - BaseNodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
-    BasePortName: Output
-    TargetNodeGuid: b5027263-f0a8-408e-a955-4d4ac3722b44
-    TargetPortName: Input
-  - BaseNodeGuid: 63226e30-95bc-410a-928b-5e5bcf1f3022
-    BasePortName: Output
-    TargetNodeGuid: 23088e1a-9290-4533-91ec-1d3d5338523f
-    TargetPortName: Input
-  - BaseNodeGuid: 63226e30-95bc-410a-928b-5e5bcf1f3022
-    BasePortName: Output
-    TargetNodeGuid: 23088e1a-9290-4533-91ec-1d3d5338523f
-    TargetPortName: Input
-  - BaseNodeGuid: 57731a43-8328-4123-9c2c-b00e14a4435c
-    BasePortName: Output
-    TargetNodeGuid: 1102e459-1e79-4b48-9156-204fbd593b11
-    TargetPortName: Input
-  - BaseNodeGuid: 57731a43-8328-4123-9c2c-b00e14a4435c
-    BasePortName: Output
-    TargetNodeGuid: 1102e459-1e79-4b48-9156-204fbd593b11
-    TargetPortName: Input
-  - BaseNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
-    BasePortName: Output
-    TargetNodeGuid: 93a58b2a-eba2-4039-ad66-d486751cff42
-    TargetPortName: Input
-  - BaseNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
-    BasePortName: Output
-    TargetNodeGuid: 93a58b2a-eba2-4039-ad66-d486751cff42
-    TargetPortName: Input
-  - BaseNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
-    BasePortName: Output
-    TargetNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
-    TargetPortName: Input
-  - BaseNodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
-    BasePortName: Output
-    TargetNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
-    TargetPortName: Input
-  - BaseNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
-    BasePortName: Output
-    TargetNodeGuid: 63226e30-95bc-410a-928b-5e5bcf1f3022
-    TargetPortName: Input
-  - BaseNodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
-    BasePortName: Output
-    TargetNodeGuid: 63226e30-95bc-410a-928b-5e5bcf1f3022
-    TargetPortName: Input
-  - BaseNodeGuid: 93a58b2a-eba2-4039-ad66-d486751cff42
-    BasePortName: Output
-    TargetNodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: e7cad1a1-a4f4-42d8-a82d-fb87d2cf8c14
+    TargetNodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
     TargetPortName: End
-  - BaseNodeGuid: 93a58b2a-eba2-4039-ad66-d486751cff42
-    BasePortName: Output
-    TargetNodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
-    TargetPortName: End
-  - BaseNodeGuid: b5027263-f0a8-408e-a955-4d4ac3722b44
-    BasePortName: Output
-    TargetNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: 8f9a3cf7-7cf9-4b8c-b8c5-151a50d88d28
+    TargetNodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
     TargetPortName: Input
-  - BaseNodeGuid: b5027263-f0a8-408e-a955-4d4ac3722b44
-    BasePortName: Output
-    TargetNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
+  - BaseNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    BasePortName: 9c52129d-041b-4229-a83d-f231082c9716
+    TargetNodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
     TargetPortName: Input
-  - BaseNodeGuid: 1102e459-1e79-4b48-9156-204fbd593b11
+  - BaseNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
     BasePortName: Output
-    TargetNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
+    TargetNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
     TargetPortName: Input
-  - BaseNodeGuid: 1102e459-1e79-4b48-9156-204fbd593b11
+  - BaseNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
     BasePortName: Output
-    TargetNodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
+    TargetNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
     TargetPortName: Input
-  - BaseNodeGuid: 23088e1a-9290-4533-91ec-1d3d5338523f
+  - BaseNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
     BasePortName: Output
-    TargetNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
+    TargetNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
     TargetPortName: Input
-  - BaseNodeGuid: 23088e1a-9290-4533-91ec-1d3d5338523f
+  - BaseNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
     BasePortName: Output
-    TargetNodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
+    TargetNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
     TargetPortName: Input
-  - BaseNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
+  - BaseNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
     BasePortName: Output
-    TargetNodeGuid: d377df9c-7a3e-4d82-8373-63cb05e81d44
+    TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
     TargetPortName: Input
-  - BaseNodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
+  - BaseNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
     BasePortName: Output
-    TargetNodeGuid: d377df9c-7a3e-4d82-8373-63cb05e81d44
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
     TargetPortName: Input
-  - BaseNodeGuid: dfbb99f3-ee1c-46b8-94c8-59a7e1cbee6d
+  - BaseNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
     BasePortName: Output
-    TargetNodeGuid: d1e1a140-6d5f-417c-95d6-f4f3fd698a40
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
     TargetPortName: Input
-  - BaseNodeGuid: eebb3192-3de9-4c9c-ba89-398f982f4df2
+  - BaseNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
     BasePortName: Output
-    TargetNodeGuid: 22f9a8e1-1a44-44be-86b6-79bd72926023
+    TargetNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
     TargetPortName: Input
-  - BaseNodeGuid: 35432d0a-cef1-4dd6-8858-457c25692159
+  - BaseNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
+    BasePortName: Output
+    TargetNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+    TargetPortName: Input
+  - BaseNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    BasePortName: Output
+    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    TargetPortName: Input
+  - BaseNodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
+    BasePortName: Output
+    TargetNodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
+    TargetPortName: Input
+  - BaseNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    BasePortName: Output
+    TargetNodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
+    TargetPortName: Input
+  - BaseNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
+    BasePortName: Output
+    TargetNodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
+    TargetPortName: Input
+  - BaseNodeGuid: 1611cf1b-041b-425b-833b-163e30461252
+    BasePortName: Output
+    TargetNodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
+    TargetPortName: Input
+  - BaseNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
+    BasePortName: Output
+    TargetNodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    TargetPortName: Input
+  - BaseNodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
+    BasePortName: Output
+    TargetNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+    TargetPortName: Input
+  - BaseNodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+    BasePortName: Output
+    TargetNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    TargetPortName: Input
+  - BaseNodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
+    BasePortName: Output
+    TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    TargetPortName: Input
+  - BaseNodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
+    BasePortName: Output
+    TargetNodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    TargetPortName: Input
+  - BaseNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
+    BasePortName: Output
+    TargetNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    TargetPortName: Input
+  - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    BasePortName: Output
+    TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
+    TargetPortName: Input
+  - BaseNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    BasePortName: Output
+    TargetNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
+    TargetPortName: Input
+  - BaseNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
+    BasePortName: Output
+    TargetNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
+    TargetPortName: Input
+  - BaseNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
+    BasePortName: Output
+    TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    TargetPortName: Input
+  - BaseNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
+    BasePortName: Output
+    TargetNodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
+    TargetPortName: Input
+  - BaseNodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
+    BasePortName: Output
+    TargetNodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
+    TargetPortName: Input
+  - BaseNodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+    BasePortName: Output
+    TargetNodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    TargetPortName: Input
+  - BaseNodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
+    BasePortName: Output
+    TargetNodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    TargetPortName: Input
+  - BaseNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
+    BasePortName: Output
+    TargetNodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
+    TargetPortName: Input
+  - BaseNodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    BasePortName: Output
+    TargetNodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
+    TargetPortName: Input
+  - BaseNodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
+    BasePortName: Output
+    TargetNodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
+    TargetPortName: Input
+  - BaseNodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
+    BasePortName: Output
+    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    TargetPortName: Input
+  - BaseNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
     BasePortName: Start
-    TargetNodeGuid: 9d31d82b-4d7d-4da7-8327-0d1f23e55197
-    TargetPortName: End
-  - BaseNodeGuid: 35432d0a-cef1-4dd6-8858-457c25692159
-    BasePortName: Start
-    TargetNodeGuid: 9d31d82b-4d7d-4da7-8327-0d1f23e55197
-    TargetPortName: End
-  - BaseNodeGuid: 01793c26-ad00-4a51-bd35-1f6584dcab22
-    BasePortName: Start
-    TargetNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
+    TargetNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
     TargetPortName: Input
-  - BaseNodeGuid: 01793c26-ad00-4a51-bd35-1f6584dcab22
+  - BaseNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
     BasePortName: Start
-    TargetNodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
-    TargetPortName: Input
-  - BaseNodeGuid: d1e1a140-6d5f-417c-95d6-f4f3fd698a40
-    BasePortName: Start
-    TargetNodeGuid: 0097ede0-c4ee-4071-99ca-79a961ae7d4d
-    TargetPortName: Input
-  - BaseNodeGuid: d1e1a140-6d5f-417c-95d6-f4f3fd698a40
-    BasePortName: Start
-    TargetNodeGuid: 0097ede0-c4ee-4071-99ca-79a961ae7d4d
-    TargetPortName: Input
-  - BaseNodeGuid: d3912b84-79e3-4668-9ca5-0d0c781c134f
-    BasePortName: Start
-    TargetNodeGuid: eebb3192-3de9-4c9c-ba89-398f982f4df2
-    TargetPortName: Input
-  - BaseNodeGuid: 22f9a8e1-1a44-44be-86b6-79bd72926023
-    BasePortName: Start
-    TargetNodeGuid: 552a26c6-73c0-4599-a6c8-4e9d6bdc4132
+    TargetNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
     TargetPortName: Input
   StartDatas:
-  - NodeGuid: 16261766-9fcf-4fce-b998-e1741d4b7df7
-    Position: {x: -221.6, y: 114.40001}
-    isDefault:
-      Value: 0
-    StringConditions: []
   - NodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
-    Position: {x: -1357.6, y: 247.2}
+    Position: {x: -2088, y: 247.2}
     isDefault:
       Value: 1
     StringConditions: []
   UIDatas:
-  - NodeGuid: d377df9c-7a3e-4d82-8373-63cb05e81d44
-    Position: {x: 56, y: 293.59998}
+  - NodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
+    Position: {x: 11326.4, y: -107.2}
     show:
       Value: 0
-  - NodeGuid: 0097ede0-c4ee-4071-99ca-79a961ae7d4d
-    Position: {x: -574.4, y: -444}
-    show:
-      Value: 0
-  - NodeGuid: 73c80af5-3e99-42aa-ac3f-6bb063bd75f0
-    Position: {x: -147.2, y: -555.2}
-    show:
-      Value: 1
-  - NodeGuid: 552a26c6-73c0-4599-a6c8-4e9d6bdc4132
-    Position: {x: 272, y: -555.2}
-    show:
-      Value: 0
-  - NodeGuid: 9fb48153-e1f6-4c6e-b606-dfa4504cab0c
-    Position: {x: -982.4, y: -446.40002}
-    show:
-      Value: 1
   BackgroundDatas:
-  - NodeGuid: cbb88ce5-3907-4ea6-9380-583384c0ef9a
-    Position: {x: -1084.8, y: 247.2}
+  - NodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    Position: {x: 12496, y: -107.2}
     Transition:
       Value:
         ID:
           Value: 0
         BackgroundTex:
-          Value: {fileID: 2800000, guid: c895f18b11355ac45a261a860e55f43b, type: 3}
+          Value: {fileID: 2800000, guid: 6295bebff7854d74aa08f81223be5e1f, type: 3}
         BackgroundName:
-          Value: tex_background2
+          Value: tex_background1
         StartSettings:
           Value: {fileID: 11400000, guid: 5ec31df453038664ba29df2bd88ea1cf, type: 2}
         EndSettings:
           Value: {fileID: 11400000, guid: d1527db4a32ae5b438acf8b8737395b5, type: 2}
   CharacterDatas:
-  - NodeGuid: 7fed20ff-0cda-44b4-b224-02581024c565
-    Position: {x: 826.4, y: 247.2}
+  - NodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
+    Position: {x: 2940.8, y: -120.8}
+    Characters:
+    - ID:
+        Value: 0
+      Character:
+        Value: {fileID: 11400000, guid: 5f215a5940da20e459a503cc8cd42af9, type: 2}
+      CharacterNames:
+      - Un
+      - One
+      - Uno
+      CharacterName:
+        Value: Un
+      Sprite:
+        Value: {fileID: 21300000, guid: e8254267f2152494db2600b46693bca9, type: 3}
+      Mood:
+        Value: 1
+      FaceDirection:
+        Value: 1
+      SidePlacement:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+  - NodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
+    Position: {x: 3894.4, y: -120.8}
     Characters:
     - ID:
         Value: 0
@@ -314,61 +506,30 @@ MonoBehaviour:
         Value: 0
       AutoDelayDuration:
         Value: 0
-  - NodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
-    Position: {x: 2759.2, y: -349.6}
+  - NodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
+    Position: {x: 4489.6, y: -120.8}
     Characters:
     - ID:
         Value: 0
       Character:
-        Value: {fileID: 11400000, guid: e3871a56d1ff6c2499f980331ee27f51, type: 2}
-      CharacterNames:
-      - Trois
-      - Three
-      - Tres
+        Value: {fileID: 0}
+      CharacterNames: []
       CharacterName:
-        Value: Trois
+        Value: 
       Sprite:
-        Value: {fileID: 21300000, guid: c252c55446174d54ca264a49594b7f1d, type: 3}
+        Value: {fileID: 0}
       Mood:
-        Value: 3
-      FaceDirection:
         Value: 0
-      SidePlacement:
+      FaceDirection:
         Value: 1
+      SidePlacement:
+        Value: 0
       UseAutoDelay:
         Value: 0
       AutoDelayDuration:
         Value: 0
-  - NodeGuid: 63226e30-95bc-410a-928b-5e5bcf1f3022
-    Position: {x: 1440.8, y: 247.2}
-    Characters:
     - ID:
-        Value: 0
-      Character:
-        Value: {fileID: 11400000, guid: a72d749bfbe19094fb8ef0e2367136ed, type: 2}
-      CharacterNames:
-      - Deux
-      - Two
-      - Dos
-      CharacterName:
-        Value: Deux
-      Sprite:
-        Value: {fileID: 21300000, guid: e591d129f6038b64d9c23a009a6d912a, type: 3}
-      Mood:
-        Value: 0
-      FaceDirection:
-        Value: 0
-      SidePlacement:
         Value: 1
-      UseAutoDelay:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-  - NodeGuid: 57731a43-8328-4123-9c2c-b00e14a4435c
-    Position: {x: 2836, y: 411.19998}
-    Characters:
-    - ID:
-        Value: 0
       Character:
         Value: {fileID: 0}
       CharacterNames: []
@@ -383,84 +544,12 @@ MonoBehaviour:
       SidePlacement:
         Value: 1
       UseAutoDelay:
-        Value: 1
-      AutoDelayDuration:
-        Value: 0.5
-    - ID:
-        Value: 1
-      Character:
-        Value: {fileID: 11400000, guid: e3871a56d1ff6c2499f980331ee27f51, type: 2}
-      CharacterNames:
-      - Trois
-      - Three
-      - Tres
-      CharacterName:
-        Value: Trois
-      Sprite:
-        Value: {fileID: 21300000, guid: c252c55446174d54ca264a49594b7f1d, type: 3}
-      Mood:
-        Value: 3
-      FaceDirection:
-        Value: 0
-      SidePlacement:
-        Value: 1
-      UseAutoDelay:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-  - NodeGuid: 8bd97716-df98-4c6d-8793-afbd425680d6
-    Position: {x: 3490.4, y: -6.4000006}
-    Characters:
-    - ID:
-        Value: 0
-      Character:
-        Value: {fileID: 11400000, guid: e3871a56d1ff6c2499f980331ee27f51, type: 2}
-      CharacterNames:
-      - Trois
-      - Three
-      - Tres
-      CharacterName:
-        Value: Trois
-      Sprite:
-        Value: {fileID: 21300000, guid: 06551c168c1a06d4f8a3115f3e7f7c16, type: 3}
-      Mood:
-        Value: 5
-      FaceDirection:
-        Value: 1
-      SidePlacement:
-        Value: 1
-      UseAutoDelay:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-  - NodeGuid: 310c14ca-4673-4ee9-9ef8-1c975ad1a5ba
-    Position: {x: -596, y: 247.2}
-    Characters:
-    - ID:
-        Value: 0
-      Character:
-        Value: {fileID: 11400000, guid: 5f215a5940da20e459a503cc8cd42af9, type: 2}
-      CharacterNames:
-      - Un
-      - One
-      - Uno
-      CharacterName:
-        Value: Un
-      Sprite:
-        Value: {fileID: 21300000, guid: e48439cfd142fd347a1ab3f4a5396fcb, type: 3}
-      Mood:
-        Value: 0
-      FaceDirection:
-        Value: 1
-      SidePlacement:
-        Value: 0
-      UseAutoDelay:
         Value: 0
       AutoDelayDuration:
         Value: 0
   RepliqueDatas:
-  - NodeGuid: 252f2b6d-73d7-4134-b8bc-59cd6dac256c
-    Position: {x: 1116.8, y: 247.2}
+  - NodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
+    Position: {x: -1579.2, y: 247.2}
     Repliques:
     - ID:
         Value: 0
@@ -477,239 +566,11 @@ MonoBehaviour:
       AutoDelayDuration:
         Value: 0
       Guid:
-        Value: 20f5d849-8796-4002-b842-2d58f97dc0a7
-      Texts:
-      - Data: 'Salut! '
-        Language: 0
-      - Data: Salvation! What are you doing ?
-        Language: 1
-      - Data: "\xA1Hola! Que haces ?"
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 8300000, guid: 43678c408c8bb414886c451dd4e88457, type: 3}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-  - NodeGuid: 93a58b2a-eba2-4039-ad66-d486751cff42
-    Position: {x: 3758.4, y: -6.4000006}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 0
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 1
-      WriteSpeed:
-        Value: 2
-      AutoDelayDuration:
-        Value: 2
-      Guid:
-        Value: 84c65603-8668-4427-afda-4e66b191faff
-      Texts:
-      - Data: Allons-y !
-        Language: 0
-      - Data: Let's go!
-        Language: 1
-      - Data: "\xA1Vamos!"
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 8300000, guid: 141389a7046daed48b878e4af03e3430, type: 3}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-  - NodeGuid: b5027263-f0a8-408e-a955-4d4ac3722b44
-    Position: {x: 3129.6, y: -349.6}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 0
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 1
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: 0329748d-f533-42ea-8645-d933ba594dfa
-      Texts:
-      - Data: Ah c'est dommage
-        Language: 0
-      - Data: Ah it's a shame, but if you want I have something to do, it tells you
-          to help me?
-        Language: 1
-      - Data: Ah, es una pena, pero si quieres, tengo algo que hacer, te dice que
-          me ayudes.
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 8300000, guid: fcbbcf4c66a0a0d4494b0b349f60ad7c, type: 3}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-    - ID:
-        Value: 1
-      AppendToText:
-        Value: 1
-      CanClickOnContinue:
-        Value: 0
-      OverrideWriteSpeed:
-        Value: 1
-      UseAutoDelay:
-        Value: 1
-      WriteSpeed:
-        Value: 0.5
-      AutoDelayDuration:
-        Value: 0.5
-      Guid:
-        Value: 70f9178a-78c7-4491-83bf-4ef2d920273d
-      Texts:
-      - Data: ...
-        Language: 0
-      - Data: 
-        Language: 1
-      - Data: 
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-    - ID:
-        Value: 2
-      AppendToText:
-        Value: 1
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: 0f38e423-cf5d-492d-8901-a36078994297
-      Texts:
-      - Data: " Mais si tu veux j'ai un truc \xE0 faire, \xE7a te dit de m'aider
-          ?"
-        Language: 0
-      - Data: 
-        Language: 1
-      - Data: 
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-  - NodeGuid: 1102e459-1e79-4b48-9156-204fbd593b11
-    Position: {x: 3116.8, y: 411.19998}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: effd81c3-7347-41e3-9834-d3cfb68da4d0
-      Texts:
-      - Data: Bon bah je te laisse t'emmerder alors.
-        Language: 0
-      - Data: Well, I let you annoy you then.
-        Language: 1
-      - Data: Bueno, te dejo molestarte entonces.
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 8300000, guid: fcbbcf4c66a0a0d4494b0b349f60ad7c, type: 3}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-  - NodeGuid: 23088e1a-9290-4533-91ec-1d3d5338523f
-    Position: {x: 1720.8, y: 247.2}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 1
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: efe72259-7078-463c-8c74-8f8e3758f717
-      Texts:
-      - Data: Qu'est-ce que tu fais ?
-        Language: 0
-      - Data: 
-        Language: 1
-      - Data: 
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-  - NodeGuid: 79016ed5-394a-4237-8266-62c3ff41cdef
-    Position: {x: -332.8, y: 247.2}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0.5
-      AutoDelayDuration:
-        Value: 1
-      Guid:
-        Value: e25c4368-2b42-447c-8600-52583d5aa451
+        Value: fdb8a0a2-0406-45ce-812b-23da819cd5c1
       Texts:
       - Data: Bonjour !
         Language: 0
-      - Data: Good morning !
+      - Data: Hi!
         Language: 1
       - Data: Buenos dias !
         Language: 2
@@ -720,8 +581,8 @@ MonoBehaviour:
         Language: 1
       - Data: {fileID: 0}
         Language: 2
-  - NodeGuid: dfbb99f3-ee1c-46b8-94c8-59a7e1cbee6d
-    Position: {x: -982.4, y: -314.40002}
+  - NodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
+    Position: {x: -977.6, y: 247.2}
     Repliques:
     - ID:
         Value: 0
@@ -736,15 +597,17 @@ MonoBehaviour:
       WriteSpeed:
         Value: 0
       AutoDelayDuration:
-        Value: 1
+        Value: 0
       Guid:
-        Value: 8945d149-56fa-4c0a-8995-58cfe2691c03
+        Value: 26c28c3b-bcb7-47ed-b705-bc4ff432ca3a
       Texts:
-      - Data: showshowshowshow
+      - Data: "Ce dialogue de test sert de guide dans l'utilisation du plugin de
+          cr\xE9ation de dialogues par node."
         Language: 0
-      - Data: 
+      - Data: This test dialog serves as a guide in using the Dialogue Node System.
         Language: 1
-      - Data: 
+      - Data: "Este cuadro de di\xE1logo de prueba sirve como gu\xEDa en el uso del
+          complemento de creaci\xF3n de di\xE1logo por nodo."
         Language: 2
       AudioClips:
       - Data: {fileID: 0}
@@ -753,8 +616,106 @@ MonoBehaviour:
         Language: 1
       - Data: {fileID: 0}
         Language: 2
-  - NodeGuid: eebb3192-3de9-4c9c-ba89-398f982f4df2
-    Position: {x: -87.2, y: -376.80002}
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 26d00b34-3acc-4c15-9ee3-1014cc3401c7
+      Texts:
+      - Data: "Pour cr\xE9er un nouveau dialogue : Create > Dialogue > New Dialogue.
+          Double-cliquez sur l'asset cr\xE9\xE9e pour l'ouvrir dans la fen\xEAtre
+          d'\xE9dition."
+        Language: 0
+      - Data: 'To create a new dialog: Right click > Create > Dialogue > New Dialogue.
+          Double-click the created asset to open it in the editor window.'
+        Language: 1
+      - Data: "Para crear un nuevo cuadro de di\xE1logo: Crear> Di\xE1logo> Nuevo
+          di\xE1logo. Haga doble clic en el Assett creado para abrirlo en la ventana
+          Editar."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: bbb984f9-8546-4f09-96cb-dacd4ee34a07
+      Texts:
+      - Data: "Il est conseill\xE9 de garder la fen\xEAtre ouverte pendant la lecture
+          de ce dialogue pour une meilleure compr\xE9hension."
+        Language: 0
+      - Data: It is advised to keep the window open while reading this dialog for
+          a better understanding of the system.
+        Language: 1
+      - Data: "Es recomendable mantener la ventana abierta mientras lee este di\xE1logo
+          para una mejor comprensi\xF3n."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 3
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: e3700b2e-5b2e-43d4-bfa5-811d29560db8
+      Texts:
+      - Data: Quelle partie du tutoriel souhaitez-vous tester ?
+        Language: 0
+      - Data: What part of the tutorial would you like to test?
+        Language: 1
+      - Data: "\xBFQu\xE9 parte del tutorial te gustar\xEDa probar?"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
+    Position: {x: -112.8, y: -1562.3999}
     Repliques:
     - ID:
         Value: 0
@@ -769,15 +730,2246 @@ MonoBehaviour:
       WriteSpeed:
         Value: 0
       AutoDelayDuration:
-        Value: 1
+        Value: 0
       Guid:
-        Value: bebb887a-f0f4-4761-ae04-ee50f69fcfcf
+        Value: 86b81628-79a7-4b05-a14c-ddbe4d3d7e09
       Texts:
-      - Data: was hidden
+      - Data: "En haut de la fen\xEAtre se trouve une barre d'outils. \"Save\" et
+          \"Load\" sauvegardent et chargent vos modifications sur le ScriptableObject."
         Language: 0
-      - Data: 
+      - Data: At the top of the window is a toolbar. The "Save" and "Load" buttons
+          register and load your changes on the ScriptableObject.
         Language: 1
-      - Data: 
+      - Data: En la parte superior de la ventana hay una barra de herramientas. "Guardar"
+          y "Cargar" Guardar y cargue sus cambios en el scriptableObject.
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: f00091a9-a514-46dc-8893-5387765fc4b3
+      Texts:
+      - Data: "\"Export\" et \"Import\" sauvegardent et chargent depuis un fichier
+          CSV cr\xE9\xE9 automatiquement par script. Ce fichier permet de faciliter
+          la traduction de tous les dialogues \xE0 la fois."
+        Language: 0
+      - Data: '"Export" and "Import" save and load from a CSV file automatically
+          created by script. This file makes it easier to translate all dialogs at
+          a time.'
+        Language: 1
+      - Data: "\"Exportar\" y \"Importar\" Guardar y cargar desde un archivo CSV
+          creado autom\xE1ticamente por script. Este archivo facilita la traducci\xF3n
+          de todos los cuadros de di\xE1logo a la vez."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: df3d08a6-7a97-437f-9943-e1454cf26dad
+      Texts:
+      - Data: "\"Show Grid\" affiche ou masquer le quadrillage en fond. \"Nb Max
+          Choices\" indique le nombre max. de choix que le joueur pourra faire \xE0
+          tout moment lors du dialogue."
+        Language: 0
+      - Data: '"Show Grid" displays or hides the grid in the background. "Nb Max
+          Choices" indicates the max number of choices that the player can do at
+          any time during a dialogue.'
+        Language: 1
+      - Data: "\"Mostrar cuadr\xEDcula\" muestra u oculta la cuadr\xEDcula en la
+          parte inferior. \"NB MAX Opciones\" indica el n\xFAmero m\xE1ximo. Opciones
+          que el jugador puede hacer en cualquier momento durante el di\xE1logo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 3
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 53c6a104-c68d-4504-aded-2c88c48515eb
+      Texts:
+      - Data: "\"Language\" affiche la traduction de vos r\xE9pliques correspondant
+          \xE0 la langue affich\xE9e. Par souci de rapidit\xE9, il est conseill\xE9
+          de d'abord exporter vos ialogues en .CSV, puis d'utiliser cette option
+          pour ajouter manuellement d'\xE9ventuelles modifications."
+        Language: 0
+      - Data: '"Language" Displays the translation of your dialogue lines corresponding
+          to the displayed language. For the sake of saving time, it is advised first
+          to export your dialogues to .CSV, and then use this option to manually
+          add any changes.'
+        Language: 1
+      - Data: "\"Idioma\" muestra la traducci\xF3n de sus r\xE9plicas correspondientes
+          al idioma que se muestra. Por el bien de la velocidad, primero es aconsejable
+          exportar sus iAgues a .CSV, y luego usar esta opci\xF3n para agregar manualmente
+          cualquier cambio."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 4
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: e6b106fb-4471-4d54-896a-839c59235e0e
+      Texts:
+      - Data: "Il est \xE9galement possible de grouper les nodes (touche G), les
+          d\xE9grouper (Shift + G) ou de cr\xE9er des notes (touche N) pour vous
+          aider \xE0 vous rep\xE9rer dans le graphe."
+        Language: 0
+      - Data: It is also possible to group the nodes (G key), ungroup them (Shift
+          + G) or create notes (N key) to help you locate a node in the graph.
+        Language: 1
+      - Data: "Tambi\xE9n es posible agrupar los nodos (clave G), las tinas (May\xFAs
+          + G) o crear notas (n clave) para ayudarlo a localizarlo en el gr\xE1fico."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
+    Position: {x: -112.8, y: -128.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 11bc45e2-274f-4237-b80d-dc3f91a2d4b9
+      Texts:
+      - Data: 'Les nodes sont accessibles dans le menu de recherche (Clic droit >
+          Create Node ou touche espace). '
+        Language: 0
+      - Data: Nodes are accessible from the search menu (Right click > Create Node
+          or Space key).
+        Language: 1
+      - Data: "Los nodos son accesibles desde el men\xFA de b\xFAsqueda (clic derecho>
+          Cree nodo o tecla de espacio)."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 850c9604-6245-4a08-8892-526639ec8e99
+      Texts:
+      - Data: 'Par ordre d''importance:'
+        Language: 0
+      - Data: 'Sorted by relevance:'
+        Language: 1
+      - Data: 'En orden de importancia:'
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
+    Position: {x: 573.6, y: -128.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: fad9d877-57f6-499f-a63d-dfaa26e19238
+      Texts:
+      - Data: "La node End permet de terminer un dialogue, ou de le relancer depuis
+          le d\xE9but dans le cas o\xF9 vous voudriez le relire apr\xE8s avoir modifi\xE9
+          des conditions du DE_EventCaller. A l'heure actuelle, seule les options
+          \"End\" et \"Return To Start\" sont impl\xE9ment\xE9es ; ls deux autres
+          sont obsol\xE8tes et accompliront par d\xE9faut la m\xEAme action que \"End\"."
+        Language: 0
+      - Data: The End Node makes it possible to complete a dialogue, or to restart
+          it from the beginning in case you would like to reread it after modifying
+          conditions in the DE_EventCaller. For now, only the "End" and "Return to
+          Start" options are implemented; the other two are obsolete and will default
+          the same action as "End".
+        Language: 1
+      - Data: "El extremo del nodo hace posible completar un di\xE1logo, o para relanzarlo
+          desde el principio en caso de que le gustar\xEDa volver a leerlo despu\xE9s
+          de modificar las condiciones del De_EventsCaller. En la actualidad, solo
+          se implementan las opciones de \"End\" y \"Volver a Inicio\"; Los otros
+          dos est\xE1n obsoletos y se incumplir\xE1n la misma acci\xF3n que \"FIN\"."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
+    Position: {x: 1690.4, y: -124.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: a7f9f850-d016-43e3-a8df-c7ce4632816c
+      Texts:
+      - Data: "\"Append To Previous text\" : Permet de coller la nouvelle r\xE9plique
+          \xE0 la pr\xE9c\xE9dente sans supprimer cette derni\xE8re."
+        Language: 0
+      - Data: '"Append to Previous Text": allows you to append the new replique to
+          the previous one without deleting the latter.'
+        Language: 1
+      - Data: "\"Anexar al texto anterior\": le permite pegar la nueva r\xE9plica
+          a la anterior sin eliminar este \xFAltimo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 8761f8d1-7b4b-4b74-a06a-04b1a2c48dd0
+      Texts:
+      - Data: "\"Can Click On Continue\" : Permet ou non au joueur de continuer le
+          dialogue en cliquant sur l'interface. Fonctionne de pair avec l'auto-d\xE9lai
+          pour avancer automatiquement un dialogue."
+        Language: 0
+      - Data: '"Can Click on Continue": Allows the player to continue the dialog
+          by clicking on the interface. Works with the auto-delay to automatically
+          progress in a dialog.'
+        Language: 1
+      - Data: "\"Puede hacer clic en Contin\xFAe\": o no permite que el reproductor
+          contin\xFAe con el cuadro de di\xE1logo haciendo clic en la interfaz. Funciona
+          con el autoayuda para avanzar autom\xE1ticamente un di\xE1logo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 4a539c07-e49b-4e5b-b6c4-b5742f4de502
+      Texts:
+      - Data: "\"Overwrite Write Speed\" : Permet d'\xE9crire chaque caract\xE8re
+          \xE0 une diff\xE9rente vitesse que celle par d\xE9faut (en secondes). Utile
+          pour donner une sensation de suspens \xE0 votre r\xE9plique."
+        Language: 0
+      - Data: '"Overwrite Write Speed": Allows you to write each character to a different
+          speed than the default (in seconds). Useful for giving a feeling of suspense
+          to your replique.'
+        Language: 1
+      - Data: "\"Sobrescribe la velocidad de escritura\": le permite escribir cada
+          car\xE1cter a una velocidad diferente a la predeterminada (en segundos).
+          \xDAtil para dar una sensaci\xF3n de suspenso a su r\xE9plica."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 3
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 607bfdbe-6cce-4cd0-8a25-8dd09873b90f
+      Texts:
+      - Data: "\"Auto Delay\" : Si activ\xE9, le dialogue jouera la r\xE9plique suivante
+          automatiquement au bout du temps inscrit en param\xE8tre (en secondes)."
+        Language: 0
+      - Data: '"Auto Delay": If enabled, the dialog will play the next replique automatically
+          once the timer registered as a parameter has ended (in seconds).'
+        Language: 1
+      - Data: "\"Retardo autom\xE1tico\": si est\xE1 habilitado, el cuadro de di\xE1logo
+          reproducir\xE1 la siguiente r\xE9plica autom\xE1ticamente despu\xE9s de
+          la hora registrada como par\xE1metro (en segundos)."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
+    Position: {x: 4155.2, y: -120.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 6b933734-f1d6-4818-8406-f02eb80594a3
+      Texts:
+      - Data: "Voil\xE0 pour les personnages !"
+        Language: 0
+      - Data: We are done for the characters!
+        Language: 1
+      - Data: "\xA1Tanto para los personajes!"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    Position: {x: 2613.6, y: -120.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: a9920043-43eb-47ab-b8b1-7cb75915e102
+      Texts:
+      - Data: "Voil\xE0 pour la node R\xE9plique. La suivante, la node \"Character\",
+          vous permet d'afficher un personnage \xE0 l'\xE9cran."
+        Language: 0
+      - Data: The following, the "Character" Node, allows you to display a character
+          on the screen.
+        Language: 1
+      - Data: "Tanto para el nodo de r\xE9plica. El siguiente, el \"car\xE1cter\"
+          del nodo, le permite mostrar un car\xE1cter en la pantalla."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
+    Position: {x: 3530.4, y: -120.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 23332313-f641-4b64-9386-f10c7589c9b6
+      Texts:
+      - Data: 'Les options de la node Character sont :'
+        Language: 0
+      - Data: 'The options of the Character node are:'
+        Language: 1
+      - Data: "Las opciones del nodo de car\xE1cter son:"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: dea79abf-4869-4184-8abb-3535b3b78ecd
+      Texts:
+      - Data: "\"Mood\" : Affiche un sprite diff\xE9rent selon l'humeur du personnage."
+        Language: 0
+      - Data: '"Mood": Displays a different sprite according to the mood of the character.'
+        Language: 1
+      - Data: "\"Estado de \xE1nimo\": muestra un sprite diferente seg\xFAn el estado
+          de \xE1nimo del car\xE1cter."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: d10d403b-03bd-48fb-99c9-00348b3613d9
+      Texts:
+      - Data: "\"Face Direction\" : De quel c\xF4t\xE9 le personnage doit regarder."
+        Language: 0
+      - Data: '"Face direction": which side of the screen the character must look
+          at.'
+        Language: 1
+      - Data: "\"Direcci\xF3n de la cara\": \xBFQu\xE9 lado debe mirar el personaje?"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 3
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 09699d82-138d-473f-82e1-fa6949757494
+      Texts:
+      - Data: "\"Side Placement\" : De quel c\xF4t\xE9 le personnage doit appara\xEEtre."
+        Language: 0
+      - Data: '"Side placement": which side of the screen the character must appear
+          on.'
+        Language: 1
+      - Data: "\"Colocaci\xF3n lateral\": qu\xE9 lado debe aparecer el personaje."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 4
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 09946321-2259-4e47-8065-3ce2801d105d
+      Texts:
+      - Data: "\"Use Auto Delay\" : Similaire \xE0 celui de la node Replique, permet
+          d'afficher le personnage suivant apr\xE8s un certain d\xE9lai."
+        Language: 0
+      - Data: '"Use Auto Delay": Similar to that of the Replique node, displays the
+          following character after a certain delay.'
+        Language: 1
+      - Data: "\"Utilice el retardo autom\xE1tico\": similar a la del nodo de r\xE9plica,
+          muestra el siguiente car\xE1cter despu\xE9s de un cierto retraso."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 1611cf1b-041b-425b-833b-163e30461252
+    Position: {x: 3196, y: -120.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 3df86bc6-96fb-40f4-b76b-bb86e3f0511f
+      Texts:
+      - Data: Comme ceci !
+        Language: 0
+      - Data: Like so!
+        Language: 1
+      - Data: Como esto !
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 8300000, guid: 141389a7046daed48b878e4af03e3430, type: 3}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 88a6a4cd-aba4-4073-a70a-e264a5683ef9
+      Texts:
+      - Data: "Pour cr\xE9er un Personnage, Clic droit > Create > Dialogue > New
+          Dialogue Character."
+        Language: 0
+      - Data: To create a character, right click > Create > Dialogue > New Dialogue
+          Character.
+        Language: 1
+      - Data: "Para crear un personaje, haga clic con el bot\xF3n derecho> Crear>
+          Di\xE1logo> Nuevo personaje de di\xE1logo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 66124aee-b8e9-438c-807d-cc2f2ca02e78
+      Texts:
+      - Data: "Par d\xE9faut, trois personnages sont propos\xE9s dans ce test pour
+          vous d\xE9montrer son fonctionnement. Ils contiennent une liste de noms
+          (un par traduction), une couleur de texte, un son d'\xE9criture (dont celui
+          que vous entendez depuis l'apparition du personnage \"Un\") et une liste
+          de sprites correspondant \xE0 une humeur pr\xE9cise."
+        Language: 0
+      - Data: By default, three characters are offered in this test to demonstrate
+          its operation. They contain a list of names (one per translation), a text
+          color, a char printing sound (like the one you hear since the appearance
+          of the character "One") and a list of sprites corresponding to a precise
+          mood.
+        Language: 1
+      - Data: "De forma predeterminada, se ofrecen tres caracteres en esta prueba
+          para demostrar su operaci\xF3n. Contienen una lista de nombres (uno por
+          traducci\xF3n), un color de texto, un sonido de escritura (cuyo hijo escucha
+          de la apariencia del car\xE1cter \"uno\") y una lista de sprites correspondientes
+          a un estado de \xE1nimo preciso."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
+    Position: {x: 5180.8, y: -128}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 2ed6b301-5b35-4b44-9487-fb3482b7883a
+      Texts:
+      - Data: "La node suivante, \"Choice\", vous permet d'offrir des choix au joueur
+          jusqu'au nombre que vous aurez sp\xE9cifi\xE9 dans la fen\xEAtre d'\xE9dition
+          (4 par d\xE9faut)."
+        Language: 0
+      - Data: The next node, "Choice", allows you to offer choices to the player
+          up to the number specified in the edit window (4 by default).
+        Language: 1
+      - Data: "El siguiente nodo, \"Elecci\xF3n\", le permite ofrecer opciones al
+          jugador hasta que haya especificado en la ventana Editar (4 de forma predeterminada)."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: cafb4cd3-5a22-4dd3-ace6-8cc17798852f
+      Texts:
+      - Data: "Chaque choix peut comporter des conditions qui ne rendront ce choix
+          s\xE9lectionnable qu'une fois remplies. Vous pouvez griser ou masquer ce
+          choix dans le cas contraire, et \xE9crire un texte sp\xE9cifiant pourquoi."
+        Language: 0
+      - Data: Each choice may include conditions that will only make this choice
+          selectable once completed. You can gray out or hide this choice in the
+          opposite case, and write a text specifying why.
+        Language: 1
+      - Data: "Cada opci\xF3n puede incluir condiciones que solo hagan que esta opci\xF3n
+          sea seleccionable una vez completada. Puede rockear u ocultar esta elecci\xF3n
+          en el caso opuesto y escribir un texto que especifique por qu\xE9."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
+    Position: {x: 5884, y: -128}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: bb4489dc-a990-41c9-810f-482899889fc0
+      Texts:
+      - Data: Exactement.
+        Language: 0
+      - Data: Exactly.
+        Language: 1
+      - Data: Exactamente.
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 4adc7958-2557-48ff-922b-74f2dbc1a34a
+      Texts:
+      - Data: "Ces conditions peuvent \xEAtre remlies au cours de la progression
+          de vos joueurs dans le jeu, ou directement au cours du m\xEAme dialogue,
+          gr\xE2ce au script DE_EventCaller et la node \"Event.\""
+        Language: 0
+      - Data: These conditions can be fulfilled during the progress of your players
+          in the game, or directly during the same dialogue, thanks to the DE_EventCaller
+          script and the "Event" node.
+        Language: 1
+      - Data: "Estas condiciones se pueden eliminar durante el progreso de sus jugadores
+          en el juego, o directamente durante el mismo di\xE1logo, gracias al script
+          de evento y el nodo \"evento\" \"."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
+    Position: {x: 7092.8, y: -132.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 0c9b761b-e826-477c-b93e-f07c20087989
+      Texts:
+      - Data: "La node Event permet au diaogue d'interagir avec le reste du jeu.
+          Elle utilise le DE_EventCaller et un ScriptableObject pour lire et \xE9craser
+          les valeurs du script et pour appeler des fonctions."
+        Language: 0
+      - Data: "The Event node allows the dialogue to interact with the rest of the
+          game. It uses the DE_EventCaller and a ScriptableObject to read and overwrite
+          the script values \u200B\u200Band to call functions."
+        Language: 1
+      - Data: "El nodo del evento permite que la diagaluaci\xF3n interact\xFAe con
+          el resto del juego. Utiliza el DE_EVENTSCALLER y un ScriptableObject para
+          reproducir y sobrescribir los valores de script y para llamar a funciones."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: c19f083f-fef0-48ce-a321-154c38d86452
+      Texts:
+      - Data: "Avec la node Event, vous pouvez r\xE9aliser n'importe quoi : Modifier
+          les choix acessibles au joueur, lancer une cin\xE9matique, jouer un son
+          ou un effet de particule, etc."
+        Language: 0
+      - Data: 'With the Event node, you can realize anything: change the choice of
+          the player, start a cutscene, play a sound or a particle effect, etc.'
+        Language: 1
+      - Data: "Con el nodo de evento, puede realizar cualquier cosa: cambiar la opci\xF3n
+          del reproductor, lanzar una cinem\xE1tica, jugar un sonido o un efecto
+          de part\xEDcula, etc."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 288a206f-fd8b-415d-b883-9020d2736050
+      Texts:
+      - Data: "Pour cr\xE9er un Dialogue Event, Clic droit > Create > Dialogue >
+          New Dialogue Event. Ce ScriptableObject fera office de lien entre le dialogue
+          et le script en jeu, et peut m\xEAme \xEAtre partag\xE9 entre diff\xE9rents
+          diaogues."
+        Language: 0
+      - Data: To create an Event dialog, right click > Create > Dialogue > New Event
+          Dialogue. This ScriptableObject will serve as a link between the dialog
+          and the script in-game, and can even be shared between different dialogues.
+        Language: 1
+      - Data: "Para crear un cuadro de di\xE1logo de evento, haga clic con el bot\xF3n
+          derecho> Crear> Di\xE1logo> Nuevo di\xE1logo de eventos. Este scriptableObject
+          servir\xE1 como un enlace entre el cuadro de di\xE1logo y el script en
+          juego, e incluso se puede compartir entre diferentes diaganchos."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
+    Position: {x: 8123.2, y: -132.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 8c22d8c7-265e-4683-9799-62bebdbb7498
+      Texts:
+      - Data: Comme ceci.
+        Language: 0
+      - Data: Like so.
+        Language: 1
+      - Data: Como esto.
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 0f2d3d52-6296-4204-9048-da55da921672
+      Texts:
+      - Data: "L'exemple suivant utilise un String Event pour permettre au joueur
+          d'utiliser un choix qui lui \xE9tait auparavant bloqu\xE9 par une condition
+          :"
+        Language: 0
+      - Data: 'The following example uses a string event to allow the player to use
+          a choice that was previously blocked by a condition:'
+        Language: 1
+      - Data: "El siguiente ejemplo utiliza un evento de cadena para permitir que
+          el jugador utilice una opci\xF3n que haya bloqueado previamente por una
+          condici\xF3n:"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
+    Position: {x: 8410.4, y: 421.59998}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 69c5c588-0b57-4c3a-8e91-378f26f91545
+      Texts:
+      - Data: "R\xE9essayez maintenant ; le second choix devrait \xEAtre d\xE9bloqu\xE9."
+        Language: 0
+      - Data: Retry now; the second choice should be unlocked.
+        Language: 1
+      - Data: "Investigaci\xF3n ahora; La segunda opci\xF3n debe ser desbloqueada."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
+    Position: {x: 9046.4, y: -109.600006}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 0627d700-a825-42a0-b40e-b82cf88acf7b
+      Texts:
+      - Data: "Bien. passons \xE0 la suite."
+        Language: 0
+      - Data: Good. Let's move on.
+        Language: 1
+      - Data: Bien. Vamonos.
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    Position: {x: 9752.8, y: -109.600006}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 6ced8bca-0c9a-47ed-8d4a-958f7b476e06
+      Texts:
+      - Data: "La node \"Branch\" fonctionne de mani\xE8re similaire \xE0 la node
+          Choice, mais ne laisse pas le choix de l'issue au joueur et ne prend que
+          2 sorties. La node Branch ne prendra la branche \"True\" si toutes ses
+          conditions sont remplies."
+        Language: 0
+      - Data: The "Branch" node works similarly to the Choice node, but does not
+          leave the choice of the issue to the player and only takes 2 outputs. The
+          Branch node will only take the "TRUE" branch if all its conditions are
+          met.
+        Language: 1
+      - Data: "El nodo \"Rama\" funciona de manera similar al nodo de elecci\xF3n,
+          pero no deja la elecci\xF3n del problema al jugador y solo toma 2 salidas.
+          El nodo de la sucursal solo tomar\xE1 la rama \"verdadera\" si se cumplen
+          todas sus condiciones."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 398c04a7-2068-4974-87fb-6ce005a6e17e
+      Texts:
+      - Data: "Dans cet exemple, nous avons d\xE9j\xE0 pass\xE9 les propri\xE9t\xE9s
+          \"OrLikeThat\" et \"ChoiceBlocked\" \xE0 false dans les exemples pr\xE9c\xE9dents,
+          donc la branche True est valide."
+        Language: 0
+      - Data: In this example, we have already passed the "OrLikeTat" and "ChoiceBlocked"
+          properties in False in the previous examples, so the True branch is valid.
+        Language: 1
+      - Data: "En este ejemplo, ya hemos pasado las propiedades de \"orlikethat\"
+          y \"elecci\xF3n conbloqued\" en falso en los ejemplos anteriores, por lo
+          que la sucursal verdadera es v\xE1lida."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
+    Position: {x: 10944, y: -109.600006}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 5c060afb-4ceb-4934-8c16-c2c6bfbd9438
+      Texts:
+      - Data: "La node \"UI\" permet d'interagir directement avec l'interface utilisateur
+          du dialogue. A l'heure actuelle, elle ne permet que d'afficher ou masquer
+          l'UI, mais libre \xE0 vous de la modifier pour impl\xE9menter vos propres
+          m\xE9thodes selon vos besoins."
+        Language: 0
+      - Data: The "UI" Node allows you to interact directly with the user interface
+          of the dialogue. For now, it only allows to display or hide the UI, but
+          feel free to modify it to implement your own methods according to your
+          needs.
+        Language: 1
+      - Data: "El nodo \"ui\" le permite interactuar directamente con la interfaz
+          de usuario del di\xE1logo. En la actualidad, solo permite mostrar u ocultar
+          la UI, pero es gratis para modificarla para implementar sus propios m\xE9todos
+          de acuerdo con sus necesidades."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
+    Position: {x: 12138.4, y: -107.2}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: bc5cc8c5-577e-4c95-9a51-543e7c210ee1
+      Texts:
+      - Data: "Et enfin, la node \"Background\" permet de modifier le fond d'\xE9cran
+          pour modifier le d\xE9cor de la sc\xE8ne."
+        Language: 0
+      - Data: And finally, the "Background" node allows you to change the background
+          image to change the scene scenery.
+        Language: 1
+      - Data: "Y, finalmente, el nodo \"Fondo\" le permite cambiar el fondo de pantalla
+          para cambiar la decoraci\xF3n de la escena."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
+    Position: {x: 11744.8, y: -107.2}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 56df7ede-6c96-4c3a-8f75-b37c31f0dccd
+      Texts:
+      - Data: "Inutile d'utiliser une node UI pour r\xE9afficher l'\xE9cran si vous
+          souhaitez continuer le dialogue ; les nodes R\xE9plique, Choice et Character
+          prennent en compte leur propre r\xE9affichage."
+        Language: 0
+      - Data: No need to use a UI node to display the screen if you want to continue
+          the dialogue; The Replique, Choice and Character nodes take into account
+          their own reset.
+        Language: 1
+      - Data: "No es necesario usar un nodo de UI para volver a encender la pantalla
+          si desea continuar con el di\xE1logo; Los nodos de r\xE9plica, elecci\xF3n
+          y el car\xE1cter tienen en cuenta su propio reinicio."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
+    Position: {x: 12947.2, y: -107.2}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 63a2173d-e976-413b-be38-4998a974500f
+      Texts:
+      - Data: Comme ceci.
+        Language: 0
+      - Data: Like so.
+        Language: 1
+      - Data: Como esto.
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 498daa6e-e594-48fd-8ee7-985ea2e2ad72
+      Texts:
+      - Data: "Cette node prend la texture du d\xE9cor en param\xE8tre ainsi que
+          des \"Transitions Settings\" d\xE9terminant l'apparence de la transition
+          d'un d\xE9cor \xE0 l'autre. Ces SOs fonctionnent \xE0 l'aide d'un \"Screen
+          Fader\", un autre SO g\xE9rant les transitions en elles-m\xEAmes."
+        Language: 0
+      - Data: This node takes the texture of the background image as a parameter
+          as well as "transition settings" determining the appearance of the transition
+          from one decor to another. These SOs work with a "Screen Fader", another
+          SO managing the transitions in themselves.
+        Language: 1
+      - Data: "Este nodo toma la textura de la decoraci\xF3n como un par\xE1metro,
+          as\xED como \"Transiciones de configuraci\xF3n\" que determinan la apariencia
+          de la transici\xF3n de una decoraci\xF3n a otra. Estos SOS trabajan con
+          un \"fader de pantalla\", otro as\xED, lo que administra las transiciones
+          en s\xED mismas."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: ed027a50-2356-4ed2-ba34-889ae22b564e
+      Texts:
+      - Data: "Pour les cr\xE9er, Clic droit > Create > ScriptableObjects > Screen
+          Fader > New Screen Fader et New Transition Settings."
+        Language: 0
+      - Data: To create them, right click> Create> ScriptableObjects> Screen Fader>
+          New Screen Fader and New Transition Settings.
+        Language: 1
+      - Data: "Para crearlos, haga clic con el bot\xF3n derecho> Crear> ScriptableObjects>
+          Fader de la pantalla> Nuevo fader de pantalla y nuevas configuraciones
+          de transici\xF3n."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 3
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 6fe23ca7-370b-409f-bad9-1d6d65d58bd6
+      Texts:
+      - Data: "Le Screen Fader prend 2 shaders par d\xE9faut, qu'il r\xE9cup\xE8re
+          automatiquement \xE0 sa cr\xE9ation. Ces shaders sont responsables de la
+          transition d'une texture \xE0 une autre."
+        Language: 0
+      - Data: The Screen Fader takes 2 default shaders, that it automatically retrieves
+          upon its creation. These shaders are responsible for the transition from
+          one texture to another.
+        Language: 1
+      - Data: "El fader de la pantalla lleva 2 sombreadores predeterminados, que
+          recupera autom\xE1ticamente su creaci\xF3n. Estos sombreadores son responsables
+          de la transici\xF3n de una textura a otra."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 4
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 0d839f27-e653-4a5d-817e-53f97d2a2715
+      Texts:
+      - Data: "Les deux autres param\xE8tres servent uniquement \xE0 tester l'apparence
+          d'une transition en mode Mask directement depuis l'Edit Mode sans avoir
+          \xE0 lancer le Play Mode."
+        Language: 0
+      - Data: The other two settings are only used to test the appearance of a Mask
+          mode transition directly from the Edit Mode without having to start the
+          Play Mode.
+        Language: 1
+      - Data: "Las otras dos configuraciones solo se usan para probar la apariencia
+          de una transici\xF3n de modo de m\xE1scara directamente desde la edici\xF3n
+          del modo sin tener que iniciar el modo de reproducci\xF3n."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 5
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 122c658e-d1dc-4105-9a96-98c911c84cf8
+      Texts:
+      - Data: "Les param\xE8tres des Transition Settings contr\xF4lent la vitesse,
+          l'apparence et la couleur de la transition. Le Mode Mask utilise une texture
+          pour masquer les pixels de l'\xE9cran, le Mode Fade fait un fondu progressif
+          en noir, le mode Blend r\xE9cup\xE8re directement le Material de l'image
+          d'arri\xE8re-plan pour faire le passage progressif d'une texture \xE0 l'autre."
+        Language: 0
+      - Data: The Transition Settings control the speed, appearance and color of
+          the transition. The Mask mode uses a texture to hide the pixels on the
+          screen, the Fade mode makes a progressive fade in black, the blend mode
+          retrieves directly the material from the background image to make the progressive
+          passage of a texture to the other.
+        Language: 1
+      - Data: "La configuraci\xF3n de configuraci\xF3n de la configuraci\xF3n controla
+          la velocidad, la apariencia y el color de la transici\xF3n. Le Mode Mask
+          utilise une texture pour masquer les pixels de l'\xE9cran, le Mode Fade
+          fait un fondu progressif en noir, le mode Blend r\xE9cup\xE8re directement
+          le Material de l'image d'arri\xE8re-plan pour faire le passage progressif
+          d'une texture al otro."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
+    Position: {x: 13308, y: -107.2}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 588c0f60-eb1a-479a-88ce-b8510cd1977a
+      Texts:
+      - Data: "Sur la node Background, retirer le \"Start Settings\" ne lancera pas
+          de transition et remplacera instantan\xE9ment l'arri\xE8re-plan. Retirer
+          le \"End Settings\" ne causera qu'une seule transition, pas les deux."
+        Language: 0
+      - Data: On the Background node, removing the "Start Settings" will not launch
+          a transition and will instantly replace the background. Removing the "End
+          Settings" will cause only one transition, not both.
+        Language: 1
+      - Data: "En el nodo de fondo, elimine la \"configuraci\xF3n de inicio\", lanzar\xE1
+          una transici\xF3n y reemplazar\xE1 instant\xE1neamente el fondo. Eliminar
+          la configuraci\xF3n final causar\xE1 solo una transici\xF3n, no ambas."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 3a602abf-ed44-4e6b-8772-5c4d7d7ede98
+      Texts:
+      - Data: Si le Start Settings est en mode Blend, il est inutile d'ajouter un
+          End Settings.
+        Language: 0
+      - Data: If the Start Settings is in Blend mode, you do not need to add an End
+          Settings.
+        Language: 1
+      - Data: "Si la configuraci\xF3n de inicio est\xE1 en modo de mezcla, no necesita
+          agregar una configuraci\xF3n final."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
+    Position: {x: -121.6, y: 1704.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 2b3b70e0-aaa3-45d3-b809-d9661402abdd
+      Texts:
+      - Data: "Merci d'utiliser notre syst\xE8me de dialogue par node ! Si vous avez
+          des questions, laissez un commentaire sur mon Github ou sous une des vid\xE9os
+          de ma cha\xEEne Youtube !"
+        Language: 0
+      - Data: Thank you for using our Dialogue Node System! If you have any questions,
+          leave a comment on my github page or under one of the videos of my YouTube
+          channel!
+        Language: 1
+      - Data: "\xA1Gracias por usar nuestro sistema de di\xE1logo de nodos! Si tiene
+          alguna pregunta, deje un comentario en mi GitHub o en uno de los videos
+          de mi canal de YouTube:"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
+    Position: {x: 225.6, y: -128.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: ee05dba8-a4a1-488c-979f-fd647d90d072
+      Texts:
+      - Data: "Les nodes \"Start\" et \"End\" sont les points d'entr\xE9e et de sortie
+          du dialogue. Il peut y avoir plusieurs nodes Start et End dans un seul
+          dialogue."
+        Language: 0
+      - Data: The "Start" and "End" nodes are the entrance and exit points of the
+          dialog. There can be several Start and End nodes in a single dialogue.
+        Language: 1
+      - Data: "Los nodos \"Inicio\" y \"End\" son los puntos de entrada y salida
+          del di\xE1logo. Puede haber varios nodos de inicio y finales en un solo
+          di\xE1logo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 66f31068-ae6b-4225-9f80-674769af3a09
+      Texts:
+      - Data: "La node Start comporte un champ \"isDefault\" qui fera passer ce point
+          d'entr\xE9e en priorit\xE9 si ses conditions sont remplies."
+        Language: 0
+      - Data: The Start Node has an "isDefault" field that will make the script read
+          this entry point in priority if its conditions are fulfilled.
+        Language: 1
+      - Data: "El inicio del nodo tiene un campo \"ISDEFAULT\" que har\xE1 que este
+          punto de entrada tenga prioridad si se cumplen sus condiciones."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: e9a0520e-ff08-412b-8ec9-3b9e5b167042
+      Texts:
+      - Data: "Il est possible d'ajouter des conditions aux nodes Start pour lire
+          le dialogue \xE0 un diff\xE9rent point d'entr\xE9e en fonction de conditions
+          remplies par le joueur, gr\xE2ce au bouton \"Add condition\"."
+        Language: 0
+      - Data: It is possible to add conditions to the Start nodes to read the dialogue
+          from a different input point according to the conditions filled by the
+          player, thanks to the "Add Condition" button.
+        Language: 1
+      - Data: "Es posible agregar condiciones a los nodos de inicio para leer el
+          di\xE1logo a un punto de entrada diferente de acuerdo con las condiciones
+          llenas por el jugador, gracias al bot\xF3n \"Agregar condici\xF3n\"."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 3
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 3be30508-5aa9-4b4a-b95e-1ceb7c9fcd4f
+      Texts:
+      - Data: "Ces conditions sont li\xE9es \xE0 un script \"DE_EventCaller\" qui
+          fait office de connecteur entre la progression du joueur et les conditions
+          des nodes \xE0 remplir (voir la Node Event pour plus de d\xE9tails)."
+        Language: 0
+      - Data: These conditions are linked to a script "DE_EventCaller" which acts
+          as a connector between the progress of the player and the conditions of
+          the nodes to be completed (see the Node Event for more details).
+        Language: 1
+      - Data: "Estas condiciones est\xE1n vinculadas a un script \"DE_EVENTCALLER\"
+          que act\xFAa como un conector entre el progreso del jugador y las condiciones
+          de los nodos que se deben completar (consulte el evento del nodo para m\xE1s
+          detalles)."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
+    Position: {x: 7430.4, y: -132.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 311e4d82-aa80-4d90-90c9-9d9576d66dbd
+      Texts:
+      - Data: "En cliquant sur l'option \"Add Event\" de la node, vous pouvez cr\xE9er
+          2 types d'\xE9v\xE9nements : String Event et Scriptable Event."
+        Language: 0
+      - Data: 'By clicking on the "Add Event" option, you can create 2 types of events:
+          String Events and Scriptable Events.'
+        Language: 1
+      - Data: "Al hacer clic en la opci\xF3n \"Agregar evento\" del nodo, puede crear
+          2 tipos de eventos: evento de cadena y evento scriptable."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 6d584802-3604-4952-ae09-7531e0b8d350
+      Texts:
+      - Data: "Le String Event va rechercher le nom de la propri\xE9t\xE9 renseign\xE9
+          dans le script et la modifier."
+        Language: 0
+      - Data: The String Event will search for the name of the property provided
+          in the script and edit it.
+        Language: 1
+      - Data: "El evento de cadena buscar\xE1 el nombre de la propiedad proporcionada
+          en el script y editarla."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: afb55991-3f45-47ea-9e70-14c91abb1249
+      Texts:
+      - Data: "Le Scriptable Event va appeler tous les m\xE9thodes abonn\xE9es au
+          ScriptableObject en param\xE8tre depuis le DE_EventCaller. Dans cet exemple,
+          notre SO va appeler une simple fonction \xE9crivant un message dans la
+          console."
+        Language: 0
+      - Data: The scriptable event will call all the methods subscribed to the scriptableObject
+          as parameter from the DE_EventCaller. In this example, our SO will call
+          a simple function writing a message in the console.
+        Language: 1
+      - Data: "El evento scriptable llamar\xE1 a todos los m\xE9todos suscritos al
+          ScriptableObject como par\xE1metro del De_EventsCaller. En este ejemplo,
+          nuestro, as\xED lo llamar\xE1 una funci\xF3n simple que escribe un mensaje
+          en la consola."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
+    Position: {x: -121.6, y: 870.39996}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: b836be96-456d-4d09-9113-7051d2bdcce1
+      Texts:
+      - Data: "Dans ce projet, la sc\xE8ne DialogueTrigger lance automatiquement
+          la sc\xE8ne contenant le UI d'affichage du dialogue. Cette sc\xE8ne est
+          retir\xE9e une fois le dialogue termin\xE9e."
+        Language: 0
+      - Data: In this project, the DialogTrigger scene automatically launches the
+          scene containing the UI display of the dialog. This scene is removed once
+          the dialog is complete.
+        Language: 1
+      - Data: "En este proyecto, la escena de DialogStrigger lanza autom\xE1ticamente
+          la escena que contiene la pantalla IU del di\xE1logo. Esta escena se elimina
+          una vez que se completa el di\xE1logo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 0395f82a-7e24-4997-9cb8-f5bacea17c44
+      Texts:
+      - Data: "Pour lancer manuellement un dialogue, vous devez appeler la fonction
+          InitAndStartNewDialogue() pr\xE9sente dans le DialogueManager. Ce script
+          est responsable de la lecture du dialogue et de l'interpr\xE9tation du
+          contenu des nodes."
+        Language: 0
+      - Data: To manually start a dialog, you must call the InitAndSetNewDialogue()
+          function present in the DialogueManager. This script is responsible for
+          reading the dialogue and interpreting the content of the nodes.
+        Language: 1
+      - Data: "Para iniciar manualmente un di\xE1logo, debe llamar a la funci\xF3n
+          InitandnetNewDialogue () presente en el Di\xE1logueager. Este gui\xF3n
+          es responsable de leer el di\xE1logo e interpretaci\xF3n de los contenidos
+          de los nodos."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: c43a8e95-3844-4854-afbf-706a991cc62e
+      Texts:
+      - Data: "Il est important de fournir en param\xE8tre le SO contenant le dialogue
+          que vous voulez lire, le script d\xE9riv\xE9 de DE_EventCaller devant appeler
+          les \xE9v\xE9nements en jeu, ainsi que la langue de la traduction du dialogue."
+        Language: 0
+      - Data: It is important to provide the SO parameter containing the dialog you
+          want to read, the derived script DE_EventCaller to call the events during
+          a session, as well as the language of translation of the dialog.
+        Language: 1
+      - Data: "Es importante proporcionar el par\xE1metro SO que contenga el di\xE1logo
+          que desea leer, el CALLER Derivado derivado para llamar a los eventos en
+          juego, as\xED como el idioma de la traducci\xF3n del di\xE1logo."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
+    Position: {x: 225.6, y: 870.39996}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: af1f89d7-b7bb-4614-bfd1-07a2ae0e9dab
+      Texts:
+      - Data: "Dans la sc\xE8ne du UI, le script d\xE9riv\xE9 de DialogueUI est charg\xE9
+          de s'abonner aux delegates du DialogueManager pour afficher les changements
+          de texte et d'images en fonction de la node parcourue. L'exemple utilis\xE9
+          dans ce projet utilise un syst\xE8me de tween pour animer les sprites \xE0
+          l'\xE9cran."
+        Language: 0
+      - Data: In the UI scene, the DialogueUI derived script is responsible for subscribing
+          to the DialogueManager delegates to display the text and image changes
+          based on the current node. The example used in this project uses a Tween
+          system to animate the sprites on the screen.
+        Language: 1
+      - Data: "En la escena de la UI, el script derivado de Di\xE1logo es responsable
+          de suscribirse a los delegados de DialogueManager para mostrar los cambios
+          de texto y la imagen seg\xFAn el nodo recorrido. El ejemplo utilizado en
+          este proyecto utiliza un sistema Tween para animar los sprites en la pantalla."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: d369303e-5f86-4ea1-909d-c793477bd785
+      Texts:
+      - Data: "Vous pouvez \xE9crire votre propre comportement pour votre UI en cr\xE9ant
+          un script h\xE9ritant de DialogueUI."
+        Language: 0
+      - Data: You can write your own behavior for your UI by creating a script inheriting
+          from DialogueUI.
+        Language: 1
+      - Data: "Puede escribir su propio comportamiento para su IU creando un gui\xF3n
+          de dialoguei heredero."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
+    Position: {x: 1348.8, y: -124.8}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: ddba2a6b-9934-4101-8cd3-6d9d4dc35e59
+      Texts:
+      - Data: "La node \"Replique\" est celle utilis\xE9e depuis le d\xE9but de ce
+          dialogue. Elle affiche du texte \xE0 l'\xE9cran et vous permet de jouer
+          du son \xE0 la lecture d'une r\xE9plique, comme une voix de personnage
+          ou un effet sonore."
+        Language: 0
+      - Data: The "Replique" node is used since the beginning of this dialogue. It
+          displays text on the screen and allows you to play a sound clip when playing
+          a text line, like a character voice or sound effect.
+        Language: 1
+      - Data: "El nodo \"r\xE9plica\" se usa desde el comienzo de este di\xE1logo.
+          Muestra texto en la pantalla y le permite reproducir sonido al reproducir
+          una r\xE9plica, como un efecto de voz o efecto de sonido."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 28aae106-8a20-42ca-a976-af39c4468533
+      Texts:
+      - Data: Comme ceci.
+        Language: 0
+      - Data: Like this.
+        Language: 1
+      - Data: Como esto.
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 8300000, guid: 141389a7046daed48b878e4af03e3430, type: 3}
+        Language: 0
+      - Data: {fileID: 8300000, guid: 141389a7046daed48b878e4af03e3430, type: 3}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 2
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 276a938c-496a-4e4e-8d43-fe09f740620a
+      Texts:
+      - Data: "Les diff\xE9rentes options de la node sont :"
+        Language: 0
+      - Data: 'The different options of the Node are:'
+        Language: 1
+      - Data: 'Las diferentes opciones del nodo son:'
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    Position: {x: 10383.2, y: -109.600006}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 39ba785d-0633-4930-a9dc-1f5bd4238f18
+      Texts:
+      - Data: "La node \"Delay\" d\xE9laie le passage \xE0 la node suivante. Utile
+          si vous souhaitez un d\xE9lai entre deux nodes Event, pour jouer un jeu
+          d'animations ou attendre qu'une sc\xE8ne se charge par exemple."
+        Language: 0
+      - Data: The "Delay" node delays the passage to the next node. Useful if you
+          want a delay between two Event nodes, to play a game of animations or wait
+          for a scene to load for example.
+        Language: 1
+      - Data: "El nodo \"Delay\" trae el movimiento al siguiente nodo. \xDAtil Si
+          desea un retraso entre dos nodos de eventos, para jugar un juego de animaciones
+          o esperar a que se cargue una escena, por ejemplo."
         Language: 2
       AudioClips:
       - Data: {fileID: 0}
@@ -787,35 +2979,43 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   BranchDatas:
-  - NodeGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
-    Position: {x: 2419.2, y: 247.2}
-    TrueNodeGuid: b562bca1-d795-4bbe-9613-2e0393e4c3b2
-    FalseNodeGuid: 57731a43-8328-4123-9c2c-b00e14a4435c
+  - NodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
+    Position: {x: 10088.8, y: -109.600006}
+    TrueNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
+    FalseNodeGuid: 
     StringConditions:
     - ID:
         Value: 0
       StringEvent:
-        Value: HasSomethingToDo
+        Value: OrLikeThat
       Number:
         Value: 0
       ConditionType:
+        Value: 1
+    - ID:
         Value: 0
+      StringEvent:
+        Value: ChoiceBlocked
+      Number:
+        Value: 0
+      ConditionType:
+        Value: 1
   ChoiceDatas:
-  - NodeGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
-    Position: {x: 2071.2, y: 247.2}
+  - NodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    Position: {x: -601.6, y: 247.2}
     Choices:
     - ID:
         Value: 0
       Guid:
-        Value: c52617ee-2702-45d9-bdbf-b0e9f974a064
+        Value: cb51f637-6203-4e4b-a572-f1deeedef055
       ChoiceStateType:
         Value: 0
       Texts:
-      - Data: Rien, je m'ennuie.
+      - Data: "Comment fonctionne la fen\xEAtre d'\xE9dition de dialogue ?"
         Language: 0
-      - Data: Nothing, I'm bored.
+      - Data: How does the dialog editing window work?
         Language: 1
-      - Data: Nada, estoy aburrido.
+      - Data: "\xBFC\xF3mo funciona la ventana de edici\xF3n de di\xE1logo?"
         Language: 2
       AudioClips:
       - Data: {fileID: 0}
@@ -828,21 +3028,132 @@ MonoBehaviour:
       LinkedPort:
         ID:
           Value: 0
-        PortGuid: a5057794-33ea-41b8-a12a-35d9523f5ecd
-        InputGuid: 2e53f004-edfa-413b-98de-4cca4bf05549
-        OutputGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
+        PortGuid: f371b000-a06a-4a08-9dd5-1590799aa77c
+        InputGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
+        OutputGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
     - ID:
         Value: 1
       Guid:
-        Value: 38c031ba-978e-4c20-96b5-3fb0b476dcb0
+        Value: a883e808-02cf-427d-84e7-dde2c468297e
+      ChoiceStateType:
+        Value: 0
+      Texts:
+      - Data: Comment fonctionnent les nodes ?
+        Language: 0
+      - Data: How do the nodes work?
+        Language: 1
+      - Data: "\xBFC\xF3mo funcionan los nodos?"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: 9fae518d-48cd-48e7-be66-e0b32234e70c
+        InputGuid: 47704779-4a77-405c-a3ee-d913717ece11
+        OutputGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    - ID:
+        Value: 2
+      Guid:
+        Value: 8d834159-c8a1-4ca6-8f8e-aaae9ff94ad5
+      ChoiceStateType:
+        Value: 0
+      Texts:
+      - Data: Comment lancer un dialogue en jeu ?
+        Language: 0
+      - Data: How to start a dialogue in-game?
+        Language: 1
+      - Data: "\xBFC\xF3mo iniciar un di\xE1logo en juego?"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: b751bb31-5ce2-4bbd-aedf-ed37556e3ea2
+        InputGuid: 3dfa1360-1523-413c-842f-22061668cc31
+        OutputGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+    - ID:
+        Value: 3
+      Guid:
+        Value: 891641e8-7bc0-4134-9538-b3ac7e428d8d
+      ChoiceStateType:
+        Value: 0
+      Texts:
+      - Data: Ce sera tout. (Terminer le dialogue)
+        Language: 0
+      - Data: That's all. (Finish dialog)
+        Language: 1
+      - Data: "Esto ser\xE1 todo. (Di\xE1logo de finalizaci\xF3n)"
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: be6d0a8c-63f7-4f8d-a87f-b4d8254ccc8d
+        InputGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
+        OutputGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
+  - NodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    Position: {x: 5536.8, y: -128}
+    Choices:
+    - ID:
+        Value: 0
+      Guid:
+        Value: a3ce7a92-e09e-4167-a058-aa7dc71fa400
+      ChoiceStateType:
+        Value: 0
+      Texts:
+      - Data: Comme ceci ?
+        Language: 0
+      - Data: Like this ?
+        Language: 1
+      - Data: Como esto ?
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: b5f0b489-ef0e-4335-a271-a5987d3ce4ef
+        InputGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
+        OutputGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
+    - ID:
+        Value: 1
+      Guid:
+        Value: f0489052-d0b9-4f57-bbeb-7908e62b7abc
       ChoiceStateType:
         Value: 1
       Texts:
-      - Data: Je fais un truc sympa, viens voir c'est marrant !
+      - Data: Ou comme ceci ?
         Language: 0
-      - Data: I'm doing something cool, check this out !
+      - Data: Or like that?
         Language: 1
-      - Data: "\xA1Estoy haciendo una cosa agradable, ven a ver que es divertido!"
+      - Data: "\xBFO as\xED?"
         Language: 2
       AudioClips:
       - Data: {fileID: 0}
@@ -855,19 +3166,96 @@ MonoBehaviour:
       - ID:
           Value: 0
         Guid:
-          Value: de71efe0-258a-4631-9e85-5fab7becdd19
+          Value: 9208c28e-201c-4e27-9909-5c5dd0060a8b
         DescriptionsIfNotMet:
-        - Data: "hasSomethingToDo est \xE0 true"
+        - Data: Exemple de choix inaccessible au joueur.
           Language: 0
-        - Data: School event locked in demo
+        - Data: Example of choice inaccessible to the player.
           Language: 1
-        - Data: "Hassomethingtodo est\xE1 en verdad"
+        - Data: "Ejemplo de elecci\xF3n inaccesible para el jugador."
           Language: 2
         StringCondition:
           ID:
             Value: 0
           StringEvent:
-            Value: HasSomethingToDo
+            Value: OrLikeThat
+          Number:
+            Value: 0
+          ConditionType:
+            Value: 0
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: 4f855831-9e5c-4bed-a61f-987d1917d6a2
+        InputGuid: 
+        OutputGuid: 
+  - NodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    Position: {x: 8682.4, y: -132.8}
+    Choices:
+    - ID:
+        Value: 0
+      Guid:
+        Value: aec962fd-df61-4cb1-963d-9be48ab1ac0d
+      ChoiceStateType:
+        Value: 0
+      Texts:
+      - Data: "D\xE9bloquer le choix."
+        Language: 0
+      - Data: Unlock the choice.
+        Language: 1
+      - Data: "Desbloquear la elecci\xF3n."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: de748355-60d9-4379-9d7b-454be31a8e87
+        InputGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
+        OutputGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+    - ID:
+        Value: 1
+      Guid:
+        Value: 3dc433aa-bfd7-4481-aff1-76cb5b6feb18
+      ChoiceStateType:
+        Value: 1
+      Texts:
+      - Data: "Choix bloqu\xE9."
+        Language: 0
+      - Data: Choice blocked.
+        Language: 1
+      - Data: "Elecci\xF3n bloqueada."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions:
+      - ID:
+          Value: 0
+        Guid:
+          Value: 0f18eead-1b34-4136-86ff-eb5f12444e35
+        DescriptionsIfNotMet:
+        - Data: "Ce choix est bloqu\xE9 dans le DE_EventCaller."
+          Language: 0
+        - Data: This choice is blocked in the DE_EventCaller.
+          Language: 1
+        - Data: "Esta elecci\xF3n est\xE1 bloqueada en el De_EventsCaller."
+          Language: 2
+        StringCondition:
+          ID:
+            Value: 0
+          StringEvent:
+            Value: ChoiceBlocked
           Number:
             Value: 0
           ConditionType:
@@ -875,68 +3263,171 @@ MonoBehaviour:
       LinkedPort:
         ID:
           Value: 0
-        PortGuid: 3d43a709-6ee9-4e28-aff5-96b6b7f334a8
-        InputGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-        OutputGuid: 03e218b0-67ba-431b-9181-79a2ffc31c24
-  DelayDatas:
-  - NodeGuid: 35432d0a-cef1-4dd6-8858-457c25692159
-    Position: {x: 2820.8, y: 1144}
-    Delay:
-      Value: 2
-  - NodeGuid: 01793c26-ad00-4a51-bd35-1f6584dcab22
-    Position: {x: 240, y: 293.59998}
-    Delay:
-      Value: 1.5
-  - NodeGuid: d1e1a140-6d5f-417c-95d6-f4f3fd698a40
-    Position: {x: -779.2, y: -446.40002}
-    Delay:
-      Value: 0
-  - NodeGuid: d3912b84-79e3-4668-9ca5-0d0c781c134f
-    Position: {x: -360, y: -508}
-    Delay:
-      Value: 1
-  - NodeGuid: 22f9a8e1-1a44-44be-86b6-79bd72926023
-    Position: {x: 57.6, y: -555.2}
-    Delay:
-      Value: 0
-  EventDatas:
-  - NodeGuid: 4fb29486-51f0-462c-968a-21298b12d1fa
-    Position: {x: 2419.2, y: 943.2}
-    Events: []
-    StringEvents:
+        PortGuid: 29e67d42-b4df-41f0-b517-890c03cd5eaa
+        InputGuid: 15217446-569b-4918-bf09-0630f342f4a2
+        OutputGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
+  - NodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+    Position: {x: 230.4, y: 1704.8}
+    Choices:
+    - ID:
+        Value: 0
+      Guid:
+        Value: 88eea279-12f5-45c6-81bd-09a352637eb2
+      ChoiceStateType:
+        Value: 0
+      Texts:
+      - Data: Aller sur la page Github.
+        Language: 0
+      - Data: Go to the Github page.
+        Language: 1
+      - Data: "Ir a la p\xE1gina GitHub."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: 8f9a3cf7-7cf9-4b8c-b8c5-151a50d88d28
+        InputGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
+        OutputGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
     - ID:
         Value: 1
-      StringEvent:
-        Value: HasSomethingToDo
-      Number:
+      Guid:
+        Value: 4c82df54-97a1-4f1e-aa4d-e85d209c4180
+      ChoiceStateType:
         Value: 0
-      ModifierType:
-        Value: 0
+      Texts:
+      - Data: Aller sur la page Youtube.
+        Language: 0
+      - Data: Go to the YouTube page.
+        Language: 1
+      - Data: "Ve a la p\xE1gina de YouTube."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: 9c52129d-041b-4229-a83d-f231082c9716
+        InputGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
+        OutputGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
     - ID:
         Value: 2
-      StringEvent:
-        Value: Money
-      Number:
-        Value: 500
-      ModifierType:
-        Value: 2
+      Guid:
+        Value: ecd16a6d-86f9-4aab-a8ad-be7acad5a400
+      ChoiceStateType:
+        Value: 0
+      Texts:
+      - Data: Pas maintenant, merci.
+        Language: 0
+      - Data: Not now, thank you.
+        Language: 1
+      - Data: No ahora, gracias.
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: e7cad1a1-a4f4-42d8-a82d-fb87d2cf8c14
+        InputGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+        OutputGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
+  DelayDatas:
+  - NodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
+    Position: {x: 10739.2, y: -109.600006}
+    Delay:
+      Value: 2
+  - NodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
+    Position: {x: 11526.4, y: -107.2}
+    Delay:
+      Value: 1
+  EventDatas:
+  - NodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
+    Position: {x: 7770.4, y: -132.8}
+    Events: []
+    StringEvents: []
     ScriptableEvents:
     - ID:
         Value: 0
       ScriptableObject:
         Value: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
+  - NodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
+    Position: {x: 8124.8, y: 411.19998}
+    Events: []
+    StringEvents:
+    - ID:
+        Value: 0
+      StringEvent:
+        Value: ChoiceBlocked
+      Number:
+        Value: 0
+      ModifierType:
+        Value: 1
+    ScriptableEvents: []
+  - NodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
+    Position: {x: 572, y: 1850.4}
+    Events: []
+    StringEvents: []
+    ScriptableEvents:
+    - ID:
+        Value: 0
+      ScriptableObject:
+        Value: {fileID: 11400000, guid: 0ae387f077df34548b2b2a2160fd9b44, type: 2}
+  - NodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
+    Position: {x: 580.8, y: 1585.6001}
+    Events: []
+    StringEvents: []
+    ScriptableEvents:
+    - ID:
+        Value: 0
+      ScriptableObject:
+        Value: {fileID: 11400000, guid: 677747f0a85a5ff498096c896825d91a, type: 2}
   EndDatas:
-  - NodeGuid: dd3d7951-1499-4d79-b684-ba60c9043245
-    Position: {x: 4094.4, y: -6.4000006}
+  - NodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
+    Position: {x: 1015.2, y: 1704.8}
     EndNodeType:
       Value: 0
-  - NodeGuid: 9d31d82b-4d7d-4da7-8327-0d1f23e55197
-    Position: {x: 3060.8, y: 1144}
-    EndNodeType:
-      Value: 3
-  - NodeGuid: 56b977c9-69ca-4097-8423-849c1a19c579
-    Position: {x: 469.6, y: -552.8}
-    EndNodeType:
-      Value: 3
   GroupDatas: []
-  NoteDatas: []
+  NoteDatas:
+  - Title: Replique
+    Content: 
+    Position: {x: 1361.6, y: -343.2}
+  - Title: Start & End
+    Content: 
+    Position: {x: -69.6, y: -338.40002}
+  - Title: Event
+    Content: 
+    Position: {x: 7139.2, y: -253.59999}
+  - Title: Branch
+    Content: 
+    Position: {x: 9766.4, y: -219.2}
+  - Title: Delay & UI
+    Content: 
+    Position: {x: 10424.8, y: -255.2}
+  - Title: Choice
+    Content: 
+    Position: {x: 5231.2, y: -258.4}
+  - Title: Character
+    Content: 
+    Position: {x: 2636.8, y: -348.80002}
+  - Title: Background
+    Content: 
+    Position: {x: 12143.2, y: -272}

@@ -330,8 +330,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogueEvent: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
-  _money: 50
-  _hasSomethingToDo: 0
+  _githubEvent: {fileID: 11400000, guid: 677747f0a85a5ff498096c896825d91a, type: 2}
+  _youtubeEvent: {fileID: 11400000, guid: 0ae387f077df34548b2b2a2160fd9b44, type: 2}
+  _orLikeThat: 0
+  _choiceBlocked: 1
 --- !u!114 &2131089595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aec959d202a0c1448711abf63c3af2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogueSceneName: Dialogue Scene
+  selectedLanguage: 0
   _triggerScript: {fileID: 2131089594}
   _dialogue: {fileID: 11400000, guid: 14654d24fb21fcb4ca3cb30cb3148d12, type: 2}
 --- !u!4 &2131089596

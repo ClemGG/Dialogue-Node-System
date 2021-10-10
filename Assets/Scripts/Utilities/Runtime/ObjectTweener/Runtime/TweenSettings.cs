@@ -67,8 +67,12 @@ namespace Project.Utilities.Tween
         public Color FromColor;
         public Color ToColor;
 
-        [Tooltip("Pour lancer des tweens en succession une fois ce tween terminé.")]
-        public TweenSettings[] OnComplete;
+
+        //Ce trub bugue et peut répéter des tweens en boucle, alors je le désactive
+        //jusqu'à ce que je me penche dessus
+
+        //[Tooltip("Pour lancer des tweens en succession une fois ce tween terminé.")]
+        //public TweenSettings[] OnComplete;
 
 
 

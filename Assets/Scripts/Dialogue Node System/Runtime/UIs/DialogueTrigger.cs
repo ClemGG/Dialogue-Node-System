@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,13 +5,16 @@ namespace Project.NodeSystem
 {
     public class DialogueTrigger : MonoBehaviour
     {
-        #region Components
+        #region Fields
 
         [SerializeField, Tooltip("Le nom de la scène à charger contenant l'UI et le DialogueManager.")]
         private string _dialogueSceneName = "Dialogue Scene";
 
+        [SerializeField, Tooltip("Le nom de la scène à charger contenant l'UI et le DialogueManager.")]
+        private LanguageType selectedLanguage = LanguageType.English;
+
         [SerializeField, Tooltip("Le script qui s'abonnera aux fonctions des events.")]
-        private DE_Trigger _triggerScript;
+        private DE_EventCaller _triggerScript;
 
         [SerializeField, Tooltip("Le dialogue à jouer.")]
         private DialogueContainerSO _dialogue;
@@ -20,6 +22,9 @@ namespace Project.NodeSystem
         private DialogueManager _dm;
 
         #endregion
+
+
+
 
         [ContextMenu("Load Dialogue Scene (Play Mode Only)")]
         void Start()
@@ -53,7 +58,7 @@ namespace Project.NodeSystem
 
             
             _dm.OnEndDialogue += UnloadDialogueScene;
-            _dm.InitAndStartNewDialogue(_dialogue, LanguageType.French, _triggerScript);
+            _dm.InitAndStartNewDialogue(_dialogue, selectedLanguage, _triggerScript);
         }
 
         private void UnloadDialogueScene()

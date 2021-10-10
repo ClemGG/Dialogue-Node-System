@@ -40,7 +40,6 @@ namespace Project.Utilities.Tween
         #region Private
 
         private List<LTDescr> _tweeners = new List<LTDescr>();
-        private LTSeq _sequence;
         private CanvasGroup cg;
         private Vector3 startPos, startRot, startScale;
 
@@ -52,7 +51,7 @@ namespace Project.Utilities.Tween
 
         public Transform ObjectToAnimate
         {
-            get { if (_objectToAnimate == null) _objectToAnimate = gameObject.transform; return _objectToAnimate; }
+            get { if (_objectToAnimate == null) _objectToAnimate = transform; return _objectToAnimate; }
             set => _objectToAnimate = value;
         }
         public TweenSettings Settings { get; set; }
@@ -63,7 +62,7 @@ namespace Project.Utilities.Tween
             {
                 if (!ObjectToAnimate.TryGetComponent(out cg))
                 {
-                    return ObjectToAnimate.gameObject.AddComponent<CanvasGroup>();
+                    cg = ObjectToAnimate.gameObject.AddComponent<CanvasGroup>();
                 }
                 return cg;
             }
@@ -147,6 +146,16 @@ namespace Project.Utilities.Tween
             ObjectToAnimate.localScale = startScale;
         }
 
+        public void Stop()
+        {
+            LeanTween.cancel(ObjectToAnimate.gameObject);
+            _tweeners.Clear();
+        }
+
+        public void ResetAlpha(float alpha = 1f)
+        {
+            Cg.alpha = alpha;
+        }
 
         #endregion
 
@@ -264,13 +273,17 @@ namespace Project.Utilities.Tween
                     _tweener.reset();
                 }
 
-                if (!Settings.Loop && !Settings.PingPong)
-                {
-                    for (int i = 0; i < Settings.OnComplete.Length; i++)
-                    {
-                        BeginTween(Settings.OnComplete[i]);
-                    }
-                }
+
+                //Ce trub bugue et peut répéter des tweens en boucle, alors je le désactive
+                //jusqu'à ce que je me penche dessus
+
+                //if (!Settings.Loop && !Settings.PingPong)
+                //{
+                //    for (int i = 0; i < Settings.OnComplete.Length; i++)
+                //    {
+                //        BeginTween(Settings.OnComplete[i]);
+                //    }
+                //}
             });
 
             _tweeners.Add(_tweener);
@@ -387,14 +400,16 @@ namespace Project.Utilities.Tween
                     _tweener.reset();
                 }
 
+                //Ce trub bugue et peut répéter des tweens en boucle, alors je le désactive
+                //jusqu'à ce que je me penche dessus
 
-                if (!Settings.Loop && !Settings.PingPong)
-                {
-                    for (int i = 0; i < Settings.OnComplete.Length; i++)
-                    {
-                        BeginTween(Settings.OnComplete[i]);
-                    }
-                }
+                //if (!Settings.Loop && !Settings.PingPong)
+                //{
+                //    for (int i = 0; i < Settings.OnComplete.Length; i++)
+                //    {
+                //        BeginTween(Settings.OnComplete[i]);
+                //    }
+                //}
             });
 
             _tweeners.Add(_tweener);
@@ -517,7 +532,6 @@ namespace Project.Utilities.Tween
                     ObjectToAnimate.position = Settings.RelativeFrom(ObjectToAnimate);
                 }
             }
-
 
             return LeanTween.moveZ(ObjectToAnimate.gameObject, to.z, Settings.Duration);
 
@@ -705,7 +719,6 @@ namespace Project.Utilities.Tween
 
         private LTDescr Fade()
         {
-
             if (ObjectToAnimate.TryGetComponent(out RectTransform rt))
             {
                 if (Settings.UseFromAsStart)
@@ -789,61 +802,6 @@ namespace Project.Utilities.Tween
         }
 
 
-
-        //Lance une succession de tweens à la suite
-        private void Sequence(List<LTDescr> tweensToRecord)
-        {
-            _sequence = LeanTween.sequence();
-            for (int i = 0; i < tweensToRecord.Count; i++)
-            {
-                _sequence.append(tweensToRecord[i]);
-            }
-        }
-
-        //Lance une succession de tweens à la suite
-        private void Sequence(params LTDescr[] tweensToRecord)
-        {
-            _sequence = LeanTween.sequence();
-            for (int i = 0; i < tweensToRecord.Length; i++)
-            {
-                _sequence.append(tweensToRecord[i]);
-            }
-        }
-
-        //Lance une succession de tweens à la suite
-        private void Sequence(params TweenSettings[] tweensToRecord)
-        {
-            LTDescr[] tmp = new LTDescr[tweensToRecord.Length];
-            _tweeners.CopyTo(tmp);
-            _tweeners.Clear();
-
-            _sequence = LeanTween.sequence();
-            for (int i = 0; i < tweensToRecord.Length; i++)
-            {
-                BeginTween(tweensToRecord[i]);
-                _sequence.append(_tweeners[i]);
-            }
-            _tweeners.Clear();
-            _tweeners = tmp.ToList();
-        }
-        //Lance une succession de tweens à la suite
-        private void Sequence(Action tweensToRecord)
-        {
-            _sequence = LeanTween.sequence();
-            _sequence.append(tweensToRecord);
-        }
-
-        private void RewindSequence()
-        {
-            if (_sequence != null) _sequence.reverse();
-        }
-
-        public void Stop()
-        {
-            LeanTween.cancel(ObjectToAnimate.gameObject);
-            if (_sequence != null) LeanTween.cancel(_sequence.id);
-            _tweeners.Clear();
-        }
 
 
         #endregion
