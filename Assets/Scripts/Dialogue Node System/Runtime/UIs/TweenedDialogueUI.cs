@@ -136,6 +136,13 @@ namespace Project.NodeSystem
 
         private bool _uiVisibleFlag;                            //POur savoir si l'UI est visible ou non
 
+        private bool ControllerIsConnected
+        {
+            get
+            {
+                return Input.GetJoystickNames().Length > 0;
+            }
+        }
 
         #endregion
 
@@ -849,7 +856,8 @@ namespace Project.NodeSystem
             _skipRepliqueBtn.gameObject.SetActive(false);
             _continueBtn.gameObject.SetActive(true);
             _continueBtn.interactable = true;
-            _continueBtn.Select();
+            if(ControllerIsConnected) _continueBtn.Select();    //if controller is connected, select the button
+
             _isWriting = false;
 
 
@@ -886,7 +894,7 @@ namespace Project.NodeSystem
             if (data.CanClickOnContinue.Value) 
             {
                 _skipRepliqueBtn.gameObject.SetActive(true);
-                _skipRepliqueBtn.Select();
+                if (ControllerIsConnected) _skipRepliqueBtn.Select();   //if controller is connected, select the button
             }
 
 
@@ -949,7 +957,7 @@ namespace Project.NodeSystem
             {
                 _continueBtn.gameObject.SetActive(true);
                 _continueBtn.interactable = true;
-                _continueBtn.Select();
+                if (ControllerIsConnected) _continueBtn.Select();   //if controller is connected, select the button
             }
 
             _skipRepliqueBtn.gameObject.SetActive(false);

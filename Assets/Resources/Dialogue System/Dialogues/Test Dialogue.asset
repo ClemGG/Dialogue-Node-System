@@ -25,6 +25,10 @@ MonoBehaviour:
     BasePortName: Start
     TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
     TargetPortName: Input
+  - BaseNodeGuid: ae83c016-7024-4f18-9ef8-fd4535b26943
+    BasePortName: Start
+    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
+    TargetPortName: Input
   - BaseNodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
     BasePortName: Output
     TargetNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
@@ -436,10 +440,6 @@ MonoBehaviour:
   - BaseNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
     BasePortName: Start
     TargetNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
-    TargetPortName: Input
-  - BaseNodeGuid: ae83c016-7024-4f18-9ef8-fd4535b26943
-    BasePortName: Start
-    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
     TargetPortName: Input
   StartDatas:
   - NodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
@@ -3477,10 +3477,6 @@ MonoBehaviour:
     Content: 
     Position: {x: -89.6, y: -244}
     Size: {x: 249.6, y: 100}
-  - Title: Replique
-    Content: 
-    Position: {x: 1408.8, y: -250.4}
-    Size: {x: 177.59998, y: 100}
   - Title: Character
     Content: 
     Position: {x: 2667.2, y: -248.8}
@@ -3493,3 +3489,7 @@ MonoBehaviour:
     Content: 
     Position: {x: 10424.8, y: -255.2}
     Size: {x: 220.7998, y: 100}
+  - Title: Replique
+    Content: 
+    Position: {x: 1408.8, y: -250.4}
+    Size: {x: 188, y: 100}
