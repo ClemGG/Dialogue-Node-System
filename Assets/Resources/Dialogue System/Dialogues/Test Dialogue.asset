@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Test Dialogue
   m_EditorClassIdentifier: 
   linkDatas:
+  - BaseNodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
+    BasePortName: Start
+    TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    TargetPortName: Input
   - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     BasePortName: Start
     TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
@@ -185,14 +189,6 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
     TargetPortName: Input
-  - BaseNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
-    BasePortName: Output
-    TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
-    TargetPortName: Input
-  - BaseNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
-    BasePortName: Output
-    TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
-    TargetPortName: Input
   - BaseNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
     BasePortName: Output
     TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
@@ -417,6 +413,14 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
     TargetPortName: Input
+  - BaseNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
+    BasePortName: Output
+    TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
+    TargetPortName: Input
+  - BaseNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
+    BasePortName: Output
+    TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
+    TargetPortName: Input
   - BaseNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
     BasePortName: Start
     TargetNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
@@ -433,20 +437,25 @@ MonoBehaviour:
     BasePortName: Start
     TargetNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
     TargetPortName: Input
-  - BaseNodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
+  - BaseNodeGuid: ae83c016-7024-4f18-9ef8-fd4535b26943
     BasePortName: Start
-    TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
+    TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
     TargetPortName: Input
   StartDatas:
+  - NodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
+    Position: {x: 12270.4, y: -398.40002}
+    isDefault:
+      Value: 0
+    StringConditions: []
   - NodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
     Position: {x: -2088, y: 247.2}
     isDefault:
       Value: 0
     StringConditions: []
-  - NodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
-    Position: {x: 11916.8, y: -319.2}
+  - NodeGuid: ae83c016-7024-4f18-9ef8-fd4535b26943
+    Position: {x: 2381.6, y: -230.4}
     isDefault:
-      Value: 0
+      Value: 1
     StringConditions: []
   UIDatas:
   - NodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
@@ -561,39 +570,6 @@ MonoBehaviour:
       AutoDelayDuration:
         Value: 0
   RepliqueDatas:
-  - NodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
-    Position: {x: -1579.2, y: 247.2}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: fdb8a0a2-0406-45ce-812b-23da819cd5c1
-      Texts:
-      - Data: Bonjour !
-        Language: 0
-      - Data: Hi!
-        Language: 1
-      - Data: Buenos dias !
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
   - NodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
     Position: {x: -977.6, y: 247.2}
     Repliques:
@@ -2280,9 +2256,7 @@ MonoBehaviour:
       Guid:
         Value: e9a0520e-ff08-412b-8ec9-3b9e5b167042
       Texts:
-      - Data: "Il est possible d'ajouter des conditions aux nodes Start pour lire
-          le dialogue \xE0 un diff\xE9rent point d'entr\xE9e en fonction de conditions
-          remplies par le joueur, gr\xE2ce au bouton \"Add condition\"."
+      - Data: '  '
         Language: 0
       - Data: It is possible to add conditions to the Start nodes to read the dialogue
           from a different input point according to the conditions filled by the
@@ -3025,6 +2999,39 @@ MonoBehaviour:
         Language: 1
       - Data: {fileID: 0}
         Language: 2
+  - NodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
+    Position: {x: -1579.2, y: 247.2}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: fdb8a0a2-0406-45ce-812b-23da819cd5c1
+      Texts:
+      - Data: Bonjour !
+        Language: 0
+      - Data: Hi!
+        Language: 1
+      - Data: Buenos dias !
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
   BranchDatas:
   - NodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
     Position: {x: 10088.8, y: -109.600006}
@@ -3454,27 +3461,35 @@ MonoBehaviour:
       Value: 0
   GroupDatas: []
   NoteDatas:
-  - Title: Replique
-    Content: 
-    Position: {x: 1361.6, y: -343.2}
-  - Title: Start & End
-    Content: 
-    Position: {x: -69.6, y: -338.40002}
-  - Title: Branch
-    Content: 
-    Position: {x: 9766.4, y: -219.2}
-  - Title: Delay & UI
-    Content: 
-    Position: {x: 10424.8, y: -255.2}
-  - Title: Character
-    Content: 
-    Position: {x: 2636.8, y: -348.80002}
   - Title: Choice
     Content: 
     Position: {x: 5231.2, y: -258.4}
+    Size: {x: 155.1997, y: 100}
   - Title: Event
     Content: 
     Position: {x: 7139.2, y: -253.59999}
+    Size: {x: 138.3999, y: 100}
   - Title: Background
     Content: 
     Position: {x: 12143.2, y: -272}
+    Size: {x: 251.2002, y: 100}
+  - Title: Start & End
+    Content: 
+    Position: {x: -89.6, y: -244}
+    Size: {x: 249.6, y: 100}
+  - Title: Replique
+    Content: 
+    Position: {x: 1408.8, y: -250.4}
+    Size: {x: 177.59998, y: 100}
+  - Title: Character
+    Content: 
+    Position: {x: 2667.2, y: -248.8}
+    Size: {x: 211.19995, y: 100}
+  - Title: Branch
+    Content: 
+    Position: {x: 9766.4, y: -219.2}
+    Size: {x: 162.39941, y: 104}
+  - Title: Delay & UI
+    Content: 
+    Position: {x: 10424.8, y: -255.2}
+    Size: {x: 220.7998, y: 100}

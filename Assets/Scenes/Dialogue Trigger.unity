@@ -334,7 +334,6 @@ MonoBehaviour:
   _youtubeEvent: {fileID: 11400000, guid: 0ae387f077df34548b2b2a2160fd9b44, type: 2}
   _orLikeThat: 0
   _choiceBlocked: 1
-  _impossible: 1
 --- !u!114 &2131089595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +349,7 @@ MonoBehaviour:
   _dialogueSceneName: Dialogue Scene
   selectedLanguage: 1
   _triggerScript: {fileID: 2131089594}
-  _dialogue: {fileID: 11400000, guid: 14654d24fb21fcb4ca3cb30cb3148d12, type: 2}
+  _dialogue: {fileID: 11400000, guid: 313442b748b8a504781e9734b0f2d6be, type: 2}
 --- !u!4 &2131089596
 Transform:
   m_ObjectHideFlags: 0

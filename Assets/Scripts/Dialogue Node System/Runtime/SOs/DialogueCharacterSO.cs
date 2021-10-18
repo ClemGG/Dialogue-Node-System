@@ -16,6 +16,12 @@ namespace Project.NodeSystem
 
 
 
+        private void Reset()
+        {
+            OnValidate();
+        }
+
+
         private void OnValidate()
         {
             int length = LengthOf<LanguageType>();
@@ -68,4 +74,6 @@ namespace Project.NodeSystem
         public Sprite Face;
         public CharacterMood Mood;
     }
+
 }
+

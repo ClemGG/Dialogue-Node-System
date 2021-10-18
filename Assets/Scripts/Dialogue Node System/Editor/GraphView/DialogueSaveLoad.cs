@@ -497,6 +497,7 @@ namespace Project.NodeSystem.Editor
                 Title = note.title,
                 Content = note.contents,
                 Position = note.GetPosition().position,
+                Size = note.GetPosition().size,
             };
 
             return noteData;
@@ -818,7 +819,7 @@ namespace Project.NodeSystem.Editor
         {
             foreach (StickyNoteData savedData in dialogueContainer.NoteDatas)
             {
-                StickyNote tmpNote = GraphBuilder.AddStickyNote(savedData.Title, savedData.Content, savedData.Position);
+                StickyNote tmpNote = GraphBuilder.AddStickyNote(savedData);
 
                 _graphView.AddElement(tmpNote);
             }

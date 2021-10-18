@@ -160,6 +160,32 @@ namespace Project.NodeSystem.Editor
 
             return note;
         }
+        
+        
+        
+        
+        /// <summary>
+        /// Creates a StickyNote in the GraphView from an existing saved StickyNote
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        public static StickyNote AddStickyNote(StickyNoteData data)
+        {
+            StickyNote note = new StickyNote
+            {
+                title = data.Title,
+                theme = StickyNoteTheme.Black,
+                contents = data.Content,
+            };
+
+            note.SetPosition(new Rect(data.Position, data.Size));
+
+
+            note.ChangeColorInMinimap("#CCAA33");
+            note.AddStyle("Note");
+
+            return note;
+        }
 
 
 

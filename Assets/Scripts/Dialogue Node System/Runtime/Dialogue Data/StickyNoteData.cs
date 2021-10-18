@@ -6,4 +6,5 @@ public class StickyNoteData
     public string Title;
     public string Content;
     public Vector2 Position;
+    public Vector2 Size;
 }

@@ -1,0 +1,374 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd242b17d1915eb458c4133486bbe650, type: 3}
+  m_Name: v3.0
+  m_EditorClassIdentifier: 
+  linkDatas:
+  - BaseNodeGuid: 4acf4628-4b98-4bb3-83ec-7f1630abc3bb
+    BasePortName: Start
+    TargetNodeGuid: e162abeb-7290-416b-b42d-eca1cc2a77fd
+    TargetPortName: Input
+  - BaseNodeGuid: 38d7bf34-a114-49be-bb0c-01e894830126
+    BasePortName: 9996d133-5ace-4b88-8942-4abd6d69054f
+    TargetNodeGuid: 4a4109c4-927d-4604-8bf1-477d78f2032f
+    TargetPortName: End
+  - BaseNodeGuid: 38d7bf34-a114-49be-bb0c-01e894830126
+    BasePortName: 75f9581c-1589-4294-ab06-730a35cfec9f
+    TargetNodeGuid: 4a4109c4-927d-4604-8bf1-477d78f2032f
+    TargetPortName: End
+  - BaseNodeGuid: e162abeb-7290-416b-b42d-eca1cc2a77fd
+    BasePortName: Output
+    TargetNodeGuid: 54f3a6e5-f63b-4beb-9c3e-0385f0c75e26
+    TargetPortName: Input
+  - BaseNodeGuid: 54f3a6e5-f63b-4beb-9c3e-0385f0c75e26
+    BasePortName: Output
+    TargetNodeGuid: 0cad3c40-b2f1-490a-accb-85b2f9eac12d
+    TargetPortName: Input
+  - BaseNodeGuid: af05affe-a6a5-44be-af11-00b46a8bf008
+    BasePortName: Output
+    TargetNodeGuid: 17b91f55-3709-4b55-9e87-d4f178600974
+    TargetPortName: Input
+  - BaseNodeGuid: fb157047-618e-463b-9893-ce42c101c525
+    BasePortName: Output
+    TargetNodeGuid: 54e1bbbe-585c-4aeb-bc4a-6bc2947f2ae0
+    TargetPortName: Input
+  - BaseNodeGuid: 17b91f55-3709-4b55-9e87-d4f178600974
+    BasePortName: Output
+    TargetNodeGuid: fb157047-618e-463b-9893-ce42c101c525
+    TargetPortName: Input
+  - BaseNodeGuid: 0cad3c40-b2f1-490a-accb-85b2f9eac12d
+    BasePortName: Output
+    TargetNodeGuid: af05affe-a6a5-44be-af11-00b46a8bf008
+    TargetPortName: Input
+  - BaseNodeGuid: 54e1bbbe-585c-4aeb-bc4a-6bc2947f2ae0
+    BasePortName: Output
+    TargetNodeGuid: 38d7bf34-a114-49be-bb0c-01e894830126
+    TargetPortName: Input
+  StartDatas:
+  - NodeGuid: 4acf4628-4b98-4bb3-83ec-7f1630abc3bb
+    Position: {x: -548.8, y: 205.6}
+    isDefault:
+      Value: 0
+    StringConditions: []
+  UIDatas: []
+  BackgroundDatas:
+  - NodeGuid: e162abeb-7290-416b-b42d-eca1cc2a77fd
+    Position: {x: -282.4, y: 205.6}
+    Transition:
+      Value:
+        ID:
+          Value: 0
+        BackgroundTex:
+          Value: {fileID: 2800000, guid: 6295bebff7854d74aa08f81223be5e1f, type: 3}
+        BackgroundName:
+          Value: tex_background1
+        StartSettings:
+          Value: {fileID: 11400000, guid: 5ec31df453038664ba29df2bd88ea1cf, type: 2}
+        EndSettings:
+          Value: {fileID: 11400000, guid: d1527db4a32ae5b438acf8b8737395b5, type: 2}
+  CharacterDatas:
+  - NodeGuid: 54f3a6e5-f63b-4beb-9c3e-0385f0c75e26
+    Position: {x: 224, y: 205.6}
+    Characters:
+    - ID:
+        Value: 0
+      Character:
+        Value: {fileID: 11400000, guid: a4c2187f72c53044489a8210a079bbc4, type: 2}
+      CharacterNames:
+      - Adam
+      - Adam
+      - Adam
+      CharacterName:
+        Value: Adam
+      Sprite:
+        Value: {fileID: 21300000, guid: d823c1f6526f9404e8dff61788341a07, type: 3}
+      Mood:
+        Value: 0
+      FaceDirection:
+        Value: 1
+      SidePlacement:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+  - NodeGuid: af05affe-a6a5-44be-af11-00b46a8bf008
+    Position: {x: 876.8, y: 196}
+    Characters:
+    - ID:
+        Value: 0
+      Character:
+        Value: {fileID: 11400000, guid: 7372c0c723a6a0249965c96126e26283, type: 2}
+      CharacterNames:
+      - Eve
+      - Eve
+      - Eve
+      CharacterName:
+        Value: Eve
+      Sprite:
+        Value: {fileID: 21300000, guid: 9b3b6fce6d123b244b128b12acb6b844, type: 3}
+      Mood:
+        Value: 1
+      FaceDirection:
+        Value: 0
+      SidePlacement:
+        Value: 1
+      UseAutoDelay:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+  - NodeGuid: fb157047-618e-463b-9893-ce42c101c525
+    Position: {x: 1509.6, y: 196}
+    Characters:
+    - ID:
+        Value: 0
+      Character:
+        Value: {fileID: 11400000, guid: 7372c0c723a6a0249965c96126e26283, type: 2}
+      CharacterNames:
+      - Eve
+      - Eve
+      - Eve
+      CharacterName:
+        Value: Eve
+      Sprite:
+        Value: {fileID: 21300000, guid: 56030130c917c80438e0ae1bbb89c5ea, type: 3}
+      Mood:
+        Value: 0
+      FaceDirection:
+        Value: 0
+      SidePlacement:
+        Value: 1
+      UseAutoDelay:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+  RepliqueDatas:
+  - NodeGuid: 17b91f55-3709-4b55-9e87-d4f178600974
+    Position: {x: 1159.2, y: 196}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 00fcfdc7-f3a5-4b3a-a936-12d0ad288322
+      Texts:
+      - Data: This system supports multiple characters, dialogue lines, backgrounds,
+          choices, translations and more!
+        Language: 0
+      - Data: This system supports multiple characters, dialogue lines, backgrounds,
+          choices, translations and more!
+        Language: 1
+      - Data: This system supports multiple characters, dialogue lines, backgrounds,
+          choices, translations and more!
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 0cad3c40-b2f1-490a-accb-85b2f9eac12d
+    Position: {x: 504.8, y: 205.6}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: bdd66b30-a6d1-4bed-b06e-bc18861bc80c
+      Texts:
+      - Data: Hi!
+        Language: 0
+      - Data: Hi!
+        Language: 1
+      - Data: Hi!
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 8300000, guid: 43678c408c8bb414886c451dd4e88457, type: 3}
+        Language: 0
+      - Data: {fileID: 8300000, guid: 43678c408c8bb414886c451dd4e88457, type: 3}
+        Language: 1
+      - Data: {fileID: 8300000, guid: 43678c408c8bb414886c451dd4e88457, type: 3}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 8aca4a17-3302-4ad5-8a8e-aad4c445ce43
+      Texts:
+      - Data: This is the showase of the version 3.0 of our Dialogue Node System!
+        Language: 0
+      - Data: This is the showase of the version 3.0 of our Dialogue Node System!
+        Language: 1
+      - Data: This is the showase of the version 3.0 of our Dialogue Node System!
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  - NodeGuid: 54e1bbbe-585c-4aeb-bc4a-6bc2947f2ae0
+    Position: {x: 1766.4, y: 196}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 81685e2e-98c5-4c86-8892-362edad56433
+      Texts:
+      - Data: For more info, check out our github page!
+        Language: 0
+      - Data: For more info, check out our github page!
+        Language: 1
+      - Data: For more info, check out our github page!
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+  BranchDatas: []
+  ChoiceDatas:
+  - NodeGuid: 38d7bf34-a114-49be-bb0c-01e894830126
+    Position: {x: 2098.4, y: 196}
+    Choices:
+    - ID:
+        Value: 0
+      Guid:
+        Value: ecb474b8-4b6f-4d98-898b-b66861903def
+      ChoiceStateType:
+        Value: 0
+      Texts:
+      - Data: Wow, that sounds great!
+        Language: 0
+      - Data: Wow, that sounds great!
+        Language: 1
+      - Data: Wow, that sounds great!
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions: []
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: 9996d133-5ace-4b88-8942-4abd6d69054f
+        InputGuid: 4a4109c4-927d-4604-8bf1-477d78f2032f
+        OutputGuid: 38d7bf34-a114-49be-bb0c-01e894830126
+    - ID:
+        Value: 1
+      Guid:
+        Value: 591386cb-c5cd-42fe-9854-6885ca9c80b5
+      ChoiceStateType:
+        Value: 1
+      Texts:
+      - Data: I don't care.
+        Language: 0
+      - Data: I don't care.
+        Language: 1
+      - Data: I don't care.
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+      Conditions:
+      - ID:
+          Value: 0
+        Guid:
+          Value: 3ca43513-60ae-4d1f-9df8-aa4ec362a1e0
+        DescriptionsIfNotMet:
+        - Data: Impossible.
+          Language: 0
+        - Data: Impossible.
+          Language: 1
+        - Data: Impossible.
+          Language: 2
+        StringCondition:
+          ID:
+            Value: 0
+          StringEvent:
+            Value: ChoiceBlocked
+          Number:
+            Value: 0
+          ConditionType:
+            Value: 1
+      LinkedPort:
+        ID:
+          Value: 0
+        PortGuid: 75f9581c-1589-4294-ab06-730a35cfec9f
+        InputGuid: 4a4109c4-927d-4604-8bf1-477d78f2032f
+        OutputGuid: 38d7bf34-a114-49be-bb0c-01e894830126
+  DelayDatas: []
+  EventDatas: []
+  EndDatas:
+  - NodeGuid: 4a4109c4-927d-4604-8bf1-477d78f2032f
+    Position: {x: 2593.6, y: 196}
+    EndNodeType:
+      Value: 0
+  GroupDatas: []
+  NoteDatas: []
