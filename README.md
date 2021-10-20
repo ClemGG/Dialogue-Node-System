@@ -9,9 +9,9 @@ The prototype of a Dialogue Node System realized in Unity 2021.1.11.
   - Support for branching dialogues (BranchNode for logic, ChoiceNode for multiple answers, conditional StartNodes to start the dialogue at different points),
   - Support for sortable event callbacks with the EventNode,
 2. Flexible save system with .CSV files,
-3. Ability to write dialogue in multiple langugages
-4. A demo example scene.
-
+3. Ability to write dialogue in multiple langugages,
+4. A demo example scene,
+5. Support for controller and keyboard inputs.
 
 ## Screenshots
 
