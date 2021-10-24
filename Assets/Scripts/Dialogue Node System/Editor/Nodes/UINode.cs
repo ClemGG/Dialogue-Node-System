@@ -42,7 +42,8 @@ namespace Project.NodeSystem.Editor
         private void AddFields()
         {
             Box boxContainer = NodeBuilder.NewBox(this, "BoxRow");
-            UIData.Toggle = NodeBuilder.NewToggle("Show Dialogue UI", boxContainer, UIData.show, "ToggleLabel");
+            UIData.ShowToggle = NodeBuilder.NewToggle("Show Dialogue UI", mainContainer, UIData.Show, "ToggleLabel");
+            UIData.ClearToggle = NodeBuilder.NewToggle("Clear Sprites On Show", mainContainer, UIData.ClearCharSprites, "ToggleLabel");
         }
 
 
@@ -54,9 +55,13 @@ namespace Project.NodeSystem.Editor
 
         public override void ReloadFields()
         {
-            if(UIData.Toggle != null)
+            if (UIData.ShowToggle != null)
             {
-                UIData.Toggle.SetValueWithoutNotify(UIData.show.Value);
+                UIData.ShowToggle.SetValueWithoutNotify(UIData.Show.Value);
+            }
+            if (UIData.ClearToggle != null)
+            {
+                UIData.ClearToggle.SetValueWithoutNotify(UIData.ClearCharSprites.Value);
             }
         }
 

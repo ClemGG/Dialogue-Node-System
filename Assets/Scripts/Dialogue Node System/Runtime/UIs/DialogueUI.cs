@@ -146,13 +146,13 @@ namespace Project.NodeSystem
         /// Displays the canvas on screen.
         /// </summary>
         /// <param name="onRunEnded">What to do once the canvas is displayed.</param>
-        protected abstract void ShowUI();
+        protected abstract void ShowUI(UIData data = null);
 
         /// <summary>
         /// Hides the canvas on screen.
         /// </summary>
         /// <param name="onRunEnded">What to do once the canvas is hidden.</param>
-        protected abstract void HideUI();
+        protected abstract void HideUI(UIData data = null);
 
 
         #endregion

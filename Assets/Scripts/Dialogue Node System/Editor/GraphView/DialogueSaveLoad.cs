@@ -190,7 +190,8 @@ namespace Project.NodeSystem.Editor
                 Position = node.GetPosition().position,
             };
 
-            uiData.show.Value = node.UIData.show.Value;
+            uiData.Show.Value = node.UIData.Show.Value;
+            uiData.ClearCharSprites.Value = node.UIData.ClearCharSprites.Value;
 
             return uiData;
         }
@@ -550,7 +551,8 @@ namespace Project.NodeSystem.Editor
             {
                 UINode tmpNode = _graphView.CreateNode<UINode>(savedData.Position);
                 tmpNode.NodeGuid = savedData.NodeGuid;
-                tmpNode.UIData.show.Value = savedData.show.Value;
+                tmpNode.UIData.Show.Value = savedData.Show.Value;
+                tmpNode.UIData.ClearCharSprites.Value = savedData.ClearCharSprites.Value;
 
 
                 tmpNode.ReloadFields();

@@ -12,6 +12,7 @@ namespace Project.NodeSystem
     public class CharacterData : BaseData
     {
         public List<CharacterData_CharacterSO> Characters = new List<CharacterData_CharacterSO>();
+
     }
 
     [System.Serializable]

@@ -13,18 +13,6 @@ MonoBehaviour:
   m_Name: Test Dialogue
   m_EditorClassIdentifier: 
   linkDatas:
-  - BaseNodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
-    BasePortName: Start
-    TargetNodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
-    TargetPortName: Input
-  - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
-    BasePortName: Start
-    TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
-    TargetPortName: Input
-  - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
-    BasePortName: Start
-    TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
-    TargetPortName: Input
   - BaseNodeGuid: ae83c016-7024-4f18-9ef8-fd4535b26943
     BasePortName: Start
     TargetNodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
@@ -205,10 +193,6 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
     TargetPortName: Input
-  - BaseNodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
-    BasePortName: Output
-    TargetNodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    TargetPortName: Input
   - BaseNodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
     BasePortName: Output
     TargetNodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
@@ -296,14 +280,6 @@ MonoBehaviour:
   - BaseNodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
     BasePortName: Output
     TargetNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
-    TargetPortName: Input
-  - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
-    BasePortName: Output
-    TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
-    TargetPortName: Input
-  - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
-    BasePortName: Output
-    TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
     TargetPortName: Input
   - BaseNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
     BasePortName: Output
@@ -425,6 +401,14 @@ MonoBehaviour:
     BasePortName: Output
     TargetNodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
     TargetPortName: Input
+  - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    BasePortName: Output
+    TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
+    TargetPortName: Input
+  - BaseNodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    BasePortName: Output
+    TargetNodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
+    TargetPortName: Input
   - BaseNodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
     BasePortName: Start
     TargetNodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
@@ -440,31 +424,37 @@ MonoBehaviour:
   - BaseNodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
     BasePortName: Start
     TargetNodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
+    TargetPortName: Input
+  - BaseNodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
+    BasePortName: Start
+    TargetNodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
     TargetPortName: Input
   StartDatas:
   - NodeGuid: 45df04d0-7b23-4d90-9c9a-b0c1d03d4070
-    Position: {x: 12270.4, y: -398.40002}
-    isDefault:
-      Value: 0
-    StringConditions: []
-  - NodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
-    Position: {x: -2088, y: 247.2}
+    Position: {x: 12270, y: -398}
     isDefault:
       Value: 0
     StringConditions: []
   - NodeGuid: ae83c016-7024-4f18-9ef8-fd4535b26943
-    Position: {x: 2381.6, y: -230.4}
+    Position: {x: 2382, y: -230}
+    isDefault:
+      Value: 0
+    StringConditions: []
+  - NodeGuid: 32f74fe1-c28d-4ebe-9646-d8594b73ae40
+    Position: {x: -1994, y: 247}
     isDefault:
       Value: 1
     StringConditions: []
   UIDatas:
   - NodeGuid: e5cc2093-5543-43da-967d-154d10385ceb
-    Position: {x: 11326.4, y: -107.2}
-    show:
+    Position: {x: 11326, y: -107}
+    Show:
+      Value: 0
+    ClearCharSprites:
       Value: 0
   BackgroundDatas:
   - NodeGuid: 2aac3b48-ec29-40d8-a706-1676efba1226
-    Position: {x: 12496, y: -107.2}
+    Position: {x: 12496, y: -107}
     Transition:
       Value:
         ID:
@@ -479,7 +469,7 @@ MonoBehaviour:
           Value: {fileID: 11400000, guid: d1527db4a32ae5b438acf8b8737395b5, type: 2}
   CharacterDatas:
   - NodeGuid: 6ed8faef-b356-4e1d-b780-201dd9cdca39
-    Position: {x: 2940.8, y: -120.8}
+    Position: {x: 2941, y: -121}
     Characters:
     - ID:
         Value: 0
@@ -504,7 +494,7 @@ MonoBehaviour:
       AutoDelayDuration:
         Value: 0
   - NodeGuid: a3a3d142-72e5-4317-b342-24c0309ac5cb
-    Position: {x: 3894.4, y: -120.8}
+    Position: {x: 3894, y: -121}
     Characters:
     - ID:
         Value: 0
@@ -529,7 +519,7 @@ MonoBehaviour:
       AutoDelayDuration:
         Value: 0
   - NodeGuid: 21bc69a4-b9a5-4b25-9d1c-cdd23b7108f4
-    Position: {x: 4489.6, y: -120.8}
+    Position: {x: 4490, y: -121}
     Characters:
     - ID:
         Value: 0
@@ -571,7 +561,7 @@ MonoBehaviour:
         Value: 0
   RepliqueDatas:
   - NodeGuid: 9cf4ea28-feaf-4cf5-9667-ba86fea27342
-    Position: {x: -977.6, y: 247.2}
+    Position: {x: -978, y: 247}
     Repliques:
     - ID:
         Value: 0
@@ -704,7 +694,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 43a10842-4bb5-478c-ad19-09b612e41d3c
-    Position: {x: -112.8, y: -1562.3999}
+    Position: {x: -113, y: -1562}
     Repliques:
     - ID:
         Value: 0
@@ -885,7 +875,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 47704779-4a77-405c-a3ee-d913717ece11
-    Position: {x: -112.8, y: -128.8}
+    Position: {x: -113, y: -129}
     Repliques:
     - ID:
         Value: 0
@@ -951,7 +941,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: e55b1b74-455e-44e3-ad76-f97bb09bb9f8
-    Position: {x: 573.6, y: -128.8}
+    Position: {x: 574, y: -129}
     Repliques:
     - ID:
         Value: 0
@@ -996,7 +986,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 7dfc5609-37ff-45cc-824c-c1d6a96fdada
-    Position: {x: 4155.2, y: -120.8}
+    Position: {x: 4155, y: -121}
     Repliques:
     - ID:
         Value: 0
@@ -1029,7 +1019,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 7845fad8-c5d0-40ef-a248-1aa6ad9fd3ba
-    Position: {x: 2613.6, y: -120.8}
+    Position: {x: 2614, y: -121}
     Repliques:
     - ID:
         Value: 0
@@ -1065,7 +1055,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 01415a4d-122d-48fc-9c7d-ef7a88c7ec5b
-    Position: {x: 3530.4, y: -120.8}
+    Position: {x: 3530, y: -121}
     Repliques:
     - ID:
         Value: 0
@@ -1224,7 +1214,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 1611cf1b-041b-425b-833b-163e30461252
-    Position: {x: 3196, y: -120.8}
+    Position: {x: 3196, y: -121}
     Repliques:
     - ID:
         Value: 0
@@ -1332,7 +1322,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 82246e1e-8ab7-4536-a0bb-e522d104d089
-    Position: {x: 5180.8, y: -128}
+    Position: {x: 5181, y: -128}
     Repliques:
     - ID:
         Value: 0
@@ -1508,7 +1498,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: aa775507-02a2-4d8b-9964-60c145f34edc
-    Position: {x: 8123.2, y: -132.8}
+    Position: {x: 8123, y: -133}
     Repliques:
     - ID:
         Value: 0
@@ -1576,7 +1566,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: e43a1da2-45d9-4dc8-a0f1-07274e855bd7
-    Position: {x: 8410.4, y: 421.59998}
+    Position: {x: 8410, y: 422}
     Repliques:
     - ID:
         Value: 0
@@ -1609,7 +1599,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 15217446-569b-4918-bf09-0630f342f4a2
-    Position: {x: 9046.4, y: -109.600006}
+    Position: {x: 9046, y: -110}
     Repliques:
     - ID:
         Value: 0
@@ -1641,85 +1631,8 @@ MonoBehaviour:
         Language: 1
       - Data: {fileID: 0}
         Language: 2
-  - NodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
-    Position: {x: 9752.8, y: -109.600006}
-    Repliques:
-    - ID:
-        Value: 0
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: 6ced8bca-0c9a-47ed-8d4a-958f7b476e06
-      Texts:
-      - Data: "La node \"Branch\" fonctionne de mani\xE8re similaire \xE0 la node
-          Choice, mais ne laisse pas le choix de l'issue au joueur et ne prend que
-          2 sorties. La node Branch ne prendra la branche \"True\" si toutes ses
-          conditions sont remplies."
-        Language: 0
-      - Data: The "Branch" node works similarly to the Choice node, but does not
-          leave the choice of the issue to the player and only takes 2 outputs. The
-          Branch node will only take the "TRUE" branch if all its conditions are
-          met.
-        Language: 1
-      - Data: "El nodo \"Rama\" funciona de manera similar al nodo de elecci\xF3n,
-          pero no deja la elecci\xF3n del problema al jugador y solo toma 2 salidas.
-          El nodo de la sucursal solo tomar\xE1 la rama \"verdadera\" si se cumplen
-          todas sus condiciones."
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
-    - ID:
-        Value: 1
-      AppendToText:
-        Value: 0
-      CanClickOnContinue:
-        Value: 1
-      OverrideWriteSpeed:
-        Value: 0
-      UseAutoDelay:
-        Value: 0
-      WriteSpeed:
-        Value: 0
-      AutoDelayDuration:
-        Value: 0
-      Guid:
-        Value: 398c04a7-2068-4974-87fb-6ce005a6e17e
-      Texts:
-      - Data: "Dans cet exemple, nous avons d\xE9j\xE0 pass\xE9 les propri\xE9t\xE9s
-          \"OrLikeThat\" et \"ChoiceBlocked\" \xE0 false dans les exemples pr\xE9c\xE9dents,
-          donc la branche True est valide."
-        Language: 0
-      - Data: In this example, we have already passed the "OrLikeTat" and "ChoiceBlocked"
-          properties in False in the previous examples, so the True branch is valid.
-        Language: 1
-      - Data: "En este ejemplo, ya hemos pasado las propiedades de \"orlikethat\"
-          y \"elecci\xF3n conbloqued\" en falso en los ejemplos anteriores, por lo
-          que la sucursal verdadera es v\xE1lida."
-        Language: 2
-      AudioClips:
-      - Data: {fileID: 0}
-        Language: 0
-      - Data: {fileID: 0}
-        Language: 1
-      - Data: {fileID: 0}
-        Language: 2
   - NodeGuid: cdafc048-933a-4919-8c9c-f5a34ec8d7e8
-    Position: {x: 10944, y: -109.600006}
+    Position: {x: 10944, y: -110}
     Repliques:
     - ID:
         Value: 0
@@ -1761,7 +1674,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: e9060dc2-f088-4df8-b6bd-2650a7bcf09e
-    Position: {x: 12138.4, y: -107.2}
+    Position: {x: 12138, y: -107}
     Repliques:
     - ID:
         Value: 0
@@ -1797,7 +1710,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 01a6e20a-2c92-4dfc-a421-8d5ac365218e
-    Position: {x: 11744.8, y: -107.2}
+    Position: {x: 11745, y: -107}
     Repliques:
     - ID:
         Value: 0
@@ -1836,7 +1749,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 1a1e1fa4-45c4-49de-8ffa-56605f60e9ba
-    Position: {x: 12947.2, y: -107.2}
+    Position: {x: 12947, y: -107}
     Repliques:
     - ID:
         Value: 0
@@ -2058,7 +1971,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 32685c6c-768b-410e-ba24-f9d6d3ec8a44
-    Position: {x: 13308, y: -107.2}
+    Position: {x: 13308, y: -107}
     Repliques:
     - ID:
         Value: 0
@@ -2130,7 +2043,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
-    Position: {x: -121.6, y: 1704.8}
+    Position: {x: -122, y: 1705}
     Repliques:
     - ID:
         Value: 0
@@ -2169,7 +2082,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 2971b0dc-a154-4379-8621-c917ce06d379
-    Position: {x: 225.6, y: -128.8}
+    Position: {x: 226, y: -129}
     Repliques:
     - ID:
         Value: 0
@@ -2311,7 +2224,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: f2eaac02-84a8-4f78-adf5-cda41f724d1c
-    Position: {x: 7430.4, y: -132.8}
+    Position: {x: 7430, y: -133}
     Repliques:
     - ID:
         Value: 0
@@ -2418,7 +2331,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 3dfa1360-1523-413c-842f-22061668cc31
-    Position: {x: -121.6, y: 870.39996}
+    Position: {x: -122, y: 870}
     Repliques:
     - ID:
         Value: 0
@@ -2531,7 +2444,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: aacbe9bf-35bf-401e-971a-c5111f34819f
-    Position: {x: 225.6, y: 870.39996}
+    Position: {x: 226, y: 870}
     Repliques:
     - ID:
         Value: 0
@@ -2607,7 +2520,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: 14adbce5-87c3-471d-8e77-033d468badc1
-    Position: {x: 1348.8, y: -124.8}
+    Position: {x: 1349, y: -125}
     Repliques:
     - ID:
         Value: 0
@@ -2707,7 +2620,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
-    Position: {x: 10383.2, y: -109.600006}
+    Position: {x: 10383, y: -110}
     Repliques:
     - ID:
         Value: 0
@@ -2746,7 +2659,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: c5582632-2ac6-4271-9357-c6cdefd921b2
-    Position: {x: 7092.8, y: -132.8}
+    Position: {x: 7093, y: -133}
     Repliques:
     - ID:
         Value: 0
@@ -2858,7 +2771,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: abbf7fca-f0e5-4992-bf15-d293971b890f
-    Position: {x: 1690.4, y: -124.8}
+    Position: {x: 1690, y: -125}
     Repliques:
     - ID:
         Value: 0
@@ -3000,7 +2913,7 @@ MonoBehaviour:
       - Data: {fileID: 0}
         Language: 2
   - NodeGuid: b70886b7-fe59-404c-91a2-a729524dda88
-    Position: {x: -1579.2, y: 247.2}
+    Position: {x: -1579, y: 247}
     Repliques:
     - ID:
         Value: 0
@@ -3032,9 +2945,86 @@ MonoBehaviour:
         Language: 1
       - Data: {fileID: 0}
         Language: 2
+  - NodeGuid: bee4ed0c-9ac1-4084-9d84-8348dcdcd1d4
+    Position: {x: 9753, y: -110}
+    Repliques:
+    - ID:
+        Value: 0
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 6ced8bca-0c9a-47ed-8d4a-958f7b476e06
+      Texts:
+      - Data: "La node \"Branch\" fonctionne de mani\xE8re similaire \xE0 la node
+          Choice, mais ne laisse pas le choix de l'issue au joueur et ne prend que
+          2 sorties. La node Branch ne prendra la branche \"True\" si toutes ses
+          conditions sont remplies."
+        Language: 0
+      - Data: The "Branch" node works similarly to the Choice node, but does not
+          leave the choice of the issue to the player and only takes 2 outputs. The
+          Branch node will only take the "TRUE" branch if all its conditions are
+          met.
+        Language: 1
+      - Data: "El nodo \"Rama\" funciona de manera similar al nodo de elecci\xF3n,
+          pero no deja la elecci\xF3n del problema al jugador y solo toma 2 salidas.
+          El nodo de la sucursal solo tomar\xE1 la rama \"verdadera\" si se cumplen
+          todas sus condiciones."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
+    - ID:
+        Value: 1
+      AppendToText:
+        Value: 0
+      CanClickOnContinue:
+        Value: 1
+      OverrideWriteSpeed:
+        Value: 0
+      UseAutoDelay:
+        Value: 0
+      WriteSpeed:
+        Value: 0
+      AutoDelayDuration:
+        Value: 0
+      Guid:
+        Value: 398c04a7-2068-4974-87fb-6ce005a6e17e
+      Texts:
+      - Data: "Dans cet exemple, nous avons d\xE9j\xE0 pass\xE9 les propri\xE9t\xE9s
+          \"OrLikeThat\" et \"ChoiceBlocked\" \xE0 false dans les exemples pr\xE9c\xE9dents,
+          donc la branche True est valide."
+        Language: 0
+      - Data: In this example, we have already passed the "OrLikeTat" and "ChoiceBlocked"
+          properties in False in the previous examples, so the True branch is valid.
+        Language: 1
+      - Data: "En este ejemplo, ya hemos pasado las propiedades de \"orlikethat\"
+          y \"elecci\xF3n conbloqued\" en falso en los ejemplos anteriores, por lo
+          que la sucursal verdadera es v\xE1lida."
+        Language: 2
+      AudioClips:
+      - Data: {fileID: 0}
+        Language: 0
+      - Data: {fileID: 0}
+        Language: 1
+      - Data: {fileID: 0}
+        Language: 2
   BranchDatas:
   - NodeGuid: 3a9e48d5-0fff-46e0-9e73-2256bc101bbc
-    Position: {x: 10088.8, y: -109.600006}
+    Position: {x: 10089, y: -110}
     TrueNodeGuid: e57c2223-2a78-4f55-adf0-7781aaab5242
     FalseNodeGuid: 
     StringConditions:
@@ -3056,7 +3046,7 @@ MonoBehaviour:
         Value: 1
   ChoiceDatas:
   - NodeGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
-    Position: {x: -601.6, y: 247.2}
+    Position: {x: -602, y: 247}
     Choices:
     - ID:
         Value: 0
@@ -3167,7 +3157,7 @@ MonoBehaviour:
         InputGuid: 02aa808f-c427-49a6-9e1e-4ec9845c7734
         OutputGuid: 2755a66c-bef6-4058-a76f-cf603bb59b29
   - NodeGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
-    Position: {x: 5536.8, y: -128}
+    Position: {x: 5537, y: -128}
     Choices:
     - ID:
         Value: 0
@@ -3244,7 +3234,7 @@ MonoBehaviour:
         InputGuid: 24c7da96-7c69-4e11-ba3a-423a350996f1
         OutputGuid: a4c3f0d2-6fbe-4213-adac-27a6c688c1a9
   - NodeGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
-    Position: {x: 8682.4, y: -132.8}
+    Position: {x: 8682, y: -133}
     Choices:
     - ID:
         Value: 0
@@ -3321,7 +3311,7 @@ MonoBehaviour:
         InputGuid: 15217446-569b-4918-bf09-0630f342f4a2
         OutputGuid: 44d497c9-d42b-42e4-b044-d253875b00cf
   - NodeGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
-    Position: {x: 230.4, y: 1704.8}
+    Position: {x: 230, y: 1705}
     Choices:
     - ID:
         Value: 0
@@ -3406,16 +3396,16 @@ MonoBehaviour:
         OutputGuid: 82755e88-9cbc-4e8d-ae05-3d9984507dfb
   DelayDatas:
   - NodeGuid: 0796d789-5d97-4642-a7dc-2c9235403cb5
-    Position: {x: 10739.2, y: -109.600006}
+    Position: {x: 10739, y: -110}
     Delay:
       Value: 2
   - NodeGuid: a7825e70-d234-4122-bea6-0996e0e6e581
-    Position: {x: 11526.4, y: -107.2}
+    Position: {x: 11526, y: -107}
     Delay:
       Value: 1
   EventDatas:
   - NodeGuid: 9df2dcb8-1838-4a56-84c8-aa88cfdaf776
-    Position: {x: 7770.4, y: -132.8}
+    Position: {x: 7770, y: -133}
     Events: []
     StringEvents: []
     ScriptableEvents:
@@ -3424,7 +3414,7 @@ MonoBehaviour:
       ScriptableObject:
         Value: {fileID: 11400000, guid: 236ad4732aab919459c6afaf5a72391a, type: 2}
   - NodeGuid: 0e4db9bf-6335-4da6-8f53-65f0f86d436f
-    Position: {x: 8124.8, y: 411.19998}
+    Position: {x: 8125, y: 411}
     Events: []
     StringEvents:
     - ID:
@@ -3437,7 +3427,7 @@ MonoBehaviour:
         Value: 1
     ScriptableEvents: []
   - NodeGuid: 9f2cb19c-55ac-49e6-80ac-13ced600b132
-    Position: {x: 572, y: 1850.4}
+    Position: {x: 572, y: 1850}
     Events: []
     StringEvents: []
     ScriptableEvents:
@@ -3446,7 +3436,7 @@ MonoBehaviour:
       ScriptableObject:
         Value: {fileID: 11400000, guid: 0ae387f077df34548b2b2a2160fd9b44, type: 2}
   - NodeGuid: ed55fa46-8cdc-466b-879e-2f368ba5dbb0
-    Position: {x: 580.8, y: 1585.6001}
+    Position: {x: 581, y: 1586}
     Events: []
     StringEvents: []
     ScriptableEvents:
@@ -3456,40 +3446,40 @@ MonoBehaviour:
         Value: {fileID: 11400000, guid: 677747f0a85a5ff498096c896825d91a, type: 2}
   EndDatas:
   - NodeGuid: b0cc7f42-6b9a-4664-9968-3e949503b616
-    Position: {x: 1015.2, y: 1704.8}
+    Position: {x: 1015, y: 1705}
     EndNodeType:
       Value: 0
   GroupDatas: []
   NoteDatas:
   - Title: Choice
     Content: 
-    Position: {x: 5231.2, y: -258.4}
-    Size: {x: 155.1997, y: 100}
+    Position: {x: 5231, y: -258}
+    Size: {x: 155, y: 100}
   - Title: Event
     Content: 
-    Position: {x: 7139.2, y: -253.59999}
-    Size: {x: 138.3999, y: 100}
+    Position: {x: 7139, y: -254}
+    Size: {x: 139, y: 100}
   - Title: Background
     Content: 
-    Position: {x: 12143.2, y: -272}
-    Size: {x: 251.2002, y: 100}
+    Position: {x: 12143, y: -272}
+    Size: {x: 251, y: 100}
   - Title: Start & End
     Content: 
-    Position: {x: -89.6, y: -244}
-    Size: {x: 249.6, y: 100}
+    Position: {x: -90, y: -244}
+    Size: {x: 250, y: 100}
   - Title: Character
     Content: 
-    Position: {x: 2667.2, y: -248.8}
-    Size: {x: 211.19995, y: 100}
+    Position: {x: 2667, y: -249}
+    Size: {x: 211, y: 100}
   - Title: Branch
     Content: 
-    Position: {x: 9766.4, y: -219.2}
-    Size: {x: 162.39941, y: 104}
+    Position: {x: 9766, y: -219}
+    Size: {x: 163, y: 104}
   - Title: Delay & UI
     Content: 
-    Position: {x: 10424.8, y: -255.2}
-    Size: {x: 220.7998, y: 100}
+    Position: {x: 10425, y: -255}
+    Size: {x: 221, y: 100}
   - Title: Replique
     Content: 
-    Position: {x: 1408.8, y: -250.4}
+    Position: {x: 1409, y: -250}
     Size: {x: 188, y: 100}

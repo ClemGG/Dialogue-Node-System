@@ -29,7 +29,7 @@
 
 
 .ImagePreview{
-	height:	100px;
-	width:	65px;
+	height:	250px;
+	width:	200px;
 	margin:auto;
 }

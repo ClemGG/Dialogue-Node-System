@@ -3,7 +3,9 @@ guid: f06c93fbf7ceb1546945b8642d35310d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _screenFader: {instanceID: 0}
+  - _startTex: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

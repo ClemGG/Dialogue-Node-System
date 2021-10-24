@@ -98,7 +98,6 @@ namespace Project.NodeSystem
         [Header("Tween Settings :")]
         [Space(10)]
 
-
         [SerializeField, Tooltip("Les Tweens à jouer quand un perso apparaît à l'écran (et que l'emplacement était libre).")]
         private TweenSettings[] TS_CharAppears;
         [SerializeField, Tooltip("Les Tweens à jouer quand un perso se retire de la conversation.")]
@@ -328,13 +327,20 @@ namespace Project.NodeSystem
         }
 
 
-        protected override void ShowUI()
+        protected override void ShowUI(UIData data = null)
         {
 
             _uiVisibleFlag = true;
 
             //Clean text for next replique
             _dialogueText.text = "";
+
+
+            //Clears sprites if we don't want the characters' transition on Show
+            if (data != null && data.ClearCharSprites.Value)
+            {
+                _leftCharImg.sprite = _rightCharImg.sprite = null;
+            }
 
 
             //We display the characters only if they have a sprite
@@ -364,7 +370,7 @@ namespace Project.NodeSystem
 
         //Is not called from the DialogueManager if EndNodeType = End
         //Bc the DialogueTrigger assigns the UnloadScene() method which closes the dialogue immediately
-        protected override void HideUI()
+        protected override void HideUI(UIData data = null)
         {
             _uiVisibleFlag = false;
 
@@ -391,25 +397,35 @@ namespace Project.NodeSystem
             }
 
             //Once the container ends its tweening, we disable it.
-            _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded, () => _containerTweener.gameObject.SetActive(false));
+            _containerTweener.BeginTweens(TS_ContainerOnDialogueEnded, () => 
+            { 
+                _containerTweener.gameObject.SetActive(false);
+
+
+                //Clears sprites if we don't want the characters' transition on the next Show
+                if (data != null && data.ClearCharSprites.Value)
+                {
+                    _leftCharImg.sprite = _rightCharImg.sprite = null;
+                }
+            });
         }
 
 
 
         private void OnRunUINode(UIData data, Action onRunEnded)
         {
-            if (data.show.Value)
+            if (data.Show.Value)
             {
                 if (!_uiVisibleFlag)
                 {
-                    ShowUI();
+                    ShowUI(data);
                 }
             }
             else
             {
                 if (_uiVisibleFlag)
                 {
-                    HideUI();
+                    HideUI(data);
                 }
             }
 
@@ -452,7 +468,7 @@ namespace Project.NodeSystem
             {
                 //makes sure the canvas is visible first before reloading this method to enable the _choicesContent
                 UIData uiData = new UIData();
-                uiData.show.Value = true;
+                uiData.Show.Value = true;
                 OnRunUINode(uiData, () => OnChoicesSet());
                 return;
             }
@@ -605,7 +621,7 @@ namespace Project.NodeSystem
             if (!_uiVisibleFlag && hasACharacter)
             {
                 UIData uiData = new UIData();
-                uiData.show.Value = true;
+                uiData.Show.Value = true;
                 OnRunUINode(uiData, () => OnRunCharacterNode(data, onRunEnded));
                 return;
             }
@@ -814,7 +830,7 @@ namespace Project.NodeSystem
             {
                 
                 UIData uiData = new UIData();
-                uiData.show.Value = true;
+                uiData.Show.Value = true;
                 OnRunUINode(uiData, () => OnRunRepliqueNode(data, selectedLanguage));
                 return;
             }

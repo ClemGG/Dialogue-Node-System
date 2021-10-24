@@ -37,7 +37,6 @@ namespace Project.NodeSystem.Editor
 
             TopButton();
 
-
             //Creates a character slot by default so that the DialogueManager doesn't crash.
             //Removed in DialogueSaveLoad to avoid creating an extra field.
             AddCharacter();
@@ -266,6 +265,7 @@ namespace Project.NodeSystem.Editor
                     tmp.NameField.SetValueWithoutNotify(tmp.CharacterNames[(int)Window.SelectedLanguage]);
                 }
             }
+
         }
 
         #endregion

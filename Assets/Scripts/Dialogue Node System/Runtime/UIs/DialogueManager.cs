@@ -236,7 +236,7 @@ namespace Project.NodeSystem
         {
             //For the End Node, we hide the UI before restarting or ending the dialogue
             UIData uiData = new UIData();
-            uiData.show.Value = false;
+            uiData.Show.Value = false;
 
             switch (nodeData.EndNodeType.Value)
             {
