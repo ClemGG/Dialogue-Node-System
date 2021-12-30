@@ -15,6 +15,7 @@ The prototype of a Dialogue Node System realized in Unity 2021.1.11.
 
 ## Screenshots
 
+![Dialogue Node System showcase](https://user-images.githubusercontent.com/23258134/147726251-a60c9ca8-9d50-4e64-8893-0b569b92be1e.gif)
 ![editor3](https://user-images.githubusercontent.com/23258134/137706033-78c7c607-f85a-4d81-a04a-f38772d946f7.png)
 ![1](https://user-images.githubusercontent.com/23258134/137706042-a1be5ad6-1ddd-41d1-b99b-a0c6eab11def.png)
 ![2](https://user-images.githubusercontent.com/23258134/137706050-5f70ee65-9377-4489-a186-c4cbdaf13f31.png)
