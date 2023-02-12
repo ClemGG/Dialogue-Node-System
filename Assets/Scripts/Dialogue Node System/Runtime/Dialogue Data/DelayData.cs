@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-using UnityEditor.UIElements;
+
 #endif
 
 namespace Project.NodeSystem
@@ -9,7 +9,7 @@ namespace Project.NodeSystem
     {
 #if UNITY_EDITOR
 
-        public FloatField FloatField { get; set; }
+        public UnityEngine.UIElements.FloatField FloatField { get; set; }
 
 #endif
 
