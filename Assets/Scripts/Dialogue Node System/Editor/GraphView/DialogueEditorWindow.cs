@@ -1,11 +1,11 @@
 using System;
+using Project.Utilities.Assets;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static Project.Utilities.ValueTypes.Enums;
-using Project.Utilities.Assets;
 
 namespace Project.NodeSystem.Editor
 {
@@ -26,7 +26,7 @@ namespace Project.NodeSystem.Editor
         /// The selected language in the editor window
         /// </summary>
         public LanguageType SelectedLanguage { get; set; } = LanguageType.French;
-        public int NbMaxChoices { get; set ; } = 4;
+        public int NbMaxChoices { get; set; } = 4;
 
 
 
