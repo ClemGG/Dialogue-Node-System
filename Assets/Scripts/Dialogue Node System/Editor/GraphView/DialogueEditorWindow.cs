@@ -9,44 +9,55 @@ using static Project.Utilities.ValueTypes.Enums;
 
 namespace Project.NodeSystem.Editor
 {
-
+    /// <summary>
+    /// Dialogue editor window
+    /// </summary>
     public class DialogueEditorWindow : EditorWindow
     {
-        #region Fields
+        #region Constantes
 
-        private DialogueContainerSO _currentDialogueContainer;
-        private DialogueGraphView _graphView;
-        private DialogueSaveLoad _saveLoad;
+        /// <summary>
+        /// TO : Move to Preferences tab
+        /// </summary>
         private const string _graphViewStyleSheet = "USS/EditorWindow/EditorWindowStyleSheet";
-        private bool _makeGridVisible = false;
-        private ToolbarMenu languageDropdown;
-        private Label dialogueContainerLabel;
+
+        #endregion
+
+        #region Propriétés
 
         /// <summary>
         /// The selected language in the editor window
         /// </summary>
         public LanguageType SelectedLanguage { get; set; } = LanguageType.French;
-        public int NbMaxChoices { get; set; } = 4;
-
-
-
 
         #endregion
 
+        #region Variables d'instance
 
+        private DialogueContainerSO _currentDialogueContainer;
 
-        #region Mono
+        private DialogueGraphView _graphView;
+
+        private DialogueSaveLoad _saveLoad;
+
+        private ToolbarMenu languageDropdown;
+
+        private Label dialogueContainerLabel;
+
+        private bool _isGridVisible = false;
+
+        #endregion
+
+        #region Méthodes Unity
 
         private void OnEnable()
         {
             CreateGraphView();
             CreateToolbar();
 
-
-
-
             // When Unity starts, we retrive the last dialogue stored in memory and we open it.
             // If the asset was moved while Unity was closed, AssetFinderUtilities will just return null, so we risk nothing
+
             if (!_currentDialogueContainer && PlayerPrefs.HasKey("lastDialogue"))
             {
                 _currentDialogueContainer = AssetFinderUtilities.FindAssetAtPath<DialogueContainerSO>(PlayerPrefs.GetString("lastDialogue"));
@@ -58,8 +69,7 @@ namespace Project.NodeSystem.Editor
         private void OnDisable()
         {
             rootVisualElement.Remove(_graphView);
-            PlayerPrefs.SetInt("Editor_makeGridVisible", _makeGridVisible ? 1 : 0);
-            PlayerPrefs.SetInt("Editor_NbMaxChoices", NbMaxChoices);
+            PlayerPrefs.SetInt("Editor_makeGridVisible", _isGridVisible ? 1 : 0);
 
             //Stores the instanceID to open the last editoed dialogue when Unity starts
             if (_currentDialogueContainer)
@@ -103,8 +113,6 @@ namespace Project.NodeSystem.Editor
 
         #endregion
 
-
-
         #region GraphView
 
         private void CreateGraphView()
@@ -134,34 +142,20 @@ namespace Project.NodeSystem.Editor
             showGridLabel.AddToClassList("showGridLabel");
 
             Toggle showGridToggle = new Toggle();
-            _makeGridVisible = PlayerPrefs.GetInt("Editor_makeGridVisible", _makeGridVisible ? 1 : 0) == 1 ? true : false;
-            showGridToggle.value = _makeGridVisible;
+            _isGridVisible = PlayerPrefs.GetInt("Editor_makeGridVisible", _isGridVisible ? 1 : 0) == 1 ? true : false;
+            showGridToggle.value = _isGridVisible;
             showGridToggle.RegisterCallback<ChangeEvent<bool>>((evt) =>
             {
-                showGridToggle.value = _makeGridVisible = evt.newValue;
-                _graphView.ToggleGrid(_makeGridVisible);
-                PlayerPrefs.SetInt("Editor_makeGridVisible", _makeGridVisible ? 1 : 0);
+                showGridToggle.value = _isGridVisible = evt.newValue;
+                _graphView.ToggleGrid(_isGridVisible);
+                PlayerPrefs.SetInt("Editor_makeGridVisible", _isGridVisible ? 1 : 0);
             });
 
 
-            Label nbChoicesLabel = new Label("Nb Max Choices");
             showGridLabel.AddToClassList("showGridLabel");
 
-            //Change the number of maximum possible choices
-            IntegerField nbChoicedAllowed = new IntegerField();
-            NbMaxChoices = PlayerPrefs.GetInt("Editor_NbMaxChoices", NbMaxChoices);
-            nbChoicedAllowed.value = NbMaxChoices;
-            nbChoicedAllowed.RegisterValueChangedCallback(value =>
-            {
-                nbChoicedAllowed.value = value.newValue;
-                NbMaxChoices = nbChoicedAllowed.value;
-                PlayerPrefs.SetInt("Editor_NbMaxChoices", NbMaxChoices);
-            });
-
-
-
             //We activate the toggle once to synchronize it with its value
-            _graphView.ToggleGrid(_makeGridVisible);
+            _graphView.ToggleGrid(_isGridVisible);
 
 
 
@@ -183,17 +177,12 @@ namespace Project.NodeSystem.Editor
             toolbar.Add(importButton);
             toolbar.Add(showGridLabel);
             toolbar.Add(showGridToggle);
-            toolbar.Add(nbChoicesLabel);
-            toolbar.Add(nbChoicedAllowed);
             toolbar.Add(languageDropdown);
 
             rootVisualElement.Add(toolbar);
         }
 
         #endregion
-
-
-
 
         #region Save & Load
 

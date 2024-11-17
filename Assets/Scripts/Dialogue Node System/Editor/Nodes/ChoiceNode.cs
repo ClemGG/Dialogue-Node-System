@@ -70,10 +70,10 @@ namespace Project.NodeSystem.Editor
             ChoiceData.Choices.Add(newChoice);
             newChoice.BoxContainer = NodeBuilder.NewBox(this, "ChoiceBox");
 
-            AddLabelAndButton(newChoice, $"Choice n°{(ChoiceData.Choices.IndexOf(newChoice)+1).ToString()}");
+            AddLabelAndButton(newChoice, $"Choice n°{(ChoiceData.Choices.IndexOf(newChoice) + 1).ToString()}");
             AddTextLine(newChoice);
             ChoiceStateEnum(newChoice);
-            
+
 
             // Load in data if it got any
             if (loadedChoice != null)
@@ -128,7 +128,7 @@ namespace Project.NodeSystem.Editor
                     }
                 }
 
-                
+
             }
             else
             {
@@ -203,7 +203,6 @@ namespace Project.NodeSystem.Editor
 
                 ChoiceData.Choices.Remove(newChoice);
                 RenameChoices();
-                ShowHideNewChoiceBtn();
             };
             Button removeBtn = NodeBuilder.NewButton(buttonsBox, "X", onRemoveClicked, "RemoveChoiceBtn");
 
@@ -246,7 +245,7 @@ namespace Project.NodeSystem.Editor
             ShowHideChoiceEnum();
 
             // Add fields to box.
-            newChoice.ChoiceStateEnumBox.Add(NodeBuilder.NewLabel( "If the conditions are not met", "ChoiceStateTypeLabel"));
+            newChoice.ChoiceStateEnumBox.Add(NodeBuilder.NewLabel("If the conditions are not met", "ChoiceStateTypeLabel"));
             NodeBuilder.NewEnumField("", newChoice.ChoiceStateEnumBox, newChoice.ChoiceStateType, "ChoiceStateTypeEnum");
         }
 
@@ -294,7 +293,7 @@ namespace Project.NodeSystem.Editor
                 newPort.PortGuid = Guid.NewGuid().ToString();
             }
 
-            if(newPort.Port == null)
+            if (newPort.Port == null)
             {
                 Port port = NodeBuilder.GetPortInstance(this, Direction.Output);
 
@@ -307,7 +306,6 @@ namespace Project.NodeSystem.Editor
                 newPort.Port = port;
 
                 // Refresh
-                ShowHideNewChoiceBtn();
                 baseNode.RefreshPorts();
                 baseNode.RefreshExpandedState();
 
@@ -413,22 +411,6 @@ namespace Project.NodeSystem.Editor
                 NodeBuilder.ShowHide(ChoiceData.Choices[i].Conditions.Count > 0, ChoiceData.Choices[i].ChoiceStateEnumBox);
             }
         }
-
-
-        /// <summary>
-        /// Displays AddChoice button if the max number of choices hasn't been reached
-        /// </summary>
-        private void ShowHideNewChoiceBtn()
-        {
-            NodeBuilder.ShowHide(ChoiceData.Choices.Count < Window.NbMaxChoices, _newChoiceBtn);
-
-            //If there's only one single choice, no need to display the buttons
-            for (int i = 0; i < _boxesButtons.Count; i++)
-            {
-                NodeBuilder.ShowHide(ChoiceData.Choices.Count > 1, _boxesButtons[i]);
-            }
-        }
-
 
         /// <summary>
         /// Renames the choices depending on their ID
